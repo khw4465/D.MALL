@@ -19,11 +19,10 @@ public class CustDto {
     private Date lginDttm; // 최근로그인일자13
     private String gender; // 성별  --이거로 바뀜14
     private String regn; // 지역15
-    private String cartId; // 장바구니 아이디16
-    private Date fstReg; // 최초등록일시17
-    private String fstRegr; // 최초등록자식별번호18
-    private Date lastUpd; // 최종수정일시19
-    private String lastUpdr; // 최종수정자식별번호20
+    private Date fstReg; // 최초등록일시16
+    private String fstRegr; // 최초등록자식별번호17
+    private Date lastUpd; // 최종수정일시18
+    private String lastUpdr; // 최종수정자식별번호19
 
     public CustDto() {
     }
@@ -36,7 +35,7 @@ public class CustDto {
         this.acNo = acNo;
     }
 
-    public CustDto(String custId, String pwd, String name, String mpNo, String custTp, String grade, String stus, String rcmdr, Date birth, String email, Date regDate, String acNo, Date lginDttm, String gender, String regn, String cartId, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
+    public CustDto(String custId, String pwd, String name, String mpNo, String custTp, String grade, String stus, String rcmdr, Date birth, String email, Date regDate, String acNo, Date lginDttm, String gender, String regn, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
         this.custId = custId;
         this.pwd = pwd;
         this.name = name;
@@ -52,7 +51,6 @@ public class CustDto {
         this.lginDttm = lginDttm;
         this.gender = gender;
         this.regn = regn;
-        this.cartId = cartId;
         this.fstReg = fstReg;
         this.fstRegr = fstRegr;
         this.lastUpd = lastUpd;
@@ -179,14 +177,6 @@ public class CustDto {
         this.regn = regn;
     }
 
-    public String getCartId() {
-        return cartId;
-    }
-
-    public void setCartId(String cartId) {
-        this.cartId = cartId;
-    }
-
     public Date getFstReg() {
         return fstReg;
     }
@@ -223,13 +213,52 @@ public class CustDto {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         CustDto custDto = (CustDto) o;
-        return Objects.equals(custId, custDto.custId) && Objects.equals(pwd, custDto.pwd) && Objects.equals(name, custDto.name) && Objects.equals(mpNo, custDto.mpNo) && Objects.equals(custTp, custDto.custTp) && Objects.equals(grade, custDto.grade) && Objects.equals(stus, custDto.stus) && Objects.equals(rcmdr, custDto.rcmdr) && Objects.equals(email, custDto.email) && Objects.equals(acNo, custDto.acNo) && Objects.equals(gender, custDto.gender) && Objects.equals(regn, custDto.regn) && Objects.equals(cartId, custDto.cartId) && Objects.equals(fstRegr, custDto.fstRegr) && Objects.equals(lastUpdr, custDto.lastUpdr);
+
+        if (!Objects.equals(custId, custDto.custId)) return false;
+        if (!Objects.equals(pwd, custDto.pwd)) return false;
+        if (!Objects.equals(name, custDto.name)) return false;
+        if (!Objects.equals(mpNo, custDto.mpNo)) return false;
+        if (!Objects.equals(custTp, custDto.custTp)) return false;
+        if (!Objects.equals(grade, custDto.grade)) return false;
+        if (!Objects.equals(stus, custDto.stus)) return false;
+        if (!Objects.equals(rcmdr, custDto.rcmdr)) return false;
+        if (!Objects.equals(birth, custDto.birth)) return false;
+        if (!Objects.equals(email, custDto.email)) return false;
+        if (!Objects.equals(regDate, custDto.regDate)) return false;
+        if (!Objects.equals(acNo, custDto.acNo)) return false;
+        if (!Objects.equals(lginDttm, custDto.lginDttm)) return false;
+        if (!Objects.equals(gender, custDto.gender)) return false;
+        if (!Objects.equals(regn, custDto.regn)) return false;
+        if (!Objects.equals(fstReg, custDto.fstReg)) return false;
+        if (!Objects.equals(fstRegr, custDto.fstRegr)) return false;
+        if (!Objects.equals(lastUpd, custDto.lastUpd)) return false;
+        return Objects.equals(lastUpdr, custDto.lastUpdr);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(custId, pwd, name, mpNo, custTp, grade, stus, rcmdr, email, acNo, gender, regn, cartId, fstRegr, lastUpdr);
+        int result = custId != null ? custId.hashCode() : 0;
+        result = 31 * result + (pwd != null ? pwd.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (mpNo != null ? mpNo.hashCode() : 0);
+        result = 31 * result + (custTp != null ? custTp.hashCode() : 0);
+        result = 31 * result + (grade != null ? grade.hashCode() : 0);
+        result = 31 * result + (stus != null ? stus.hashCode() : 0);
+        result = 31 * result + (rcmdr != null ? rcmdr.hashCode() : 0);
+        result = 31 * result + (birth != null ? birth.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (regDate != null ? regDate.hashCode() : 0);
+        result = 31 * result + (acNo != null ? acNo.hashCode() : 0);
+        result = 31 * result + (lginDttm != null ? lginDttm.hashCode() : 0);
+        result = 31 * result + (gender != null ? gender.hashCode() : 0);
+        result = 31 * result + (regn != null ? regn.hashCode() : 0);
+        result = 31 * result + (fstReg != null ? fstReg.hashCode() : 0);
+        result = 31 * result + (fstRegr != null ? fstRegr.hashCode() : 0);
+        result = 31 * result + (lastUpd != null ? lastUpd.hashCode() : 0);
+        result = 31 * result + (lastUpdr != null ? lastUpdr.hashCode() : 0);
+        return result;
     }
 
     @Override
@@ -250,7 +279,6 @@ public class CustDto {
                 ", lginDttm=" + lginDttm +
                 ", gender='" + gender + '\'' +
                 ", regn='" + regn + '\'' +
-                ", cartId='" + cartId + '\'' +
                 ", fstReg=" + fstReg +
                 ", fstRegr='" + fstRegr + '\'' +
                 ", lastUpd=" + lastUpd +

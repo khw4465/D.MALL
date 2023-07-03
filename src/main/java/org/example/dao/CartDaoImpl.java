@@ -11,16 +11,16 @@ import java.util.Map;
 @Repository
 public class CartDaoImpl implements CartDao {
     @Autowired
-    SqlSession session;
+    private SqlSession session;
     private static String namespace = "org.example.dao.CartMapper.";
 
     @Override
-    public CartDto select(String cartId) throws Exception{
-        return session.selectOne(namespace + "select", cartId);
+    public CartDto select(String custId) throws Exception{
+        return session.selectOne(namespace + "select", custId);
     }
     @Override
-    public List<CartDto> selectAll(String cartId) throws Exception{
-        return session.selectList(namespace + "selectAll", cartId);
+    public List<CartDto> selectAll(String custId) throws Exception{
+        return session.selectList(namespace + "selectAll", custId);
     }
     @Override
     public int count() throws Exception{
@@ -35,8 +35,8 @@ public class CartDaoImpl implements CartDao {
         return session.delete(namespace + "delete", map);
     }
     @Override
-    public int deleteAll(String cartId) throws Exception{
-        return session.delete(namespace + "deleteAll", cartId);
+    public int deleteAll(String custId) throws Exception{
+        return session.delete(namespace + "deleteAll", custId);
     }
     @Override
     public int increase(Map<String, String> map) throws Exception{

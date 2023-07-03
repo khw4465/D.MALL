@@ -1,10 +1,13 @@
 package org.example.domain;
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 import java.util.Objects;
 
+
 public class CartDto {
     private int seq;
-    private String cartId;
+    private String custId;
     private String prodCd;
     private String prodName;
     private int prodQty;
@@ -23,17 +26,18 @@ public class CartDto {
 
     //
 
-    public CartDto(String cartId, String prodCd, String prodName, int prodQty, int totSetlPrice) {
-        this.cartId = cartId;
+
+    public CartDto(String custId, String prodCd, String prodName, int prodQty, int totSetlPrice) {
+        this.custId = custId;
         this.prodCd = prodCd;
         this.prodName = prodName;
         this.prodQty = prodQty;
         this.totSetlPrice = totSetlPrice;
     }
 
-    public CartDto(int seq, String cartId, String prodCd, String prodName, int prodQty, int totSetlPrice, int paymtPnt, int expctDcPrc, int dexp, int saveTerm, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
+    public CartDto(int seq, String custId, String prodCd, String prodName, int prodQty, int totSetlPrice, int paymtPnt, int expctDcPrc, int dexp, int saveTerm, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
         this.seq = seq;
-        this.cartId = cartId;
+        this.custId = custId;
         this.prodCd = prodCd;
         this.prodName = prodName;
         this.prodQty = prodQty;
@@ -56,12 +60,12 @@ public class CartDto {
         this.seq = seq;
     }
 
-    public String getCartId() {
-        return cartId;
+    public String getCustId() {
+        return custId;
     }
 
-    public void setCartId(String cartId) {
-        this.cartId = cartId;
+    public void setCustId(String custId) {
+        this.custId = custId;
     }
 
     public String getProdCd() {
@@ -174,7 +178,7 @@ public class CartDto {
         if (expctDcPrc != cartDto.expctDcPrc) return false;
         if (dexp != cartDto.dexp) return false;
         if (saveTerm != cartDto.saveTerm) return false;
-        if (!Objects.equals(cartId, cartDto.cartId)) return false;
+        if (!Objects.equals(custId, cartDto.custId)) return false;
         if (!Objects.equals(prodCd, cartDto.prodCd)) return false;
         if (!Objects.equals(prodName, cartDto.prodName)) return false;
         if (!Objects.equals(fstReg, cartDto.fstReg)) return false;
@@ -186,7 +190,7 @@ public class CartDto {
     @Override
     public int hashCode() {
         int result = seq;
-        result = 31 * result + (cartId != null ? cartId.hashCode() : 0);
+        result = 31 * result + (custId != null ? custId.hashCode() : 0);
         result = 31 * result + (prodCd != null ? prodCd.hashCode() : 0);
         result = 31 * result + (prodName != null ? prodName.hashCode() : 0);
         result = 31 * result + prodQty;
@@ -206,7 +210,7 @@ public class CartDto {
     public String toString() {
         return "CartDto{" +
                 "seq=" + seq +
-                ", cartId='" + cartId + '\'' +
+                ", custId='" + custId + '\'' +
                 ", prodCd='" + prodCd + '\'' +
                 ", prodName='" + prodName + '\'' +
                 ", prodQty=" + prodQty +

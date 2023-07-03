@@ -6,12 +6,12 @@
     <select id="select" parameterType="string" resultType="CartDto">
         SELECT *
         FROM cart
-        WHERE cart_id=#{cartId}
+        WHERE cust_id=#{custId}
     </select>
     <select id="selectAll" parameterType="string" resultType="CartDto">
         SELECT *
         FROM cart
-        WHERE cart_id=#{cartId}
+        WHERE cust_id=#{custId}
         ORDER BY seq
     </select>
     <select id="count" resultType="int">
@@ -19,30 +19,30 @@
     </select>
     <insert id="insert" parameterType="CartDto">
         INSERT INTO cart
-            (cart_id, prod_cd, prod_name, prod_qty, tot_setl_price)
+            (cust_id, prod_cd, prod_name, prod_qty, tot_setl_price)
         values
-            (#{cartId}, #{prodCd}, #{prodName}, #{prodQty}, #{totSetlPrice})
+            (#{custId}, #{prodCd}, #{prodName}, #{prodQty}, #{totSetlPrice})
     </insert>
     <delete id="delete" parameterType="map">
         DELETE
         FROM cart
-        WHERE cart_id = #{cartId}
+        WHERE cust_id = #{custId}
         AND prod_cd = #{prodCd}
     </delete>
     <delete id="deleteAll" parameterType="string">
         DELETE FROM cart
-        WHERE cart_id=#{cartId}
+        WHERE cust_id=#{custId}
     </delete>
     <update id="increase" parameterType="map">
         UPDATE cart
         SET  prod_qty  = prod_qty+1
-        WHERE cart_id = #{cartId}
+        WHERE cust_id = #{custId}
         AND prod_cd = #{prodCd}
     </update>
     <update id="decrease" parameterType="map">
         UPDATE cart
         SET   prod_qty = prod_qty-1
-        WHERE cart_id = #{cartId}
+        WHERE cust_id = #{custId}
         AND prod_cd = #{prodCd}
     </update>
 </mapper>

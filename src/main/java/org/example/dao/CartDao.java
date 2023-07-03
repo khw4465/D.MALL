@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 public interface CartDao {
-    CartDto select(String cartId) throws Exception;
+    CartDto select(String custId) throws Exception;
 
-    List<CartDto> selectAll(String cartId) throws Exception;
+    List<CartDto> selectAll(String custId) throws Exception;
 
     int count() throws Exception;
 
@@ -16,7 +16,7 @@ public interface CartDao {
 
     int delete(Map map) throws Exception;
 
-    int deleteAll(String cartId) throws Exception;
+    int deleteAll(String custId) throws Exception;
 
     int increase(Map<String, String> map) throws Exception;
 

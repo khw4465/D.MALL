@@ -116,7 +116,7 @@
     </select>
 
     <!--    상품상세페이지에서 사용할 select-->
-    <select id="selectProdDetail" parameterType="map" resultType="ProdDto">
+    <select id="selectProdDetail" parameterType="string" resultType="ProdDto">
         SELECT PROD_CD,
                PROD_NAME,
                PROD_STUS,
