@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.dao.CartMapper">
+    <select id="select" parameterType="string" resultType="CartDto">
+        SELECT *
+        FROM cart
+        WHERE cart_id=#{cartId}
+    </select>
+    <select id="selectAll" parameterType="string" resultType="CartDto">
+        SELECT *
+        FROM cart
+        WHERE cart_id=#{cartId}
+        ORDER BY seq
+    </select>
+    <select id="count" resultType="int">
+        SELECT count(*) FROM cart
+    </select>
+    <insert id="insert" parameterType="CartDto">
+        INSERT INTO cart
+            (cart_id, prod_cd, prod_name, prod_qty, tot_setl_price)
+        values
+            (#{cartId}, #{prodCd}, #{prodName}, #{prodQty}, #{totSetlPrice})
+    </insert>
+    <delete id="delete" parameterType="map">
+        DELETE
+        FROM cart
+        WHERE cart_id = #{cartId}
+        AND prod_cd = #{prodCd}
+    </delete>
+    <delete id="deleteAll" parameterType="string">
+        DELETE FROM cart
+        WHERE cart_id=#{cartId}
+    </delete>
+    <update id="increase" parameterType="map">
+        UPDATE cart
+        SET  prod_qty  = prod_qty+1
+        WHERE cart_id = #{cartId}
+        AND prod_cd = #{prodCd}
+    </update>
+    <update id="decrease" parameterType="map">
+        UPDATE cart
+        SET   prod_qty = prod_qty-1
+        WHERE cart_id = #{cartId}
+        AND prod_cd = #{prodCd}
+    </update>
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fastcampus.ch4.dao.CustMapper">
+
+    <select id="select" resultType="CustDto">
+        select *
+        from cust
+        where cust_id = #{custId}
+    </select>
+
+    <select id="findid" resultType="String" parameterType="CustDto">
+        select CUST_ID
+        from cust
+        where name = #{name} and email = #{email}
+    </select>
+
+    <insert id="insert" parameterType="CustDto">
+        INSERT INTO cust
+            (cust_id,PWD,NAME,RCMDR,EMAIL)
+        VALUES
+            (#{custId}, #{pwd}, #{name}, #{rcmdr}, #{email})
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM cust where cust_id = #{CUST_ID}
+    </delete>
+
+    <update id="update" parameterType="CustDto">
+        UPDATE cust
+        SET pwd = #{pwd}
+          , name = #{name}
+          , mpno = #{mpNo}
+          , email = #{email}
+          , acno = #{acNo}
+        where cust_id = #{custId}
+    </update>
+
+    <select id="selectAll" resultType="CustDto">
+        select CUST_ID,NAME,MPNO,CUST_TP,GRADE,STUS,BIRTH,EMAIL,ACNO,Gender
+        from cust
+    </select>
+
+    <delete id="deleteAll">
+        delete from cust
+    </delete>
+
+    <select id="count" resultType="int">
+        SELECT count(*) FROM cust
+    </select>
+</mapper>

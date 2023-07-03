@@ -1,0 +1,141 @@
+@charset "UTF-8";
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.body-frame {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.page-title-area {
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.title-page {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.cart-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cart-option label {
+    margin-right: 10px;
+}
+
+li{
+    margin-top: 10px;
+}
+
+.btn-option {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.btn-option btn-default{
+    text-align: right;
+}
+
+.btn-option:hover {
+    background-color: #666;
+}
+
+.price-info-all {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.colum {
+    border: 1px solid #eee;
+    padding: 20px;
+}
+
+.price-info .tit {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.price-info .num {
+    color: #e60023;
+    font-weight: bold;
+}
+
+.page-guide-center {
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-bottom: 40px;
+}
+
+.page-guide-center .list-type1 {
+    padding-left: 20px;
+}
+
+.btn-bottom-area {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn-basic-xxlg {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 30px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-bottom-area a:last-child {
+    background-color: #e60023;
+    color: #fff;
+    padding: 15px 30px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-basic-xxlg:hover,
+.btn-bottom-area a:last-child:hover {
+    opacity: 0.8;
+}
+
+.cart-list-area {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.list-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.dlv-guide {
+    display: none;
+}
+
+.delivery-product-89761600NY{
+    border-bottom : 1px solid #ccc;
+}

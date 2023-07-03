@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fastcampus.ch4.dao.ProdStokMapper">
+
+<!--    DB에 들어있는 전체상품재고데이터수-->
+    <select id="count" resultType="int">
+        SELECT count(*) FROM prod_stok
+    </select>
+
+<!--    DB에 들어있는 전체상품재고데이터 삭제-->
+    <delete id="deleteAll">
+        DELETE FROM prod_stok
+    </delete>
+
+<!--    상품등록페이지에서 최초로 상품재고등록하기-->
+    <insert id="insert" parameterType="ProdStokDto">
+        INSERT INTO prod_stok
+            (PROD_CD, PROD_STOK)
+        VALUES
+            (#{prodCd}, #{prodStok})
+    </insert>
+
+</mapper>

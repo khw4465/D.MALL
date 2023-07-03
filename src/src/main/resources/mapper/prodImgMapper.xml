@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fastcampus.ch4.dao.ProdImgMapper">
+
+    <!--    해당카테고리 상품개수 반환-->
+    <select id="countCls" parameterType="ProdDto" resultType="int">
+        SELECT count(*)
+        FROM prod
+        WHERE CLS_CD = #{clsCd}
+    </select>
+
+    <!--    DB에 들어있는 전체상품개수-->
+    <select id="count" resultType="int">
+        SELECT count(*)
+        FROM prod
+    </select>
+
+    <!--    DB에 들어있는 전체상품 삭제-->
+    <delete id="deleteAll">
+        DELETE
+        FROM prod
+    </delete>
+
+    <!--    관리자페이지에서 본인이 등록한 상품 삭제 -->
+    <delete id="deleteForAdmin" parameterType="map">
+        DELETE
+        FROM prod
+        WHERE PROD_CD = #{ProdCd}
+          and CUST_ID = #{CustId}
+    </delete>
+
+
+    <!--    <delete id="delete" parameterType="map">-->
+    <!--        DELETE FROM prod WHERE PROD_CD = #{prod_cd}-->
+    <!--    </delete>-->
+
+    <!--    상품등록페이지에서 상품이미지등록하기-->
+    <insert id="insert" parameterType="ProdImgDto">
+        INSERT INTO prod_img
+        (PROD_CD, SN, IMG_NAME, IMG_USE, IMG_PATH )
+        VALUES (#{prodCd}, #{sn}, #{imgName}, #{imgUse}, #{imgPath})
+    </insert>
+
+    <!--  상품조회페이지에서 전체상품 불러오기 -->
+    <select id="selectAll" resultType="ProdDto">
+        SELECT *
+        FROM prod
+        ORDER BY PROD_CD DESC
+    </select>
+
+    <!--  상품관리페이지에서 해당 카테고리 전체상품 불러오기. -->
+    <select id="selectAllCls" resultType="ProdDto">
+        SELECT *
+        FROM prod
+        where CLS_CD = #{clsCd}
+        ORDER BY PROD_CD DESC
+    </select>
+
+    <!-- 상품목록 기본페이지에서 사용될 sql문 -->
+    <sql id="selectBasic">
+        SELECT PROD_CD,
+               CLS_CD,
+               PROD_NAME,
+               PROD_STUS,
+               REG_YN,
+               SALES_YN,
+               DSPY_YN,
+               BASE_PRC,
+               DC_UNIT,
+               DC_VAL,
+               DC_DTTM_FROM,
+               DC_DTTM_TO,
+               EVAL,
+               RW_CNT,
+               SALES_DTTM_FROM,
+               SALES_DTTM_TO,
+        FROM prod
+        where CLS_CD = #{clsCd}
+    </sql>
+
+    <!--    상품리스트 기본페이지에서 사용할 select-->
+    <select id="selectListBasic" parameterType="map" resultType="ProdDto">
+        <include refid="selectBasic"/>
+        ORDER BY CLS_CD DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <!--    상품리스트 상세페이지에서 사용할 select-->
+    <select id="selectListDetail" parameterType="map" resultType="ProdDto">
+        SELECT PROD_CD,
+               CLS_CD,
+               PROD_NAME,
+               PROD_STUS,
+               REG_YN,
+               SALES_YN,
+               DSPY_YN,
+               BASE_PRC,
+               OPT_YN,
+               DC_UNIT,
+               DC_VAL,
+               DC_DTTM_FROM,
+               DC_DTTM_TO,
+               EVAL,
+               RW_CNT,
+               SALES_DTTM_FROM,
+               SALES_DTTM_TO,
+               ACC_PNT
+        FROM prod
+        WHERE CLS_CD = #{clsCd} LIMIT #{offset}
+            , #{pageSize}
+    </select>
+
+    <!--    상품상세페이지에서 사용할 select-->
+    <select id="selectProdDetail" parameterType="map" resultType="ProdDto">
+        SELECT PROD_CD,
+               PROD_NAME,
+               PROD_STUS,
+               REG_YN,
+               SALES_YN,
+               DSPY_YN,
+               BASE_PRC,
+               OPT_YN,
+               DC_UNIT,
+               DC_VAL,
+               DC_DTTM_FROM,
+               DC_DTTM_TO,
+               EVAL,
+               RW_CNT,
+               SALES_DTTM_FROM,
+               SALES_DTTM_TO,
+               ACC_PNT
+        from prod
+        WHERE PROD_CD = #{prodCd}
+    </select>
+
+</mapper>
