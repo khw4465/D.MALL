@@ -347,7 +347,7 @@
         <input type="submit" class="search-button" value="검색">
     </form>
     <a href="/"><img class="person" src="/coupon.png" alt="coupon"></a>
-    <a href="/"><img class="person" src="/person.png" alt="mypaga"></a>
+    <a href="<c:url value='/myPage'/>"><img class="person" src="/person.png" alt="mypaga"></a>
     <a href="<c:url value='/cart/list'/>"><img class="person" src="/cart.png" alt="cart"></a></span>
 
     <%--    여기에 문장 삽입하는 코드--%>

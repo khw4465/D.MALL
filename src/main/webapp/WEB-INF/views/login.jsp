@@ -202,9 +202,9 @@
                 <!-- 아이디비번 찾기 코드 시작 -->
                 <div class="find-register">
                     <ul class="info">
-                        <li><a href="/dgaja/login/findId" class="login-info1">아이디 찾기</a></li>
-                        <li><a href="/dgaja/login/findPwd" class="login-info2">비밀번호 찾기</a></li>
-                        <li><a href="/dgaja/register/add" class="login-info3">회원가입</a></li>
+                        <li><a href="/login/findId" class="login-info1">아이디 찾기</a></li>
+                        <li><a href="/login/findPwd" class="login-info2">비밀번호 찾기</a></li>
+                        <li><a href="/register/add" class="login-info3">회원가입</a></li>
                     </ul>
                 </div>
                 <!-- 아이디비번 찾기 코드 종료 -->

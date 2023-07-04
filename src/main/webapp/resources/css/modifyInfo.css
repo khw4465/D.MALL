@@ -1,0 +1,83 @@
+@charset "UTF-8";
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f0f0f0;
+    /* Added this line */
+}
+
+.content {
+    width: 60%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    /* Added this line */
+    border-radius: 4px;
+    /* Added this line */
+}
+
+.input-field {
+    margin: 10px 0;
+}
+
+.label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.input-field input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.button-group {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.button-group button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.cancel-btn {
+    background-color: #777;
+}
+
+.confirm-btn {
+    background-color: #0056b3;
+}
+
+.input-wrap {
+    position: relative;
+}
+
+.edit-button {
+    position: absolute;
+    right: 10px;
+    /* Changed from 0 to 10px */
+    top: 10px;
+    /* Changed from 0 to 10px */
+    padding: 10px;
+    background-color: #ccc;
+    border: none;
+    cursor: pointer;
+}
+
+li {
+    list-style-type: none;
+}
+
+.input-field input {
+    width: 350px;
+}
