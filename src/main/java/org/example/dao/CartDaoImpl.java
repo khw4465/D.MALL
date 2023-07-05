@@ -31,7 +31,7 @@ public class CartDaoImpl implements CartDao {
         return session.insert(namespace + "insert", dto);
     }
     @Override
-    public int delete(Map map) throws Exception{
+    public int delete(Map<String,String> map) throws Exception{
         return session.delete(namespace + "delete", map);
     }
     @Override

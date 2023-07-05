@@ -14,7 +14,7 @@ public interface CartDao {
 
     int insert(CartDto dto) throws Exception;
 
-    int delete(Map map) throws Exception;
+    int delete(Map<String, String> map) throws Exception;
 
     int deleteAll(String custId) throws Exception;
 

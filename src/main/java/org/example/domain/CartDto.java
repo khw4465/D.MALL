@@ -2,6 +2,7 @@ package org.example.domain;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -20,7 +21,6 @@ public class CartDto {
     private String fstRegr;
     private Date lastUpd;
     private String lastUpdr;
-
 
     public CartDto() {}
 
