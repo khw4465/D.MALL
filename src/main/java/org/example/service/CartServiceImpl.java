@@ -5,6 +5,7 @@ import org.example.domain.CartDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +22,8 @@ public class CartServiceImpl implements CartService {
     @Override
     public int remove(String custId, String prodCd) throws Exception{
         Map<String, String> map = new HashMap<>();
-        map.put(custId, prodCd);
+        map.put("custId", custId);
+        map.put("prodCd", prodCd);
         return cartDao.delete(map);
     }
     @Override

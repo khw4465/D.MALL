@@ -1,5 +1,7 @@
 package org.example.controller;
 
+import jdk.jfr.StackTrace;
+import org.example.classForAjax.Prod;
 import org.example.domain.CartDto;
 import org.example.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/cart")
@@ -24,12 +28,28 @@ public class CartController {
 //            System.out.println("아이디는 = "+session.getAttribute("id"));
             String custId = (String)session.getAttribute("id");
 
-            List<CartDto> list = cartService.getCartList(custId);// 로그인한 아이디를 장바구니아이디로 변환하는 메서드에 주입
+            List<CartDto> list = cartService.getCartList(custId);// 로그인한 아이디에 담긴 장바구니 목록을 리스트로 담는다
             m.addAttribute("list", list);   // list를 모델에 담는다.
 
-            System.out.println("장바구니 내용 = " + cartService.getCartList((String)session.getAttribute("id")));
+
+            int totalPrice = 0;    // 최종상품금액
+            int totalDcPrice = 0;   // 최종할인금액
+            int delPrice = 0;   // 배송비
+
+            for (CartDto cart : list) {     // 리스트 각각의 가격을 더한다.
+                totalPrice += cart.getTotSetlPrice();
+                totalDcPrice += cart.getExpctDcPrc();
+            }
+            delPrice = totalPrice >= 20000 ? 0 : 3000;  // 최종상품금액이 20000원 이상이면 배송비 무료
+
+            m.addAttribute("totalPrice", totalPrice);
+            m.addAttribute("totalDcPrice", totalDcPrice);
+            m.addAttribute("delPrice", delPrice);
+
+
+
+        System.out.println("장바구니 내용 = " + cartService.getCartList((String)session.getAttribute("id")));
         } catch (Exception e) {
-            e.printStackTrace();
             return "error";
         }
 
@@ -46,26 +66,21 @@ public class CartController {
 //        return "cart";
 //    }
 
-//    @DeleteMapping("/list?prodCd="+cartService.getProd)
-//    @ResponseBody
-//    public String removeCart(@RequestBody Prod prod, Model m, HttpServletRequest request) {
-//        try {
-//            HttpSession session = request.getSession();
-//            String custId = (String)session.getAttribute("id");
-//
-//            String cartId = cartService.getCartId(custId);
-//
-//            System.out.println("prod = " + prod);
-//
-//            prod.setAge(prod.getAge() + 10);
-//            Map<String, String> map = new HashMap<>();
-//            map.put(cartId, "a");
-//
-//            int i = cartService.remove(map);
-//        } catch (Exception e) {
-//            return "error";
-//        }
-//        return "cart";
-//    }
+    @DeleteMapping("/delete")
+    @ResponseBody
+    public Prod removeCart(@RequestBody Prod p, HttpServletRequest request) {
+
+        try {
+            HttpSession session = request.getSession();
+            String custId = (String)session.getAttribute("id"); // id 받아오기
+
+            System.out.println("p = " + p);
+
+            cartService.remove(custId, p.getProdCd());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return p;
+    }
 
 }

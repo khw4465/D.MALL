@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.dao.DlvAddrMapper">
+    <select id="select" parameterType="string" resultType="DlvAddrDto">
+        SELECT *
+        FROM dlv_addr
+        WHERE cust_id=#{custId}
+    </select>
+    <insert id="insert" parameterType="DlvAddrDto">
+        INSERT INTO dlv_addr
+            (cust_id, rcpr,dlv_addr,dtl_addr,dlvpn,mpno)
+        VALUES
+            (#{custId}, #{rcpr}, #{dlvAddr}, #{dtlAddr}, #{dlvpn}, #{mpno})
+    </insert>
+    <update id="update" parameterType="DlvAddrDto">
+        UPDATE dlv_addr
+        SET rcpr = #{rcpr}
+          , dlv_addr = #{dlvAddr}
+          , dtl_addr = #{dtlAddr}
+          , dlvpn = #{dlvpn}
+          , mpno = #{mpno}
+        WHERE cust_id = #{custId}
+    </update>
+    <delete id="delete" parameterType="string">
+        DELETE FROM dlv_addr
+        WHERE cust_id = #{CUST_ID}
+    </delete>
+</mapper>

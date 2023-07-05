@@ -7,15 +7,15 @@
 //public class adminController {
 //    @RequestMapping("/admin")
 //    public String admin() {
-//        if(adminCHeck(id, pwd)){ // 어드민일경우
-//            return "admin";
-//        }
+////        if(adminCHeck(id, pwd)){ // 어드민일경우
+////            return "admin";
+////        }
+////
+////        private boolean adminCHeck(String id, String pwd){
+////            return "admin".equals(id) && "admin123".equals(pwd);
+////        }
 //
-//        private boolean adminCHeck(String id, String pwd){
-//            return "admin".equals(id) && "admin123".equals(pwd);
-//        }
-//
-//        return "admin";
+//        return "dgajamain";
 //
 //    }
 //}
