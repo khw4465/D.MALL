@@ -1,0 +1,250 @@
+table{
+    border: 1px solid #000000;
+}
+
+.clear{
+    clear: both;
+}
+
+/*상단 카테고리 관련*/
+#cate{
+    width: 80%;
+}
+#cate_tb{
+    position:absolute;
+    top:120px;
+    left: 145px;
+    text-align: center;
+    width: 60%;
+
+
+}
+#cate_tb_td{
+    width: 700px;
+    height: 60px;
+    border: 1px solid #bcbcbc;
+}
+/*상단 카테고리 관련*/
+
+/*좌측 고객센터*/
+
+#CS {
+    position: absolute;
+    top : 200px;
+    left: 30px;
+}
+#CS_label{
+    position: absolute;
+    top: 270px;
+
+    float: left;
+    width: 150px;
+
+    text-align: center;
+
+    border: 1px solid #e6e6e6;
+    line-height: 50px;
+}
+
+#label_ul{
+    list-style-type: none;
+    float: left;
+}
+/*좌측 고객센터*/
+
+/* 공지사항 */
+#CS_tb {
+    height: 40px;
+}
+
+#CS_tb_cate{
+    width: 130px;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #000000;
+}
+
+#CS_tb_td {
+    text-align: center;
+    width: 700px;
+    border: 1px solid #000000;
+}
+
+#CS_tb_day {
+    text-align: center;
+    width: 130px;
+    border: 1px solid #000000;
+}
+#CS_tb_bno {
+    text-align: center;
+    width: 30px;
+    border: 1px solid #000000;
+}
+
+
+#main_1{
+    position: absolute;
+    top: 200px;
+    left: 200px;
+
+    width: 60%;
+}
+/* 공지사항 */
+
+/* 자묻FAQ */
+#main_2{
+    position: absolute;
+    top: 400px;
+    left: 200px;
+
+    width: 60%;
+}
+/* 이용안내 */
+#main_3{
+    position: relative;
+    top: 550px;
+    left: 200px;
+
+    width: 60%;
+}
+
+#main_4{
+    position: absolute;
+    top: 200px;
+    left: 200px;
+
+    width: 60%;
+}
+
+.usg{
+    position: relative;
+}
+/* 이용안내 */
+
+/* faq 박스 */
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    font-weight: bold;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    position: relative;
+}
+
+.accordion:after{
+    content: '\22C1';
+    font-size: 13px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
+}
+.active:after{
+    content: '\22C0';
+}
+/* 자묻FAQ */
+
+
+/* 1:1 문의에서 사용하는 것 */
+.container {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+}
+
+.image-upload {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.img_btn{
+    display: flex;
+    justify-content: center;
+}
+
+.img_lab{
+    cursor: pointer;
+    font-size: 1em;
+}
+
+#chooseFile{
+    visibility: hidden;
+}
+
+.fileContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fileInput {
+    display: flex;
+    align-items: center;
+    border-bottom: solid 2px black;
+    width: 60%;
+    height: 30px;
+}
+
+#fileName {
+    margin-left: 5px;
+}
+
+.buttonContainer {
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    background-color: black;
+    color: white;
+    border-radius: 30px;
+    padding: 10px;
+    font-size: 0.8em;
+
+    cursor: pointer;
+}
+
+.image-show {
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.img {
+    position: absolute;
+}
+
+.page {
+    color : #000000;
+    padding: 6px;
+    margin-right: 10px;
+}
+
+#handle {
+    position: absolute;
+    top: 620px;
+    left: 200px;
+}

@@ -2,6 +2,7 @@ package org.example.service;
 
 import org.example.dao.notcDAO;
 import org.example.domain.notcDTO;
+import org.example.domain.notcSearchCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -34,9 +35,9 @@ public class NotcServiceImpl implements NotcService {
     }
 
     @Override
-    public notcDTO read(String BBSO_NO, Integer NOTC_CNT) throws Exception{
+    public notcDTO read(String BBSO_NO) throws Exception{
         notcDTO dto = notcDao.select(BBSO_NO);
-        notcDao.increaseViewCnt(NOTC_CNT);
+//        notcDao.increaseViewCnt(BBSO_NO);
         return dto;
     }
 
@@ -48,5 +49,15 @@ public class NotcServiceImpl implements NotcService {
     @Override
     public int modify(notcDTO dto){
         return notcDao.update(dto);
+    }
+
+    @Override
+    public List<notcDTO> getSearchResultPage(notcSearchCondition sc) throws Exception{
+        return notcDao.searchSelectPage(sc);
+    }
+
+    @Override
+    public int getSearchResultCnt(notcSearchCondition sc) throws Exception{
+        return notcDao.searchResultCnt(sc);
     }
 }

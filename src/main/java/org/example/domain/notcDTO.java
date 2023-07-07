@@ -16,9 +16,11 @@ public class notcDTO {
     private Date LAST_UPD;
     private String LAST_UPDR;
 
+    private String USE_YN;
+
     public notcDTO(){}
 
-    public notcDTO(String BBSO_NO, String TTL, String CN, String WRTD, String WRTR, Integer NOTC_CNT, String CATE, Date FST_REG, String FST_REGR, Date LAST_UPD, String LAST_UPDR) {
+    public notcDTO(String BBSO_NO, String TTL, String CN, String WRTD, String WRTR, Integer NOTC_CNT, String CATE, Date FST_REG, String FST_REGR, Date LAST_UPD, String LAST_UPDR, String USE_YN) {
         this.BBSO_NO = BBSO_NO;
         this.TTL = TTL;
         this.CN = CN;
@@ -30,6 +32,7 @@ public class notcDTO {
         this.FST_REGR = FST_REGR;
         this.LAST_UPD = LAST_UPD;
         this.LAST_UPDR = LAST_UPDR;
+        this.USE_YN = USE_YN;
     }
 
     public String getBBSO_NO() {
@@ -120,9 +123,17 @@ public class notcDTO {
         this.LAST_UPDR = LAST_UPDR;
     }
 
+    public String getUSE_YN() {
+        return USE_YN;
+    }
+
+    public void setUSE_YN(String USE_YN) {
+        this.USE_YN = USE_YN;
+    }
+
     @Override
     public String toString() {
-        return "boardDTO{" +
+        return "notcDTO{" +
                 "BBSO_NO='" + BBSO_NO + '\'' +
                 ", TTL='" + TTL + '\'' +
                 ", CN='" + CN + '\'' +
@@ -134,6 +145,7 @@ public class notcDTO {
                 ", FST_REGR='" + FST_REGR + '\'' +
                 ", LAST_UPD=" + LAST_UPD +
                 ", LAST_UPDR='" + LAST_UPDR + '\'' +
+                ", USE_YN='" + USE_YN + '\'' +
                 '}';
     }
 }

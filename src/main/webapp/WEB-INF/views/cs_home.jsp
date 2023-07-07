@@ -6,9 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="false"%>
 <html>
 <head>
     <title>CS_Home</title>
+    <link rel="stylesheet" href="<c:url value='/css/csmain.css'/>">
 </head>
 <body>
 <h1>드가자몰</h1>
@@ -29,14 +32,14 @@
 <div class="clear"></div>
 
 <!-- 왼쪽 사이드에 붙어있는 각 페이지로 들어가게 하는 메뉴bar-->
-<h2 id="CS"><a href="/cs">고객센터</a></h2>
+<h2 id="CS"><a href="cs">고객센터</a></h2>
 <div id="CS_label">
     <nav>
         <ul id="label_ul">
-            <li><a href="/cs/notc/list">공지사항</a></li>
-            <li><a href="/cs/user/list">이용안내</a></li>
-            <li><a href="/cs/faq">자주묻는FAQ</a></li>
-            <li><a href="/cs/inqry">1:1문의</a></li>
+            <li><a href="/notc/list">공지사항</a></li>
+            <li><a href="/user/list">이용안내</a></li>
+            <li><a href="/faq">자주묻는FAQ</a></li>
+            <li><a href="/inqry">1:1문의</a></li>
         </ul>
     </nav>
 </div>
@@ -45,7 +48,7 @@
 <!-- CS 메인에서 미리 최근 공지사항을 보여주는 테이블-->
 <div id="main_1">
     <table id="CS_tb" border="1px">
-        <h3><a href="/cs/notc/list">공지사항</a></h3>
+        <h3><a href="/notc/list">공지사항</a></h3>
         <tr id="CS_tb">
             <td id="CS_tb_cate">업데이트</td>
             <td id="CS_tb_td">TEST2</td>
