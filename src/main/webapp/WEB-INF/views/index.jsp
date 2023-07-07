@@ -19,7 +19,7 @@
     <ul class="header">
         <li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>
         <li><a href="<c:url value='${addAndModify}'/>">${register}</a></li>
-        <li><a href="<c:url value='/ord/list'/>">주문조회</a></li>
+        <li><a href="<c:url value='/order/list'/>">주문조회</a></li>
         <li><a href="<c:url value='/cs'/>">고객센터</a></li>
         <li id="adminHome"> </li>
 <%--        여기 관리자로 로그인시 관리자홈이라는 a 태그 생김--%>

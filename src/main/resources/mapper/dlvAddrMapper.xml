@@ -3,28 +3,41 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.example.dao.DlvAddrMapper">
-    <select id="select" parameterType="string" resultType="DlvAddrDto">
+    <select id="select" parameterType="map" resultType="DlvAddrDto">
         SELECT *
+        FROM dlv_addr
+        WHERE cust_id=#{custId}
+        AND addr_no = #{addrNo}
+    </select>
+    <select id="selectAll" parameterType="string" resultType="DlvAddrDto">
+        SELECT *
+        FROM dlv_addr
+        WHERE cust_id=#{custId}
+    </select>
+    <select id="count" parameterType="string" resultType="int">
+        SELECT count(*)
         FROM dlv_addr
         WHERE cust_id=#{custId}
     </select>
     <insert id="insert" parameterType="DlvAddrDto">
         INSERT INTO dlv_addr
-            (cust_id, rcpr,dlv_addr,dtl_addr,dlvpn,mpno)
+            (cust_id, rcpr, addr_no, dlv_addr,dtl_addr,dlvpn,mpno)
         VALUES
-            (#{custId}, #{rcpr}, #{dlvAddr}, #{dtlAddr}, #{dlvpn}, #{mpno})
+            (#{custId}, #{rcpr}, #{addrNo}, #{dlvAddr}, #{dtlAddr}, #{dlvpn}, #{mpno})
     </insert>
     <update id="update" parameterType="DlvAddrDto">
         UPDATE dlv_addr
         SET rcpr = #{rcpr}
+          , addr_no = #{addrNo}
           , dlv_addr = #{dlvAddr}
           , dtl_addr = #{dtlAddr}
           , dlvpn = #{dlvpn}
           , mpno = #{mpno}
         WHERE cust_id = #{custId}
     </update>
-    <delete id="delete" parameterType="string">
+    <delete id="delete" parameterType="map">
         DELETE FROM dlv_addr
         WHERE cust_id = #{CUST_ID}
+        AND addr_no = #{addrNo}
     </delete>
 </mapper>
