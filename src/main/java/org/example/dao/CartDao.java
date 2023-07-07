@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 public interface CartDao {
-    CartDto select(String custId) throws Exception;
+    CartDto select(String custId, String prodCd) throws Exception;
 
     List<CartDto> selectAll(String custId) throws Exception;
 
-    int count() throws Exception;
+    int count(String custId) throws Exception;
 
     int insert(CartDto dto) throws Exception;
 

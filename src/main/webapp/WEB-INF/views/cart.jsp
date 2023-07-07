@@ -51,6 +51,7 @@
                         ${cart.prodName}
                         <div>
                         <img src="../img/${cart.prodCd}.png" style="width: 100px; height: 100px;">
+
                         </div>
                         <div class="column qty">
                             <div class="qty-group">
@@ -59,7 +60,7 @@
                                 </button>
                                 <input type="text" title="" name="prod-qty" value="${cart.prodQty}" readonly="readonly">
                                 <button type="button">
-                                    <i class="plusBtn"></i><span class="blind">더하기</span>
+                                    <i class="plusBtn"><span class="blind">더하기</span></i>
                                 </button>
                             </div>
                         </div>
@@ -67,7 +68,7 @@
                         <div>적립 예정 포인트: ${Math.round(cart.totSetlPrice/100)}포인트</div>
                         <div>예상 할인 금액: ${cart.expctDcPrc}원</div>
                         <button type="button" id="delete${cart.prodCd}" class="deleteOne">
-                            <i class="ico-x-black"></i><span class="blind">삭제</span>
+                            <i class="ico-x-black"><span class="blind">삭제</span></i>
                         </button>
                     </div>
 <%--                        <input type="hidden" id="prod${cart.prodCd}" name="prod" value="${cart}">--%>
@@ -120,10 +121,10 @@
     <div class="btn-bottom-area">
         <a href="<c:url value='/'/>" class="btn-basic-xxlg btn-default-ex"><span>쇼핑계속하기</span></a>
         <input type="submit" class="totalOrderPrice" value="${finalPrice}원 주문하기">
-        <input type="hidden" name="prodTotPrice" value="${totalPrice}">
-        <input type="hidden" name="prodTotPrice" value="${totalDcPrice}">
-        <input type="hidden" name="prodTotPrice" value="${delPrice}">
-        <input type="hidden" name="prodTotPrice" value="${finalPrice}">
+        <input type="hidden" name="prodPrice" value="${totalPrice}">
+        <input type="hidden" name="prodDcPrice" value="${totalDcPrice}">
+        <input type="hidden" name="prodDlvPrice" value="${delPrice}">
+        <input type="hidden" name="prodFinPrice" value="${finalPrice}">
     </div>
 </div>
 </form>
@@ -154,7 +155,6 @@
 
     const selectDelBtn = document.getElementById('deleteUserCartList');     // 선택삭제 버튼
     // const delBtn = document.getElementsByClassName('deleteOne');  // 개별삭제 버튼
-    // const delBtnArr = Array.from(delBtn); // 개별삭제버튼 배열화
     const cart = document.getElementById("cart");
     const cartOpt = document.getElementById("cart-option");
     const listhead = document.getElementById("list-head");
@@ -205,17 +205,29 @@
     const minus = document.getElementsByClassName("minusBtn");    // 빼기 버튼
     let qtyVal = document.getElementsByName("prod-qty");    // 수량 text
 
+    const throttle = (callback, delay) => {     // 수량체크할 때 사용할 스로틀 함수
+        let timerId;
+
+        return (...args) => {
+            if (timerId) return;
+            timerId = setTimeout(() => {
+                callback(...args);
+                timerId = null;
+            }, delay);
+        };
+    };
+
     for(let i=0; i<eachCBox.length; i++){       //  plus
-        plus[i].closest('button').addEventListener('click', () =>{
+        plus[i].closest('button').addEventListener('click', throttle(() =>{
             qtyVal[i].value++;
-        });
+        }, 700));
     }
 
     for(let i=0; i<eachCBox.length; i++){       // minus
-        minus[i].closest('button').addEventListener('click', () =>{
+        minus[i].closest('button').addEventListener('click', throttle(() => {
             qtyVal[i].value--;
-            if(qtyVal[i].value < 0) qtyVal[i].value=0;  // 음수x
-        });
+            if (qtyVal[i].value < 1) qtyVal[i].value = 1;  // 음수x
+        }, 700));
     }
 
 </script>
@@ -231,7 +243,7 @@
             $("#delete"+prodCd).click(function(){
                 $.ajax({
                     type:'DELETE',       // 요청 메서드
-                    url: '/cart/delete',  // 요청 URI
+                    url: '/cart/remove',  // 요청 URI
                     headers : { "content-type": "application/json"}, // 요청 헤더
                     dataType : 'text', // 전송받을 데이터의 타입
                     data : JSON.stringify(prod),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.

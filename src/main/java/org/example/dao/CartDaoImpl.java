@@ -5,6 +5,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,16 +16,19 @@ public class CartDaoImpl implements CartDao {
     private static String namespace = "org.example.dao.CartMapper.";
 
     @Override
-    public CartDto select(String custId) throws Exception{
-        return session.selectOne(namespace + "select", custId);
+    public CartDto select(String custId, String prodCd) throws Exception{
+        Map<String, String> map = new HashMap<>();
+        map.put("custId", custId);
+        map.put("prodCd", prodCd);
+        return session.selectOne(namespace + "select", map);
     }
     @Override
     public List<CartDto> selectAll(String custId) throws Exception{
         return session.selectList(namespace + "selectAll", custId);
     }
     @Override
-    public int count() throws Exception{
-        return session.selectOne(namespace + "count");
+    public int count(String custId) throws Exception{
+        return session.selectOne(namespace + "count", custId);
     }
     @Override
     public int insert(CartDto dto) throws Exception{

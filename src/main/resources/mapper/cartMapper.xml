@@ -3,19 +3,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.example.dao.CartMapper">
-    <select id="select" parameterType="string" resultType="CartDto">
+    <select id="select" parameterType="map" resultType="CartDto">
         SELECT *
         FROM cart
-        WHERE cust_id=#{custId}
+        WHERE cust_id = #{custId}
+        AND prod_cd = #{prodCd}
     </select>
     <select id="selectAll" parameterType="string" resultType="CartDto">
         SELECT *
         FROM cart
         WHERE cust_id=#{custId}
-        ORDER BY seq
     </select>
-    <select id="count" resultType="int">
-        SELECT count(*) FROM cart
+    <select id="count" parameterType="string" resultType="int">
+        SELECT count(*)
+        FROM cart
+        WHERE cust_id = #{custId}
     </select>
     <insert id="insert" parameterType="CartDto">
         INSERT INTO cart
@@ -35,7 +37,7 @@
     </delete>
     <update id="increase" parameterType="map">
         UPDATE cart
-        SET  prod_qty  = prod_qty+1
+        SET  prod_qty  = prod_qty + 1
         WHERE cust_id = #{custId}
         AND prod_cd = #{prodCd}
     </update>

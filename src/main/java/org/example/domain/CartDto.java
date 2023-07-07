@@ -7,16 +7,16 @@ import java.util.Objects;
 
 
 public class CartDto {
-    private int seq;
-    private String custId;
-    private String prodCd;
-    private String prodName;
-    private int prodQty;
-    private int totSetlPrice;
-    private int paymtPnt;
-    private int expctDcPrc;
-    private int dexp;
-    private int saveTerm;
+    private int seq;    // 시퀀스
+    private String custId;  // 회원아이디
+    private String prodCd;  // 상품코드
+    private String prodName;    // 상품명
+    private int prodQty;    // 상품수량
+    private int totSetlPrice;   // 상품가격
+    private int paymtPnt;   // 적립포인트
+    private int expctDcPrc; // 예상할인금액
+    private int dexp;   // 배송비
+    private int saveTerm;   // 보유기간
     private Date fstReg;
     private String fstRegr;
     private Date lastUpd;
