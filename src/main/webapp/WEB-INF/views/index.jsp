@@ -333,7 +333,7 @@
     <ul class="header">
         <li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>
         <li><a href="<c:url value='${addAndModify}'/>">${register}</a></li>
-        <li><a href="<c:url value='/ord/list'/>">주문조회</a></li>
+        <li><a href="<c:url value='/order/list'/>">주문조회</a></li>
         <li><a href="<c:url value='/cs'/>">고객센터</a></li>
         <input type="hidden" name="toURL" value="${param.toURL}">
     </ul>

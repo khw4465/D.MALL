@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.dao.OrderMapper">
+    <select id="select" parameterType="map" resultType="OrderDto">
+        SELECT *
+        FROM ord
+        WHERE ord_cd = #{ordCd}
+        AND cust_id = #{custId}
+    </select>
+    <select id="selectAllByMonth" parameterType="map" resultType="OrderDto">
+        SELECT *
+        FROM ord
+        WHERE cust_id=#{custId}
+        AND ord_dttm >= DATE_SUB(NOW(), INTERVAL #{i} MONTH)
+    </select>
+    <select id="selectAllByDate" parameterType="map" resultType="OrderDto">
+        SELECT *
+        FROM ord
+        WHERE cust_id=#{custId}
+        AND ord_dttm BETWEEN #{startDate} AND #{endDate}
+    </select>
+    <select id="count" parameterType="string" resultType="int">
+        SELECT count(*)
+        FROM ord
+        WHERE cust_id = #{custId}
+    </select>
+    <insert id="insert" parameterType="OrderDto">
+        INSERT INTO ord
+            (ord_cd, cust_id, prod_name, tot_prod_cnt, tot_prc, tot_qty, dlv_addr_id, dlv_msg)
+        VALUES
+            (#{ordCd}, #{custId}, #{prodName}, #{totProdCnt}, #{totPrc}, #{totQty}, #{dlvAddrId}, #{dlvMsg})
+    </insert>
+    <update id="update" parameterType="OrderDto">
+        UPDATE ord
+        SET cfm_yn = #{cfmYn}
+          , ord_stus = CASE
+                          WHEN cfm_yn = 'Y' THEN '주문확정'
+                          WHEN cfm_yn = 'C' THEN '취소완료'
+                          WHEN cfm_yn = 'R' THEN '반품신청'
+                          ELSE '주문완료' END
+          , stus_chg_dttm = NOW()
+        WHERE ord_cd = #{ordCd}
+        AND cust_id = #{custId}
+    </update>
+</mapper>

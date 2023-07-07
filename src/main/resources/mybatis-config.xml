@@ -15,5 +15,6 @@
         <typeAlias alias="ProdStokDto" type="org.example.domain.ProdStokDto"/>
         <typeAlias alias="ProdImgDto" type="org.example.domain.ProdImgDto"/>
         <typeAlias alias="DlvAddrDto" type="org.example.domain.DlvAddrDto"/>
+        <typeAlias alias="OrderDto" type="org.example.domain.OrderDto"/>
     </typeAliases>
 </configuration>

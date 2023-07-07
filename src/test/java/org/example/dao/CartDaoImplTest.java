@@ -1,6 +1,5 @@
 package org.example.dao;
 
-import org.checkerframework.checker.units.qual.C;
 import org.example.domain.CartDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,12 +18,12 @@ public class CartDaoImplTest {
     private CartDao cartDao;
     @Test
     public void selectTest() throws Exception {
-            // 전체삭제
+        // 전체삭제
         cartDao.deleteAll("asdf");
-            // asdf 장바구니에 상품 P00101 추가
+        // asdf 장바구니에 상품 P00101 추가
         CartDto dto = new CartDto("asdf", "P00101","맛있닭 프로 닭가슴살 120g", 1, 2000);
         cartDao.insert(dto);
-            // asdf 장바구니에 상품 P00102 추가
+        // asdf 장바구니에 상품 P00102 추가
         CartDto dto2 = new CartDto("asdf", "P00102","맛있닭 저염·프로 닭가슴살 혼합 100~120g", 1, 3000);
         cartDao.insert(dto2);
 
@@ -35,10 +34,10 @@ public class CartDaoImplTest {
 
     @Test
     public void selectAllTest() throws Exception {
-            // 전체삭제
+        // 전체삭제
         cartDao.deleteAll("asdf");
 
-            // asdf에 상품 4개 추가
+        // asdf에 상품 4개 추가
         CartDto dto1 = new CartDto("asdf", "P00101","맛있닭 프로 닭가슴살 120g", 1, 2000);
         CartDto dto2 = new CartDto("asdf", "P00102","맛있닭 저염·프로 닭가슴살 혼합 100~120g", 1, 3000);
         CartDto dto3 = new CartDto("asdf", "P00201","맛있닭 닭가슴살 스테이크 오리지널 100g ", 1, 2000);
@@ -57,24 +56,24 @@ public class CartDaoImplTest {
 
     @Test
     public void countTest() throws Exception {
-            // 전체삭제
+        // 전체삭제
         cartDao.deleteAll("asdf");
 
         assertTrue(cartDao.count("asdf") == 0);
 
-            // 1개 추가
+        // 1개 추가
         CartDto dto1 = new CartDto("asdf", "P00101","맛있닭 프로 닭가슴살 120g", 1, 2000);
         cartDao.insert(dto1);
 
         assertTrue(cartDao.count("asdf") == 1);
 
-            // 1개 더 추가
+        // 1개 더 추가
         CartDto dto2 = new CartDto("asdf", "P00102","맛있닭 저염·프로 닭가슴살 혼합 100~120g", 1, 3000);
         cartDao.insert(dto2);
 
         assertTrue(cartDao.count("asdf") == 2);
 
-             // 1개 삭제
+        // 1개 삭제
         Map<String, String> map = new HashMap<>();
         map.put("custId", "asdf");
         map.put("prodCd", "P00102");
@@ -85,10 +84,10 @@ public class CartDaoImplTest {
 
     @Test
     public void insertTest() throws Exception {
-            // 전체삭제
+        // 전체삭제
         cartDao.deleteAll("asdf");
-// 카운트 0인거 확인
-            // 4개 상품 추가할때마다 검사
+
+        // 4개 상품 추가할때마다 검사
         CartDto dto1 = new CartDto("asdf", "P00101","맛있닭 프로 닭가슴살 120g", 1, 2000);
         CartDto dto2 = new CartDto("asdf", "P00102","맛있닭 저염·프로 닭가슴살 혼합 100~120g", 1, 3000);
         CartDto dto3 = new CartDto("asdf", "P00201","맛있닭 닭가슴살 스테이크 오리지널 100g ", 1, 2000);
@@ -98,76 +97,76 @@ public class CartDaoImplTest {
         assertTrue(cartDao.insert(dto3) == 1);
         assertTrue(cartDao.insert(dto4) == 1);
 
-            // 최종 카운트 검사
+        // 최종 카운트 검사
         assertTrue(cartDao.count("asdf") == 4);
     }
 
     @Test
     public void deleteTest() throws Exception {
-            // 전체삭제
+        // 전체삭제
         cartDao.deleteAll("asdf");
-            // 상품 2개 추가
+        // 상품 2개 추가
         CartDto dto1 = new CartDto("asdf", "P00101","맛있닭 프로 닭가슴살 120g", 1, 2000);
         CartDto dto2 = new CartDto("asdf", "P00102","맛있닭 저염·프로 닭가슴살 혼합 100~120g", 1, 3000);
         assertTrue(cartDao.insert(dto1) == 1);
         assertTrue(cartDao.insert(dto2) == 1);
 
-            // 추가 후 개수 카운트
+        // 추가 후 개수 카운트
         assertTrue(cartDao.count("asdf") == 2);
-            // P00101 삭제
+        // P00101 삭제
         Map<String, String> map1 = new HashMap<>();
         map1.put("custId", "asdf");
         map1.put("prodCd", "P00101");
         assertTrue(cartDao.delete(map1) == 1);
-            // 삭제 후 개수 카운트
+        // 삭제 후 개수 카운트
         assertTrue(cartDao.count("asdf") == 1);
-            // P00102 삭제
+        // P00102 삭제
         Map<String, String> map2 = new HashMap<>();
         map2.put("custId", "asdf");
         map2.put("prodCd", "P00102");
         assertTrue(cartDao.delete(map2) == 1);
-            // 두개 다 삭제 후 카운트
+        // 두개 다 삭제 후 카운트
         assertTrue(cartDao.count("asdf") == 0);
     }
 
     @Test
     public void deleteAllTest() throws Exception {
-            // 전체삭제
+        // 전체삭제
         cartDao.deleteAll("asdf");
 
-            // 전체삭제 확인을 위해 상품을 넣어준다
+        // 전체삭제 확인을 위해 상품을 넣어준다
         CartDto dto1 = new CartDto("asdf", "P00101","맛있닭 프로 닭가슴살 120g", 1, 2000);
         CartDto dto2 = new CartDto("asdf", "P00102","맛있닭 저염·프로 닭가슴살 혼합 100~120g", 1, 3000);
         assertTrue(cartDao.insert(dto1) == 1);
         assertTrue(cartDao.insert(dto2) == 1);
 
-            // 카운트
+        // 카운트
         assertTrue(cartDao.count("asdf") == 2);
-            // 전체삭제
+        // 전체삭제
         assertTrue(cartDao.deleteAll("asdf") == 2);
-            // 전체삭제 후 0개
+        // 전체삭제 후 0개
         assertTrue(cartDao.count("asdf") == 0);
     }
 
     @Test
     public void increaseTest() throws Exception {
-            // 전체삭제
+        // 전체삭제
         cartDao.deleteAll("asdf");
-            // prodQty(상품의 개수)를 1개로 설정하고 상품을 추가해준다
+        // prodQty(상품의 개수)를 1개로 설정하고 상품을 추가해준다
         CartDto dto1 = new CartDto("asdf", "P00101","맛있닭 프로 닭가슴살 120g", 1, 2000);
         assertTrue(cartDao.insert(dto1) == 1);
 
-            // 상품의 개수를 getProdQty()로 가져온다.
+        // 상품의 개수를 getProdQty()로 가져온다.
         CartDto prod1 = cartDao.select("asdf", "P00101");
         assertTrue(prod1.getProdQty() == 1);
 
-            // 상품을 map에 담아 개수를 1 증가시킴
+        // 상품을 map에 담아 개수를 1 증가시킴
         Map<String, String> map = new HashMap<>();
         map.put("custId", "asdf");
         map.put("prodCd", "P00101");
         assertTrue(cartDao.increase(map) == 1);     // 성공하면 1 반환
 
-            // 상품의 개수를 다시 조회
+        // 상품의 개수를 다시 조회
         CartDto prod2 = cartDao.select("asdf", "P00101");
         assertTrue(prod2.getProdQty() == 2);
     }

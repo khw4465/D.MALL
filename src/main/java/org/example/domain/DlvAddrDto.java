@@ -3,9 +3,10 @@ import java.util.Date;
 import java.util.Objects;
 
 public class DlvAddrDto {
-    private String dlvAddrId;   // 배송지아이디
+    private int seq;   // 배송지아이디
     private String custId;  // 회원아이디
     private String rcpr;    // 수령인
+    private int addrNo; // 배송지번호
     private String dlvAddr; // 배송주소
     private String zpcd;    // 우편번호
     private String dtlAddr; // 상세주소
@@ -19,10 +20,12 @@ public class DlvAddrDto {
     private String lastUpdr;    //최종수정자식별번호
 
     public DlvAddrDto() {}
-    public DlvAddrDto(String dlvAddrId, String custId, String rcpr, String dlvAddr, String zpcd, String dtlAddr, String mpNo, String dlvpn, String basicYn, Date createDate, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
-        this.dlvAddrId = dlvAddrId;
+
+    public DlvAddrDto(int seq, String custId, String rcpr, int addrNo, String dlvAddr, String zpcd, String dtlAddr, String mpNo, String dlvpn, String basicYn, Date createDate, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
+        this.seq = seq;
         this.custId = custId;
         this.rcpr = rcpr;
+        this.addrNo = addrNo;
         this.dlvAddr = dlvAddr;
         this.zpcd = zpcd;
         this.dtlAddr = dtlAddr;
@@ -36,12 +39,12 @@ public class DlvAddrDto {
         this.lastUpdr = lastUpdr;
     }
 
-    public String getDlvAddrId() {
-        return dlvAddrId;
+    public int getSeq() {
+        return seq;
     }
 
-    public void setDlvAddrId(String dlvAddrId) {
-        this.dlvAddrId = dlvAddrId;
+    public void setSeq(int seq) {
+        this.seq = seq;
     }
 
     public String getCustId() {
@@ -58,6 +61,14 @@ public class DlvAddrDto {
 
     public void setRcpr(String rcpr) {
         this.rcpr = rcpr;
+    }
+
+    public int getAddrNo() {
+        return addrNo;
+    }
+
+    public void setAddrNo(int addrNo) {
+        this.addrNo = addrNo;
     }
 
     public String getDlvAddr() {
@@ -155,7 +166,8 @@ public class DlvAddrDto {
 
         DlvAddrDto that = (DlvAddrDto) o;
 
-        if (!Objects.equals(dlvAddrId, that.dlvAddrId)) return false;
+        if (seq != that.seq) return false;
+        if (addrNo != that.addrNo) return false;
         if (!Objects.equals(custId, that.custId)) return false;
         if (!Objects.equals(rcpr, that.rcpr)) return false;
         if (!Objects.equals(dlvAddr, that.dlvAddr)) return false;
@@ -173,9 +185,10 @@ public class DlvAddrDto {
 
     @Override
     public int hashCode() {
-        int result = dlvAddrId != null ? dlvAddrId.hashCode() : 0;
+        int result = seq;
         result = 31 * result + (custId != null ? custId.hashCode() : 0);
         result = 31 * result + (rcpr != null ? rcpr.hashCode() : 0);
+        result = 31 * result + addrNo;
         result = 31 * result + (dlvAddr != null ? dlvAddr.hashCode() : 0);
         result = 31 * result + (zpcd != null ? zpcd.hashCode() : 0);
         result = 31 * result + (dtlAddr != null ? dtlAddr.hashCode() : 0);
@@ -193,9 +206,10 @@ public class DlvAddrDto {
     @Override
     public String toString() {
         return "DlvAddrDto{" +
-                "dlvAddrId='" + dlvAddrId + '\'' +
+                "seq=" + seq +
                 ", custId='" + custId + '\'' +
                 ", rcpr='" + rcpr + '\'' +
+                ", addrNo=" + addrNo +
                 ", dlvAddr='" + dlvAddr + '\'' +
                 ", zpcd='" + zpcd + '\'' +
                 ", dtlAddr='" + dtlAddr + '\'' +
