@@ -1,0 +1,74 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    /* 바디 안에 있는 텍스트 글꼴 설정임 */
+    /* 시스템에서 앞에꺼 찾고 없으면 뒤에껄로 감 */
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+form {
+    max-width: 500px;
+    /* 폼 요소의 너비를 500으로 지정 */
+    margin: 0 auto;
+    /* form 요소의 상단과 하단의 마진을 0, 좌우마진을 자동 지정 */
+    padding: 20px;
+    background-color: #fff;
+    /* 폼 바탕 */
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* 박스 그림자 */
+}
+/*  */
+.login-input {
+    margin-bottom: 1px;
+}
+
+.login-input label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.login-input input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    /* solid는 실선 스타일의 테두리 */
+    border-radius: 4px;
+    font-size: 14px;
+    /* 플레이스홀더에 적용될 크기조정 */
+}
+
+.login-button {
+    /* 로그인 버튼 */
+    width: 100%;
+    padding: 10px;
+    border: none;
+    /* 모든 변의 테두리를 제거 */
+    background-color: #007BFF;
+    /* 백그라운드는 파랑 */
+    color: #fff;
+    /* 글자는 흰색 */
+    border-radius: 4px;
+    /* 테두리 둥글게 */
+    cursor: pointer;
+    /* 커서 모양 */
+    font-size: 18px;
+    /* "가입하기" 같은 html 크기 조정 */
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+    /* 로그인 버튼에 마우스가 올라갔을때 */
+}
+
+.login-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    /* 로그인 버튼의 disabled가 적용되었을때 원형으로 대각선을 그은 */
+    /* 사용불가(처럼 보이는) 아이콘이 보임 */
+}

@@ -18,12 +18,12 @@
 
     <insert id="insert" parameterType="CustDto">
         INSERT INTO cust
-            (cust_id,PWD,NAME,RCMDR,EMAIL)
+            (cust_id,PWD,NAME,RCMDR,EMAIL,mpno,CUST_TP,GRADE,STUS,REG_DATE,LGIN_DTTM,FST_REG,FST_REGR,LAST_UPD,LAST_UPDR)
         VALUES
-            (#{custId}, #{pwd}, #{name}, #{rcmdr}, #{email})
+            (#{custId}, #{pwd}, #{name}, #{rcmdr}, #{email},#{mpNo},#{custTp},#{grade},#{stus},#{regDate},#{lginDttm},#{fstReg},#{fstRegr},#{lastUpd},#{lastUpdr})
     </insert>
 
-    <delete id="delete">
+    <delete id="delete" parameterType="String">
         DELETE FROM cust where cust_id = #{CUST_ID}
     </delete>
 
@@ -49,5 +49,23 @@
     <select id="count" resultType="int">
         SELECT count(*) FROM cust
     </select>
+
+    <select id="modifyselect" resultType="CustDto" parameterType="String">
+    select pwd,name,mpno,grade,birth,email,acno
+    from cust
+    where cust_id = #{custId}
+    </select>
+
+    <select id="temporaryPwd" resultType="CustDto" parameterType="CustDto">
+        select *
+        from cust
+        where cust_id = #{custId} and name = #{name} and mpno = #{mpNo} and email = #{email}
+    </select>
+
+    <update id="temporaryPwdReturn" parameterType="CustDto">
+        UPDATE cust
+        SET pwd = #{pwd}
+        where cust_id = #{custId}
+    </update>
 
 </mapper>

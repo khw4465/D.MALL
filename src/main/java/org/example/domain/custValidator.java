@@ -19,10 +19,11 @@ public class custValidator implements Validator {
             //String pwd = custDto.getPwd();
 
             ValidationUtils.rejectIfEmptyOrWhitespace(errors, "custId", "required");
+            ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pwd", "required");
 
             if (id == null || id.length() < 4 || id.length() > 20) {
                 errors.rejectValue("custId", "required");
-                System.out.println("id다시쳐주세요");
+                System.out.println("id를 다시 입력해주세요");
             }
         } else {
             // CustDto가 아닌 다른 타입의 객체가 전달되면 예외를 발생시키는 등의 대응이 필요

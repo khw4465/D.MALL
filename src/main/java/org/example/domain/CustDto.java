@@ -24,17 +24,7 @@ public class CustDto {
     private Date lastUpd; // 최종수정일시18
     private String lastUpdr; // 최종수정자식별번호19
 
-    public CustDto() {
-    }
-
-    public CustDto(String pwd, String name, String mpNo, String email, String acNo) {
-        this.pwd = pwd;
-        this.name = name;
-        this.mpNo = mpNo;
-        this.email = email;
-        this.acNo = acNo;
-    }
-
+    public CustDto(){}
     public CustDto(String custId, String pwd, String name, String mpNo, String custTp, String grade, String stus, String rcmdr, Date birth, String email, Date regDate, String acNo, Date lginDttm, String gender, String regn, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
         this.custId = custId;
         this.pwd = pwd;
@@ -55,6 +45,44 @@ public class CustDto {
         this.fstRegr = fstRegr;
         this.lastUpd = lastUpd;
         this.lastUpdr = lastUpdr;
+    }
+
+    @Override
+    public String toString() {
+        return "CustDto{" +
+                "custId='" + custId + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", name='" + name + '\'' +
+                ", mpNo='" + mpNo + '\'' +
+                ", custTp='" + custTp + '\'' +
+                ", grade='" + grade + '\'' +
+                ", stus='" + stus + '\'' +
+                ", rcmdr='" + rcmdr + '\'' +
+                ", birth=" + birth +
+                ", email='" + email + '\'' +
+                ", regDate=" + regDate +
+                ", acNo='" + acNo + '\'' +
+                ", lginDttm=" + lginDttm +
+                ", gender='" + gender + '\'' +
+                ", regn='" + regn + '\'' +
+                ", fstReg=" + fstReg +
+                ", fstRegr='" + fstRegr + '\'' +
+                ", lastUpd=" + lastUpd +
+                ", lastUpdr='" + lastUpdr + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CustDto custDto = (CustDto) o;
+        return Objects.equals(custId, custDto.custId) && Objects.equals(pwd, custDto.pwd) && Objects.equals(name, custDto.name) && Objects.equals(mpNo, custDto.mpNo) && Objects.equals(custTp, custDto.custTp) && Objects.equals(grade, custDto.grade) && Objects.equals(stus, custDto.stus) && Objects.equals(rcmdr, custDto.rcmdr) && Objects.equals(birth, custDto.birth) && Objects.equals(email, custDto.email) && Objects.equals(regDate, custDto.regDate) && Objects.equals(acNo, custDto.acNo) && Objects.equals(lginDttm, custDto.lginDttm) && Objects.equals(gender, custDto.gender) && Objects.equals(regn, custDto.regn) && Objects.equals(fstReg, custDto.fstReg) && Objects.equals(fstRegr, custDto.fstRegr) && Objects.equals(lastUpd, custDto.lastUpd) && Objects.equals(lastUpdr, custDto.lastUpdr);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(custId, pwd, name, mpNo, custTp, grade, stus, rcmdr, birth, email, regDate, acNo, lginDttm, gender, regn, fstReg, fstRegr, lastUpd, lastUpdr);
     }
 
     public String getCustId() {
@@ -207,82 +235,5 @@ public class CustDto {
 
     public void setLastUpdr(String lastUpdr) {
         this.lastUpdr = lastUpdr;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        CustDto custDto = (CustDto) o;
-
-        if (!Objects.equals(custId, custDto.custId)) return false;
-        if (!Objects.equals(pwd, custDto.pwd)) return false;
-        if (!Objects.equals(name, custDto.name)) return false;
-        if (!Objects.equals(mpNo, custDto.mpNo)) return false;
-        if (!Objects.equals(custTp, custDto.custTp)) return false;
-        if (!Objects.equals(grade, custDto.grade)) return false;
-        if (!Objects.equals(stus, custDto.stus)) return false;
-        if (!Objects.equals(rcmdr, custDto.rcmdr)) return false;
-        if (!Objects.equals(birth, custDto.birth)) return false;
-        if (!Objects.equals(email, custDto.email)) return false;
-        if (!Objects.equals(regDate, custDto.regDate)) return false;
-        if (!Objects.equals(acNo, custDto.acNo)) return false;
-        if (!Objects.equals(lginDttm, custDto.lginDttm)) return false;
-        if (!Objects.equals(gender, custDto.gender)) return false;
-        if (!Objects.equals(regn, custDto.regn)) return false;
-        if (!Objects.equals(fstReg, custDto.fstReg)) return false;
-        if (!Objects.equals(fstRegr, custDto.fstRegr)) return false;
-        if (!Objects.equals(lastUpd, custDto.lastUpd)) return false;
-        return Objects.equals(lastUpdr, custDto.lastUpdr);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = custId != null ? custId.hashCode() : 0;
-        result = 31 * result + (pwd != null ? pwd.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (mpNo != null ? mpNo.hashCode() : 0);
-        result = 31 * result + (custTp != null ? custTp.hashCode() : 0);
-        result = 31 * result + (grade != null ? grade.hashCode() : 0);
-        result = 31 * result + (stus != null ? stus.hashCode() : 0);
-        result = 31 * result + (rcmdr != null ? rcmdr.hashCode() : 0);
-        result = 31 * result + (birth != null ? birth.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (regDate != null ? regDate.hashCode() : 0);
-        result = 31 * result + (acNo != null ? acNo.hashCode() : 0);
-        result = 31 * result + (lginDttm != null ? lginDttm.hashCode() : 0);
-        result = 31 * result + (gender != null ? gender.hashCode() : 0);
-        result = 31 * result + (regn != null ? regn.hashCode() : 0);
-        result = 31 * result + (fstReg != null ? fstReg.hashCode() : 0);
-        result = 31 * result + (fstRegr != null ? fstRegr.hashCode() : 0);
-        result = 31 * result + (lastUpd != null ? lastUpd.hashCode() : 0);
-        result = 31 * result + (lastUpdr != null ? lastUpdr.hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "CustDto{" +
-                "custId='" + custId + '\'' +
-                ", pwd='" + pwd + '\'' +
-                ", name='" + name + '\'' +
-                ", mpNo='" + mpNo + '\'' +
-                ", custTp='" + custTp + '\'' +
-                ", grade='" + grade + '\'' +
-                ", stus='" + stus + '\'' +
-                ", rcmdr='" + rcmdr + '\'' +
-                ", birth=" + birth +
-                ", email='" + email + '\'' +
-                ", regDate=" + regDate +
-                ", acNo='" + acNo + '\'' +
-                ", lginDttm=" + lginDttm +
-                ", gender='" + gender + '\'' +
-                ", regn='" + regn + '\'' +
-                ", fstReg=" + fstReg +
-                ", fstRegr='" + fstRegr + '\'' +
-                ", lastUpd=" + lastUpd +
-                ", lastUpdr='" + lastUpdr + '\'' +
-                '}';
     }
 }

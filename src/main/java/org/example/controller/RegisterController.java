@@ -34,8 +34,8 @@ public class RegisterController {
 
     @PostMapping("/add")
     public String addPost(String toURL, HttpSession session, Model model, @Valid CustDto custDto, BindingResult result) throws Exception {
-        custValidator custValidator = new custValidator();
-        custValidator.validate(custDto,result);
+        // custValidator custValidator = new custValidator();
+        // custValidator.validate(custDto,result);
 
         if(result.hasErrors()){
             System.out.println("Validation Error");

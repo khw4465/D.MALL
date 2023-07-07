@@ -69,7 +69,8 @@ body {
     top: 10px;
     /* Changed from 0 to 10px */
     padding: 10px;
-    background-color: #ccc;
+    background-color: #0056b3;
+    color: white;
     border: none;
     cursor: pointer;
 }

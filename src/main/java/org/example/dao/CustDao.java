@@ -20,4 +20,11 @@ public interface CustDao {
     int count() throws Exception; //int형으로 개수 나와야함.
     // 모든 회원수를 조회한다.
     String findid(CustDto custDto) throws Exception;
+    //custDto를 주면 id를 찾아준다.
+    CustDto modifyselect(String id) throws Exception;
+    // 회원아이디를 주면 셀렉트가 작동해서 로그인한다.
+    CustDto temporaryPwd(CustDto dto) throws Exception;
+    // 아이디,이름,이메일,전화번호를 입력하면 임시비밀번호를 발급하는 로직
+    int temporaryPwdReturn(CustDto dto)throws Exception;
+    //
 }

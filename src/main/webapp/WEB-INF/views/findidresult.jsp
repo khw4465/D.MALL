@@ -4,56 +4,8 @@
 <html>
 <head>
     <title>아이디확인결과</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f6f6f6;
-        }
-        .content-container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .id-check-section {
-            background-color: #ffffff;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
-        .id-info {
-            font-weight: bold;
-            color: #333333;
-        }
-        .view-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        .id-info-value {
-            padding: 10px 0;
-            color: #666666;
-        }
-        .password {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 5px;
-        }
-        .findpwd-link, .login-button {
-            color: #007BFF;
-            text-decoration: none;
-        }
-        .login-button {
-            display: inline-block;
-            padding: 10px 20px;
-            color: #fff;
-            background-color: #007BFF;
-            border-radius: 5px;
-            text-decoration: none;
-            margin-top: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="<c:url value='/css/findidresult.css'/>">
+
 </head>
 <body>
 <div class="content-container">

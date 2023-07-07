@@ -45,4 +45,20 @@ public class CustDaoImpl implements CustDao {
         return session.selectOne(namespace+"findid",custDto);
     }
 
+    @Override
+    public CustDto modifyselect(String id) throws Exception {
+        return session.selectOne(namespace+"modifyselect",id);
+    }
+
+    @Override
+    public CustDto temporaryPwd(CustDto dto) throws Exception {
+        return session.selectOne(namespace+"temporaryPwd",dto);
+    }
+
+    @Override
+    public int temporaryPwdReturn(CustDto dto) throws Exception {
+        return session.update(namespace+"temporaryPwdReturn",dto);
+    }
+
+
 }

@@ -12,6 +12,13 @@ public interface CustService {
     CustDto loginCust(String id) throws Exception;
     int registerCust(CustDto custDto) throws Exception;
 
+    CustDto modifyselect(String id) throws Exception;
 
+    int withdrawal(String id) throws Exception; //탈퇴
+
+    CustDto temporaryPwd(CustDto custDto) throws Exception; //임시비밀번호 발급해주기
+
+    int temporaryPwdReturn(CustDto custDto) throws Exception;
+    //임시 비밀번호 발급시 db에 업데이트 쳐주는거
 
 }

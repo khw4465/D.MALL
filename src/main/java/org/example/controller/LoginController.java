@@ -2,18 +2,24 @@ package org.example.controller;
 
 import org.example.dao.*;
 import org.example.domain.*;
+import org.example.service.CustService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.math.BigInteger;
 import java.net.URLEncoder;
+import java.security.SecureRandom;
 
 @Controller
 @RequestMapping("/login")
@@ -21,32 +27,94 @@ public class LoginController {
     @Autowired
     CustDao custDao;
 
+    @Autowired
+    CustService custService;
+
+    @Autowired
+    private JavaMailSender mailSender;
+
     @GetMapping("/findId")
     public String findidget() {
         return "findId";
     }
-    @PostMapping("/findid")
+    @PostMapping("/findid")// id를찾을때
     public String findidpost(Model m, String name, String email,HttpServletRequest request, HttpServletResponse response) throws Exception {
         // db에서 특정 아이디랑 이메일 가진사람 찾아야함.
+       // 이름이랑 이메일 들어오면
+        //해당하는 id를 찾고 해당 아이디의
         CustDto custDto = new CustDto();
         custDto.setName(name);
         custDto.setEmail(email);
-        custDao.findid(custDto);
+        // m.addAttribute("findidresult",custDao.findid(custDto)); // 모델에 찾은 아이디 담음
+        String resultid = custDao.findid(custDto); // 해당하는 id 찾아냈음
 
-        m.addAttribute("findidresult",custDao.findid(custDto));
+        // 그 아이디의 이메일과 입력된 이메일을 비교해서 맞으면
+        // 이 아래부터 트라이캐치로 잡아야할듯.
 
-        // System.out.println("userDao.findid(custDto) = " + userDao.findid(custDto));
-        //name이랑 email이 동일한 custid를 반환해야함.
+        if(!(email.equals(custService.loginCust(resultid).getEmail())))
+            return "redirect:login/findid"; //리다이렉트로 바꿈
 
+        // 인증번호를 이메일로 보내고
+        String subject = "아이디를 보내드립니다.";
+        String content = "아이디는 "+ resultid +"입니다. ";
+        String from = "hsm1020ss@naver.com";
+        String to = ""+email+"";
+        try {
+            MimeMessage mail = mailSender.createMimeMessage();
+            MimeMessageHelper mailHelper = new MimeMessageHelper(mail,true,"UTF-8");
+                mailHelper.setFrom(from);
+                mailHelper.setTo(to);
+                mailHelper.setSubject(subject);
+                mailHelper.setText(content, true);
+                mailSender.send(mail);
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+        m.addAttribute("findidresult",resultid); // 모델에 찾은 아이디 담음
         return "findidresult";
     }
-
-
-
     @GetMapping("/findPwd")
-    public String findPwd() {
+    public String findPwd(String custId,String name,String email, String mpNo) {
         return "findPwd";
     }
+    @PostMapping("/findPwd")
+    public String findPwdReturn(String custId,String name,String email, String mpNo) throws Exception {
+        CustDto custDto = new CustDto();
+        custDto.setCustId(custId);
+        custDto.setName(name);
+        custDto.setEmail(email);
+        custDto.setMpNo(mpNo);
+        custDto = custService.temporaryPwd(custDto);
+        SecureRandom random = new SecureRandom();
+        String password = new BigInteger(50, random).toString(32);
+        password = password.substring(0, 5); // 문자열에서 앞쪽 5자만 잘라냄
+        password += custDto.getMpNo().substring(custDto.getMpNo().length() - 2);
+        password += custDto.getEmail().substring(0,2);
+        custDto.setPwd(password);
+
+        custService.temporaryPwdReturn(custDto);
+        String subject = "비밀번호를 보내드립니다";
+        //String content =  "메일 테스트 내용" + "<img src=\"img/cart.png\">";
+        String content = "<img src=\"https://postfiles.pstatic.net/MjAyMzA3MDVfMjc4/MDAxNjg4NTE2ODUwNzI1.tSsVmQZHdFxSpSINcOPi1p4aV8UB-JxoYZCMjghLehQg.mFUzLkRqn9SLC6I73Wv3mmUybQE4nHWQ6SruEou5tTAg.PNG.hsm1020ss/github.png?type=w966\">";
+        content += "비밀번호는 "+password +"입니다. "; //위에 패스워드 흰색떠도 괜찮음 여기서 사용함.
+        String from = "hsm1020ss@naver.com";
+        String to = "hsm1020s@naver.com";
+
+        try {
+            MimeMessage mail = mailSender.createMimeMessage();
+            MimeMessageHelper mailHelper = new MimeMessageHelper(mail,true,"UTF-8");
+            mailHelper.setFrom(from);
+            mailHelper.setTo(to);
+            mailHelper.setSubject(subject);
+            mailHelper.setText(content, true);
+            mailSender.send(mail);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return "index";
+    }
+
+
 
     @GetMapping("/login")
     public String loginForm() {
@@ -113,6 +181,7 @@ public class LoginController {
 
         try {
             user = custDao.selectUser(id);
+            //user = custService.loginCust()
         } catch (Exception e) {
             e.printStackTrace();
             return false;

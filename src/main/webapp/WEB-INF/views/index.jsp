@@ -4,7 +4,7 @@
 <c:set var="loginId" value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
 <c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
-<c:set var="addAndModify" value="${loginId=='' ? '/register/add' : '/register/modify'}"/>
+<c:set var="addAndModify" value="${loginId=='' ? '/register/add' : 'custModify'}"/>
 <c:set var="register" value="${loginId=='' ? '회원가입' : '정보수정'}"/>
 
 <!DOCTYPE html>
@@ -347,7 +347,7 @@
         <input type="submit" class="search-button" value="검색">
     </form>
     <a href="/"><img class="person" src="/coupon.png" alt="coupon"></a>
-    <a href="<c:url value='/myPage'/>"><img class="person" src="/person.png" alt="mypaga"></a>
+    <a href="<c:url value='/custMyPage'/>"><img class="person" src="/person.png" alt="mypaga"></a>
     <a href="<c:url value='/cart/list'/>"><img class="person" src="/cart.png" alt="cart"></a></span>
 
     <%--    여기에 문장 삽입하는 코드--%>

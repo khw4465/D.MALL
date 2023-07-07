@@ -8,71 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Page</title>
-    <style>
-        li {
-            list-style-type: none;
-        }
-        /* li의 모든 점들을 없앤다. */
-
-        /* 메뉴바 */
-        .admin-menu {
-            background-color: white;
-            overflow: hidden;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .admin-menu ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-
-        .admin-menu li {
-            padding: 14px 16px;
-        }
-
-        .admin-menu li.logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #000;
-            /* 로고 색상이 흰색으로 되어 있어서 가시성을 위해 검정색으로 변경하였습니다. */
-        }
-
-        .admin-menu li a {
-            display: block;
-            color: black;
-            text-align: center;
-            text-decoration: none;
-        }
-
-        /* 컨텐트 */
-        .content {
-            display: flex;
-        }
-
-        /* 왼쪽 사이드바 시작 */
-        .left-list {
-            flex: 1;
-        }
-
-        /* 오른쪽 사이드바 시작 */
-        .right-list {
-            flex: 4;
-        }
-
-        .panel {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.2s ease-out;
-        }
-
-        .active+.panel {
-            max-height: 50px;
-            /* 필요에 따라 변경 */
-        }
-    </style>
+    <link rel="stylesheet" href="<c:url value='/css/admin.css'/>">
 </head>
 <body>
 <div class="admin-menu">
