@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import static org.junit.Assert.*;
@@ -59,14 +60,14 @@ public class CustServiceImplTest {
         custDto.setRcmdr("아직");
         custDto.setBirth(date);
         custDto.setEmail("aaa@aaa.com");
-        custDto.setRegDate(date);
+        custDto.setRegDate(LocalDateTime.now());
         custDto.setAcNo("121212-01-121212");
-        custDto.setLginDttm(date);
+        custDto.setLginDttm(LocalDateTime.now());
         custDto.setGender("남");
         custDto.setRegn("대한민국");
-        custDto.setFstReg(date);
+        custDto.setFstReg(LocalDateTime.now());
         custDto.setFstRegr("User001");
-        custDto.setLastUpd(date);
+        custDto.setLastUpd(LocalDateTime.now());
         custDto.setLastUpdr("User001");
         custService.registerCust(custDto);
         }

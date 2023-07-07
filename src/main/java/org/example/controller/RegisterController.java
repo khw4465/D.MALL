@@ -33,9 +33,14 @@ public class RegisterController {
     }
 
     @PostMapping("/add")
-    public String addPost(String toURL, HttpSession session, Model model, @Valid CustDto custDto, BindingResult result) throws Exception {
+    public String addPost(String toURL, HttpSession session, Model model, @Valid CustDto custDto, BindingResult result,String pwd,String pwd2) throws Exception {
         // custValidator custValidator = new custValidator();
         // custValidator.validate(custDto,result);
+
+        if(!(pwd.equals(pwd2))){
+            //String msg = "비밀번호가 다릅니다.";
+            return "redirect:/register/add"+"111";
+        } //회원가입시 비번과 비번확인창의 내용이 다르면 다시 돌려보냄.
 
         if(result.hasErrors()){
             System.out.println("Validation Error");

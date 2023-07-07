@@ -130,7 +130,7 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(String id, String pwd, String toURL, boolean rememberId,
+    public String login(Model m,String id, String pwd, String toURL, boolean rememberId,
                         HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         // 1. id와 pwd를 확인
@@ -162,8 +162,9 @@ public class LoginController {
 
 
         // 아이디 비번이 어드민이 맞는지 확인
-        if(adminCHeck(id, pwd)){ // 어드민일경우
-            return "admin";
+        if(adminCHeck(id)){ // 어드민일경우
+            m.addAttribute("loginAdminTrue",true);
+            return "index";
         }
         return "redirect:"+toURL;
     }
@@ -190,7 +191,9 @@ public class LoginController {
         return user!=null && user.getPwd().equals(pwd);
 //        return "asdf".equals(id) && "1234".equals(pwd);
     }
-    private boolean adminCHeck(String id, String pwd){
-        return "admin".equals(id) && "admin123".equals(pwd);
+    private boolean adminCHeck(String id) throws Exception {
+        String tp="2";
+        CustDto dto = custService.loginCust(id);
+        return dto.getCustTp().equals(tp);
     }
 }

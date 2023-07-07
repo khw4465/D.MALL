@@ -10,6 +10,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.validation.constraints.AssertTrue;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import static org.junit.Assert.*;
@@ -35,20 +37,20 @@ public class CustDaoImplTest {
         custDto.setPwd("admin123");//들어감
         custDto.setName("문희석");//들어감
         custDto.setMpNo("01012341234"); //들어감
-        custDto.setCustTp("1");
+        custDto.setCustTp("2");
         custDto.setGrade("GR01");
         custDto.setStus("정상");
         custDto.setRcmdr("아직"); //들어감
         custDto.setBirth(date);
         custDto.setEmail("aaa@aaa.com");//들어감
-        custDto.setRegDate(date);
+        custDto.setRegDate(LocalDateTime.now());
         custDto.setAcNo("121212-01-121212");
-        custDto.setLginDttm(date);
+        custDto.setLginDttm(LocalDateTime.now());
         custDto.setGender("남");
         custDto.setRegn("대한민국");
-        custDto.setFstReg(date);
+        custDto.setFstReg(LocalDateTime.now());
         custDto.setFstRegr("User001");
-        custDto.setLastUpd(date);
+        custDto.setLastUpd(LocalDateTime.now());
         custDto.setLastUpdr("User001");
 
         custDao.insertUser(custDto);
@@ -64,25 +66,18 @@ public class CustDaoImplTest {
         custDto.setRcmdr("아직");
         custDto.setBirth(date);
         custDto.setEmail("aaa@aaa.com");
-        custDto.setRegDate(date);
+        custDto.setRegDate(LocalDateTime.now());
         custDto.setAcNo("121212-01-121212");
-        custDto.setLginDttm(date);
+        custDto.setLginDttm(LocalDateTime.now());
         custDto.setGender("남");
         custDto.setRegn("대한민국");
-        custDto.setFstReg(date);
+        custDto.setFstReg(LocalDateTime.now());
         custDto.setFstRegr("User001");
-        custDto.setLastUpd(date);
+        custDto.setLastUpd(LocalDateTime.now());
         custDto.setLastUpdr("User001");
 
         custDao.insertUser(custDto);
         assertTrue(custDao.count()==2);
-
-//        assertTrue(custDao.count()==28);
-//        //유저조회
-//        custDao.selectUser("asdf");
-//        //userDao.selectAll();
-//        System.out.println("userDao.count() = " + custDao.count());
-//        assertTrue(custDao.count()==28);
 
         custDto.setCustId("hsm1020s");
         custDto.setPwd("1234");
@@ -94,14 +89,14 @@ public class CustDaoImplTest {
         custDto.setRcmdr("아직");
         custDto.setBirth(date);
         custDto.setEmail("hsm1020s@naver.com");
-        custDto.setRegDate(date);
+        custDto.setRegDate(LocalDateTime.now());
         custDto.setAcNo("121212-01-121212");
-        custDto.setLginDttm(date);
+        custDto.setLginDttm(LocalDateTime.now());
         custDto.setGender("남");
         custDto.setRegn("대한민국");
-        custDto.setFstReg(date);
+        custDto.setFstReg(LocalDateTime.now());
         custDto.setFstRegr("User001");
-        custDto.setLastUpd(date);
+        custDto.setLastUpd(LocalDateTime.now());
         custDto.setLastUpdr("User001");
 
         custDao.insertUser(custDto);
@@ -110,19 +105,8 @@ public class CustDaoImplTest {
 
     @Test
     public void insertUser() throws Exception{ // 성공
-        //custDao.deleteAll();
+       // custDao.deleteAll();
         assertTrue(custDao.count()==0);
-
-//        //유저등록
-//        assertTrue(custDao.count()==28);
-//        CustDto custDto = new CustDto();
-//        custDto.setCustId("asdf111111");
-//        custDto.setPwd("1234");
-//        custDto.setName("가나나");
-//        custDto.setRcmdr("가가");
-//        custDto.setEmail("aaa@aaa.com");
-//        custDao.insertUser(custDto);
-//        assertTrue(custDao.count()==29);
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
         Date date = formatter.parse("2023/07/06");
@@ -138,14 +122,14 @@ public class CustDaoImplTest {
         custDto.setRcmdr("아직");
         custDto.setBirth(date);
         custDto.setEmail("aaa@aaa.com");
-        custDto.setRegDate(date);
+        custDto.setRegDate(LocalDateTime.now());
         custDto.setAcNo("121212-01-121212");
-        custDto.setLginDttm(date);
+        custDto.setLginDttm(LocalDateTime.now());
         custDto.setGender("남");
         custDto.setRegn("대한민국");
-        custDto.setFstReg(date);
+        custDto.setFstReg(LocalDateTime.now());
         custDto.setFstRegr("User001");
-        custDto.setLastUpd(date);
+        custDto.setLastUpd(LocalDateTime.now());
         custDto.setLastUpdr("User001");
 
         custDao.insertUser(custDto);
@@ -201,14 +185,14 @@ public class CustDaoImplTest {
             custDto.setRcmdr("아직");
             custDto.setBirth(date);
             custDto.setEmail("aaa@aaa.com");
-            custDto.setRegDate(date);
+            custDto.setRegDate(LocalDateTime.now());
             custDto.setAcNo("121212-01-121212");
-            custDto.setLginDttm(date);
+            custDto.setLginDttm(LocalDateTime.now());
             custDto.setGender("남");
             custDto.setRegn("대한민국");
-            custDto.setFstReg(date);
+            custDto.setFstReg(LocalDateTime.now());
             custDto.setFstRegr("User001");
-            custDto.setLastUpd(date);
+            custDto.setLastUpd(LocalDateTime.now());
             custDto.setLastUpdr("User001");
             custDao.insertUser(custDto);
         }

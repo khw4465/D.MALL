@@ -34,6 +34,7 @@
           , mpno = #{mpNo}
           , email = #{email}
           , acno = #{acNo}
+          , BIRTH = #{birth}
         where cust_id = #{custId}
     </update>
 
