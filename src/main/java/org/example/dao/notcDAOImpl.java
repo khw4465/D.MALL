@@ -2,6 +2,7 @@ package org.example.dao;
 
 import org.apache.ibatis.session.SqlSession;
 import org.example.domain.notcDTO;
+import org.example.domain.notcSearchCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -61,6 +62,16 @@ public class notcDAOImpl implements notcDAO {
     @Override
     public int increaseViewCnt(Integer NOTC_CNT){
         return session.update(namespace+"increaseViewCnt",NOTC_CNT);
+    }
+
+    @Override
+    public List<notcDTO> searchSelectPage(notcSearchCondition sc) throws Exception{
+        return session.selectList(namespace + "searchSelectPage", sc);
+    }
+
+    @Override
+    public int searchResultCnt(notcSearchCondition sc) throws Exception{
+        return session.selectOne(namespace+"searchResultCnt",sc);
     }
 
 

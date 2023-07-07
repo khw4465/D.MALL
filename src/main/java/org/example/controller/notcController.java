@@ -3,6 +3,8 @@ package org.example.controller;
 
 import org.example.domain.PageHandler;
 import org.example.domain.notcDTO;
+import org.example.domain.notcPageHandler;
+import org.example.domain.notcSearchCondition;
 import org.example.service.NotcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,9 +51,9 @@ public class notcController {
     }
 
     @GetMapping("/read")
-    public String read(String BBSO_NO,Integer NOTC_CNT, Model m, Integer page, Integer pageSize){
+    public String read(String BBSO_NO, Model m, Integer page, Integer pageSize){
         try {
-            notcDTO notcDto = notcService.read(BBSO_NO,NOTC_CNT);
+            notcDTO notcDto = notcService.read(BBSO_NO);
 
             m.addAttribute("notcDto",notcDto);
             m.addAttribute("page",page);
@@ -56,40 +61,37 @@ public class notcController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "notcview";
+        return "cs_notcview";
     }
 
     @GetMapping("/list")
-    public String list(Integer page, Integer pageSize, Model m, HttpServletRequest request){
+    public String list(notcSearchCondition sc, Model m){
 //        if(!loginCheck(request))
 //            return "redirect:/login/login?toURL="+request.getRequestURL();
         // 로그인을 안했으면 로그인 화면으로 이동
 
-        if(page==null) page=1;
-        if(pageSize==null) pageSize=10;
-
         try {
-            int totalCnt = notcService.getCount();
-            PageHandler pageHandler = new PageHandler(totalCnt, page, pageSize);
+            int totalCnt = notcService.getSearchResultCnt(sc);
+            m.addAttribute("totalCnt",totalCnt);
 
-            Map map = new HashMap();
-            map.put("offset",(page-1)*pageSize);
-            map.put("pageSize",pageSize);
+            notcPageHandler notcpageHandler = new notcPageHandler(totalCnt, sc,10);
 
-            List<notcDTO> list = notcService.getPage(map);
 
+            List<notcDTO> list = notcService.getSearchResultPage(sc);
             System.out.println("list = " + list);
-
             m.addAttribute("list",list);
-            m.addAttribute("pagehandler",pageHandler);
-            m.addAttribute("page",page);
-            m.addAttribute("pageSize",pageSize);
+            m.addAttribute("pagehandler",notcpageHandler);
+
+            Instant startOfToday = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant();
+            m.addAttribute("startOfToday",startOfToday.toEpochMilli());
 
         } catch (Exception e) {
             e.printStackTrace();
+            m.addAttribute("msg","LIST_ERR");
+            m.addAttribute("totalCnt",0);
         }
 
-        return "CS_notc";
+        return "cs_notc";
     }
 
 

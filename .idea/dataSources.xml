@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+<<<<<<< HEAD
     <data-source source="LOCAL" name="dgaja" uuid="724f6d9a-8b19-4d9f-b5e5-2cf37b8915b1">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://172.30.1.48:3306/dgaja</jdbc-url>
+=======
+    <data-source source="LOCAL" name="dgaja" uuid="40ad15e8-0c27-4620-baa7-d35ae174da89">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://172.30.1.48:3306</jdbc-url>
+>>>>>>> kys
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
