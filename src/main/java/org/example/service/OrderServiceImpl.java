@@ -1,5 +1,6 @@
 package org.example.service;
 
+import org.example.dao.CartDao;
 import org.example.dao.OrderDao;
 import org.example.domain.OrderDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ import java.util.Date;
 public class OrderServiceImpl implements OrderService {
     @Autowired
     OrderDao orderDao;
+    @Autowired
+    CartDao cartDao;
     @Override
     public OrderDto getOrder(String ordCd, String custId) throws Exception {
         Map map = new HashMap();
@@ -44,11 +47,13 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.count(custId);
     }
     @Override
-    public int addOrder(OrderDto dto) throws Exception {
-        return orderDao.insert(dto);
+    public int addOrder(String ordCd, String custId, String dlvAddrId, String dlvMsg) throws Exception {
+        OrderDto dto = cartDao.ordHist(custId);
+        OrderDto dto1 = new OrderDto(ordCd, dto.getCustId(), dto.getProdName(), dto.getTotProdCnt(), dto.getTotPrc(), dto.getTotQty(), dlvAddrId, dlvMsg);
+        return orderDao.insert(dto1);
     }
     @Override
-    public int ModifyStatus(OrderDto dto) throws Exception {
+    public int modifyStatus(OrderDto dto) throws Exception {
         return orderDao.updOrdStatus(dto);
     }
 }

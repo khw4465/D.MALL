@@ -5,6 +5,8 @@ import org.example.classForAjax.Prod;
 import org.example.domain.CartDto;
 import org.example.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -45,12 +47,12 @@ public class CartController {
             m.addAttribute("totalDcPrice", totalDcPrice);
             m.addAttribute("delPrice", delPrice);
 
+            return"cart"; // 로그인을 한 상태이면, 장바구니 화면으로 이동
 //        System.out.println("장바구니 내용 = " + cartService.getCartList((String)session.getAttribute("id")));
         } catch (Exception e) {
-            return "error";
+            return"error";
         }
 
-        return "cart"; // 로그인을 한 상태이면, 장바구니 화면으로 이동
     }
 
 //    @PostMapping("/list")
@@ -72,7 +74,7 @@ public class CartController {
 
     @DeleteMapping("/remove")
     @ResponseBody
-    public Prod removeCart(@RequestBody Prod p, HttpServletRequest request) {
+    public ResponseEntity<Prod> removeCart(@RequestBody Prod p, HttpServletRequest request) {
 
         try {
             HttpSession session = request.getSession();
@@ -81,10 +83,10 @@ public class CartController {
             System.out.println("p = " + p);
 
             cartService.remove(custId, p.getProdCd());
+            return new ResponseEntity<>(p, HttpStatus.OK);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return p;
     }
 // ResponseEntity
 }

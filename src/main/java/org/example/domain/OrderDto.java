@@ -23,7 +23,13 @@ public class OrderDto {
 
     public OrderDto() {
     }
-
+    public OrderDto(String custId, String prodName, int totProdCnt, int totPrc, int totQty) {
+        this.custId = custId;
+        this.prodName = prodName;
+        this.totProdCnt = totProdCnt;
+        this.totPrc = totPrc;
+        this.totQty = totQty;
+    }
     public OrderDto(String ordCd, String custId, String prodName, int totProdCnt, int totPrc, int totQty, String dlvAddrId, String dlvMsg) {
         this.ordCd = ordCd;
         this.custId = custId;

@@ -15,7 +15,7 @@ public interface OrderService {
 
     int count(String custId) throws Exception;
 
-    int addOrder(OrderDto dto) throws Exception;
+    int addOrder(String ordCd, String custId, String dlvAddrId, String dlvMsg) throws Exception;
 
-    int ModifyStatus(OrderDto dto) throws Exception;
+    int modifyStatus(OrderDto dto) throws Exception;
 }

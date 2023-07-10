@@ -18,5 +18,6 @@
         <typeAlias alias="notcDTO" type="org.example.domain.notcDTO"/>
         <typeAlias alias="notcSearchCondition" type="org.example.domain.notcSearchCondition"/>
         <typeAlias alias="OrderDto" type="org.example.domain.OrderDto"/>
+        <typeAlias alias="OrdDtlDto" type="org.example.domain.OrdDtlDto"/>
     </typeAliases>
 </configuration>

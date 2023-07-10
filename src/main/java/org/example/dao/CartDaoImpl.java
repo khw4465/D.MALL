@@ -2,6 +2,7 @@ package org.example.dao;
 
 import org.example.domain.CartDto;
 import org.apache.ibatis.session.SqlSession;
+import org.example.domain.OrderDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -49,5 +50,10 @@ public class CartDaoImpl implements CartDao {
     @Override
     public int decrease(Map<String, String> map) throws Exception{
         return session.update(namespace + "decrease", map);
+    }
+    @Override
+    public OrderDto ordHist(String custId) throws Exception {
+        // 장바구니에서 구매한 내역을 주문 내역으로 옮기는 메서드 (여러개의 상품이 있을 경우 가장 위에 것을 대표로 함)
+        return session.selectOne(namespace + "getOrdHist", custId);
     }
 }
