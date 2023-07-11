@@ -7,10 +7,12 @@
 <c:set var="register" value="${loginId=='' ? '회원가입' : '정보수정'}"/>
 <html>
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>정보수정</title>
     <link rel="stylesheet" href="<c:url value='/css/modifyInfo.css'/>">
 </head>
 <body>
+<%--<form id="modify-info" action="/register/add" method="post">--%>
 <div class="content">
     <!-- 아이디,비번입력,비번확인 시작 -->
     <div class="cust-id">
@@ -43,9 +45,9 @@
             <div class="input-wrap">
                 <input type="text" id="cust-name" name="cust-name" class="input-field" placeholder="2자 이상 입력"
                        maxlength="50" value="${modydto.name}">
-                <span class="button-wrap">
-                            <button type="button" class="edit-button"> <span id="edit-name">이름 변경</span> </button>
-                </span>
+<%--                <span class="button-wrap">--%>
+<%--                            <button type="button" class="edit-button"> <span id="edit-name">이름 변경</span> </button>--%>
+<%--                </span>--%>
             </div>
         </div>
     </div>
@@ -58,9 +60,9 @@
             <div class="input-wrap">
                 <input type="text" id="cust-mpno" name="cust-mpno" class="input-field" placeholder="휴대폰 인증"
                        value="${modydto.mpNo}">
-                <span class="button-wrap">
-                            <button type="button" class="edit-button"> <span id="edit-mpno">전화번호 변경</span> </button>
-                </span>
+<%--                <span class="button-wrap">--%>
+<%--                            <button type="button" class="edit-button"> <span id="edit-mpno">전화번호 변경</span> </button>--%>
+<%--                </span>--%>
             </div>
         </div>
     </div>
@@ -71,11 +73,11 @@
         <div class="input-field">
             <label for="cust-email" class="label">이메일</label>
             <div class="input-wrap">
-                <input type="text" id=" cust-email" name="cust-email" class="input-field" placeholder="이메일 주소"
+                <input type="text" id="cust-email" name="cust-email" class="input-field" placeholder="이메일 주소"
                        value="${modydto.email}">
-                <span class="button-wrap">
-                            <button type="button" class="edit-button"> <span id="edit-email">이메일 변경</span> </button>
-                </span>
+<%--                <span class="button-wrap">--%>
+<%--                            <button type="button" class="edit-button"> <span id="edit-email">이메일 변경</span> </button>--%>
+<%--                </span>--%>
             </div>
         </div>
     </div>
@@ -86,11 +88,11 @@
         <div class="input-field">
             <label for="acno-num" class="label">계좌번호</label>
             <div class="input-wrap">
-                <input type="text" id="acno-num" name="acno-num" class="input-field" maxlength="20"
+                <input type="text" id="cust-acno" name="cust-acno" class="input-field" maxlength="20"
                        value="${modydto.acNo}">
-                <span class="button-wrap">
-                            <button type="button" class="edit-button"> <span id="edit-name">계좌번호 변경</span> </button>
-                </span>
+<%--                <span class="button-wrap">--%>
+<%--                            <button type="button" class="edit-button"> <span id="edit-acno">계좌번호 변경</span> </button>--%>
+<%--                </span>--%>
             </div>
         </div>
     </div>
@@ -126,30 +128,8 @@
         <button type="button" class="confirm-btn"><span>수정완료</span></button>
     </div>
     <!-- 버튼 종료 -->
-
-    <!-- 평생회원 시작 -->
-    <!-- <div class="life-member">
-
-        <div class="input-field">
-            <label for="lifetime-membership" class="label">평생회원</label>
-
-            <ul class="membership-selection">
-                <li class="life-y">
-                    <input type="radio" id="membership-agree" class="radio-input" name="lifetime-membership"
-                        value="Y"><label for="membership-agree">동의</label>
-                </li>
-
-                <li class="life-n">
-                    <input type="radio" id="membership-disagree" class="radio-input" name="lifetime-membership"
-                        checked value="N"><label for="membership-disagree">동의안함</label>
-                </li>
-            </ul>
-
-        </div>
-
-    </div> -->
-    <!-- 평생회원 종료 -->
 </div>
+<%--</form>--%>
 </body>
 <script>
     window.addEventListener('load', function() {
@@ -182,7 +162,7 @@
     window.addEventListener('load', function() {
         const inputs = document.querySelectorAll('.input-field');
         inputs.forEach(input => {
-            input.setAttribute('readonly', true);
+            //input.setAttribute('readonly', true);
         });
 
         const buttons = document.querySelectorAll('.edit-button');
@@ -192,11 +172,49 @@
                 const inputField = e.target.closest('.input-wrap').querySelector('.input-field');
                 const buttonText = e.target.innerText;
                 if (buttonText.includes('변경')) {
-                    e.target.innerText = buttonText.replace('변경', '수정');
-                    inputField.removeAttribute('readonly');
+                    // e.target.innerText = buttonText.replace('변경', '수정');
+                    // inputField.removeAttribute('readonly');
                 } else if (buttonText.includes('수정')) {
-                    e.target.innerText = buttonText.replace('수정', '변경');
-                    inputField.setAttribute('readonly', true);
+                    // e.target.innerText = buttonText.replace('수정', '변경');
+                    // inputField.setAttribute('readonly', true);
+                }
+            });
+        });
+    });
+
+    $(document).ready(function() {
+        $('.confirm-btn').click(function() {
+            let modydto_name = $('#cust-name').val();
+            let modydto_phone = $('#cust-mpno').val();
+            let modydto_email = $('#cust-email').val();
+            let modydto_acno = $('#cust-acno').val();
+
+            $.ajax({
+                type: 'POST',
+                url: '/custModify',
+                headers: {"content-type": "application/json"},
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: JSON.stringify({
+                    "cust-name": modydto_name,
+                    "cust-mpno": modydto_phone,
+                    "cust-email": modydto_email,
+                    "cust-acno": modydto_acno
+                }),
+                success: function (result) {
+                    $('#cust-name').val(result.name);
+                    $('#cust-mpno').val(result.mpno);
+                    $('#cust-email').val(result.email);
+                    $('#cust-acno').val(result.acNo);
+                    alert("회원 정보가 업데이트되었습니다.");
+                    window.location.href = "/custModify";
+                },
+                error: function (request, status, error) {
+                    // 에러 메세지를 자세히 출력
+                    alert("에러");
+                    alert(JSON.stringify(request))
+                    alert(JSON.stringify(status))
+                    alert(JSON.stringify(error))
                 }
             });
         });

@@ -3,10 +3,46 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.example.dao.ProdDcMapper">
-    <select id="select" parameterType="map" resultType="ProdDcDto">
-        SELECT *
-        FROM prod_dc
-        WHERE prod_dc = #{prodDc}
-        AND prod_cd = #{prodCd}
+
+    <!-- select -->
+    <select id="selectProdDc" >
+        SELECT * FROM prod_dc WHERE dc_cd = #{dcCd}
     </select>
+
+    <!-- insert -->
+    <insert id="insertProdDc" >
+        INSERT INTO prod_dc (dc_cd, prod_cls_cd, dc_type, dc_name, dc_tar, dc_rt, dc_price, use_yn, del_yn, dc_start, dc_last, remark, fst_reg, fst_regr, last_upd, last_updr)
+        VALUES (#{dcCd}, #{prodClsCd}, #{dcType}, #{dcName}, #{dcTar}, #{dcRt}, #{dcPrice}, #{useYn}, #{delYn}, #{dcStart}, #{dcLast}, #{remark}, #{fstReg}, #{fstRegr}, #{lastUpd}, #{lastUpdr})
+    </insert>
+
+    <!-- update -->
+    <update id="updateProdDc" >
+        UPDATE prod_dc
+        SET prod_cls_cd = #{prodClsCd}, dc_type = #{dcType}, dc_name = #{dcName}, dc_tar = #{dcTar}, dc_rt = #{dcRt}, dc_price = #{dcPrice},
+            use_yn = #{useYn}, del_yn = #{delYn}, dc_start = #{dcStart}, dc_last = #{dcLast}, remark = #{remark}, fst_reg = #{fstReg},
+            fst_regr = #{fstRegr}, last_upd = #{lastUpd}, last_updr = #{lastUpdr}
+        WHERE dc_cd = #{dcCd}
+    </update>
+
+    <!-- delete -->
+    <delete id="deleteProdDc" >
+        DELETE FROM prod_dc WHERE dc_cd = #{dcCd}
+    </delete>
+
+    <!-- delete All -->
+    <delete id="deleteAllProdDc">
+        DELETE FROM prod_dc
+    </delete>
+
+    <!-- select Count -->
+    <select id="countProdDc" >
+        SELECT COUNT(*) FROM prod_dc
+    </select>
+
+    <!-- Select All -->
+    <select id="selectAllProdDc" >
+        SELECT * FROM prod_dc
+    </select>
+
+
 </mapper>

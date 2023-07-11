@@ -3,10 +3,54 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.example.dao.ProdOptMapper">
-    <select id="select" parameterType="map" resultType="ProdOptDto">
-        SELECT *
-        FROM prod_opt
-        WHERE opt_cd = #{optCd}
-        AND prod_cd = #{prodCd}
+
+    <!-- select -->
+    <select id="selectProdOpt" >
+        SELECT * FROM prod_opt WHERE opt_cd = #{optCd}
     </select>
+
+    <!-- insert -->
+    <insert id="insertProdOpt" >
+        INSERT INTO prod_opt (opt_cd, prod_cd, opt_name, opt_qty, opt_type, sale_prc, use_yn, del_yn, remark, fst_reg, fst_regr, last_upd, last_updr)
+        VALUES (#{optCd}, #{prodCd}, #{optName}, #{optQty}, #{optType}, #{salePrc}, #{useYn}, #{delYn}, #{remark}, #{fstReg}, #{fstRegr}, #{lastUpd}, #{lastUpdr})
+    </insert>
+
+    <!-- update -->
+    <update id="updateProdOpt" >
+        UPDATE prod_opt SET
+                            prod_cd = #{prodCd},
+                            opt_name = #{optName},
+                            opt_qty = #{optQty},
+                            opt_type = #{optType},
+                            sale_prc = #{salePrc},
+                            use_yn = #{useYn},
+                            del_yn = #{delYn},
+                            remark = #{remark},
+                            fst_reg = #{fstReg},
+                            fst_regr = #{fstRegr},
+                            last_upd = #{lastUpd},
+                            last_updr = #{lastUpdr}
+        WHERE opt_cd = #{optCd}
+    </update>
+
+    <!-- delete -->
+    <delete id="deleteProdOpt" >
+        DELETE FROM prod_opt WHERE opt_cd = #{optCd}
+    </delete>
+
+    <!-- delete all -->
+    <delete id="deleteAllProdOpt">
+        DELETE FROM prod_opt
+    </delete>
+
+    <!-- select all -->
+    <select id="selectAllProdOpt" >
+        SELECT * FROM prod_opt
+    </select>
+
+    <!-- count -->
+    <select id="countProdOpt" >
+        SELECT COUNT(*) FROM prod_opt
+    </select>
+
 </mapper>

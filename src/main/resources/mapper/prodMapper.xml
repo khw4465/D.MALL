@@ -3,9 +3,66 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.example.dao.ProdMapper">
-    <select id="select" parameterType="string" resultType="ProdDto">
-        SELECT *
-        FROM prod
-        WHERE prod_cd = #{prodCd}
+    <!-- Select All -->
+    <select id="selectAll" >
+        SELECT * FROM prod
     </select>
+
+    <!-- Select -->
+    <select id="select" >
+        SELECT * FROM prod WHERE prod_Cd = #{prodCd}
+    </select>
+
+    <!-- Insert -->
+    <insert id="insert" >
+        INSERT INTO prod (prod_Cd, cate_Cd, prod_Name, prod_Smrv_Desc, prod_Dtl_Desc, prod_Price, prod_Img, ascr, dc_Cd, inv_Yn, inv_Qty, sale_Yn, sort_Yn, opt_Yn, del_Yn, min_Cnt, mft_Date, use_Date, sale_Start, sale_Last, remark, fst_Reg, fst_Regr, last_Upd, last_Updr)
+        VALUES (#{prodCd}, #{cateCd}, #{prodName}, #{prodSmrvDesc}, #{prodDtlDesc}, #{prodPrice}, #{prodImg}, #{ascr}, #{dcCd}, #{invYn}, #{invQty}, #{saleYn}, #{sortYn}, #{optYn}, #{delYn}, #{minCnt}, #{mftDate}, #{useDate}, #{saleStart}, #{saleLast}, #{remark}, #{fstReg}, #{fstRegr}, #{lastUpd}, #{lastUpdr})
+    </insert>
+
+    <!-- Update -->
+    <update id="update" >
+        UPDATE prod
+        SET cate_Cd = #{cateCd},
+            prod_Name = #{prodName},
+            prod_Smrv_Desc = #{prodSmrvDesc},
+            prod_Dtl_Desc = #{prodDtlDesc},
+            prod_Price = #{prodPrice},
+            prod_Img = #{prodImg},
+            ascr = #{ascr},
+            dc_Cd = #{dcCd},
+            inv_Yn = #{invYn},
+            inv_Qty = #{invQty},
+            sale_Yn = #{saleYn},
+            sort_Yn = #{sortYn},
+            opt_Yn = #{optYn},
+            del_Yn = #{delYn},
+            min_Cnt = #{minCnt},
+            mft_Date = #{mftDate},
+            use_Date = #{useDate},
+            sale_Start = #{saleStart},
+            sale_Last = #{saleLast},
+            remark = #{remark},
+            fst_Reg = #{fstReg},
+            fst_Regr = #{fstRegr},
+            last_Upd = #{lastUpd},
+            last_Updr = #{lastUpdr}
+        WHERE prod_Cd = #{prodCd}
+    </update>
+
+    <!-- Delete -->
+    <delete id="delete" >
+        DELETE FROM prod WHERE prod_Cd = #{prodCd}
+    </delete>
+
+    <!-- Count -->
+    <select id="count" >
+        SELECT COUNT(*) FROM prod
+    </select>
+
+    <!-- Delete All -->
+    <delete id="deleteAll">
+        DELETE FROM prod
+    </delete>
+
+
 </mapper>

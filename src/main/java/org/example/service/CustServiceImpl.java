@@ -24,7 +24,7 @@ public class CustServiceImpl implements CustService{
         //   throw new Exception("test");
         return custDao.selectAllUser(); // 관리자화면에 사용할 전체 유저 불러오기
     }
-//업데이트용 셀렉트일경우 걸수도있음.
+        // 업데이트용 셀렉트일경우 걸수도있음.
     @Override
     @Transactional(rollbackFor = Exception.class) //  예외가 터지면 롤백친다.
     public String findCustId(CustDto custDto) throws Exception {
@@ -73,6 +73,11 @@ public class CustServiceImpl implements CustService{
     public int temporaryPwdReturn(CustDto custDto) throws Exception {
         //   throw new Exception("test");
         return custDao.temporaryPwdReturn(custDto);
+    }
+
+    @Override
+    public int custSms(CustDto custDto) throws Exception {
+        return custDao.custSms(custDto);
     }
 
 

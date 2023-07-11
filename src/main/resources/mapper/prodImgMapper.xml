@@ -3,10 +3,60 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.example.dao.ProdImgMapper">
-    <select id="select" parameterType="map" resultType="ProdImgDto">
-        SELECT *
-        FROM prod_img
-        WHERE img_cd = #{imgCd}
-        AND prod_cd = #{prodCd}
+
+    <!-- Select -->
+    <select id="selectProdImg"  >
+        SELECT * FROM PROD_IMG WHERE img_cd = #{imgCd}
     </select>
+
+    <!-- Insert -->
+    <insert id="insertProdImg" >
+        INSERT INTO PROD_IMG
+        (img_cd, prod_cd, img_type, img_desc, img_path, img_height, img_width, img_extns, file_limit, use_yn, del_yn, remark, fst_reg, fst_regr, last_upd, last_updr)
+        VALUES
+            (#{imgCd}, #{prodCd}, #{imgType}, #{imgDesc}, #{imgPath}, #{imgHeight}, #{imgWidth}, #{imgExtns}, #{fileLimit}, #{useYn}, #{delYn}, #{remark}, #{fstReg}, #{fstRegr}, #{lastUpd}, #{lastUpdr})
+    </insert>
+
+    <!-- Select All -->
+    <select id="selectAllProdImg" >
+        SELECT * FROM PROD_IMG
+    </select>
+
+    <!-- Update -->
+    <update id="updateProdImg" >
+        UPDATE PROD_IMG
+        SET
+            prod_cd = #{prodCd},
+            img_type = #{imgType},
+            img_desc = #{imgDesc},
+            img_path = #{imgPath},
+            img_height = #{imgHeight},
+            img_width = #{imgWidth},
+            img_extns = #{imgExtns},
+            file_limit = #{fileLimit},
+            use_yn = #{useYn},
+            del_yn = #{delYn},
+            remark = #{remark},
+            fst_reg = #{fstReg},
+            fst_regr = #{fstRegr},
+            last_upd = #{lastUpd},
+            last_updr = #{lastUpdr}
+        WHERE img_cd = #{imgCd}
+    </update>
+
+    <!-- Delete -->
+    <delete id="deleteProdImg" >
+        DELETE FROM PROD_IMG WHERE img_cd = #{imgCd}
+    </delete>
+
+    <!-- Delete All -->
+    <delete id="deleteAllProdImg">
+        DELETE FROM PROD_IMG
+    </delete>
+
+    <!-- Count -->
+    <select id="countProdImg" >
+        SELECT COUNT(*) FROM PROD_IMG
+    </select>
+
 </mapper>
