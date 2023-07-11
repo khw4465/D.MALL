@@ -16,6 +16,7 @@
         <typeAlias alias="OrderDto" type="org.example.domain.OrderDto"/>
         <typeAlias alias="OrdDtlDto" type="org.example.domain.OrdDtlDto"/>
         <typeAlias alias="ProdDto" type="org.example.domain.ProdDto"/>
+        <typeAlias alias="CateMainDto" type="org.example.domain.CateMainDto"/>
         <typeAlias alias="ProdCateDto" type="org.example.domain.ProdCateDto"/>
         <typeAlias alias="ProdOptDto" type="org.example.domain.ProdOptDto"/>
         <typeAlias alias="ProdDcDto" type="org.example.domain.ProdDcDto"/>

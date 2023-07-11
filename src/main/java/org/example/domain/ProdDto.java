@@ -5,7 +5,8 @@ import java.util.Objects;
 public class ProdDto {
 
     private String prodCd;
-    private String cateCd;
+    private int cateCd;
+    private String sn;
     private String prodName;
     private String prodSmrvDesc;
     private String prodDtlDesc;
@@ -32,9 +33,10 @@ public class ProdDto {
 
     public ProdDto() {}
 
-    public ProdDto(String prodCd, String cateCd, String prodName, String prodSmrvDesc, String prodDtlDesc, Integer prodPrice, String prodImg, Float ascr, String dcCd, String invYn, Integer invQty, String saleYn, String sortYn, String optYn, String delYn, Integer minCnt, Date mftDate, Date useDate, Date saleStart, Date saleLast, String remark, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
+    public ProdDto(String prodCd, int cateCd, String sn, String prodName, String prodSmrvDesc, String prodDtlDesc, Integer prodPrice, String prodImg, Float ascr, String dcCd, String invYn, Integer invQty, String saleYn, String sortYn, String optYn, String delYn, Integer minCnt, Date mftDate, Date useDate, Date saleStart, Date saleLast, String remark, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
         this.prodCd = prodCd;
         this.cateCd = cateCd;
+        this.sn = sn;
         this.prodName = prodName;
         this.prodSmrvDesc = prodSmrvDesc;
         this.prodDtlDesc = prodDtlDesc;
@@ -68,12 +70,20 @@ public class ProdDto {
         this.prodCd = prodCd;
     }
 
-    public String getCateCd() {
+    public int getCateCd() {
         return cateCd;
     }
 
-    public void setCateCd(String cateCd) {
+    public void setCateCd(int cateCd) {
         this.cateCd = cateCd;
+    }
+
+    public String getSn() {
+        return sn;
+    }
+
+    public void setSn(String sn) {
+        this.sn = sn;
     }
 
     public String getProdName() {
@@ -267,8 +277,9 @@ public class ProdDto {
 
         ProdDto prodDto = (ProdDto) o;
 
+        if (cateCd != prodDto.cateCd) return false;
         if (!Objects.equals(prodCd, prodDto.prodCd)) return false;
-        if (!Objects.equals(cateCd, prodDto.cateCd)) return false;
+        if (!Objects.equals(sn, prodDto.sn)) return false;
         if (!Objects.equals(prodName, prodDto.prodName)) return false;
         if (!Objects.equals(prodSmrvDesc, prodDto.prodSmrvDesc))
             return false;
@@ -292,7 +303,8 @@ public class ProdDto {
     @Override
     public int hashCode() {
         int result = prodCd != null ? prodCd.hashCode() : 0;
-        result = 31 * result + (cateCd != null ? cateCd.hashCode() : 0);
+        result = 31 * result + cateCd;
+        result = 31 * result + (sn != null ? sn.hashCode() : 0);
         result = 31 * result + (prodName != null ? prodName.hashCode() : 0);
         result = 31 * result + (prodSmrvDesc != null ? prodSmrvDesc.hashCode() : 0);
         result = 31 * result + (prodDtlDesc != null ? prodDtlDesc.hashCode() : 0);
@@ -317,7 +329,8 @@ public class ProdDto {
     public String toString() {
         return "ProdDto{" +
                 "prodCd='" + prodCd + '\'' +
-                ", cateCd='" + cateCd + '\'' +
+                ", cateCd=" + cateCd +
+                ", sn='" + sn + '\'' +
                 ", prodName='" + prodName + '\'' +
                 ", prodSmrvDesc='" + prodSmrvDesc + '\'' +
                 ", prodDtlDesc='" + prodDtlDesc + '\'' +

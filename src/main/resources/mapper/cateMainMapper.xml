@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.dao.CateMainMapper">
+    <!-- Select -->
+    <select id="select" parameterType="string" resultType="CateMainDto">
+        SELECT * FROM cate_main WHERE main_cate = #{mainCate}
+    </select>
+
+    <!-- Select All -->
+    <select id="selectAll" resultType="CateMainDto">
+        SELECT * FROM cate_main
+    </select>
+
+    <!-- Count -->
+    <select id="count" resultType="int">
+        SELECT COUNT(*) FROM cate_main
+    </select>
+
+    <!-- Insert -->
+    <insert id="insert" parameterType="CateMainDto">
+        INSERT INTO cate_main (main_cate, main_name)
+        VALUES (#{mainCate}, #{mainName}))
+    </insert>
+
+    <!-- Update -->
+    <update id="update" parameterType="CateMainDto">
+        UPDATE cate_main
+        SET main_name = #{mainName},
+        WHERE main_cate = #{mainCate}
+    </update>
+
+    <!-- Delete -->
+    <delete id="delete" parameterType="string">
+        DELETE FROM cate_main WHERE main_cate = #{mainCate}
+    </delete>
+
+    <!-- Delete All -->
+    <delete id="deleteAll">
+        DELETE FROM cate_main
+    </delete>
+</mapper>

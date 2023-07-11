@@ -3,24 +3,29 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.example.dao.ProdMapper">
-    <!-- Select All -->
-    <select id="selectAll" >
-        SELECT * FROM prod
-    </select>
-
     <!-- Select -->
-    <select id="select" >
+    <select id="select" parameterType="string" resultType="ProdDto">
         SELECT * FROM prod WHERE prod_Cd = #{prodCd}
     </select>
 
+    <!-- Select All -->
+    <select id="selectAll" resultType="ProdDto">
+        SELECT * FROM prod
+    </select>
+
+    <!-- Count -->
+    <select id="count" resultType="int">
+        SELECT COUNT(*) FROM prod
+    </select>
+
     <!-- Insert -->
-    <insert id="insert" >
-        INSERT INTO prod (prod_Cd, cate_Cd, prod_Name, prod_Smrv_Desc, prod_Dtl_Desc, prod_Price, prod_Img, ascr, dc_Cd, inv_Yn, inv_Qty, sale_Yn, sort_Yn, opt_Yn, del_Yn, min_Cnt, mft_Date, use_Date, sale_Start, sale_Last, remark, fst_Reg, fst_Regr, last_Upd, last_Updr)
-        VALUES (#{prodCd}, #{cateCd}, #{prodName}, #{prodSmrvDesc}, #{prodDtlDesc}, #{prodPrice}, #{prodImg}, #{ascr}, #{dcCd}, #{invYn}, #{invQty}, #{saleYn}, #{sortYn}, #{optYn}, #{delYn}, #{minCnt}, #{mftDate}, #{useDate}, #{saleStart}, #{saleLast}, #{remark}, #{fstReg}, #{fstRegr}, #{lastUpd}, #{lastUpdr})
+    <insert id="insert" parameterType="ProdDto">
+        INSERT INTO prod (prod_Cd, cate_Cd, sn, prod_Name, prod_Smrv_Desc, prod_Dtl_Desc, prod_Price, prod_Img, ascr, dc_Cd, inv_Yn, inv_Qty, sale_Yn, sort_Yn, opt_Yn, del_Yn, min_Cnt, mft_Date, use_Date, sale_Start, sale_Last, remark, fst_Reg, fst_Regr, last_Upd, last_Updr)
+        VALUES (CONCAT(To_CHAR(#{cateCd}, '999'), #{sn}), #{cateCd}, #{sn}, #{prodName}, #{prodSmrvDesc}, #{prodDtlDesc}, #{prodPrice}, #{prodImg}, #{ascr}, #{dcCd}, #{invYn}, #{invQty}, #{saleYn}, #{sortYn}, #{optYn}, #{delYn}, #{minCnt}, #{mftDate}, #{useDate}, #{saleStart}, #{saleLast}, #{remark}, #{fstReg}, #{fstRegr}, #{lastUpd}, #{lastUpdr})
     </insert>
 
     <!-- Update -->
-    <update id="update" >
+    <update id="update" parameterType="ProdDto">
         UPDATE prod
         SET cate_Cd = #{cateCd},
             prod_Name = #{prodName},
@@ -50,19 +55,12 @@
     </update>
 
     <!-- Delete -->
-    <delete id="delete" >
+    <delete id="delete" parameterType="string">
         DELETE FROM prod WHERE prod_Cd = #{prodCd}
     </delete>
-
-    <!-- Count -->
-    <select id="count" >
-        SELECT COUNT(*) FROM prod
-    </select>
 
     <!-- Delete All -->
     <delete id="deleteAll">
         DELETE FROM prod
     </delete>
-
-
 </mapper>

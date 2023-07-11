@@ -5,25 +5,30 @@
 <mapper namespace="org.example.dao.ProdImgMapper">
 
     <!-- Select -->
-    <select id="selectProdImg"  >
+    <select id="select" parameterType="string" resultType="ProdImgDto">
         SELECT * FROM PROD_IMG WHERE img_cd = #{imgCd}
     </select>
 
+    <!-- Select All -->
+    <select id="selectAll" resultType="ProdImgDto">
+        SELECT * FROM PROD_IMG
+    </select>
+
+    <!-- Count -->
+    <select id="count" resultType="int">
+        SELECT COUNT(*) FROM PROD_IMG
+    </select>
+
     <!-- Insert -->
-    <insert id="insertProdImg" >
+    <insert id="insert" parameterType="ProdImgDto">
         INSERT INTO PROD_IMG
         (img_cd, prod_cd, img_type, img_desc, img_path, img_height, img_width, img_extns, file_limit, use_yn, del_yn, remark, fst_reg, fst_regr, last_upd, last_updr)
         VALUES
             (#{imgCd}, #{prodCd}, #{imgType}, #{imgDesc}, #{imgPath}, #{imgHeight}, #{imgWidth}, #{imgExtns}, #{fileLimit}, #{useYn}, #{delYn}, #{remark}, #{fstReg}, #{fstRegr}, #{lastUpd}, #{lastUpdr})
     </insert>
 
-    <!-- Select All -->
-    <select id="selectAllProdImg" >
-        SELECT * FROM PROD_IMG
-    </select>
-
     <!-- Update -->
-    <update id="updateProdImg" >
+    <update id="update" parameterType="ProdImgDto">
         UPDATE PROD_IMG
         SET
             prod_cd = #{prodCd},
@@ -45,18 +50,12 @@
     </update>
 
     <!-- Delete -->
-    <delete id="deleteProdImg" >
+    <delete id="delete" parameterType="string">
         DELETE FROM PROD_IMG WHERE img_cd = #{imgCd}
     </delete>
 
     <!-- Delete All -->
-    <delete id="deleteAllProdImg">
+    <delete id="deleteAll">
         DELETE FROM PROD_IMG
     </delete>
-
-    <!-- Count -->
-    <select id="countProdImg" >
-        SELECT COUNT(*) FROM PROD_IMG
-    </select>
-
 </mapper>
