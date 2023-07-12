@@ -12,7 +12,7 @@ public interface CartService {
 
     int removeAll(String custId) throws Exception;
 
-    int increaseQty(String custId, String prodCd) throws Exception;
+    int modifyQty(int prodQty, String custId, String prodCd) throws Exception;
 
-    int decreaseQty(String custId, String prodCd) throws Exception;
+//    int decreaseQty(String custId, String prodCd, int prodQty) throws Exception;
 }

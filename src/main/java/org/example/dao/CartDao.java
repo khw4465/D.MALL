@@ -19,9 +19,6 @@ public interface CartDao {
 
     int deleteAll(String custId) throws Exception;
 
-    int increase(Map<String, String> map) throws Exception;
-
-    int decrease(Map<String, String> map) throws Exception;
-
+    int update(Map map) throws Exception;
     OrderDto ordHist(String custId) throws Exception;
 }

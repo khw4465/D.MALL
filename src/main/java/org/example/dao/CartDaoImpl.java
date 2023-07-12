@@ -44,12 +44,8 @@ public class CartDaoImpl implements CartDao {
         return session.delete(namespace + "deleteAll", custId);
     }
     @Override
-    public int increase(Map<String, String> map) throws Exception{
-        return session.update(namespace + "increase", map);
-    }
-    @Override
-    public int decrease(Map<String, String> map) throws Exception{
-        return session.update(namespace + "decrease", map);
+    public int update(Map map) throws Exception{
+        return session.update(namespace + "update", map);
     }
     @Override
     public OrderDto ordHist(String custId) throws Exception {

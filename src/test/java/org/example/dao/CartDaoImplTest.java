@@ -148,60 +148,60 @@ public class CartDaoImplTest {
         assertTrue(cartDao.count("asdf") == 0);
     }
 
-    @Test
-    public void increaseTest() throws Exception {
-        // 전체삭제
-        cartDao.deleteAll("asdf");
-        // prodQty(상품의 개수)를 1개로 설정하고 상품을 추가해준다
-        CartDto dto1 = new CartDto("asdf", "P00101","맛있닭 프로 닭가슴살 120g", 1, 2000);
-        assertTrue(cartDao.insert(dto1) == 1);
-
-        // 상품의 개수를 getProdQty()로 가져온다.
-        CartDto prod1 = cartDao.select("asdf", "P00101");
-        assertTrue(prod1.getProdQty() == 1);
-
-        // 상품을 map에 담아 개수를 1 증가시킴
-        Map<String, String> map = new HashMap<>();
-        map.put("custId", "asdf");
-        map.put("prodCd", "P00101");
-        assertTrue(cartDao.increase(map) == 1);     // 성공하면 1 반환
-
-        // 상품의 개수를 다시 조회
-        CartDto prod2 = cartDao.select("asdf", "P00101");
-        assertTrue(prod2.getProdQty() == 2);
-    }
-
-    @Test
-    public void decreaseTest() throws Exception {
-        // 전체삭제
-        cartDao.deleteAll("asdf");
-        // prodQty(상품의 개수)를 1개로 설정하고 상품을 추가해준다
-        CartDto dto1 = new CartDto("asdf", "P00101","맛있닭 프로 닭가슴살 120g", 1, 2000);
-        assertTrue(cartDao.insert(dto1) == 1);
-
-        // 상품의 개수를 getProdQty()로 가져온다.
-        CartDto prod1 = cartDao.select("asdf", "P00101");
-        assertTrue(prod1.getProdQty() == 1);
-
-        // 상품을 map에 담아 개수를 1 증가시킴
-        Map<String, String> map1 = new HashMap<>();
-        map1.put("custId", "asdf");
-        map1.put("prodCd", "P00101");
-        assertTrue(cartDao.increase(map1) == 1);     // 성공하면 1 반환
-
-        // 상품의 개수를 다시 조회
-        CartDto prod2 = cartDao.select("asdf", "P00101");
-        assertTrue(prod2.getProdQty() == 2);
-
-        // 상품의 개수를 1 감소시킴
-        Map<String, String> map2 = new HashMap<>();
-        map2.put("custId", "asdf");
-        map2.put("prodCd", "P00101");
-        assertTrue(cartDao.decrease(map2) == 1);    // 성공시 1 반환
-        // 개수를 다시 조회
-        CartDto prod3 = cartDao.select("asdf", "P00101");
-        assertTrue(prod3.getProdQty() == 1);
-    }
+//    @Test
+//    public void increaseTest() throws Exception {
+//        // 전체삭제
+//        cartDao.deleteAll("asdf");
+//        // prodQty(상품의 개수)를 1개로 설정하고 상품을 추가해준다
+//        CartDto dto1 = new CartDto("asdf", "P00101","맛있닭 프로 닭가슴살 120g", 1, 2000);
+//        assertTrue(cartDao.insert(dto1) == 1);
+//
+//        // 상품의 개수를 getProdQty()로 가져온다.
+//        CartDto prod1 = cartDao.select("asdf", "P00101");
+//        assertTrue(prod1.getProdQty() == 1);
+//
+//        // 상품을 map에 담아 개수를 1 증가시킴
+//        Map<String, String> map = new HashMap<>();
+//        map.put("custId", "asdf");
+//        map.put("prodCd", "P00101");
+//        assertTrue(cartDao.increase(map) == 1);     // 성공하면 1 반환
+//
+//        // 상품의 개수를 다시 조회
+//        CartDto prod2 = cartDao.select("asdf", "P00101");
+//        assertTrue(prod2.getProdQty() == 2);
+//    }
+//
+//    @Test
+//    public void decreaseTest() throws Exception {
+//        // 전체삭제
+//        cartDao.deleteAll("asdf");
+//        // prodQty(상품의 개수)를 1개로 설정하고 상품을 추가해준다
+//        CartDto dto1 = new CartDto("asdf", "P00101","맛있닭 프로 닭가슴살 120g", 1, 2000);
+//        assertTrue(cartDao.insert(dto1) == 1);
+//
+//        // 상품의 개수를 getProdQty()로 가져온다.
+//        CartDto prod1 = cartDao.select("asdf", "P00101");
+//        assertTrue(prod1.getProdQty() == 1);
+//
+//        // 상품을 map에 담아 개수를 1 증가시킴
+//        Map<String, String> map1 = new HashMap<>();
+//        map1.put("custId", "asdf");
+//        map1.put("prodCd", "P00101");
+//        assertTrue(cartDao.increase(map1) == 1);     // 성공하면 1 반환
+//
+//        // 상품의 개수를 다시 조회
+//        CartDto prod2 = cartDao.select("asdf", "P00101");
+//        assertTrue(prod2.getProdQty() == 2);
+//
+//        // 상품의 개수를 1 감소시킴
+//        Map<String, String> map2 = new HashMap<>();
+//        map2.put("custId", "asdf");
+//        map2.put("prodCd", "P00101");
+//        assertTrue(cartDao.decrease(map2) == 1);    // 성공시 1 반환
+//        // 개수를 다시 조회
+//        CartDto prod3 = cartDao.select("asdf", "P00101");
+//        assertTrue(prod3.getProdQty() == 1);
+//    }
     @Test
     public void getHistTest() throws Exception{
         // asdf가 장바구니에 있는 물건들을 구매 한 후의 주문내역

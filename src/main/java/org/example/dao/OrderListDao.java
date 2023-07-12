@@ -5,7 +5,7 @@ import org.example.domain.OrderDto;
 import java.util.List;
 import java.util.Map;
 
-public interface OrderDao {
+public interface OrderListDao {
     OrderDto select(Map map) throws Exception;
 
     List<OrderDto> selectByMonth(Map map) throws Exception;

@@ -35,18 +35,13 @@
         DELETE FROM cart
         WHERE cust_id=#{custId}
     </delete>
-    <update id="increase" parameterType="map">
+    <update id="update" parameterType="map">
         UPDATE cart
-        SET  prod_qty  = prod_qty + 1
+        SET  prod_qty  = #{prodQty}
         WHERE cust_id = #{custId}
         AND prod_cd = #{prodCd}
     </update>
-    <update id="decrease" parameterType="map">
-        UPDATE cart
-        SET   prod_qty = prod_qty-1
-        WHERE cust_id = #{custId}
-        AND prod_cd = #{prodCd}
-    </update>
+
     <select id="getOrdHist" parameterType="string" resultType="OrderDto">
         SELECT CUST_ID,
                (SELECT CONCAT(PROD_NAME, ' 외 ', (select count(*)from cart where CUST_ID='asdf')-1, '개' ) FROM cart

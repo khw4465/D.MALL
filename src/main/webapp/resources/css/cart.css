@@ -104,7 +104,7 @@ li{
     text-align: center;
 }
 
-.btn-bottom-area a:last-child {
+.btn-bottom-area input:first-child {
     background-color: #e60023;
     color: #fff;
     padding: 15px 30px;

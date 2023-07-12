@@ -29,13 +29,13 @@ public class CartServiceImplTest {
         System.out.println(cartService.removeAll("asdf"));
     }
 
-    @Test
-    public void increaseQty() throws Exception {
-        System.out.println(cartService.increaseQty("asdf","P00101"));
-    }
-
-    @Test
-    public void decreaseQty() throws Exception {
-        System.out.println(cartService.decreaseQty("asdf","P00101"));
-    }
+//    @Test
+//    public void increaseQty() throws Exception {
+//        System.out.println(cartService.increaseQty("asdf","P00101", 1));
+//    }
+//
+//    @Test
+//    public void decreaseQty() throws Exception {
+//        System.out.println(cartService.decreaseQty("asdf","P00101", -1));
+//    }
 }

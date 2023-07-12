@@ -34,20 +34,22 @@ public class CartServiceImpl implements CartService {
     }
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int increaseQty(String custId, String prodCd) throws Exception{    // 개수 ++
-        Map<String,String> map = new HashMap<>();
+    public int modifyQty(int prodQty, String custId, String prodCd) throws Exception{    // 개수 ++
+        Map map = new HashMap<>();
         map.put("custId", custId);       // mapper에 map으로 넣어줄 때 key, value가 들어가는 게 아니라 value 값만 들어간다.
         map.put("prodCd", prodCd);
+        map.put("prodQty", prodQty);
 //           throw new Exception("test");
-        return cartDao.increase(map);
+        return cartDao.update(map);
     }
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public int decreaseQty(String custId, String prodCd) throws Exception{    // 개수 --
-        Map<String,String> map = new HashMap<>();
-        map.put("custId", custId);
-        map.put("prodCd", prodCd);
-//           throw new Exception("test");
-        return cartDao.decrease(map);
-    }
+//    @Override
+//    @Transactional(rollbackFor = Exception.class)
+//    public int decreaseQty(String custId, String prodCd, int prodQty) throws Exception{    // 개수 --
+//        Map map = new HashMap<>();
+//        map.put("custId", custId);
+//        map.put("prodCd", prodCd);
+//        map.put("prodQty", prodQty);
+////           throw new Exception("test");
+//        return cartDao.decrease(map);
+//    }
 }

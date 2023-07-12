@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class OrderDaoImpl implements OrderDao {
+public class OrderListDaoImpl implements OrderListDao {
     @Autowired
     private SqlSession session;
     private static String namespace = "org.example.dao.OrderMapper.";

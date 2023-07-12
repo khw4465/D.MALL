@@ -1,13 +1,13 @@
 package org.example.controller;
 
-import jdk.jfr.StackTrace;
-import org.example.classForAjax.Prod;
 import org.example.domain.CartDto;
+import org.example.domain.ProdDto;
 import org.example.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,7 +38,7 @@ public class CartController {
             m.addAttribute("list", list);   // list를 모델에 담는다.
 
             for (CartDto cart : list) {     // 리스트 각각의 가격을 더한다.
-                totalPrice += cart.getTotSetlPrice();
+                totalPrice += cart.getTotSetlPrice() * cart.getProdQty();
                 totalDcPrice += cart.getExpctDcPrc();
             }
             delPrice = totalPrice >= 20000 ? 0 : 3000;  // 최종상품금액이 20000원 이상이면 배송비 무료   //db에서 가져오기
@@ -60,30 +60,33 @@ public class CartController {
 //        return "";
 //    }
 
+    @PatchMapping("/modify")
+    @ResponseBody
+    @Transactional
+    public ResponseEntity<CartDto> minusCart(@RequestBody CartDto dto, HttpServletRequest request) {
+        try {
+            HttpSession session = request.getSession();
+            String custId = (String)session.getAttribute("id");
 
-//    @PatchMapping("/update")
-//    @ResponseBody
-//    public String updateCart(@RequestBody ProdDto prod, Model m, HttpServletRequest request) {
-//        HttpSession session = request.getSession();
-//        String custId = (String)session.getAttribute("id");
-//
-//        cartService.increaseQty(custId, prodCd);
-//
-//        return "cart";
-//    }
+            cartService.modifyQty(dto.getProdQty(), custId, dto.getProdCd());
+
+            return new ResponseEntity<>(dto, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
 
     @DeleteMapping("/remove")
     @ResponseBody
-    public ResponseEntity<Prod> removeCart(@RequestBody Prod p, HttpServletRequest request) {
+    @Transactional
+    public ResponseEntity<CartDto> removeCart(@RequestBody CartDto dto, HttpServletRequest request) {
 
         try {
             HttpSession session = request.getSession();
             String custId = (String)session.getAttribute("id"); // id 받아오기
 
-            System.out.println("p = " + p);
-
-            cartService.remove(custId, p.getProdCd());
-            return new ResponseEntity<>(p, HttpStatus.OK);
+            cartService.remove(custId, dto.getProdCd());
+            return new ResponseEntity<>(dto, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

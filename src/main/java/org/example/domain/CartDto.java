@@ -14,7 +14,7 @@ public class CartDto {
     private int prodQty;    // 상품수량
     private int totSetlPrice;   // 상품가격
     private int paymtPnt;   // 적립포인트
-    private int expctDcPrc; // 예상할인금액
+    private int expctDcPrc = 0; // 예상할인금액
     private int dexp;   // 배송비
     private int saveTerm;   // 보유기간
     private Date fstReg;
@@ -33,6 +33,7 @@ public class CartDto {
         this.prodName = prodName;
         this.prodQty = prodQty;
         this.totSetlPrice = totSetlPrice;
+        this.paymtPnt = totSetlPrice/100;
     }
 
     public CartDto(int seq, String custId, String prodCd, String prodName, int prodQty, int totSetlPrice, int paymtPnt, int expctDcPrc, int dexp, int saveTerm, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {

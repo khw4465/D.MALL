@@ -40,4 +40,9 @@
         WHERE cust_id = #{CUST_ID}
         AND addr_no = #{addrNo}
     </delete>
+    <delete id="deleteAll" parameterType="map">
+        DELETE FROM dlv_addr
+        WHERE cust_id = #{CUST_ID}
+          AND addr_no = #{addrNo}
+    </delete>
 </mapper>
