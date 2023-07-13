@@ -30,7 +30,7 @@
         INSERT INTO ord
             (ord_cd, cust_id, prod_name, tot_prod_cnt, tot_prc, tot_qty, dlv_addr_id, dlv_msg)
         VALUES
-            (#{ordCd}, #{custId}, #{prodName}, #{totProdCnt}, #{totPrc}, #{totQty}, #{dlvAddrId}, #{dlvMsg})
+            (#{ordCd}, #{custId}, #{prodName}, #{totProdcnt}, #{totPrc}, #{totQty}, #{dlvAddrId}, #{dlvMsg})
     </insert>
     <update id="update" parameterType="OrderDto">
         UPDATE ord

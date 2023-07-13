@@ -89,7 +89,7 @@
             <label for="acno-num" class="label">계좌번호</label>
             <div class="input-wrap">
                 <input type="text" id="cust-acno" name="cust-acno" class="input-field" maxlength="20"
-                       value="${modydto.acNo}">
+                       value="${modydto.acno}">
 <%--                <span class="button-wrap">--%>
 <%--                            <button type="button" class="edit-button"> <span id="edit-acno">계좌번호 변경</span> </button>--%>
 <%--                </span>--%>
@@ -205,7 +205,7 @@
                     $('#cust-name').val(result.name);
                     $('#cust-mpno').val(result.mpno);
                     $('#cust-email').val(result.email);
-                    $('#cust-acno').val(result.acNo);
+                    $('#cust-acno').val(result.acno);
                     alert("회원 정보가 업데이트되었습니다.");
                     window.location.href = "/custModify";
                 },

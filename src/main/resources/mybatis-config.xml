@@ -11,8 +11,10 @@
         <typeAlias alias="CustDto" type="org.example.domain.CustDto"/>
         <typeAlias alias="CartDto" type="org.example.domain.CartDto"/>
         <typeAlias alias="DlvAddrDto" type="org.example.domain.DlvAddrDto"/>
-        <typeAlias alias="notcDTO" type="org.example.domain.notcDTO"/>
-        <typeAlias alias="notcSearchCondition" type="org.example.domain.notcSearchCondition"/>
+        <typeAlias alias="NotcDto" type="org.example.domain.NotcDto"/>
+    <typeAlias alias="NotcSearchCondition" type="org.example.domain.NotcSearchCondition"/>
+        <typeAlias alias="GuidDto" type="org.example.domain.GuidDto"/>
+        <typeAlias alias="FaqDto" type="org.example.domain.FaqDto"/>
         <typeAlias alias="OrderDto" type="org.example.domain.OrderDto"/>
         <typeAlias alias="OrdDtlDto" type="org.example.domain.OrdDtlDto"/>
         <typeAlias alias="ProdDto" type="org.example.domain.ProdDto"/>
@@ -21,5 +23,6 @@
         <typeAlias alias="ProdOptDto" type="org.example.domain.ProdOptDto"/>
         <typeAlias alias="ProdDcDto" type="org.example.domain.ProdDcDto"/>
         <typeAlias alias="ProdImgDto" type="org.example.domain.ProdImgDto"/>
+
     </typeAliases>
 </configuration>

@@ -33,6 +33,7 @@ public class ProdDto {
 
     public ProdDto() {}
 
+
     public ProdDto(String prodCd, int cateCd, String sn, String prodName, String prodSmrvDesc, String prodDtlDesc, Integer prodPrice, String prodImg, Float ascr, String dcCd, String invYn, Integer invQty, String saleYn, String sortYn, String optYn, String delYn, Integer minCnt, Date mftDate, Date useDate, Date saleStart, Date saleLast, String remark, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
         this.prodCd = prodCd;
         this.cateCd = cateCd;
@@ -69,12 +70,13 @@ public class ProdDto {
     public void setProdCd(String prodCd) {
         this.prodCd = prodCd;
     }
-
+    
     public int getCateCd() {
         return cateCd;
     }
 
     public void setCateCd(int cateCd) {
+
         this.cateCd = cateCd;
     }
 

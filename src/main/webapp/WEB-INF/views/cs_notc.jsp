@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session="true"%>
 <html>
 <head>
@@ -40,7 +41,7 @@
     <ul id="label_ul">
       <li><a href="/notc/list">공지사항</a></li>
       <li><a href="/user/list">이용안내</a></li>
-      <li><a href="/cs/faq">자주묻는FAQ</a></li>
+      <li><a href="/faq/list">자주묻는FAQ</a></li>
       <li><a href="/cs/inqry">1:1문의</a></li>
     </ul>
   </nav>
@@ -56,8 +57,8 @@
   if(msg=="WRT_OK") alert("성공적으로 등록되었습니다.");
   if(msg=="MOD_OK") alert("성공적으로 수정되었습니다.");
 
-
 </script>
+
 <div id="main_1">
   <table id="CS_tb">
     <h3><a href="/notc/list">공지사항</a></h3>
@@ -67,17 +68,21 @@
       <th id="CS_tb_td">제목</th>
       <th id="CS_tb_day">등록일</th>
     </tr>
-    <c:forEach var="notcDTO" items="${list}">
+    <c:forEach var="NotcDto" items="${list}">
       <tr>
-        <td id="CS_tb_bno">${notcDTO.BBSO_NO}</td>
-        <td id="CS_tb_cate">${notcDTO.CATE}</td>
-        <td id="CS_tb_td"><a href="<c:url value='/notc/read?BBSO_NO=${notcDTO.BBSO_NO}&page=${page}&pageSize=${pageSize}'/> ">${notcDTO.TTL}</a></td>
-        <td id="CS_tb_day">${notcDTO.WRTD}</td>
-        <c:choose>
-          <c:when test="${notcDTO.FST_REG.time >= startOfToday}">
-            <td></td>
-          </c:when>
-        </c:choose>
+        <td id="CS_tb_bno">${NotcDto.bbsoNo}</td>
+        <td id="CS_tb_cate">${NotcDto.cate}</td>
+        <td id="CS_tb_td"><a href="<c:url value='/notc/read?bbsoNo=${NotcDto.bbsoNo}&page=${page}&pageSize=${pageSize}'/> ">${NotcDto.ttl}</a></td>
+        <td id="CS_tb_day">${NotcDto.wrtd}</td>
+<%--        <c:choose>--%>
+<%--          <c:when test="${NotcDto.fstReg.time >= startOfToday}">--%>
+<%--            <td> <fmt:formatDate value="${NotcDto.fstReg}" pattern="HH:mm" type="time"/> </td>--%>
+<%--          </c:when>--%>
+<%--          <c:otherwise>--%>
+<%--            <td> <fmt:formatDate value="${NotcDto.fstReg}" pattern="yyyy-MM-dd" type="date"/> </td>--%>
+<%--            </c:otherwise>--%>
+<%--        </c:choose>--%>
+<%--        <td> ${NotcDto.notccnt}</td>--%>
       </tr>
     </c:forEach>
 
@@ -98,10 +103,10 @@
 <br>
 <!-- 핸들러 -->
 <div id="handle">
-  <c:if test="${totalCnt==null || totalCnt==0}">
+  <c:if test="${totalcnt==null || totalcnt==0}">
     <div> 게시물이 없습니다.</div>
   </c:if>
-  <c:if test="${totalCnt!=null && totalCnt!=0}">
+  <c:if test="${totalcnt!=null && totalcnt!=0}">
     <c:if test="${pagehandler.showPrev}">
       <a class="page" href="<c:url value="/notc/list${pagehandler.sc.getQueryString(pagehandler.beginPage-1)}"/> ">&lt;</a>
     </c:if>

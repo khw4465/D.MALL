@@ -1,19 +1,18 @@
 package org.example.service;
 
-import org.example.dao.notcDAO;
-import org.example.domain.notcDTO;
-import org.example.domain.notcSearchCondition;
+import org.example.dao.NotcDao;
+import org.example.domain.NotcDto;
+import org.example.domain.NotcSearchCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 
-@Service
+@Repository
 public class NotcServiceImpl implements NotcService {
     @Autowired
-    notcDAO notcDao;
+    NotcDao notcDao;
 
     @Override
     public int getCount(){
@@ -21,44 +20,46 @@ public class NotcServiceImpl implements NotcService {
     }
 
     @Override
-    public int remove(String BBSO_NO){
-        return notcDao.deleteForAdmin(BBSO_NO);
+    public int remove(String bbsoNo){
+        return notcDao.deleteForAdmin(bbsoNo);
     }
 
     @Override
-    public int write(notcDTO dto) throws Exception{
+    public int write(NotcDto dto) throws Exception{
         return notcDao.insert(dto);
     }
 
     @Override
-    public List<notcDTO> getList() throws Exception{
+    public List<NotcDto> getList() throws Exception{
         return notcDao.selectAll();
     }
 
     @Override
-    public notcDTO read(String BBSO_NO) throws Exception{
-        notcDTO dto = notcDao.select(BBSO_NO);
-//        notcDao.increaseViewCnt(BBSO_NO);
+    public NotcDto read(String bbsoNo) throws Exception{
+        NotcDto dto = notcDao.select(bbsoNo);
+//        notcDao.increaseViewcnt(bbsoNo);
         return dto;
     }
 
     @Override
-    public List<notcDTO> getPage(Map map){
+    public List<NotcDto> getPage(Map map){
         return notcDao.selectPage(map);
     }
 
     @Override
-    public int modify(notcDTO dto){
+    public int modify(NotcDto dto){
         return notcDao.update(dto);
     }
 
     @Override
-    public List<notcDTO> getSearchResultPage(notcSearchCondition sc) throws Exception{
+    public List<NotcDto> getSearchResultPage(NotcSearchCondition sc) throws Exception{
+//        System.out.println("sc = " + sc);
+        System.out.println("NotcService = " + notcDao.searchSelectPage(sc));
         return notcDao.searchSelectPage(sc);
     }
 
     @Override
-    public int getSearchResultCnt(notcSearchCondition sc) throws Exception{
-        return notcDao.searchResultCnt(sc);
+    public int getSearchResultcnt(NotcSearchCondition sc) throws Exception{
+        return notcDao.searchResultcnt(sc);
     }
 }

@@ -75,6 +75,7 @@
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 </head>
 <body>
+<<<<<<< HEAD
 <%--    <script src="https://web.nicepay.co.kr/v3/webstd/js/nicepay-3.0.js" type="text/javascript"></script>--%>
 <%--    <!-- 토스페이먼츠 -->--%>
 <%--    <script src="https://js.tosspayments.com/v1"></script>--%>
@@ -87,7 +88,6 @@
         <div class="n-table-title">
             <h2 class="title-list">주문자 정보</h2>
         </div><!--// list-head -->
-
         <!-- 회원일때 -->
         <div class="order-address">
             <ul class="info-txt">

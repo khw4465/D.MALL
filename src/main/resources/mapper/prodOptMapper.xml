@@ -32,13 +32,13 @@
                             opt_qty = #{optQty},
                             opt_type = #{optType},
                             sale_prc = #{salePrc},
-                            use_yn = #{useYn},
+                            useYn = #{useYn},
                             del_yn = #{delYn},
                             remark = #{remark},
-                            fst_reg = #{fstReg},
-                            fst_regr = #{fstRegr},
-                            last_upd = #{lastUpd},
-                            last_updr = #{lastUpdr}
+                            fstReg = #{fstReg},
+                            fstRegr = #{fstRegr},
+                            lastUpd = #{lastUpd},
+                            lastUpdr = #{lastUpdr}
         WHERE opt_cd = #{optCd}
     </update>
 

@@ -1,19 +1,36 @@
 package org.example.domain;
 import org.springframework.web.util.UriComponentsBuilder;
 
-public class notcSearchCondition {
+public class NotcSearchCondition {
     private Integer page = 1;
     private Integer pageSize = 10;
     //    private Integer offset = 0;
     private String keyword = "";
     private String option ="";
 
-    public notcSearchCondition(){}
-    public notcSearchCondition(Integer page, Integer pageSize, String keyword, String option) {
+    public NotcSearchCondition(){}
+    public NotcSearchCondition(Integer page, Integer pageSize) {
+        this(page,pageSize,"","");
+    }
+
+    public NotcSearchCondition(Integer page, Integer pageSize, String keyword, String option) {
         this.page = page;
         this.pageSize = pageSize;
         this.keyword = keyword;
         this.option = option;
+    }
+
+    public String getQueryString(){
+        return getQueryString(page);
+    }
+
+    public String getQueryString(Integer page){
+        return UriComponentsBuilder.newInstance()
+                .queryParam("page",page)
+                .queryParam("pageSize",pageSize)
+                .queryParam("option",option)
+                .queryParam("keyword",keyword)
+                .build().toString();
     }
 
     public Integer getPage() {
@@ -36,8 +53,6 @@ public class notcSearchCondition {
         return (page-1) * pageSize;
     }
 
-
-
     public String getKeyword() {
         return keyword;
     }
@@ -58,7 +73,7 @@ public class notcSearchCondition {
 
     @Override
     public String toString() {
-        return "notcSearchCondition{" +
+        return "NotcSearchCondition{" +
                 "page=" + page +
                 ", pageSize=" + pageSize +
                 ", offset=" + getOffset() +
@@ -67,15 +82,4 @@ public class notcSearchCondition {
                 '}';
     }
 
-    public String getQueryString(Integer page){
-        return UriComponentsBuilder.newInstance()
-                .queryParam("page",page)
-                .queryParam("pageSize",pageSize)
-                .queryParam("option",option)
-                .queryParam("keyword",keyword)
-                .build().toString();
-    }
-    public String getQueryString(){
-        return getQueryString(page);
-    }
 }

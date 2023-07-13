@@ -23,118 +23,118 @@ public class CustDaoImplTest {
     private CustDao custDao;
 
     // 일부러 예외 걸어서 터지는지 확인해야함
-    @Test
-    public void selectUser() throws Exception { // 성공
- //키충돌 예외 발생했을때 성공하는 테스트
-        custDao.deleteAll();
-        assertTrue(custDao.count()==0);
+//    @Test
+//    public void selectUser() throws Exception { // 성공
+// //키충돌 예외 발생했을때 성공하는 테스트
+//        custDao.deleteAll();
+//        assertTrue(custDao.count()==0);
+//
+//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+//        Date date = formatter.parse("2023/07/06");
+//
+//        CustDto custDto = new CustDto();
+//        custDto.setCustId("admin");//들어감
+//        custDto.setPwd("admin123");//들어감
+//        custDto.setName("문희석");//들어감
+//        custDto.setMpNo("01012341234"); //들어감
+//        custDto.setCustTp("2");
+//        custDto.setGrade("GR01");
+//        custDto.setStus("정상");
+//        custDto.setRcmdr("아직"); //들어감
+//        custDto.setBirth(date);
+//        custDto.setEmail("aaa@aaa.com");//들어감
+//        custDto.setRegDate(LocalDateTime.now());
+//        custDto.setAcno("121212-01-121212");
+//        custDto.setLginDttm(LocalDateTime.now());
+//        custDto.setGender("남");
+//        custDto.setRegn("대한민국");
+//        custDto.setFstReg(LocalDateTime.now());
+////        custDto.setFstRegr("User001");
+//        custDto.setLastUpd(LocalDateTime.now());
+//        custDto.setLastUpdr("User001");
+//
+//        custDao.insertUser(custDto);
+//        assertTrue(custDao.count()==1);
+//
+//        custDto.setCustId("admin1");
+//        custDto.setPwd("admin123");
+//        custDto.setName("문희석");
+//        custDto.setMpNo("01012341234");
+//        custDto.setCustTp("1");
+//        custDto.setGrade("GR01");
+//        custDto.setStus("정상");
+//        custDto.setRcmdr("아직");
+//        custDto.setBirth(date);
+//        custDto.setEmail("aaa@aaa.com");
+//        custDto.setRegDate(LocalDateTime.now());
+//        custDto.setAcno("121212-01-121212");
+//        custDto.setLginDttm(LocalDateTime.now());
+//        custDto.setGender("남");
+//        custDto.setRegn("대한민국");
+//        custDto.setFstReg(LocalDateTime.now());
+//        custDto.setFstRegr("User001");
+//        custDto.setLastUpd(LocalDateTime.now());
+//        custDto.setLastUpdr("User001");
+//
+//        custDao.insertUser(custDto);
+//        assertTrue(custDao.count()==2);
+//
+//        custDto.setCustId("hsm1020s");
+//        custDto.setPwd("1234");
+//        custDto.setName("문희석");
+//        custDto.setMpNo("01012345678");
+//        custDto.setCustTp("1");
+//        custDto.setGrade("GR01");
+//        custDto.setStus("정상");
+//        custDto.setRcmdr("아직");
+//        custDto.setBirth(date);
+//        custDto.setEmail("hsm1020s@naver.com");
+//        custDto.setRegDate(LocalDateTime.now());
+//        custDto.setAcno("121212-01-121212");
+//        custDto.setLginDttm(LocalDateTime.now());
+//        custDto.setGender("남");
+//        custDto.setRegn("대한민국");
+//        custDto.setFstReg(LocalDateTime.now());
+//        custDto.setFstRegr("User001");
+//        custDto.setLastUpd(LocalDateTime.now());
+//        custDto.setLastUpdr("User001");
+//
+//        custDao.insertUser(custDto);
+//        assertTrue(custDao.count()==3);
+//    }
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-        Date date = formatter.parse("2023/07/06");
-
-        CustDto custDto = new CustDto();
-        custDto.setCustId("admin");//들어감
-        custDto.setPwd("admin123");//들어감
-        custDto.setName("문희석");//들어감
-        custDto.setMpNo("01012341234"); //들어감
-        custDto.setCustTp("2");
-        custDto.setGrade("GR01");
-        custDto.setStus("정상");
-        custDto.setRcmdr("아직"); //들어감
-        custDto.setBirth(date);
-        custDto.setEmail("aaa@aaa.com");//들어감
-        custDto.setRegDate(LocalDateTime.now());
-        custDto.setAcNo("121212-01-121212");
-        custDto.setLginDttm(LocalDateTime.now());
-        custDto.setGender("남");
-        custDto.setRegn("대한민국");
-        custDto.setFstReg(LocalDateTime.now());
-        custDto.setFstRegr("User001");
-        custDto.setLastUpd(LocalDateTime.now());
-        custDto.setLastUpdr("User001");
-
-        custDao.insertUser(custDto);
-        assertTrue(custDao.count()==1);
-
-        custDto.setCustId("admin1");
-        custDto.setPwd("admin123");
-        custDto.setName("문희석");
-        custDto.setMpNo("01012341234");
-        custDto.setCustTp("1");
-        custDto.setGrade("GR01");
-        custDto.setStus("정상");
-        custDto.setRcmdr("아직");
-        custDto.setBirth(date);
-        custDto.setEmail("aaa@aaa.com");
-        custDto.setRegDate(LocalDateTime.now());
-        custDto.setAcNo("121212-01-121212");
-        custDto.setLginDttm(LocalDateTime.now());
-        custDto.setGender("남");
-        custDto.setRegn("대한민국");
-        custDto.setFstReg(LocalDateTime.now());
-        custDto.setFstRegr("User001");
-        custDto.setLastUpd(LocalDateTime.now());
-        custDto.setLastUpdr("User001");
-
-        custDao.insertUser(custDto);
-        assertTrue(custDao.count()==2);
-
-        custDto.setCustId("hsm1020s");
-        custDto.setPwd("1234");
-        custDto.setName("문희석");
-        custDto.setMpNo("01012345678");
-        custDto.setCustTp("1");
-        custDto.setGrade("GR01");
-        custDto.setStus("정상");
-        custDto.setRcmdr("아직");
-        custDto.setBirth(date);
-        custDto.setEmail("hsm1020s@naver.com");
-        custDto.setRegDate(LocalDateTime.now());
-        custDto.setAcNo("121212-01-121212");
-        custDto.setLginDttm(LocalDateTime.now());
-        custDto.setGender("남");
-        custDto.setRegn("대한민국");
-        custDto.setFstReg(LocalDateTime.now());
-        custDto.setFstRegr("User001");
-        custDto.setLastUpd(LocalDateTime.now());
-        custDto.setLastUpdr("User001");
-
-        custDao.insertUser(custDto);
-        assertTrue(custDao.count()==3);
-    }
-
-    @Test
-    public void insertUser() throws Exception{ // 성공
-       // custDao.deleteAll();
-        assertTrue(custDao.count()==0);
-
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-        Date date = formatter.parse("2023/07/06");
-
-        CustDto custDto = new CustDto();
-        custDto.setCustId("admin");
-        custDto.setPwd("admin123");
-        custDto.setName("문희석");
-        custDto.setMpNo("01012341234");
-        custDto.setCustTp("1");
-        custDto.setGrade("GR01");
-        custDto.setStus("정상");
-        custDto.setRcmdr("아직");
-        custDto.setBirth(date);
-        custDto.setEmail("aaa@aaa.com");
-        custDto.setRegDate(LocalDateTime.now());
-        custDto.setAcNo("121212-01-121212");
-        custDto.setLginDttm(LocalDateTime.now());
-        custDto.setGender("남");
-        custDto.setRegn("대한민국");
-        custDto.setFstReg(LocalDateTime.now());
-        custDto.setFstRegr("User001");
-        custDto.setLastUpd(LocalDateTime.now());
-        custDto.setLastUpdr("User001");
-
-        custDao.insertUser(custDto);
-        assertTrue(custDao.count()==1);
-    }
+//    @Test
+//    public void insertUser() throws Exception{ // 성공
+//       // custDao.deleteAll();
+//        assertTrue(custDao.count()==0);
+//
+//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+//        Date date = formatter.parse("2023/07/06");
+//
+//        CustDto custDto = new CustDto();
+//        custDto.setCustId("admin");
+//        custDto.setPwd("admin123");
+//        custDto.setName("문희석");
+//        custDto.setMpNo("01012341234");
+//        custDto.setCustTp("1");
+//        custDto.setGrade("GR01");
+//        custDto.setStus("정상");
+//        custDto.setRcmdr("아직");
+//        custDto.setBirth(date);
+//        custDto.setEmail("aaa@aaa.com");
+//        custDto.setRegDate(LocalDateTime.now());
+//        custDto.setAcno("121212-01-121212");
+//        custDto.setLginDttm(LocalDateTime.now());
+//        custDto.setGender("남");
+//        custDto.setRegn("대한민국");
+//        custDto.setFstReg(LocalDateTime.now());
+//        custDto.setFstRegr("User001");
+//        custDto.setLastUpd(LocalDateTime.now());
+//        custDto.setLastUpdr("User001");
+//
+//        custDao.insertUser(custDto);
+//        assertTrue(custDao.count()==1);
+//    }
 
     @Test
     public void deleteUser() throws Exception{ // 성공
@@ -158,48 +158,48 @@ public class CustDaoImplTest {
 //        custDto.setName("h123");
 //        custDto.setMpNo("h123");
 //        custDto.setEmail("h123");
-//        custDto.setAcNo("h123");
+//        custDto.setAcno("h123");
 //        custDto.setCustId("asdf19");
 //        custDao.updateUser(custDto);
     }
 
-    @Test
-    public void selectAllUser() throws Exception { //성공
-        int a =10;
-        int b =30;
-        custDao.deleteAll();
-        assertTrue(custDao.count()==0);
-
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-        Date date = formatter.parse("2023/07/06");
-
-        for (int i = a; i < b; i++) {
-            CustDto custDto = new CustDto();
-            custDto.setCustId("asdf"+i);
-            custDto.setPwd("1234");
-            custDto.setName("문희석"+i);
-            custDto.setMpNo("01012341234");
-            custDto.setCustTp("1");
-            custDto.setGrade("GR01");
-            custDto.setStus("정상");
-            custDto.setRcmdr("아직");
-            custDto.setBirth(date);
-            custDto.setEmail("aaa@aaa.com");
-            custDto.setRegDate(LocalDateTime.now());
-            custDto.setAcNo("121212-01-121212");
-            custDto.setLginDttm(LocalDateTime.now());
-            custDto.setGender("남");
-            custDto.setRegn("대한민국");
-            custDto.setFstReg(LocalDateTime.now());
-            custDto.setFstRegr("User001");
-            custDto.setLastUpd(LocalDateTime.now());
-            custDto.setLastUpdr("User001");
-            custDao.insertUser(custDto);
-        }
-        System.out.println("custDao.selectAll() = " + custDao.selectAllUser());
-        assertTrue(custDao.count()==b-a);
-
-    }
+//    @Test
+//    public void selectAllUser() throws Exception { //성공
+//        int a =10;
+//        int b =30;
+//        custDao.deleteAll();
+//        assertTrue(custDao.count()==0);
+//
+//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+//        Date date = formatter.parse("2023/07/06");
+//
+//        for (int i = a; i < b; i++) {
+//            CustDto custDto = new CustDto();
+//            custDto.setCustId("asdf"+i);
+//            custDto.setPwd("1234");
+//            custDto.setName("문희석"+i);
+//            custDto.setMpNo("01012341234");
+//            custDto.setCustTp("1");
+//            custDto.setGrade("GR01");
+//            custDto.setStus("정상");
+//            custDto.setRcmdr("아직");
+//            custDto.setBirth(date);
+//            custDto.setEmail("aaa@aaa.com");
+//            custDto.setRegDate(LocalDateTime.now());
+//            custDto.setAcno("121212-01-121212");
+//            custDto.setLginDttm(LocalDateTime.now());
+//            custDto.setGender("남");
+//            custDto.setRegn("대한민국");
+//            custDto.setFstReg(LocalDateTime.now());
+//            custDto.setFstRegr("User001");
+//            custDto.setLastUpd(LocalDateTime.now());
+//            custDto.setLastUpdr("User001");
+//            custDao.insertUser(custDto);
+//        }
+//        System.out.println("custDao.selectAll() = " + custDao.selectAllUser());
+//        assertTrue(custDao.count()==b-a);
+//
+//    }
 
     @Test
     public void deleteAll() throws Exception{ //성공

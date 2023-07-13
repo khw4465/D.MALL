@@ -18,7 +18,7 @@
 
     <insert id="insert" parameterType="CustDto">
         INSERT INTO cust
-            (cust_id,PWD,NAME,RCMDR,EMAIL,mpno,CUST_TP,GRADE,STUS,REG_DATE,LGIN_DTTM,FST_REG,FST_REGR,LAST_UPD,LAST_UPDR)
+            (cust_id,PWD,NAME,RCMDR,EMAIL,mpno,CUST_TP,GRADE,STUS,REG_DATE,LGIN_DTTM,fstReg,fstRegr,lastUpd,lastUpdr)
         VALUES
             (#{custId}, #{pwd}, #{name}, #{rcmdr}, #{email},#{mpNo},#{custTp},#{grade},#{stus},#{regDate},#{lginDttm},#{fstReg},#{fstRegr},#{lastUpd},#{lastUpdr})
     </insert>
@@ -33,14 +33,14 @@
           , name = #{name}
           , mpno = #{mpNo}
           , email = #{email}
-          , acno = #{acNo}
+          , acno = #{acno}
           , BIRTH = #{birth}
         where cust_id = #{custId}
     </update>
 
 
     <select id="selectAll" resultType="CustDto">
-        select CUST_ID,NAME,MPNO,CUST_TP,GRADE,STUS,BIRTH,EMAIL,ACNO,Gender
+        select CUST_ID,NAME,MPNO,CUST_TP,GRADE,STUS,BIRTH,EMAIL,AcnO,Gender
         from cust
     </select>
 

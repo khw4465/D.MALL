@@ -28,9 +28,9 @@
     <!-- update -->
     <update id="update" parameterType="ProdDcDto">
         UPDATE prod_dc
-        SET prod_cls_cd = #{prodClsCd}, dc_type = #{dcType}, dc_name = #{dcName}, dc_tar = #{dcTar}, dc_rt = #{dcRt}, dc_price = #{dcPrice},
-            use_yn = #{useYn}, del_yn = #{delYn}, dc_start = #{dcStart}, dc_last = #{dcLast}, remark = #{remark}, fst_reg = #{fstReg},
-            fst_regr = #{fstRegr}, last_upd = #{lastUpd}, last_updr = #{lastUpdr}
+        SET prod_cls_cd = #{prodClsCd}, dc_type = #{dcType}, dc_name = #{dcname}, dc_tar = #{dcTar}, dc_rt = #{dcRt}, dc_price = #{dcPrice},
+            useYn = #{useYn}, del_yn = #{delYn}, dc_start = #{dcStart}, dc_last = #{dcLast}, remark = #{remark}, fstReg = #{fstReg},
+            fstRegr = #{fstRegr}, lastUpd = #{lastUpd}, lastUpdr = #{lastUpdr}
         WHERE dc_cd = #{dcCd}
     </update>
 

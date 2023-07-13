@@ -41,16 +41,16 @@
             sort_Yn = #{sortYn},
             opt_Yn = #{optYn},
             del_Yn = #{delYn},
-            min_Cnt = #{minCnt},
+            min_cnt = #{minCnt},
             mft_Date = #{mftDate},
             use_Date = #{useDate},
             sale_Start = #{saleStart},
             sale_Last = #{saleLast},
             remark = #{remark},
-            fst_Reg = #{fstReg},
-            fst_Regr = #{fstRegr},
-            last_Upd = #{lastUpd},
-            last_Updr = #{lastUpdr}
+            fstReg = #{fstReg},
+            fstRegr = #{fstRegr},
+            lastUpd = #{lastUpd},
+            lastUpdr = #{lastUpdr}
         WHERE prod_Cd = #{prodCd}
     </update>
 

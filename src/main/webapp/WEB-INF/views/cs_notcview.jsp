@@ -13,7 +13,6 @@
     <title>공지사항</title>
     <link rel="stylesheet" href="<c:url value='/css/csmain.css'/>">
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-
 </head>
 <body>
 <h1>드가자몰</h1>
@@ -40,7 +39,7 @@
         <ul id="label_ul">
             <li><a href="/notc/list">공지사항</a></li>
             <li><a href="/user/list">이용안내</a></li>
-            <li><a href="/cs/faq">자주묻는FAQ</a></li>
+            <li><a href="/faq/list">자주묻는FAQ</a></li>
             <li><a href="/cs/inqry">1:1문의</a></li>
         </ul>
     </nav>
@@ -52,9 +51,9 @@
 
     <form action="" id="form">
 
-        <input type="text" name="BBSO_NO" value=${notcDto.BBSO_NO} readonly="readonly">
-        <input type="text" name="TTL" value="${notcDto.TTL}" readonly="readonly">
-        <textarea name="content" id="" cols="30" rows="10" readonly="readonly" >${notcDto.CN}</textarea>
+        <input type="text" name="bbsoNo" value="${NotcDto.bbsoNo}" readonly="readonly">
+        <input type="text" name="ttl" value="${NotcDto.ttl}" readonly="readonly">
+        <textarea name="content" id="" cols="30" rows="10" readonly="readonly" >${NotcDto.cn}</textarea>
         <%--        <button type="button" id="writeBtn" class="btn">등록</button>--%>
         <%--        <button type="button" id="modifyBtn" class="btn">수정</button>--%>
         <%--        <button type="button" id="removeBtn" class="btn">삭제</button>--%>
@@ -65,12 +64,12 @@
 
 <script>
     $(document).ready(function (){
-        <%--$('#listBtn').on("click",function (){--%>
-        <%--    location.href="<c:url value='/notc/list${notcSearchCondition.queryString}'/>";--%>
-        <%--});--%>
         $('#listBtn').on("click",function (){
-            location.href="<c:url value='/notc/list${notcSearchCondition.getQueryString(page)}'/>";
+            location.href="<c:url value='/notc/list${notcSearchCondition.queryString}'/>";
         });
+        <%--$('#listBtn').on("click",function (){--%>
+        <%--    location.href="<c:url value='/notc/list${notcSearchCondition.getQueryString(page)}'/>";--%>
+        <%--});--%>
 
 
         $('#removeBtn').on("click",function (){

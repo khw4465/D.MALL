@@ -143,7 +143,7 @@ table{
 /* Style the accordion panel. Note: hidden by default */
 .panel {
     padding: 0 18px;
-    background-color: white;
+    background-color: #e8e8e8;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
@@ -244,6 +244,13 @@ table{
 }
 
 #handle {
+    position: absolute;
+    top: 620px;
+    left: 200px;
+}
+
+
+#handle_usg {
     position: absolute;
     top: 620px;
     left: 200px;

@@ -71,14 +71,14 @@ public class CustController {
         String custName = payload.get("cust-name");
         String custMpNo = payload.get("cust-mpno");
         String custEmail = payload.get("cust-email");
-        String custAcNo = payload.get("cust-acno");
+        String custAcno = payload.get("cust-acno");
 
         CustDto dto = custDao.selectUser((String) session.getAttribute("id"));
 
         dto.setName(custName);
         dto.setMpNo(custMpNo);
         dto.setEmail(custEmail);
-        dto.setAcNo(custAcNo);
+        dto.setAcno(custAcno);
 
         custDao.updateUser(dto);
         System.out.println("Updated Customer Info = " + dto.toString());

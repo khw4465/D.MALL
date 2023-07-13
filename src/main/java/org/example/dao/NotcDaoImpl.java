@@ -1,8 +1,8 @@
 package org.example.dao;
 
 import org.apache.ibatis.session.SqlSession;
-import org.example.domain.notcDTO;
-import org.example.domain.notcSearchCondition;
+import org.example.domain.NotcDto;
+import org.example.domain.NotcSearchCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -11,16 +11,16 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class notcDAOImpl implements notcDAO {
+public class NotcDaoImpl implements NotcDao {
     @Autowired
-    SqlSession session;
+    private SqlSession session;
 
-    String namespace = "com.fastcampus.dao.notcMapper.";
+    private String namespace = "org.example.dao.notcMapper.";
 
 
     @Override
-    public notcDTO select(String BBSO_NO) throws Exception{
-        return session.selectOne(namespace+"select",BBSO_NO);
+    public NotcDto select(String bbsoNo) throws Exception{
+        return session.selectOne(namespace+"select",bbsoNo);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class notcDAOImpl implements notcDAO {
     }
 
     @Override
-    public int insert(notcDTO dto) throws Exception{
+    public int insert(NotcDto dto) throws Exception{
         return session.insert(namespace+"insert", dto);
     }
 
@@ -39,40 +39,39 @@ public class notcDAOImpl implements notcDAO {
     }
 
     @Override
-    public int deleteForAdmin(String BBSO_NO){
+    public int deleteForAdmin(String bbsoNo){
         Map map = new HashMap();
-        map.put("BBSO_NO", BBSO_NO);
+        map.put("bbsoNo", bbsoNo);
         return session.delete(namespace+"delete", map);
     }
 
     @Override
-    public int update(notcDTO dto){
+    public int update(NotcDto dto){
         return session.update(namespace+"update", dto);
     }
 
     @Override
-    public List<notcDTO> selectAll(){
+    public List<NotcDto> selectAll(){
         return session.selectList(namespace+"selectAll");
     }
 
     @Override
-    public List<notcDTO> selectPage(Map map){
+    public List<NotcDto> selectPage(Map map){
         return session.selectList(namespace+"selectPage",map);
     }
     @Override
-    public int increaseViewCnt(Integer NOTC_CNT){
-        return session.update(namespace+"increaseViewCnt",NOTC_CNT);
+    public int increaseViewcnt(Integer notccnt){
+        return session.update(namespace+"increaseViewcnt",notccnt);
     }
 
     @Override
-    public List<notcDTO> searchSelectPage(notcSearchCondition sc) throws Exception{
+    public List<NotcDto> searchSelectPage(NotcSearchCondition sc) throws Exception{
+        System.out.println("DAO = " + session.selectList(namespace+"searchSelectPage", sc));
         return session.selectList(namespace + "searchSelectPage", sc);
     }
 
     @Override
-    public int searchResultCnt(notcSearchCondition sc) throws Exception{
-        return session.selectOne(namespace+"searchResultCnt",sc);
+    public int searchResultcnt(NotcSearchCondition sc) throws Exception{
+        return session.selectOne(namespace+"searchResultcnt",sc);
     }
-
-
 }
