@@ -10,13 +10,18 @@
     <typeAliases>
         <typeAlias alias="CustDto" type="org.example.domain.CustDto"/>
         <typeAlias alias="CartDto" type="org.example.domain.CartDto"/>
-        <typeAlias alias="ProdDto" type="org.example.domain.ProdDto"/>
-        <typeAlias alias="ProdOptValDto" type="org.example.domain.ProdOptValDto"/>
-        <typeAlias alias="ProdStokDto" type="org.example.domain.ProdStokDto"/>
-        <typeAlias alias="ProdImgDto" type="org.example.domain.ProdImgDto"/>
         <typeAlias alias="DlvAddrDto" type="org.example.domain.DlvAddrDto"/>
-        <typeAlias alias="notcDTO" type="org.example.domain.notcDTO"/>
+        <typeAlias alias="NotcDTO" type="org.example.domain.NotcDTO"/>
         <typeAlias alias="notcSearchCondition" type="org.example.domain.notcSearchCondition"/>
+        <typeAlias alias="guidDTO" type="org.example.domain.guidDTO"/>
+        <typeAlias alias="faqDTO" type="org.example.domain.faqDTO"/>
         <typeAlias alias="OrderDto" type="org.example.domain.OrderDto"/>
+        <typeAlias alias="OrdDtlDto" type="org.example.domain.OrdDtlDto"/>
+        <typeAlias alias="ProdDto" type="org.example.domain.ProdDto"/>
+        <typeAlias alias="ProdCateDto" type="org.example.domain.ProdCateDto"/>
+        <typeAlias alias="ProdOptDto" type="org.example.domain.ProdOptDto"/>
+        <typeAlias alias="ProdDcDto" type="org.example.domain.ProdDcDto"/>
+        <typeAlias alias="ProdImgDto" type="org.example.domain.ProdImgDto"/>
+
     </typeAliases>
 </configuration>

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.fastcampus.dao.notcMapper">
+<mapper namespace="org.example.dao.notcMapper">
 
     <select id="select" parameterType="String" resultType="notcDTO">
         select *
@@ -16,9 +16,9 @@
 
     <insert id="insert" parameterType="notcDTO">
         insert into cs_notc
-            (BBSO_NO, TTL, CN, WRTD, WRTR, CATE, FST_REGR, LAST_UPDR)
+            (BBSO_NO, TTL, CN, WRTD, WRTR, CATE, FST_REGR, LAST_UPDR, USE_YN)
         VALUES
-            (#{BBSO_NO}, #{TTL},#{CN}, #{WRTD},#{WRTR}, #{CATE}, #{FST_REGR}, #{LAST_UPDR})
+            (#{BBSO_NO}, #{TTL},#{CN}, #{WRTD},#{WRTR}, #{CATE}, #{FST_REGR}, #{LAST_UPDR}, #{USE_YN})
     </insert>
 
     <update id="update" parameterType="notcDTO">
@@ -38,13 +38,13 @@
     </delete>
 
     <select id="selectAll" resultType="notcDTO">
-        select BBSO_NO, TTL, CN, WRTD, WRTR, NOTC_CNT, CATE, FST_REG, FST_REGR, LAST_UPD, LAST_UPDR
+        select *
         from cs_notc
         order by BBSO_NO desc, WRTD desc
     </select>
 
     <select id="selectPage" parameterType="map" resultType="notcDTO">
-        select BBSO_NO, TTL, CN, WRTD, WRTR, NOTC_CNT, CATE, FST_REG, FST_REGR, LAST_UPD, LAST_UPDR
+        select *
         from cs_notc
         order by BBSO_NO DESC, WRTD DESC
             LIMIT #{offset}, #{pageSize}
@@ -59,7 +59,7 @@
 
 
     <select id="searchSelectPage" parameterType="notcSearchCondition" resultType="notcDTO">
-        select BBSO_NO, TTL, CN, WRTD, WRTR, NOTC_CNT, CATE, FST_REG, FST_REGR, LAST_UPD, LAST_UPDR
+        select *
         from cs_notc
         where true
         <choose>

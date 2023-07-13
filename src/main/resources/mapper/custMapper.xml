@@ -13,7 +13,7 @@
     <select id="findid" resultType="String" parameterType="CustDto">
         select CUST_ID
         from cust
-        where name = #{name} and email = #{email}
+        where name = #{name} and email = #{email} and mpno = #{mpNo}
     </select>
 
     <insert id="insert" parameterType="CustDto">
@@ -37,6 +37,7 @@
           , BIRTH = #{birth}
         where cust_id = #{custId}
     </update>
+
 
     <select id="selectAll" resultType="CustDto">
         select CUST_ID,NAME,MPNO,CUST_TP,GRADE,STUS,BIRTH,EMAIL,ACNO,Gender
@@ -66,6 +67,12 @@
     <update id="temporaryPwdReturn" parameterType="CustDto">
         UPDATE cust
         SET pwd = #{pwd}
+        where cust_id = #{custId}
+    </update>
+
+    <update id="custSms" parameterType="CustDto">
+        UPDATE cust
+        SET sms = #{sms}
         where cust_id = #{custId}
     </update>
 

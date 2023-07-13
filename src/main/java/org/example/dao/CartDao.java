@@ -1,6 +1,7 @@
 package org.example.dao;
 
 import org.example.domain.CartDto;
+import org.example.domain.OrderDto;
 
 import java.util.List;
 import java.util.Map;
@@ -21,4 +22,6 @@ public interface CartDao {
     int increase(Map<String, String> map) throws Exception;
 
     int decrease(Map<String, String> map) throws Exception;
+
+    OrderDto ordHist(String custId) throws Exception;
 }

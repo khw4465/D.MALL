@@ -15,7 +15,7 @@
         WHERE cust_id=#{custId}
     </select>
     <select id="count" parameterType="string" resultType="int">
-        SELECT count(*)
+        SELECT COUNT(*)
         FROM cart
         WHERE cust_id = #{custId}
     </select>
@@ -47,4 +47,11 @@
         WHERE cust_id = #{custId}
         AND prod_cd = #{prodCd}
     </update>
+    <select id="getOrdHist" parameterType="string" resultType="OrderDto">
+        SELECT CUST_ID,
+               (SELECT CONCAT(PROD_NAME, ' 외 ', (select count(*)from cart where CUST_ID='asdf')-1, '개' ) FROM cart
+                WHERE CUST_ID = #{custId}
+                LIMIT 1) prodName, COUNT(*) totProdCnt, SUM(PROD_QTY*TOT_SETL_PRICE) totPrc, SUM(PROD_QTY) totQty FROM cart
+        WHERE CUST_ID = #{custId}
+    </select>
 </mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.dao.ProdCateMapper">
+    <!-- Select All -->
+    <select id="selectAll" >
+        SELECT * FROM prod_cate
+    </select>
+
+    <!-- Select -->
+    <select id="select" >
+        SELECT * FROM prod_cate WHERE cate_cd = #{cate_cd}
+    </select>
+
+    <!-- Insert -->
+    <insert id="insert" >
+        INSERT INTO prod_cate (cate_cd, cate_lv, cate_name, cate_desc, use_yn, REMARK, FST_REG, FST_REGR, LAST_UPD, LAST_UPDR)
+        VALUES (#{cate_cd}, #{cate_lv}, #{cate_name}, #{cate_desc}, #{use_yn}, #{REMARK}, #{FST_REG}, #{FST_REGR}, #{LAST_UPD}, #{LAST_UPDR})
+    </insert>
+
+    <!-- Update -->
+    <update id="update" >
+        UPDATE prod_cate
+        SET cate_lv = #{cate_lv},
+            cate_name = #{cate_name},
+            cate_desc = #{cate_desc},
+            use_yn = #{use_yn},
+            REMARK = #{REMARK},
+            FST_REG = #{FST_REG},
+            FST_REGR = #{FST_REGR},
+            LAST_UPD = #{LAST_UPD},
+            LAST_UPDR = #{LAST_UPDR}
+        WHERE cate_cd = #{cate_cd}
+    </update>
+
+    <!-- Delete -->
+    <delete id="delete" >
+        DELETE FROM prod_cate WHERE cate_cd = #{cate_cd}
+    </delete>
+
+    <!-- Count -->
+    <select id="count" >
+        SELECT COUNT(*) FROM prod_cate
+    </select>
+
+    <!-- Delete All -->
+    <delete id="deleteAll">
+        DELETE FROM prod_cate
+    </delete>
+
+</mapper>

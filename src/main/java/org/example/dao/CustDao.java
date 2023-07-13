@@ -27,4 +27,5 @@ public interface CustDao {
     // 아이디,이름,이메일,전화번호를 입력하면 임시비밀번호를 발급하는 로직
     int temporaryPwdReturn(CustDto dto)throws Exception;
     //
+    int custSms(CustDto dto)throws Exception;
 }

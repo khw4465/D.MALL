@@ -2,7 +2,7 @@ package org.example.domain;
 
 import java.sql.Date;
 
-public class notcDTO {
+public class NotcDTO {
 
     private String BBSO_NO;
     private String TTL;
@@ -15,12 +15,10 @@ public class notcDTO {
     private String FST_REGR;
     private Date LAST_UPD;
     private String LAST_UPDR;
-
     private String USE_YN;
 
-    public notcDTO(){}
-
-    public notcDTO(String BBSO_NO, String TTL, String CN, String WRTD, String WRTR, Integer NOTC_CNT, String CATE, Date FST_REG, String FST_REGR, Date LAST_UPD, String LAST_UPDR, String USE_YN) {
+    public NotcDTO(){}
+    public NotcDTO(String BBSO_NO, String TTL, String CN, String WRTD, String WRTR, Integer NOTC_CNT, String CATE, String FST_REGR, String LAST_UPDR, String USE_YN) {
         this.BBSO_NO = BBSO_NO;
         this.TTL = TTL;
         this.CN = CN;
@@ -28,9 +26,7 @@ public class notcDTO {
         this.WRTR = WRTR;
         this.NOTC_CNT = NOTC_CNT;
         this.CATE = CATE;
-        this.FST_REG = FST_REG;
         this.FST_REGR = FST_REGR;
-        this.LAST_UPD = LAST_UPD;
         this.LAST_UPDR = LAST_UPDR;
         this.USE_YN = USE_YN;
     }
@@ -75,11 +71,11 @@ public class notcDTO {
         this.WRTR = WRTR;
     }
 
-    public int getNOTC_CNT() {
+    public Integer getNOTC_CNT() {
         return NOTC_CNT;
     }
 
-    public void setNOTC_CNT(int NOTC_CNT) {
+    public void setNOTC_CNT(Integer NOTC_CNT) {
         this.NOTC_CNT = NOTC_CNT;
     }
 

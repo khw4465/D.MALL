@@ -1,5 +1,7 @@
 package org.example.service;
 
+import org.aspectj.weaver.ast.Or;
+import org.example.domain.OrderDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,10 +44,36 @@ public class OrderServiceImplTest {
     }
     @Test
     public void addOrderTest() throws Exception {
-
+        // 주문할 때의 정보들 외에 추가 정보를 받아서 OrderDto에 넣고 출력
+//        orderService.addOrder("order123", "asdf", "1", "천천히오세요");
+        System.out.println(orderService.getOrder("order123","asdf"));
     }
     @Test
     public void modifyStatusTest() throws Exception {
+        // 처음 상태 = 주문완료
+        assertTrue(orderService.getOrder("order_30", "asdfasdf").getOrdStus().equals("주문완료"));
+        // 주문상태를 Y(주문확정)으로 변경
+        OrderDto dto1 = new OrderDto("Y", "order_30", "asdfasdf");
+        assertTrue(orderService.modifyStatus(dto1) == 1);
 
+        assertTrue(orderService.getOrder("order_30", "asdfasdf").getOrdStus().equals("주문확정"));
+
+        // 주문상태를 C(취소완료)으로 변경
+        OrderDto dto2 = new OrderDto("C", "order_30", "asdfasdf");
+        assertTrue(orderService.modifyStatus(dto2) == 1);
+
+        assertTrue(orderService.getOrder("order_30", "asdfasdf").getOrdStus().equals("취소완료"));
+
+        // 주문상태를 R(반품신청)으로 변경
+        OrderDto dto3 = new OrderDto("R", "order_30", "asdfasdf");
+        assertTrue(orderService.modifyStatus(dto3) == 1);
+
+        assertTrue(orderService.getOrder("order_30", "asdfasdf").getOrdStus().equals("반품신청"));
+
+        // 주문상태를 N(주문완료)으로 변경
+        OrderDto dto4 = new OrderDto("N", "order_30", "asdfasdf");
+        assertTrue(orderService.modifyStatus(dto4) == 1);
+
+        assertTrue(orderService.getOrder("order_30", "asdfasdf").getOrdStus().equals("주문완료"));
     }
 }

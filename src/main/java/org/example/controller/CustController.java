@@ -1,21 +1,25 @@
 package org.example.controller;
 
+import org.example.dao.CustDao;
 import org.example.domain.CustDto;
 import org.example.service.CustService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class CustController {
     @Autowired
     CustService custService;
+    @Autowired
+    CustDao custDao;
 
     @RequestMapping("/custselect")
     public String selectAll(CustDto custDto, Model m) throws Exception {
@@ -44,7 +48,7 @@ public class CustController {
         //return "error";
     }
 
-    @RequestMapping("custModify")
+    @GetMapping("custModify")
     public String custModify(CustDto custDto, Model m, HttpServletRequest request) throws Exception {
         HttpSession session = request.getSession(); // 세션을 받아온다.
         if(session.getAttribute("id") == null){
@@ -59,6 +63,30 @@ public class CustController {
         return "modifyInfo";
         //return "error";
     }
+    @PostMapping("/custModify")
+    @ResponseBody
+    public ResponseEntity<?> modifyCustomer(@RequestBody Map<String, String> payload, HttpServletRequest request) throws Exception {
+        HttpSession session = request.getSession();
+
+        String custName = payload.get("cust-name");
+        String custMpNo = payload.get("cust-mpno");
+        String custEmail = payload.get("cust-email");
+        String custAcNo = payload.get("cust-acno");
+
+        CustDto dto = custDao.selectUser((String) session.getAttribute("id"));
+
+        dto.setName(custName);
+        dto.setMpNo(custMpNo);
+        dto.setEmail(custEmail);
+        dto.setAcNo(custAcNo);
+
+        custDao.updateUser(dto);
+        System.out.println("Updated Customer Info = " + dto.toString());
+
+        // Now we return the updated customer as the response body
+        return ResponseEntity.ok(dto);
+    }
+
     @RequestMapping("deleteCust")
     public String deleteCust(CustDto dto,Model m , HttpServletRequest request) throws Exception {
         HttpSession session = request.getSession(); // 세션을 받아온다.

@@ -60,5 +60,10 @@ public class CustDaoImpl implements CustDao {
         return session.update(namespace+"temporaryPwdReturn",dto);
     }
 
+    @Override
+    public int custSms(CustDto dto) throws Exception {
+        return session.update(namespace+"custSms",dto);
+    }
+
 
 }

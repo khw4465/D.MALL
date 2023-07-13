@@ -1,7 +1,7 @@
 package org.example.dao;
 
 import org.apache.ibatis.session.SqlSession;
-import org.example.domain.notcDTO;
+import org.example.domain.NotcDTO;
 import org.example.domain.notcSearchCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,13 +13,13 @@ import java.util.Map;
 @Repository
 public class notcDAOImpl implements notcDAO {
     @Autowired
-    SqlSession session;
+    private SqlSession session;
 
-    String namespace = "com.fastcampus.dao.notcMapper.";
+    private String namespace = "org.example.dao.notcMapper.";
 
 
     @Override
-    public notcDTO select(String BBSO_NO) throws Exception{
+    public NotcDTO select(String BBSO_NO) throws Exception{
         return session.selectOne(namespace+"select",BBSO_NO);
     }
 
@@ -29,7 +29,7 @@ public class notcDAOImpl implements notcDAO {
     }
 
     @Override
-    public int insert(notcDTO dto) throws Exception{
+    public int insert(NotcDTO dto) throws Exception{
         return session.insert(namespace+"insert", dto);
     }
 
@@ -46,17 +46,17 @@ public class notcDAOImpl implements notcDAO {
     }
 
     @Override
-    public int update(notcDTO dto){
+    public int update(NotcDTO dto){
         return session.update(namespace+"update", dto);
     }
 
     @Override
-    public List<notcDTO> selectAll(){
+    public List<NotcDTO> selectAll(){
         return session.selectList(namespace+"selectAll");
     }
 
     @Override
-    public List<notcDTO> selectPage(Map map){
+    public List<NotcDTO> selectPage(Map map){
         return session.selectList(namespace+"selectPage",map);
     }
     @Override
@@ -65,7 +65,8 @@ public class notcDAOImpl implements notcDAO {
     }
 
     @Override
-    public List<notcDTO> searchSelectPage(notcSearchCondition sc) throws Exception{
+    public List<NotcDTO> searchSelectPage(notcSearchCondition sc) throws Exception{
+        System.out.println("DAO = " + session.selectList(namespace+"searchSelectPage", sc));
         return session.selectList(namespace + "searchSelectPage", sc);
     }
 
@@ -73,6 +74,4 @@ public class notcDAOImpl implements notcDAO {
     public int searchResultCnt(notcSearchCondition sc) throws Exception{
         return session.selectOne(namespace+"searchResultCnt",sc);
     }
-
-
 }
