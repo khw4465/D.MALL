@@ -9,11 +9,28 @@ public class notcSearchCondition {
     private String option ="";
 
     public notcSearchCondition(){}
+    public notcSearchCondition(Integer page, Integer pageSize) {
+        this(page,pageSize,"","");
+    }
+
     public notcSearchCondition(Integer page, Integer pageSize, String keyword, String option) {
         this.page = page;
         this.pageSize = pageSize;
         this.keyword = keyword;
         this.option = option;
+    }
+
+    public String getQueryString(){
+        return getQueryString(page);
+    }
+
+    public String getQueryString(Integer page){
+        return UriComponentsBuilder.newInstance()
+                .queryParam("page",page)
+                .queryParam("pageSize",pageSize)
+                .queryParam("option",option)
+                .queryParam("keyword",keyword)
+                .build().toString();
     }
 
     public Integer getPage() {
@@ -35,8 +52,6 @@ public class notcSearchCondition {
     public Integer getOffset() {
         return (page-1) * pageSize;
     }
-
-
 
     public String getKeyword() {
         return keyword;
@@ -67,15 +82,4 @@ public class notcSearchCondition {
                 '}';
     }
 
-    public String getQueryString(Integer page){
-        return UriComponentsBuilder.newInstance()
-                .queryParam("page",page)
-                .queryParam("pageSize",pageSize)
-                .queryParam("option",option)
-                .queryParam("keyword",keyword)
-                .build().toString();
-    }
-    public String getQueryString(){
-        return getQueryString(page);
-    }
 }

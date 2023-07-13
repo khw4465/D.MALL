@@ -1,8 +1,7 @@
 package org.example.controller;
 
 
-import org.example.domain.PageHandler;
-import org.example.domain.notcDTO;
+import org.example.domain.NotcDTO;
 import org.example.domain.notcPageHandler;
 import org.example.domain.notcSearchCondition;
 import org.example.service.NotcService;
@@ -14,28 +13,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/notc")
-public class notcController {
+public class NotcController {
 
     @Autowired
     NotcService notcService;
 
     @PostMapping("/remove")
     public String remove(String BBSO_NO, Model m, Integer page, Integer pageSize, RedirectAttributes rattr){
-
+        m.addAttribute("page",page);
+        m.addAttribute("pageSize",pageSize);
         try{
-            m.addAttribute("page",page);
-            m.addAttribute("pageSize",pageSize);
-
             int rowCnt = notcService.remove(BBSO_NO);
 
             if(rowCnt!=1)
@@ -51,15 +45,16 @@ public class notcController {
     }
 
     @GetMapping("/read")
-    public String read(String BBSO_NO, Model m, Integer page, Integer pageSize){
+    public String read(String BBSO_NO, Model m, notcSearchCondition sc, RedirectAttributes rattr){
         try {
-            notcDTO notcDto = notcService.read(BBSO_NO);
-
+            NotcDTO notcDto = notcService.read(BBSO_NO);
             m.addAttribute("notcDto",notcDto);
-            m.addAttribute("page",page);
-            m.addAttribute("pageSize",pageSize);
+            m.addAttribute("page",sc.getPage());
+            m.addAttribute("pageSize",sc.getPageSize());
         } catch (Exception e) {
             e.printStackTrace();
+            rattr.addFlashAttribute("msg","READ_ERR");
+            return "redirect:/notc/list"+sc.getQueryString();
         }
         return "cs_notcview";
     }
@@ -73,18 +68,17 @@ public class notcController {
         try {
             int totalCnt = notcService.getSearchResultCnt(sc);
             m.addAttribute("totalCnt",totalCnt);
+            m.addAttribute("page",sc.getPage());
+            m.addAttribute("pageSize",sc.getPageSize());
 
-            notcPageHandler notcpageHandler = new notcPageHandler(totalCnt, sc,10);
-
-
-            List<notcDTO> list = notcService.getSearchResultPage(sc);
-            System.out.println("list = " + list);
+            notcPageHandler notcpageHandler = new notcPageHandler(totalCnt, sc);
+            List<NotcDTO> list = notcService.getSearchResultPage(sc);
+            System.out.println("Controller = " + list);
             m.addAttribute("list",list);
             m.addAttribute("pagehandler",notcpageHandler);
 
             Instant startOfToday = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant();
             m.addAttribute("startOfToday",startOfToday.toEpochMilli());
-
         } catch (Exception e) {
             e.printStackTrace();
             m.addAttribute("msg","LIST_ERR");
@@ -93,6 +87,4 @@ public class notcController {
 
         return "cs_notc";
     }
-
-
 }

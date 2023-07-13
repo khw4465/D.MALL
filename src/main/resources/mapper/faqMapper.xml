@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.dao.faqMapper">
+
+    <select id="select" parameterType="String" resultType="faqDTO">
+        select *
+        from cs_faq
+        where BBSO_NO = #{BBSO_NO}
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from cs_faq
+    </select>
+
+    <insert id="insert" parameterType="faqDTO">
+        insert into cs_faq
+            (BBSO_NO, TTL, CN, KWRD, USE_YN,  FST_REGR, LAST_UPDR)
+        values (#{BBSO_NO}, #{TTL}, #{CN}, #{KWRD}, #{USE_YN},
+                #{FST_REGR}, #{LAST_UPDR})
+    </insert>
+
+    <update id="update" parameterType="faqDTO">
+        update cs_faq
+        set TTL = #{TTL}, CN = #{CN},  LAST_UPD = #{LAST_UPD}
+        where BBSO_NO = ${BBSO_NO}
+    </update>
+
+    <delete id="deleteForAdmin">
+        delete from cs_faq where BBSO_NO = #{BBSO_NO}
+    </delete>
+
+    <delete id = "deleteAll">
+        delete from cs_faq
+    </delete>
+
+    <select id="selectAll" resultType="faqDTO">
+        select BBSO_NO, TTL, CN, KWRD, USE_YN, FST_REG, FST_REGR, LAST_UPD, LAST_UPDR
+        from cs_faq
+        order by BBSO_NO desc
+    </select>
+
+    <select id="selectPage" parameterType="map" resultType="faqDTO">
+        select BBSO_NO, TTL, CN, KWRD, USE_YN, FST_REG, FST_REGR, LAST_UPD, LAST_UPDR
+        from cs_faq
+        order by BBSO_NO desc
+            LIMIT #{offset}, #{pageSize}
+    </select>
+</mapper>

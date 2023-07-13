@@ -1,16 +1,15 @@
 package org.example.service;
 
 import org.example.dao.notcDAO;
-import org.example.domain.notcDTO;
+import org.example.domain.NotcDTO;
 import org.example.domain.notcSearchCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 
-@Service
+@Repository
 public class NotcServiceImpl implements NotcService {
     @Autowired
     notcDAO notcDao;
@@ -26,34 +25,36 @@ public class NotcServiceImpl implements NotcService {
     }
 
     @Override
-    public int write(notcDTO dto) throws Exception{
+    public int write(NotcDTO dto) throws Exception{
         return notcDao.insert(dto);
     }
 
     @Override
-    public List<notcDTO> getList() throws Exception{
+    public List<NotcDTO> getList() throws Exception{
         return notcDao.selectAll();
     }
 
     @Override
-    public notcDTO read(String BBSO_NO) throws Exception{
-        notcDTO dto = notcDao.select(BBSO_NO);
+    public NotcDTO read(String BBSO_NO) throws Exception{
+        NotcDTO dto = notcDao.select(BBSO_NO);
 //        notcDao.increaseViewCnt(BBSO_NO);
         return dto;
     }
 
     @Override
-    public List<notcDTO> getPage(Map map){
+    public List<NotcDTO> getPage(Map map){
         return notcDao.selectPage(map);
     }
 
     @Override
-    public int modify(notcDTO dto){
+    public int modify(NotcDTO dto){
         return notcDao.update(dto);
     }
 
     @Override
-    public List<notcDTO> getSearchResultPage(notcSearchCondition sc) throws Exception{
+    public List<NotcDTO> getSearchResultPage(notcSearchCondition sc) throws Exception{
+//        System.out.println("sc = " + sc);
+        System.out.println("NotcService = " + notcDao.searchSelectPage(sc));
         return notcDao.searchSelectPage(sc);
     }
 

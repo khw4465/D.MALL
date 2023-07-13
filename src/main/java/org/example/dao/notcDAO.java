@@ -1,32 +1,32 @@
 package org.example.dao;
 
-import org.example.domain.notcDTO;
+import org.example.domain.NotcDTO;
 import org.example.domain.notcSearchCondition;
 
 import java.util.List;
 import java.util.Map;
 
 public interface notcDAO {
-    notcDTO select(String BBSO_NO) throws Exception;
+    NotcDTO select(String BBSO_NO) throws Exception;
 
     int count();
 
-    int insert(notcDTO dto) throws Exception;
+    int insert(NotcDTO dto) throws Exception;
 
     int deleteAll();
 
     int deleteForAdmin(String BBSO_NO);
 
-    int update(notcDTO dto);
+    int update(NotcDTO dto);
 
-    List<notcDTO> selectAll();
+    List<NotcDTO> selectAll();
 
-    List<notcDTO> selectPage(Map map);
+    List<NotcDTO> selectPage(Map map);
 
     int increaseViewCnt(Integer NOTC_CNT);
 
 
-    public List<notcDTO> searchSelectPage(notcSearchCondition sc) throws Exception;
+    public List<NotcDTO> searchSelectPage(notcSearchCondition sc) throws Exception;
 
 
     public int searchResultCnt(notcSearchCondition sc) throws Exception;
