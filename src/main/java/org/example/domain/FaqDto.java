@@ -30,51 +30,51 @@ public class FaqDto {
         this.useYn = useYn;
     }
 
-    public String getbbsoNo() {
+    public String getBbsoNo() {
         return bbsoNo;
     }
 
-    public void setbbsoNo(String bbsoNo) {
+    public void setBbsoNo(String bbsoNo) {
         this.bbsoNo = bbsoNo;
     }
 
-    public String getttl() {
+    public String getTtl() {
         return ttl;
     }
 
-    public void setttl(String ttl) {
+    public void setTtl(String ttl) {
         this.ttl = ttl;
     }
 
-    public String getcn() {
+    public String getCn() {
         return cn;
     }
 
-    public void setcn(String cn) {
+    public void setCn(String cn) {
         this.cn = cn;
     }
 
-    public String getkwrd() {
+    public String getKwrd() {
         return kwrd;
     }
 
-    public void setkwrd(String kwrd) {
+    public void setKwrd(String kwrd) {
         this.kwrd = kwrd;
     }
 
-    public String getcate() {
+    public String getCate() {
         return cate;
     }
 
-    public void setcate(String cate) {
+    public void setCate(String cate) {
         this.cate = cate;
     }
 
-    public Integer getfaqCnt() {
+    public Integer getFaqCnt() {
         return faqCnt;
     }
 
-    public void setfaqCnt(Integer faqCnt) {
+    public void setFaqCnt(Integer faqCnt) {
         this.faqCnt = faqCnt;
     }
 
@@ -110,11 +110,11 @@ public class FaqDto {
         this.lastUpdr = lastUpdr;
     }
 
-    public boolean isuseYn() {
+    public boolean isUseYn() {
         return useYn;
     }
 
-    public void setuseYn(boolean useYn) {
+    public void setUseYn(boolean useYn) {
         this.useYn = useYn;
     }
 

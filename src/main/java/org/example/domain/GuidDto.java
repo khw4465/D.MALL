@@ -21,43 +21,43 @@ public class GuidDto {
         this.fstRegr = fstRegr;
         this.lastUpdr = lastUpdr;
     }
-    public String getbbsoNo() {
+    public String getBbsoNo() {
         return bbsoNo;
     }
 
-    public void setbbsoNo(String bbsoNo) {
+    public void setBbsoNo(String bbsoNo) {
         this.bbsoNo = bbsoNo;
     }
 
-    public String getttl() {
+    public String getTtl() {
         return ttl;
     }
 
-    public void setttl(String ttl) {
+    public void setTtl(String ttl) {
         this.ttl = ttl;
     }
 
-    public String getcn() {
+    public String getCn() {
         return cn;
     }
 
-    public void setcn(String cn) {
+    public void setCn(String cn) {
         this.cn = cn;
     }
 
-    public String getwrtr() {
+    public String getWrtr() {
         return wrtr;
     }
 
-    public void setwrtr(String wrtr) {
+    public void setWrtr(String wrtr) {
         this.wrtr = wrtr;
     }
 
-    public boolean isuseYn() {
+    public boolean isUseYn() {
         return useYn;
     }
 
-    public void setuseYn(boolean useYn) {
+    public void setUseYn(boolean useYn) {
         this.useYn = useYn;
     }
 

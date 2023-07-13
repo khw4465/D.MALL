@@ -75,7 +75,7 @@
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 </head>
 <body>
-<<<<<<< HEAD
+
 <%--    <script src="https://web.nicepay.co.kr/v3/webstd/js/nicepay-3.0.js" type="text/javascript"></script>--%>
 <%--    <!-- 토스페이먼츠 -->--%>
 <%--    <script src="https://js.tosspayments.com/v1"></script>--%>

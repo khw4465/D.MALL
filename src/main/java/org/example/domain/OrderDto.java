@@ -91,11 +91,11 @@ public class OrderDto {
         this.prodName = prodName;
     }
 
-    public int getTotProdcnt() {
+    public int getTotProdCnt() {
         return totProdcnt;
     }
 
-    public void setTotProdcnt(int totProdcnt) {
+    public void setTotProdCnt(int totProdcnt) {
         this.totProdcnt = totProdcnt;
     }
 
