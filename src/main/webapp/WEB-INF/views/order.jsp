@@ -56,7 +56,23 @@
             font-size: 16px;
             color: #666;
         }
+        .category{
+            text-align: center;
+            border-radius: 10px;
+            display: inline-block;
+            margin: 20px 30px;
+        }
+        button{
+            border-style: none;
+            background-color: white;
+            width: 150px;
+        }
+        #mainBtn{
+            display: inline-block;
+            margin: 50px;
+        }
     </style>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 </head>
 <body>
 <%--    <script src="https://web.nicepay.co.kr/v3/webstd/js/nicepay-3.0.js" type="text/javascript"></script>--%>
@@ -100,7 +116,7 @@
                 </tr>
                 <tr>
                     <th>배송지 주소</th>
-                    <td>(${dlvZpcd}) ${dlvDlvAddr}${dlvDtlAddr}</td>
+                    <td>(${dlvZpcd}) ${dlvDlvAddr} ${dlvDtlAddr}</td>
                 </tr>
                 </tbody>
             </table>
@@ -128,6 +144,33 @@
                 </li>
             </c:forEach>
         </div>
+
+        <div id="payTool">
+            <div class="category" name="categ"><button id="card"><strong><i class="fa-regular fa-credit-card"></i>신용카드</strong></button></div>
+            <div class="category" name="categ"><button id="deposit"><strong><i class="fa-regular fa-money-bill-1"></i>무통장입금</strong></button></div>
+            <div class="category" name="categ"><button id="accTransfer"><strong><i class="fa-solid fa-arrow-right-arrow-left"></i>실시간 계좌이체</strong></button></div>
+            <div class="category" name="categ"><button id="mobile"><strong><i class="fa-solid fa-mobile-screen-button"></i>휴대폰 결제</strong></button></div>
+            <div class="category"><button id="kakaoPay"><strong>카카오페이</strong></button></div>
+            <div class="category" name="categ"><button id="naverPay"><strong>네이버페이</strong></button></div>
+            <div class="category" name="categ"><button id="tossPay"><strong>토스페이</strong></button></div>
+            <div class="category" name="categ"><button id="payco"><strong>페이코</strong></button></div>
+        </div>
     </div>
+
+<script>
+        $('#kakaoPay').click(function(){
+            $.ajax({
+                url: '/order/kakao',  // 요청 URI
+                dataType : 'json', // 전송받을 데이터의 타입
+                success:function (data){
+                    let url = data.next_redirect_pc_url;
+                    window.open(url);
+                },
+                error:function (error){
+                    alert(error);
+                }
+            })
+        })
+</script>
 </body>
 </html>

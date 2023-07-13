@@ -5,10 +5,14 @@ import org.example.service.CartService;
 import org.example.service.OrderListService;
 import org.example.service.OrderService;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -56,6 +60,43 @@ public class OrderController {
         } catch (Exception e) {
             return "error";
         }
+    }
+
+    @RequestMapping("/kakao")
+    @ResponseBody
+    public String kakaopay() {
+        try {
+            URL url = new URL("https://kapi.kakao.com/v1/payment/ready");       // 결제 주소
+            HttpURLConnection conn = (HttpURLConnection)  url.openConnection();      // 클라이언트와 서버를 연결해주는 역할 (형변환 필요)
+            conn.setRequestMethod("POST");                                           // 전송 방식
+            conn.setRequestProperty("Authorization", "KakaoAK 90be58aa2287576f2ebe7b9018a82b18");       // 인증 방식 , 서비스 앱 어드민키로 인증요청
+            conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8"); // 요청 데이터 타입
+            conn.setDoOutput(true);                                                  // 연결을 통해 서버에 전달해 줄 데이터가 있는지?  default = false
+            String param = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=닭가슴살&quantity=1&total_amount=2200&tax_free_amount=0&approval_url=http://localhost:8080/order/list&cancel_url=http://localhost:8080/order/order&fail_url=http://localhost:8080/order/order"; // 요청 매개변수를 적어줌
+            OutputStream output = conn.getOutputStream();  // 서버에 주는 애
+            DataOutputStream data = new DataOutputStream(output); // 무엇을 줄지 결정
+            data.writeBytes(param);     // 매개변수를 byte타입으로 변환
+            data.close();               // 데이터를 주고 종료
+
+            int result = conn.getResponseCode();    // 데이터를 보낸 후 결과
+
+            InputStream input;      // 데이터를 받는 애
+            if(result == 200){      // 200번대 => 성공적이면
+                input = conn.getInputStream();  // 데이터를 받아옴
+            } else{                             // 실패하면
+                input = conn.getErrorStream();  // 에러를 받아옴
+            }
+
+            InputStreamReader read = new InputStreamReader(input); // 받은 데이터를 읽음
+            BufferedReader bufferedReader = new BufferedReader(read); // 받은 데이터를 형변환
+
+            return bufferedReader.readLine();   // 형변환을 한 후 찍어냄
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "(\"result\" : \"NO\")";
     }
 
     @GetMapping("/list")

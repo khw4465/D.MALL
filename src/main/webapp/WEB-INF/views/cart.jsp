@@ -235,22 +235,23 @@
         };
     };
 
-    let sumPrice = parseInt($('#sumPrice')[0].innerText);
-    let DcPrice = parseInt($('#totalDcPrc')[0].innerText);
-    let dlvPrice = parseInt($('#dlvPrc')[0].innerText);
-    let totalPrice = parseInt($('#totalPrice')[0].innerText);
+    let sumPrice = parseInt($('#sumPrice')[0].innerText);   // 모든 상품의 가격을 합한 금액
+    let DcPrice = parseInt($('#totalDcPrc')[0].innerText);  // 각각의 할인 금액을 모두 더한 금액
+    let dlvPrice = parseInt($('#dlvPrc')[0].innerText);     // 배송비
+    let totalPrice = parseInt($('#totalPrice')[0].innerText);   // 위의 3개의 가격을 계산한 최종 금액
+
     // AJAX    // 상품쪽이 dev에 들어와야 fetch한 후 가능
-        let prodlist = Array.from(document.getElementById("cart").children);    // 장바구니 목록의 자식(개별상품 목록)을 배열화
+    let prodlist = Array.from(document.getElementById("cart").children);    // 장바구니 목록의 자식(개별상품 목록)을 배열화
     $(document).ready(function(){
         prodlist.forEach(function(list){
             let prodCd = list.className; // 상품코드 출력
             // let prodQty = parseInt(list.querySelector('#qty'+prodCd).value);
 
-            let qtyval = $("#qty"+prodCd)
-            let prodQty = parseInt(qtyval.val());
-            let eachprc = parseInt($('#price'+prodCd)[0].innerText);
-            let totSetlPrice = eachprc/prodQty;
-            let expctDcPrc = 0;
+            let qtyval = $("#qty"+prodCd)               // 상품의 수량 텍스트칸
+            let prodQty = parseInt(qtyval.val());       // 수량 텍스트칸 안에 보이는 값 (수량)
+            let eachprc = parseInt($('#price'+prodCd)[0].innerText);    // 각 상품의 가격 (상품가격 * 상품수량)
+            let totSetlPrice = eachprc/prodQty;         // 각 상품의 1개 가격
+            let expctDcPrc = 0;                         // 할인금액
 
             // delete
             $("#delete"+prodCd).click(function(){
@@ -263,7 +264,7 @@
                     dataType : 'text', // 전송받을 데이터의 타입
                     data : JSON.stringify(cartDto),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
                     success : function(result){  // 서버로부터 응답이 도착하면 호출될 함수
-                        $("#list"+prodCd).remove();
+                        $("#list"+prodCd).remove();     // 해당 상품의 <li> 삭제
                         if (isCartEmpty()) {
                             cart.innerHTML = "<h1 style='text-align:center'>장바구니가 비어있습니다.</h1>";
                             cartOpt.style.display = "none";
