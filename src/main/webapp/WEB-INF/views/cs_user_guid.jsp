@@ -48,19 +48,19 @@
 <div id="main_4">
     <div>
         <h3><a href="/user/list">이용안내</a></h3>
-        <c:forEach var="guidDTO" items="${list}">
-        <button class="accordion">${guidDTO.TTL}</button>
+        <c:forEach var="GuidDto" items="${list}">
+        <button class="accordion">${GuidDto.ttl}</button>
         <div class="panel">
-            <p>${guidDTO.CN}</p>
+            <p>${GuidDto.cn}</p>
         </div>
         </c:forEach>
 <br>
         <!-- 핸들러 -->
         <div class="handle_usg">
-            <c:if test="${totalCnt==null || totalCnt==0}">
+            <c:if test="${totalcnt==null || totalcnt==0}">
                 <div> 게시물이 없습니다.</div>
             </c:if>
-            <c:if test="${totalCnt!=null && totalCnt!=0}">
+            <c:if test="${totalcnt!=null && totalcnt!=0}">
                 <c:if test="${pagehandler.showPrev}">
                     <a class="page" href="<c:url value="/user/list${pagehandler.beginPage-1}"/> ">&lt;</a>
                 </c:if>

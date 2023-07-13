@@ -11,7 +11,7 @@
 
     <!-- insert -->
     <insert id="insertProdOpt" >
-        INSERT INTO prod_opt (opt_cd, prod_cd, opt_name, opt_qty, opt_type, sale_prc, use_yn, del_yn, remark, fst_reg, fst_regr, last_upd, last_updr)
+        INSERT INTO prod_opt (opt_cd, prod_cd, opt_name, opt_qty, opt_type, sale_prc, useYn, del_yn, remark, fstReg, fstRegr, lastUpd, lastUpdr)
         VALUES (#{optCd}, #{prodCd}, #{optName}, #{optQty}, #{optType}, #{salePrc}, #{useYn}, #{delYn}, #{remark}, #{fstReg}, #{fstRegr}, #{lastUpd}, #{lastUpdr})
     </insert>
 
@@ -23,13 +23,13 @@
                             opt_qty = #{optQty},
                             opt_type = #{optType},
                             sale_prc = #{salePrc},
-                            use_yn = #{useYn},
+                            useYn = #{useYn},
                             del_yn = #{delYn},
                             remark = #{remark},
-                            fst_reg = #{fstReg},
-                            fst_regr = #{fstRegr},
-                            last_upd = #{lastUpd},
-                            last_updr = #{lastUpdr}
+                            fstReg = #{fstReg},
+                            fstRegr = #{fstRegr},
+                            lastUpd = #{lastUpd},
+                            lastUpdr = #{lastUpdr}
         WHERE opt_cd = #{optCd}
     </update>
 

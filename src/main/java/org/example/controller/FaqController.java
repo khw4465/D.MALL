@@ -1,8 +1,8 @@
 package org.example.controller;
 
-import org.example.domain.faqDTO;
-import org.example.domain.faqPageHandler;
-import org.example.service.faqServiceImpl;
+import org.example.domain.FaqDto;
+import org.example.domain.FaqPageHandler;
+import org.example.service.FaqServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +17,7 @@ import java.util.Map;
 @RequestMapping(value = "/faq")
 public class FaqController {
     @Autowired
-    faqServiceImpl faqService;
+    FaqServiceImpl faqService;
 
     @GetMapping("/list")
     public String list(Integer page, Integer pageSize, Model m) {
@@ -25,15 +25,15 @@ public class FaqController {
         if (pageSize == null) pageSize = 10;
 
         try{
-            int totalCnt = faqService.getCount();
-            m.addAttribute("totalCnt", totalCnt);
-            faqPageHandler faqpageHandler = new faqPageHandler(totalCnt, page, pageSize);
+            int totalcnt = faqService.getCount();
+            m.addAttribute("totalcnt", totalcnt);
+            FaqPageHandler faqpageHandler = new FaqPageHandler(totalcnt, page, pageSize);
 
             Map map = new HashMap();
             map.put("offset", (page - 1) * pageSize);
             map.put("pageSize", pageSize);
 
-            List<faqDTO> list = faqService.getPage(map);
+            List<FaqDto> list = faqService.getPage(map);
             m.addAttribute("list", list);
             m.addAttribute("pagehandler", faqpageHandler);
         } catch (Exception e){

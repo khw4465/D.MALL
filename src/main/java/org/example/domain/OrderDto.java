@@ -6,7 +6,7 @@ public class OrderDto {
     private String ordCd;   // 주문코드
     private String custId;  // 회원아이디
     private String prodName; // 상품명
-    private int totProdCnt;  // 상품개수
+    private int totProdcnt;  // 상품개수
     private int totPrc;  // 총금액
     private int totQty;  // 총수량
     private String ordStus; // 주문상태
@@ -23,18 +23,18 @@ public class OrderDto {
 
     public OrderDto() {
     }
-    public OrderDto(String custId, String prodName, int totProdCnt, int totPrc, int totQty) {
+    public OrderDto(String custId, String prodName, int totProdcnt, int totPrc, int totQty) {
         this.custId = custId;
         this.prodName = prodName;
-        this.totProdCnt = totProdCnt;
+        this.totProdcnt = totProdcnt;
         this.totPrc = totPrc;
         this.totQty = totQty;
     }
-    public OrderDto(String ordCd, String custId, String prodName, int totProdCnt, int totPrc, int totQty, String dlvAddrId, String dlvMsg) {
+    public OrderDto(String ordCd, String custId, String prodName, int totProdcnt, int totPrc, int totQty, String dlvAddrId, String dlvMsg) {
         this.ordCd = ordCd;
         this.custId = custId;
         this.prodName = prodName;
-        this.totProdCnt = totProdCnt;
+        this.totProdcnt = totProdcnt;
         this.totPrc = totPrc;
         this.totQty = totQty;
         this.dlvAddrId = dlvAddrId;
@@ -47,11 +47,11 @@ public class OrderDto {
         this.custId = custId;
     }
 
-    public OrderDto(String ordCd, String custId, String prodName, int totProdCnt, int totPrc, int totQty, String ordStus, Date stusChgDttm, String cfmYn, Date ordDttm, String dlvAddrId, String dlvMsg, String remark, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
+    public OrderDto(String ordCd, String custId, String prodName, int totProdcnt, int totPrc, int totQty, String ordStus, Date stusChgDttm, String cfmYn, Date ordDttm, String dlvAddrId, String dlvMsg, String remark, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
         this.ordCd = ordCd;
         this.custId = custId;
         this.prodName = prodName;
-        this.totProdCnt = totProdCnt;
+        this.totProdcnt = totProdcnt;
         this.totPrc = totPrc;
         this.totQty = totQty;
         this.ordStus = ordStus;
@@ -91,12 +91,12 @@ public class OrderDto {
         this.prodName = prodName;
     }
 
-    public int getTotProdCnt() {
-        return totProdCnt;
+    public int getTotProdcnt() {
+        return totProdcnt;
     }
 
-    public void setTotProdCnt(int totProdCnt) {
-        this.totProdCnt = totProdCnt;
+    public void setTotProdcnt(int totProdcnt) {
+        this.totProdcnt = totProdcnt;
     }
 
     public int getTotPrc() {
@@ -179,11 +179,11 @@ public class OrderDto {
         this.fstReg = fstReg;
     }
 
-    public String getFstRegr() {
+    public String getfstRegr() {
         return fstRegr;
     }
 
-    public void setFstRegr(String fstRegr) {
+    public void setfstRegr(String fstRegr) {
         this.fstRegr = fstRegr;
     }
 
@@ -195,11 +195,11 @@ public class OrderDto {
         this.lastUpd = lastUpd;
     }
 
-    public String getLastUpdr() {
+    public String getlastUpdr() {
         return lastUpdr;
     }
 
-    public void setLastUpdr(String lastUpdr) {
+    public void setlastUpdr(String lastUpdr) {
         this.lastUpdr = lastUpdr;
     }
 
@@ -210,7 +210,7 @@ public class OrderDto {
 
         OrderDto orderDto = (OrderDto) o;
 
-        if (totProdCnt != orderDto.totProdCnt) return false;
+        if (totProdcnt != orderDto.totProdcnt) return false;
         if (totPrc != orderDto.totPrc) return false;
         if (totQty != orderDto.totQty) return false;
         if (!Objects.equals(ordCd, orderDto.ordCd)) return false;
@@ -235,7 +235,7 @@ public class OrderDto {
         int result = ordCd != null ? ordCd.hashCode() : 0;
         result = 31 * result + (custId != null ? custId.hashCode() : 0);
         result = 31 * result + (prodName != null ? prodName.hashCode() : 0);
-        result = 31 * result + totProdCnt;
+        result = 31 * result + totProdcnt;
         result = 31 * result + totPrc;
         result = 31 * result + totQty;
         result = 31 * result + (ordStus != null ? ordStus.hashCode() : 0);
@@ -258,7 +258,7 @@ public class OrderDto {
                 "ordCd='" + ordCd + '\'' +
                 ", custId='" + custId + '\'' +
                 ", prodName='" + prodName + '\'' +
-                ", totProdCnt=" + totProdCnt +
+                ", totProdcnt=" + totProdcnt +
                 ", totPrc=" + totPrc +
                 ", totQty=" + totQty +
                 ", ordStus='" + ordStus + '\'' +

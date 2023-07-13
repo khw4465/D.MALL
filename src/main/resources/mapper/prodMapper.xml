@@ -15,8 +15,8 @@
 
     <!-- Insert -->
     <insert id="insert" >
-        INSERT INTO prod (prod_Cd, cate_Cd, prod_Name, prod_Smrv_Desc, prod_Dtl_Desc, prod_Price, prod_Img, ascr, dc_Cd, inv_Yn, inv_Qty, sale_Yn, sort_Yn, opt_Yn, del_Yn, min_Cnt, mft_Date, use_Date, sale_Start, sale_Last, remark, fst_Reg, fst_Regr, last_Upd, last_Updr)
-        VALUES (#{prodCd}, #{cateCd}, #{prodName}, #{prodSmrvDesc}, #{prodDtlDesc}, #{prodPrice}, #{prodImg}, #{ascr}, #{dcCd}, #{invYn}, #{invQty}, #{saleYn}, #{sortYn}, #{optYn}, #{delYn}, #{minCnt}, #{mftDate}, #{useDate}, #{saleStart}, #{saleLast}, #{remark}, #{fstReg}, #{fstRegr}, #{lastUpd}, #{lastUpdr})
+        INSERT INTO prod (prod_Cd, cate_Cd, prod_Name, prod_Smrv_Desc, prod_Dtl_Desc, prod_Price, prod_Img, ascr, dc_Cd, inv_Yn, inv_Qty, sale_Yn, sort_Yn, opt_Yn, del_Yn, min_cnt, mft_Date, use_Date, sale_Start, sale_Last, remark, fstReg, fstRegr, lastUpd, lastUpdr)
+        VALUES (#{prodCd}, #{cateCd}, #{prodName}, #{prodSmrvDesc}, #{prodDtlDesc}, #{prodPrice}, #{prodImg}, #{ascr}, #{dcCd}, #{invYn}, #{invQty}, #{saleYn}, #{sortYn}, #{optYn}, #{delYn}, #{mincnt}, #{mftDate}, #{useDate}, #{saleStart}, #{saleLast}, #{remark}, #{fstReg}, #{fstRegr}, #{lastUpd}, #{lastUpdr})
     </insert>
 
     <!-- Update -->
@@ -36,16 +36,16 @@
             sort_Yn = #{sortYn},
             opt_Yn = #{optYn},
             del_Yn = #{delYn},
-            min_Cnt = #{minCnt},
+            min_cnt = #{mincnt},
             mft_Date = #{mftDate},
             use_Date = #{useDate},
             sale_Start = #{saleStart},
             sale_Last = #{saleLast},
             remark = #{remark},
-            fst_Reg = #{fstReg},
-            fst_Regr = #{fstRegr},
-            last_Upd = #{lastUpd},
-            last_Updr = #{lastUpdr}
+            fstReg = #{fstReg},
+            fstRegr = #{fstRegr},
+            lastUpd = #{lastUpd},
+            lastUpdr = #{lastUpdr}
         WHERE prod_Cd = #{prodCd}
     </update>
 

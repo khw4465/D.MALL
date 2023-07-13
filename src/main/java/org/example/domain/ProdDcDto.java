@@ -7,7 +7,7 @@ public class ProdDcDto {
     private String dcCd;
     private String prodClsCd;
     private String dcType;
-    private String dcName;
+    private String dcname;
     private String dcTar;
     private Integer dcRt;
     private Integer dcPrice;
@@ -23,11 +23,11 @@ public class ProdDcDto {
 
     public ProdDcDto() {}
 
-    public ProdDcDto(String dcCd, String prodClsCd, String dcType, String dcName, String dcTar, Integer dcRt, Integer dcPrice, String useYn, String delYn, Date dcStart, Date dcLast, String remark, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
+    public ProdDcDto(String dcCd, String prodClsCd, String dcType, String dcname, String dcTar, Integer dcRt, Integer dcPrice, String useYn, String delYn, Date dcStart, Date dcLast, String remark, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
         this.dcCd = dcCd;
         this.prodClsCd = prodClsCd;
         this.dcType = dcType;
-        this.dcName = dcName;
+        this.dcname = dcname;
         this.dcTar = dcTar;
         this.dcRt = dcRt;
         this.dcPrice = dcPrice;
@@ -66,12 +66,12 @@ public class ProdDcDto {
         this.dcType = dcType;
     }
 
-    public String getDcName() {
-        return dcName;
+    public String getDcname() {
+        return dcname;
     }
 
-    public void setDcName(String dcName) {
-        this.dcName = dcName;
+    public void setDcname(String dcname) {
+        this.dcname = dcname;
     }
 
     public String getDcTar() {
@@ -146,11 +146,11 @@ public class ProdDcDto {
         this.fstReg = fstReg;
     }
 
-    public String getFstRegr() {
+    public String getfstRegr() {
         return fstRegr;
     }
 
-    public void setFstRegr(String fstRegr) {
+    public void setfstRegr(String fstRegr) {
         this.fstRegr = fstRegr;
     }
 
@@ -162,11 +162,11 @@ public class ProdDcDto {
         this.lastUpd = lastUpd;
     }
 
-    public String getLastUpdr() {
+    public String getlastUpdr() {
         return lastUpdr;
     }
 
-    public void setLastUpdr(String lastUpdr) {
+    public void setlastUpdr(String lastUpdr) {
         this.lastUpdr = lastUpdr;
     }
 
@@ -180,7 +180,7 @@ public class ProdDcDto {
         if (!Objects.equals(dcCd, prodDcDto.dcCd)) return false;
         if (!Objects.equals(prodClsCd, prodDcDto.prodClsCd)) return false;
         if (!Objects.equals(dcType, prodDcDto.dcType)) return false;
-        if (!Objects.equals(dcName, prodDcDto.dcName)) return false;
+        if (!Objects.equals(dcname, prodDcDto.dcname)) return false;
         if (!Objects.equals(dcTar, prodDcDto.dcTar)) return false;
         if (!Objects.equals(dcRt, prodDcDto.dcRt)) return false;
         if (!Objects.equals(dcPrice, prodDcDto.dcPrice)) return false;
@@ -196,7 +196,7 @@ public class ProdDcDto {
         int result = dcCd != null ? dcCd.hashCode() : 0;
         result = 31 * result + (prodClsCd != null ? prodClsCd.hashCode() : 0);
         result = 31 * result + (dcType != null ? dcType.hashCode() : 0);
-        result = 31 * result + (dcName != null ? dcName.hashCode() : 0);
+        result = 31 * result + (dcname != null ? dcname.hashCode() : 0);
         result = 31 * result + (dcTar != null ? dcTar.hashCode() : 0);
         result = 31 * result + (dcRt != null ? dcRt.hashCode() : 0);
         result = 31 * result + (dcPrice != null ? dcPrice.hashCode() : 0);
@@ -214,7 +214,7 @@ public class ProdDcDto {
                 "dcCd='" + dcCd + '\'' +
                 ", prodClsCd='" + prodClsCd + '\'' +
                 ", dcType='" + dcType + '\'' +
-                ", dcName='" + dcName + '\'' +
+                ", dcname='" + dcname + '\'' +
                 ", dcTar='" + dcTar + '\'' +
                 ", dcRt=" + dcRt +
                 ", dcPrice=" + dcPrice +

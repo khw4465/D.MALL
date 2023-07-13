@@ -68,21 +68,21 @@
       <th id="CS_tb_td">제목</th>
       <th id="CS_tb_day">등록일</th>
     </tr>
-    <c:forEach var="notcDTO" items="${list}">
+    <c:forEach var="NotcDto" items="${list}">
       <tr>
-        <td id="CS_tb_bno">${notcDTO.BBSO_NO}</td>
-        <td id="CS_tb_cate">${notcDTO.CATE}</td>
-        <td id="CS_tb_td"><a href="<c:url value='/notc/read?BBSO_NO=${notcDTO.BBSO_NO}&page=${page}&pageSize=${pageSize}'/> ">${notcDTO.TTL}</a></td>
-        <td id="CS_tb_day">${notcDTO.WRTD}</td>
+        <td id="CS_tb_bno">${NotcDto.bbsoNo}</td>
+        <td id="CS_tb_cate">${NotcDto.cate}</td>
+        <td id="CS_tb_td"><a href="<c:url value='/notc/read?bbsoNo=${NotcDto.bbsoNo}&page=${page}&pageSize=${pageSize}'/> ">${NotcDto.ttl}</a></td>
+        <td id="CS_tb_day">${NotcDto.wrtd}</td>
 <%--        <c:choose>--%>
-<%--          <c:when test="${notcDTO.FST_REG.time >= startOfToday}">--%>
-<%--            <td> <fmt:formatDate value="${notcDTO.FST_REG}" pattern="HH:mm" type="time"/> </td>--%>
+<%--          <c:when test="${NotcDto.fstReg.time >= startOfToday}">--%>
+<%--            <td> <fmt:formatDate value="${NotcDto.fstReg}" pattern="HH:mm" type="time"/> </td>--%>
 <%--          </c:when>--%>
 <%--          <c:otherwise>--%>
-<%--            <td> <fmt:formatDate value="${notcDTO.FST_REG}" pattern="yyyy-MM-dd" type="date"/> </td>--%>
+<%--            <td> <fmt:formatDate value="${NotcDto.fstReg}" pattern="yyyy-MM-dd" type="date"/> </td>--%>
 <%--            </c:otherwise>--%>
 <%--        </c:choose>--%>
-<%--        <td> ${notcDTO.NOTC_CNT}</td>--%>
+<%--        <td> ${NotcDto.notccnt}</td>--%>
       </tr>
     </c:forEach>
 
@@ -103,10 +103,10 @@
 <br>
 <!-- 핸들러 -->
 <div id="handle">
-  <c:if test="${totalCnt==null || totalCnt==0}">
+  <c:if test="${totalcnt==null || totalcnt==0}">
     <div> 게시물이 없습니다.</div>
   </c:if>
-  <c:if test="${totalCnt!=null && totalCnt!=0}">
+  <c:if test="${totalcnt!=null && totalcnt!=0}">
     <c:if test="${pagehandler.showPrev}">
       <a class="page" href="<c:url value="/notc/list${pagehandler.sc.getQueryString(pagehandler.beginPage-1)}"/> ">&lt;</a>
     </c:if>

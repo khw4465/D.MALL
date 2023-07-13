@@ -48,19 +48,19 @@
 <div id="main_4">
     <div>
         <h3><a href="/faq/list">자주묻는FAQ</a></h3>
-        <c:forEach var="faqDTO" items="${list}">
-        <button class="accordion">${faqDTO.TTL}</button>
+        <c:forEach var="FaqDto" items="${list}">
+        <button class="accordion">${FaqDto.ttl}</button>
         <div class="panel">
-            <p>${faqDTO.CN}</p>
+            <p>${FaqDto.cn}</p>
         </div>
         </c:forEach>
         <br>
         <!-- 핸들러 -->
         <div class="handle_usg">
-            <c:if test="${totalCnt==null || totalCnt==0}">
+            <c:if test="${totalcnt==null || totalcnt==0}">
                 <div> 게시물이 없습니다.</div>
             </c:if>
-            <c:if test="${totalCnt!=null && totalCnt!=0}">
+            <c:if test="${totalcnt!=null && totalcnt!=0}">
                 <c:if test="${pagehandler.showPrev}">
                     <a class="page" href="<c:url value="/faq/list${pagehandler.beginPage-1}"/> ">&lt;</a>
                 </c:if>

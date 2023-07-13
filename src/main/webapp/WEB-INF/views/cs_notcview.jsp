@@ -51,9 +51,9 @@
 
     <form action="" id="form">
 
-        <input type="text" name="BBSO_NO" value="${notcDto.BBSO_NO}" readonly="readonly">
-        <input type="text" name="TTL" value="${notcDto.TTL}" readonly="readonly">
-        <textarea name="content" id="" cols="30" rows="10" readonly="readonly" >${notcDto.CN}</textarea>
+        <input type="text" name="bbsoNo" value="${NotcDto.bbsoNo}" readonly="readonly">
+        <input type="text" name="ttl" value="${NotcDto.ttl}" readonly="readonly">
+        <textarea name="content" id="" cols="30" rows="10" readonly="readonly" >${NotcDto.cn}</textarea>
         <%--        <button type="button" id="writeBtn" class="btn">등록</button>--%>
         <%--        <button type="button" id="modifyBtn" class="btn">수정</button>--%>
         <%--        <button type="button" id="removeBtn" class="btn">삭제</button>--%>

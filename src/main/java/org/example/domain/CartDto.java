@@ -140,11 +140,11 @@ public class CartDto {
         this.fstReg = fstReg;
     }
 
-    public String getFstRegr() {
+    public String getfstRegr() {
         return fstRegr;
     }
 
-    public void setFstRegr(String fstRegr) {
+    public void setfstRegr(String fstRegr) {
         this.fstRegr = fstRegr;
     }
 
@@ -156,11 +156,11 @@ public class CartDto {
         this.lastUpd = lastUpd;
     }
 
-    public String getLastUpdr() {
+    public String getlastUpdr() {
         return lastUpdr;
     }
 
-    public void setLastUpdr(String lastUpdr) {
+    public void setlastUpdr(String lastUpdr) {
         this.lastUpdr = lastUpdr;
     }
 

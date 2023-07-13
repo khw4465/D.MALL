@@ -19,7 +19,7 @@ public class ProdDto {
     private String sortYn;
     private String optYn;
     private String delYn;
-    private Integer minCnt;
+    private Integer mincnt;
     private Date mftDate;
     private Date useDate;
     private Date saleStart;
@@ -32,7 +32,7 @@ public class ProdDto {
 
     public ProdDto() {}
 
-    public ProdDto(String prodCd, String cateCd, String prodName, String prodSmrvDesc, String prodDtlDesc, Integer prodPrice, String prodImg, Float ascr, String dcCd, String invYn, Integer invQty, String saleYn, String sortYn, String optYn, String delYn, Integer minCnt, Date mftDate, Date useDate, Date saleStart, Date saleLast, String remark, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
+    public ProdDto(String prodCd, String cateCd, String prodName, String prodSmrvDesc, String prodDtlDesc, Integer prodPrice, String prodImg, Float ascr, String dcCd, String invYn, Integer invQty, String saleYn, String sortYn, String optYn, String delYn, Integer mincnt, Date mftDate, Date useDate, Date saleStart, Date saleLast, String remark, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
         this.prodCd = prodCd;
         this.cateCd = cateCd;
         this.prodName = prodName;
@@ -48,7 +48,7 @@ public class ProdDto {
         this.sortYn = sortYn;
         this.optYn = optYn;
         this.delYn = delYn;
-        this.minCnt = minCnt;
+        this.mincnt = mincnt;
         this.mftDate = mftDate;
         this.useDate = useDate;
         this.saleStart = saleStart;
@@ -68,11 +68,11 @@ public class ProdDto {
         this.prodCd = prodCd;
     }
 
-    public String getCateCd() {
+    public String getcateCd() {
         return cateCd;
     }
 
-    public void setCateCd(String cateCd) {
+    public void setcateCd(String cateCd) {
         this.cateCd = cateCd;
     }
 
@@ -180,12 +180,12 @@ public class ProdDto {
         this.delYn = delYn;
     }
 
-    public Integer getMinCnt() {
-        return minCnt;
+    public Integer getMincnt() {
+        return mincnt;
     }
 
-    public void setMinCnt(Integer minCnt) {
-        this.minCnt = minCnt;
+    public void setMincnt(Integer mincnt) {
+        this.mincnt = mincnt;
     }
 
     public Date getMftDate() {
@@ -236,11 +236,11 @@ public class ProdDto {
         this.fstReg = fstReg;
     }
 
-    public String getFstRegr() {
+    public String getfstRegr() {
         return fstRegr;
     }
 
-    public void setFstRegr(String fstRegr) {
+    public void setfstRegr(String fstRegr) {
         this.fstRegr = fstRegr;
     }
 
@@ -252,11 +252,11 @@ public class ProdDto {
         this.lastUpd = lastUpd;
     }
 
-    public String getLastUpdr() {
+    public String getlastUpdr() {
         return lastUpdr;
     }
 
-    public void setLastUpdr(String lastUpdr) {
+    public void setlastUpdr(String lastUpdr) {
         this.lastUpdr = lastUpdr;
     }
 
@@ -283,7 +283,7 @@ public class ProdDto {
         if (!Objects.equals(sortYn, prodDto.sortYn)) return false;
         if (!Objects.equals(optYn, prodDto.optYn)) return false;
         if (!Objects.equals(delYn, prodDto.delYn)) return false;
-        if (!Objects.equals(minCnt, prodDto.minCnt)) return false;
+        if (!Objects.equals(mincnt, prodDto.mincnt)) return false;
         if (!Objects.equals(remark, prodDto.remark)) return false;
         if (!Objects.equals(fstRegr, prodDto.fstRegr)) return false;
         return Objects.equals(lastUpdr, prodDto.lastUpdr);
@@ -306,7 +306,7 @@ public class ProdDto {
         result = 31 * result + (sortYn != null ? sortYn.hashCode() : 0);
         result = 31 * result + (optYn != null ? optYn.hashCode() : 0);
         result = 31 * result + (delYn != null ? delYn.hashCode() : 0);
-        result = 31 * result + (minCnt != null ? minCnt.hashCode() : 0);
+        result = 31 * result + (mincnt != null ? mincnt.hashCode() : 0);
         result = 31 * result + (remark != null ? remark.hashCode() : 0);
         result = 31 * result + (fstRegr != null ? fstRegr.hashCode() : 0);
         result = 31 * result + (lastUpdr != null ? lastUpdr.hashCode() : 0);
@@ -331,7 +331,7 @@ public class ProdDto {
                 ", sortYn='" + sortYn + '\'' +
                 ", optYn='" + optYn + '\'' +
                 ", delYn='" + delYn + '\'' +
-                ", minCnt=" + minCnt +
+                ", mincnt=" + mincnt +
                 ", mftDate=" + mftDate +
                 ", useDate=" + useDate +
                 ", saleStart=" + saleStart +

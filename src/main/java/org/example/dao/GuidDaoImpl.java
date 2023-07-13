@@ -1,7 +1,7 @@
 package org.example.dao;
 
 import org.apache.ibatis.session.SqlSession;
-import org.example.domain.guidDTO;
+import org.example.domain.GuidDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -10,15 +10,15 @@ import java.util.List;
 import java.util.Map;
 
 @Repository("guidDAO")
-public class GuidDAOImpl implements GuidDAO {
+public class GuidDaoImpl implements GuidDao {
     @Autowired
     SqlSession session;
 
     private String namespace = "org.example.dao.guidMapper.";
 
     @Override
-    public guidDTO select(String BBSO_NO){
-        return session.selectOne(namespace+"select",BBSO_NO);
+    public GuidDto select(String bbsoNo){
+        return session.selectOne(namespace+"select",bbsoNo);
     }
 
     @Override
@@ -27,7 +27,7 @@ public class GuidDAOImpl implements GuidDAO {
     }
 
     @Override
-    public int insert(guidDTO dto){
+    public int insert(GuidDto dto){
         return session.insert(namespace+"insert",dto);
     }
 
@@ -37,24 +37,24 @@ public class GuidDAOImpl implements GuidDAO {
     }
 
     @Override
-    public int deleteForAdmin(String BBSO_NO){
+    public int deleteForAdmin(String bbsoNo){
         Map map = new HashMap();
-        map.put("BBSO_NO", BBSO_NO);
+        map.put("bbsoNo", bbsoNo);
         return session.delete(namespace+"delete",map);
     }
 
     @Override
-    public List<guidDTO> selectAll(){
+    public List<GuidDto> selectAll(){
         return session.selectList(namespace+"selectAll");
     }
 
     @Override
-    public List<guidDTO> selectPage(Map map){
+    public List<GuidDto> selectPage(Map map){
         return session.selectList(namespace+"selectPage",map);
     }
 
     @Override
-    public int update(guidDTO dto){
+    public int update(GuidDto dto){
         return session.update(namespace+"update", dto);
     }
 

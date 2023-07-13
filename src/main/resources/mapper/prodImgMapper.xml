@@ -12,7 +12,7 @@
     <!-- Insert -->
     <insert id="insertProdImg" >
         INSERT INTO PROD_IMG
-        (img_cd, prod_cd, img_type, img_desc, img_path, img_height, img_width, img_extns, file_limit, use_yn, del_yn, remark, fst_reg, fst_regr, last_upd, last_updr)
+        (img_cd, prod_cd, img_type, img_desc, img_path, img_height, img_width, img_extns, file_limit, useYn, del_yn, remark, fstReg, fstRegr, lastUpd, lastUpdr)
         VALUES
             (#{imgCd}, #{prodCd}, #{imgType}, #{imgDesc}, #{imgPath}, #{imgHeight}, #{imgWidth}, #{imgExtns}, #{fileLimit}, #{useYn}, #{delYn}, #{remark}, #{fstReg}, #{fstRegr}, #{lastUpd}, #{lastUpdr})
     </insert>
@@ -34,13 +34,13 @@
             img_width = #{imgWidth},
             img_extns = #{imgExtns},
             file_limit = #{fileLimit},
-            use_yn = #{useYn},
+            useYn = #{useYn},
             del_yn = #{delYn},
             remark = #{remark},
-            fst_reg = #{fstReg},
-            fst_regr = #{fstRegr},
-            last_upd = #{lastUpd},
-            last_updr = #{lastUpdr}
+            fstReg = #{fstReg},
+            fstRegr = #{fstRegr},
+            lastUpd = #{lastUpd},
+            lastUpdr = #{lastUpdr}
         WHERE img_cd = #{imgCd}
     </update>
 

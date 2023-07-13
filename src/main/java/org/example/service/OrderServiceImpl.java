@@ -49,7 +49,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public int addOrder(String ordCd, String custId, String dlvAddrId, String dlvMsg) throws Exception {
         OrderDto dto = cartDao.ordHist(custId);
-        OrderDto dto1 = new OrderDto(ordCd, dto.getCustId(), dto.getProdName(), dto.getTotProdCnt(), dto.getTotPrc(), dto.getTotQty(), dlvAddrId, dlvMsg);
+        OrderDto dto1 = new OrderDto(ordCd, dto.getCustId(), dto.getProdName(), dto.getTotProdcnt(), dto.getTotPrc(), dto.getTotQty(), dlvAddrId, dlvMsg);
         return orderDao.insert(dto1);
     }
     @Override

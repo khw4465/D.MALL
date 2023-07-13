@@ -212,7 +212,7 @@
             <th class="">${custDto.stus}</th>
             <th class="">${custDto.birth}</th>
             <th class="">${custDto.email}</th>
-            <th class="">${custDto.acNo}</th>
+            <th class="">${custDto.acno}</th>
             <th class="">${custDto.gender}</th>
         </tr>
         </c:forEach>

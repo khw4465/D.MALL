@@ -116,11 +116,11 @@ public class ProdOptDto {
         this.fstReg = fstReg;
     }
 
-    public String getFstRegr() {
+    public String getfstRegr() {
         return fstRegr;
     }
 
-    public void setFstRegr(String fstRegr) {
+    public void setfstRegr(String fstRegr) {
         this.fstRegr = fstRegr;
     }
 
@@ -132,11 +132,11 @@ public class ProdOptDto {
         this.lastUpd = lastUpd;
     }
 
-    public String getLastUpdr() {
+    public String getlastUpdr() {
         return lastUpdr;
     }
 
-    public void setLastUpdr(String lastUpdr) {
+    public void setlastUpdr(String lastUpdr) {
         this.lastUpdr = lastUpdr;
     }
 

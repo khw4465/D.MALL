@@ -1,7 +1,7 @@
 package org.example.service;
 
-import org.example.dao.GuidDAO;
-import org.example.domain.guidDTO;
+import org.example.dao.GuidDao;
+import org.example.domain.GuidDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -11,7 +11,7 @@ import java.util.Map;
 @Repository
 public class GuidServiceImpl implements GuidService{
     @Autowired
-    GuidDAO guidDAO;
+    GuidDao guidDAO;
 
     @Override
     public int getCount(){
@@ -19,33 +19,33 @@ public class GuidServiceImpl implements GuidService{
     }
 
     @Override
-    public int remove(String BBSO_NO){
-        return guidDAO.deleteForAdmin(BBSO_NO);
+    public int remove(String bbsoNo){
+        return guidDAO.deleteForAdmin(bbsoNo);
     }
 
     @Override
-    public int write(guidDTO dto){
+    public int write(GuidDto dto){
         return guidDAO.insert(dto);
     }
 
     @Override
-    public List<guidDTO> getList(){
+    public List<GuidDto> getList(){
         return guidDAO.selectAll();
     }
 
     @Override
-    public guidDTO read(String BBSO_NO){
-        guidDTO dto = guidDAO.select(BBSO_NO);
+    public GuidDto read(String bbsoNo){
+        GuidDto dto = guidDAO.select(bbsoNo);
         return dto;
     }
 
     @Override
-    public List<guidDTO> getPage(Map map){
+    public List<GuidDto> getPage(Map map){
         return guidDAO.selectPage(map);
     }
 
     @Override
-    public int modify(guidDTO dto){
+    public int modify(GuidDto dto){
         return guidDAO.update(dto);
     }
 }

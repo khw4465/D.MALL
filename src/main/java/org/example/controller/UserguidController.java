@@ -1,7 +1,7 @@
 package org.example.controller;
 
-import org.example.domain.guidDTO;
-import org.example.domain.guidPageHandler;
+import org.example.domain.GuidDto;
+import org.example.domain.GuidPageHandler;
 import org.example.service.GuidServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,15 +26,15 @@ public class UserguidController {
         if (pageSize == null) pageSize = 10;
 
         try {
-            int totalCnt = guidService.getCount();
-            m.addAttribute("totalCnt", totalCnt);
-            guidPageHandler guidpageHandler = new guidPageHandler(totalCnt, page, pageSize);
+            int totalcnt = guidService.getCount();
+            m.addAttribute("totalcnt", totalcnt);
+            GuidPageHandler guidpageHandler = new GuidPageHandler(totalcnt, page, pageSize);
 
             Map map = new HashMap();
             map.put("offset", (page - 1) * pageSize);
             map.put("pageSize", pageSize);
 
-            List<guidDTO> list = guidService.getPage(map);
+            List<GuidDto> list = guidService.getPage(map);
 
             System.out.println("list = " + list);
 

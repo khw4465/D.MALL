@@ -15,8 +15,8 @@
 
     <!-- Insert -->
     <insert id="insert" >
-        INSERT INTO prod_cate (cate_cd, cate_lv, cate_name, cate_desc, use_yn, REMARK, FST_REG, FST_REGR, LAST_UPD, LAST_UPDR)
-        VALUES (#{cate_cd}, #{cate_lv}, #{cate_name}, #{cate_desc}, #{use_yn}, #{REMARK}, #{FST_REG}, #{FST_REGR}, #{LAST_UPD}, #{LAST_UPDR})
+        INSERT INTO prod_cate (cate_cd, cate_lv, cate_name, cate_desc, useYn, REMARK, fstReg, fstRegr, lastUpd, lastUpdr)
+        VALUES (#{cate_cd}, #{cate_lv}, #{cate_name}, #{cate_desc}, #{useYn}, #{REMARK}, #{fstReg}, #{fstRegr}, #{lastUpd}, #{lastUpdr})
     </insert>
 
     <!-- Update -->
@@ -25,12 +25,12 @@
         SET cate_lv = #{cate_lv},
             cate_name = #{cate_name},
             cate_desc = #{cate_desc},
-            use_yn = #{use_yn},
+            useYn = #{useYn},
             REMARK = #{REMARK},
-            FST_REG = #{FST_REG},
-            FST_REGR = #{FST_REGR},
-            LAST_UPD = #{LAST_UPD},
-            LAST_UPDR = #{LAST_UPDR}
+            fstReg = #{fstReg},
+            fstRegr = #{fstRegr},
+            lastUpd = #{lastUpd},
+            lastUpdr = #{lastUpdr}
         WHERE cate_cd = #{cate_cd}
     </update>
 

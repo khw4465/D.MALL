@@ -16,7 +16,7 @@
             <div>${ord.ordDttm}</div>
             <div>주문번호 = ${ord.ordCd}</div>
             <div>주문상품 = ${ord.prodName}</div>
-            <div>상품개수 = ${ord.totProdCnt}</div>
+            <div>상품개수 = ${ord.totProdcnt}</div>
             <div>총상품수량 = ${ord.totQty}</div>
             <div>총 가격 = ${ord.totPrc}</div>
             <div>${ord.ordStus} + ${ord.stusChgDttm}</div>

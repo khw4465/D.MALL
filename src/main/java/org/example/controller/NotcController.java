@@ -1,9 +1,9 @@
 package org.example.controller;
 
 
-import org.example.domain.NotcDTO;
-import org.example.domain.notcPageHandler;
-import org.example.domain.notcSearchCondition;
+import org.example.domain.NotcDto;
+import org.example.domain.NotcPageHandler;
+import org.example.domain.NotcSearchCondition;
 import org.example.service.NotcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,13 +26,13 @@ public class NotcController {
     NotcService notcService;
 
     @PostMapping("/remove")
-    public String remove(String BBSO_NO, Model m, Integer page, Integer pageSize, RedirectAttributes rattr){
+    public String remove(String bbsoNo, Model m, Integer page, Integer pageSize, RedirectAttributes rattr){
         m.addAttribute("page",page);
         m.addAttribute("pageSize",pageSize);
         try{
-            int rowCnt = notcService.remove(BBSO_NO);
+            int rowcnt = notcService.remove(bbsoNo);
 
-            if(rowCnt!=1)
+            if(rowcnt!=1)
                 throw new Exception("notc remove error");
 
             rattr.addFlashAttribute("msg","DEL_OK");
@@ -45,10 +45,10 @@ public class NotcController {
     }
 
     @GetMapping("/read")
-    public String read(String BBSO_NO, Model m, notcSearchCondition sc, RedirectAttributes rattr){
+    public String read(String bbsoNo, Model m, NotcSearchCondition sc, RedirectAttributes rattr){
         try {
-            NotcDTO notcDto = notcService.read(BBSO_NO);
-            m.addAttribute("notcDto",notcDto);
+            NotcDto NotcDto = notcService.read(bbsoNo);
+            m.addAttribute("NotcDto",NotcDto);
             m.addAttribute("page",sc.getPage());
             m.addAttribute("pageSize",sc.getPageSize());
         } catch (Exception e) {
@@ -60,19 +60,19 @@ public class NotcController {
     }
 
     @GetMapping("/list")
-    public String list(notcSearchCondition sc, Model m){
+    public String list(NotcSearchCondition sc, Model m, String bbsoNo){
 //        if(!loginCheck(request))
 //            return "redirect:/login/login?toURL="+request.getRequestURL();
         // 로그인을 안했으면 로그인 화면으로 이동
 
         try {
-            int totalCnt = notcService.getSearchResultCnt(sc);
-            m.addAttribute("totalCnt",totalCnt);
+            int totalcnt = notcService.getSearchResultcnt(sc);
+            m.addAttribute("totalcnt",totalcnt);
             m.addAttribute("page",sc.getPage());
             m.addAttribute("pageSize",sc.getPageSize());
 
-            notcPageHandler notcpageHandler = new notcPageHandler(totalCnt, sc);
-            List<NotcDTO> list = notcService.getSearchResultPage(sc);
+            NotcPageHandler notcpageHandler = new NotcPageHandler(totalcnt, sc);
+            List<NotcDto> list = notcService.getSearchResultPage(sc);
             System.out.println("Controller = " + list);
             m.addAttribute("list",list);
             m.addAttribute("pagehandler",notcpageHandler);
@@ -82,7 +82,7 @@ public class NotcController {
         } catch (Exception e) {
             e.printStackTrace();
             m.addAttribute("msg","LIST_ERR");
-            m.addAttribute("totalCnt",0);
+            m.addAttribute("totalcnt",0);
         }
 
         return "cs_notc";

@@ -4,82 +4,82 @@
 
 <mapper namespace="org.example.dao.notcMapper">
 
-    <select id="select" parameterType="String" resultType="notcDTO">
-        select *
+    <select id="select" parameterType="String" resultType="NotcDto">
+        select bbso_no, ttl, cn, wrtd, wrtr, cate, fst_regr, last_updr, use_yn
         from cs_notc
-        where BBSO_NO = #{BBSO_NO}
+        where bbso_no = #{bbsoNo}
     </select>
 
     <select id="count" resultType="int">
         select count(*) from cs_notc
     </select>
 
-    <insert id="insert" parameterType="notcDTO">
+    <insert id="insert" parameterType="NotcDto">
         insert into cs_notc
-            (BBSO_NO, TTL, CN, WRTD, WRTR, CATE, FST_REGR, LAST_UPDR, USE_YN)
+            (bbso_no, ttl, cn, wrtd, wrtr, cate, fst_reg, fst_regr, last_upd,last_updr)
         VALUES
-            (#{BBSO_NO}, #{TTL},#{CN}, #{WRTD},#{WRTR}, #{CATE}, #{FST_REGR}, #{LAST_UPDR}, #{USE_YN})
+            (#{bbsoNo}, #{ttl},#{cn}, #{wrtd},#{wrtr}, #{cate},#{fstReg}, #{fstRegr}, #{lastUpd} ,#{lastUpdr})
     </insert>
 
-    <update id="update" parameterType="notcDTO">
+    <update id="update" parameterType="NotcDto">
         update cs_notc
-        set TTL = #{TTL}, CN = #{CN}
-          , WRTD = #{WRTD}
-          , LAST_UPD = #{LAST_UPD}
-        where BBSO_NO = ${BBSO_NO} and WRTR = ${WRTR}
+        set ttl = #{ttl}, cn = #{cn}
+          , wrtd = #{wrtd}
+          , last_upd = #{lastUpd}
+        where bbso_no = ${bbsoNo} and wrtr = ${wrtr}
     </update>
 
     <delete id="deleteForAdmin">
-        delete from cs_notc where BBSO_NO = #{BBSO_NO}
+        delete from cs_notc where bbso_no = #{bbsoNo}
     </delete>
 
     <delete id="deleteAll">
         delete from cs_notc
     </delete>
 
-    <select id="selectAll" resultType="notcDTO">
-        select *
+    <select id="selectAll" resultType="NotcDto">
+        select bbso_no, ttl, cn, wrtd, wrtr, cate, fst_reg, fst_regr, last_upd, last_updr, use_yn
         from cs_notc
-        order by BBSO_NO desc, WRTD desc
+        order by bbso_no desc, wrtd desc
     </select>
 
-    <select id="selectPage" parameterType="map" resultType="notcDTO">
-        select *
+    <select id="selectPage" parameterType="map" resultType="NotcDto">
+        select bbso_no, ttl, cn, wrtd, wrtr, cate, fst_reg, fst_regr, last_upd, last_updr, use_yn
         from cs_notc
-        order by BBSO_NO DESC, WRTD DESC
+        order by bbso_no DESC, wrtd DESC
             LIMIT #{offset}, #{pageSize}
     </select>
 
-    <update id="increaseViewCnt" parameterType="int">
+    <update id="increaseViewcnt" parameterType="int">
         update cs_notc
-        set NOTC_CNT = NOTC_CNT+1
-        where BBSO_NO = #{BBSO_NO}
+        set notc_cnt = notc_cnt+1
+        where bbso_no = #{bbsoNo}
     </update>
 
 
 
-    <select id="searchSelectPage" parameterType="notcSearchCondition" resultType="notcDTO">
-        select *
+    <select id="searchSelectPage" parameterType="NotcSearchCondition" resultType="NotcDto">
+        select bbso_no, ttl, cn, wrtd, wrtr, notc_cnt, cate, fst_reg, fst_regr, last_upd, last_updr, use_yn
         from cs_notc
         where true
         <choose>
             <when test='option=="T"'>
-                AND TTL LIKE concat('%', #{keyword}, '%')
+                AND ttl LIKE concat('%', #{keyword}, '%')
             </when>
         </choose>
 
-        order by WRTD DESC, BBSO_NO DESC
+        order by wrtd DESC, bbso_no DESC
         LIMIT #{offset}, #{pageSize}
     </select>
 
-    <select id="searchResultCnt" parameterType="notcSearchCondition" resultType="int">
+    <select id="searchResultcnt" parameterType="NotcSearchCondition" resultType="int">
         select count(*)
         from cs_notc
         where true
 
         <choose>
             <when test='option=="T"'>
-                AND TTL LIKE concat('%', #{keyword}, '%')
+                AND ttl LIKE concat('%', #{keyword}, '%')
             </when>
         </choose>
     </select>

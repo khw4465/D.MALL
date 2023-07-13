@@ -1,6 +1,6 @@
 package org.example.service;
 
-import org.example.domain.guidDTO;
+import org.example.domain.GuidDto;
 
 import java.util.List;
 import java.util.Map;
@@ -8,16 +8,16 @@ import java.util.Map;
 public interface GuidService {
     int getCount();
 
-    int remove(String BBSO_NO);
+    int remove(String bbsoNo);
 
-    int write(guidDTO dto);
+    int write(GuidDto dto);
 
-    List<guidDTO> getList();
+    List<GuidDto> getList();
 
-    guidDTO read(String BBSO_NO);
+    GuidDto read(String bbsoNo);
 
-    List<guidDTO> getPage(Map map);
+    List<GuidDto> getPage(Map map);
 
-    int modify(guidDTO dto);
+    int modify(GuidDto dto);
 
 }

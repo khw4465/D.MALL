@@ -1,7 +1,7 @@
 package org.example.service;
 
-import org.example.domain.NotcDTO;
-import org.example.domain.notcSearchCondition;
+import org.example.domain.NotcDto;
+import org.example.domain.NotcSearchCondition;
 
 import java.util.List;
 import java.util.Map;
@@ -9,20 +9,20 @@ import java.util.Map;
 public interface NotcService {
     int getCount();
 
-    int remove(String BBSO_NO);
+    int remove(String bbsoNo);
 
-    int write(NotcDTO dto) throws Exception;
+    int write(NotcDto dto) throws Exception;
 
-    List<NotcDTO> getList() throws Exception;
+    List<NotcDto> getList() throws Exception;
 
-    NotcDTO read(String BBSO_NO) throws Exception;
+    NotcDto read(String bbsoNo) throws Exception;
 
-    List<NotcDTO> getPage(Map map);
+    List<NotcDto> getPage(Map map);
 
-    int modify(NotcDTO dto);
+    int modify(NotcDto dto);
 
-     List<NotcDTO> getSearchResultPage(notcSearchCondition sc) throws Exception;
+     List<NotcDto> getSearchResultPage(NotcSearchCondition sc) throws Exception;
 
-     int getSearchResultCnt(notcSearchCondition sc) throws Exception;
+     int getSearchResultcnt(NotcSearchCondition sc) throws Exception;
 
 }

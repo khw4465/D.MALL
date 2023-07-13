@@ -1,8 +1,8 @@
 package org.example.domain;
 import org.springframework.web.util.UriComponentsBuilder;
 
-public class notcPageHandler {
-    public notcSearchCondition sc;
+public class NotcPageHandler {
+    public NotcSearchCondition sc;
     //    private int page; // 현재 페이지
 //    private int pageSize; // 한 페이지의 크기
 //    private String option; // selectBox에서 선택한 제목 + 내용 / 제목인지 선택하는 옵션 그치만 나는 제목검색만 구현
@@ -11,7 +11,7 @@ public class notcPageHandler {
     private final int naviSize= 10;
 //    private int naviSize = 10; // 페이지 내비게이션의 크기
 
-    private int totalCnt; // 총 게시물 개수
+    private int totalcnt; // 총 게시물 개수
 
     private int totalPage; // 전체 페이지의 크기
     private int beginPage; // 내비게이션의 첫번째 페이지
@@ -19,26 +19,24 @@ public class notcPageHandler {
     private boolean showPrev; // 이전 페이지로 이동하는 링크를 보여줄 것인지의 여부
     private boolean showNext; // 다음 페이지로 이동하는 링크를 보여줄 것인지의 여부
 
-    public notcPageHandler(int totalCnt, Integer page){
-        this(totalCnt, new notcSearchCondition(page,10));
+    public NotcPageHandler(int totalcnt, Integer page){
+        this(totalcnt, new NotcSearchCondition(page,10));
     }
 
-    public notcPageHandler(int totalCnt, Integer page,Integer pageSize){
-        this(totalCnt, new notcSearchCondition(page, pageSize));
+    public NotcPageHandler(int totalcnt, Integer page, Integer pageSize){
+        this(totalcnt, new NotcSearchCondition(page, pageSize));
     }
 
-    public notcPageHandler(int totalCnt, notcSearchCondition sc){
-        this.totalCnt = totalCnt;
+    public NotcPageHandler(int totalcnt, NotcSearchCondition sc){
+        this.totalcnt = totalcnt;
         this.sc = sc;
-        doPaging(totalCnt,sc);
+        doPaging(totalcnt,sc);
     }
 
 
-    public void doPaging(int totalCnt, notcSearchCondition sc) {
-        this.totalPage = totalCnt / sc.getPageSize() + (totalCnt % sc.getPageSize()==0 ? 0:1);
+    public void doPaging(int totalcnt, NotcSearchCondition sc) {
+        this.totalPage = totalcnt / sc.getPageSize() + (totalcnt % sc.getPageSize()==0 ? 0:1);
         this.sc.setPage(Math.min(sc.getPage(),totalPage));
-
-
 
         this.beginPage = (this.sc.getPage()-1) / naviSize * naviSize +1;
         this.endPage = Math.min(beginPage + naviSize-1, totalPage);
@@ -60,29 +58,25 @@ public class notcPageHandler {
     }
 
 
-    public notcSearchCondition getSc() {
+    public NotcSearchCondition getSc() {
         return sc;
     }
 
-    public void setSc(notcSearchCondition sc) {
+    public void setSc(NotcSearchCondition sc) {
         this.sc = sc;
     }
 
-    public int getTotalCnt() {
-        return totalCnt;
+    public int getTotalcnt() {
+        return totalcnt;
     }
 
-    public void setTotalCnt(int totalCnt) {
-        this.totalCnt = totalCnt;
+    public void setTotalcnt(int totalcnt) {
+        this.totalcnt = totalcnt;
     }
-
-
 
     public int getNaviSize() {
         return naviSize;
     }
-
-
     public int getTotalPage() {
         return totalPage;
     }
@@ -135,9 +129,9 @@ public class notcPageHandler {
 
     @Override
     public String toString() {
-        return "notcPageHandler{" +
+        return "NotcPageHandler{" +
                 "sc=" + sc +
-                ", totalCnt=" + totalCnt +
+                ", totalcnt=" + totalcnt +
                 ", naviSize=" + naviSize +
                 ", totalPage=" + totalPage +
                 ", beginPage=" + beginPage +
@@ -146,6 +140,4 @@ public class notcPageHandler {
                 ", showNext=" + showNext +
                 '}';
     }
-
-
 }

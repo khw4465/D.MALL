@@ -1,19 +1,19 @@
 package org.example.domain;
 import org.springframework.web.util.UriComponentsBuilder;
 
-public class notcSearchCondition {
+public class NotcSearchCondition {
     private Integer page = 1;
     private Integer pageSize = 10;
     //    private Integer offset = 0;
     private String keyword = "";
     private String option ="";
 
-    public notcSearchCondition(){}
-    public notcSearchCondition(Integer page, Integer pageSize) {
+    public NotcSearchCondition(){}
+    public NotcSearchCondition(Integer page, Integer pageSize) {
         this(page,pageSize,"","");
     }
 
-    public notcSearchCondition(Integer page, Integer pageSize, String keyword, String option) {
+    public NotcSearchCondition(Integer page, Integer pageSize, String keyword, String option) {
         this.page = page;
         this.pageSize = pageSize;
         this.keyword = keyword;
@@ -73,7 +73,7 @@ public class notcSearchCondition {
 
     @Override
     public String toString() {
-        return "notcSearchCondition{" +
+        return "NotcSearchCondition{" +
                 "page=" + page +
                 ", pageSize=" + pageSize +
                 ", offset=" + getOffset() +

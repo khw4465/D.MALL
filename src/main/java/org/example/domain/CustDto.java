@@ -16,7 +16,7 @@ public class CustDto {
     private Date birth; // 생년월일9
     private String email; // 이메일10
     private LocalDateTime regDate; // 회원가입일시11
-    private String acNo; // 계좌번호12
+    private String acno; // 계좌번호12
     private LocalDateTime  lginDttm; // 최근로그인일자13
     private String gender; // 성별  --이거로 바뀜14
     private String regn; // 지역15
@@ -30,7 +30,7 @@ public class CustDto {
 
     public CustDto(){}
 
-    public CustDto(String custId, String pwd, String name, String mpNo, String custTp, String grade, String stus, String rcmdr, Date birth, String email, LocalDateTime regDate, String acNo, LocalDateTime lginDttm, String gender, String regn, LocalDateTime fstReg, String fstRegr, LocalDateTime lastUpd, String lastUpdr, String pwd2, String sms) {
+    public CustDto(String custId, String pwd, String name, String mpNo, String custTp, String grade, String stus, String rcmdr, Date birth, String email, LocalDateTime regDate, String acno, LocalDateTime lginDttm, String gender, String regn, LocalDateTime fstReg, String fstRegr, LocalDateTime lastUpd, String lastUpdr, String pwd2, String sms) {
         this.custId = custId;
         this.pwd = pwd;
         this.name = name;
@@ -42,7 +42,7 @@ public class CustDto {
         this.birth = birth;
         this.email = email;
         this.regDate = regDate;
-        this.acNo = acNo;
+        this.acno = acno;
         this.lginDttm = lginDttm;
         this.gender = gender;
         this.regn = regn;
@@ -68,7 +68,7 @@ public class CustDto {
                 ", birth=" + birth +
                 ", email='" + email + '\'' +
                 ", regDate=" + regDate +
-                ", acNo='" + acNo + '\'' +
+                ", acno='" + acno + '\'' +
                 ", lginDttm=" + lginDttm +
                 ", gender='" + gender + '\'' +
                 ", regn='" + regn + '\'' +
@@ -86,12 +86,12 @@ public class CustDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CustDto dto = (CustDto) o;
-        return Objects.equals(custId, dto.custId) && Objects.equals(pwd, dto.pwd) && Objects.equals(name, dto.name) && Objects.equals(mpNo, dto.mpNo) && Objects.equals(custTp, dto.custTp) && Objects.equals(grade, dto.grade) && Objects.equals(stus, dto.stus) && Objects.equals(rcmdr, dto.rcmdr) && Objects.equals(email, dto.email) && Objects.equals(acNo, dto.acNo) && Objects.equals(gender, dto.gender) && Objects.equals(regn, dto.regn) && Objects.equals(fstRegr, dto.fstRegr) && Objects.equals(lastUpdr, dto.lastUpdr) && Objects.equals(pwd2, dto.pwd2) && Objects.equals(sms, dto.sms);
+        return Objects.equals(custId, dto.custId) && Objects.equals(pwd, dto.pwd) && Objects.equals(name, dto.name) && Objects.equals(mpNo, dto.mpNo) && Objects.equals(custTp, dto.custTp) && Objects.equals(grade, dto.grade) && Objects.equals(stus, dto.stus) && Objects.equals(rcmdr, dto.rcmdr) && Objects.equals(email, dto.email) && Objects.equals(acno, dto.acno) && Objects.equals(gender, dto.gender) && Objects.equals(regn, dto.regn) && Objects.equals(fstRegr, dto.fstRegr) && Objects.equals(lastUpdr, dto.lastUpdr) && Objects.equals(pwd2, dto.pwd2) && Objects.equals(sms, dto.sms);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(custId, pwd, name, mpNo, custTp, grade, stus, rcmdr, email, acNo, gender, regn, fstRegr, lastUpdr, pwd2, sms);
+        return Objects.hash(custId, pwd, name, mpNo, custTp, grade, stus, rcmdr, email, acno, gender, regn, fstRegr, lastUpdr, pwd2, sms);
     }
 
     public String getCustId() {
@@ -182,12 +182,12 @@ public class CustDto {
         this.regDate = regDate;
     }
 
-    public String getAcNo() {
-        return acNo;
+    public String getAcno() {
+        return acno;
     }
 
-    public void setAcNo(String acNo) {
-        this.acNo = acNo;
+    public void setAcno(String acno) {
+        this.acno = acno;
     }
 
     public LocalDateTime getLginDttm() {

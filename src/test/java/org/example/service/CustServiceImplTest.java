@@ -61,7 +61,7 @@ public class CustServiceImplTest {
         custDto.setBirth(date);
         custDto.setEmail("aaa@aaa.com");
         custDto.setRegDate(LocalDateTime.now());
-        custDto.setAcNo("121212-01-121212");
+        custDto.setAcno("121212-01-121212");
         custDto.setLginDttm(LocalDateTime.now());
         custDto.setGender("남");
         custDto.setRegn("대한민국");
