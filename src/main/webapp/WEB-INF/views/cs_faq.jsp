@@ -57,10 +57,10 @@
         <br>
         <!-- 핸들러 -->
         <div class="handle_usg">
-            <c:if test="${totalcnt==null || totalcnt==0}">
+            <c:if test="${totalCnt==null || totalCnt==0}">
                 <div> 게시물이 없습니다.</div>
             </c:if>
-            <c:if test="${totalcnt!=null && totalcnt!=0}">
+            <c:if test="${totalCnt!=null && totalCnt!=0}">
                 <c:if test="${pagehandler.showPrev}">
                     <a class="page" href="<c:url value="/faq/list${pagehandler.beginPage-1}"/> ">&lt;</a>
                 </c:if>

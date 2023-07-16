@@ -1,7 +1,7 @@
 package org.example.domain;
 
 public class PageHandler {
-    private int totalcnt; // 총 게시물 개수
+    private int totalCnt; // 총 게시물 개수
     private int pageSize; // 한 페이지의 크기
     private int naviSize = 10; // 페이지 내비게이션의 크기
     private int totalPage; // 전체 페이지의 크기
@@ -11,27 +11,27 @@ public class PageHandler {
     private boolean showPrev; // 이전 페이지로 이동하는 링크를 보여줄 것인지의 여부
     private boolean showNext; // 다음 페이지로 이동하는 링크를 보여줄 것인지의 여부
 
-    public PageHandler(int totalcnt, int page){
-        this(totalcnt, page,10);
+    public PageHandler(int totalCnt, int page){
+        this(totalCnt, page,10);
     }
-    public PageHandler(int totalcnt, int page, int pageSize) {
-        this.totalcnt = totalcnt;
+    public PageHandler(int totalCnt, int page, int pageSize) {
+        this.totalCnt = totalCnt;
         this.page = page;
         this.pageSize = pageSize;
 
-        totalPage = (int)Math.ceil(totalcnt / (double)pageSize);
+        totalPage = (int)Math.ceil(totalCnt / (double)pageSize);
         beginPage = (page-1) / naviSize * naviSize +1;
         endPage = Math.min(beginPage + naviSize-1, totalPage);
         showPrev = beginPage !=1;
         showNext = endPage !=totalPage;
     }
 
-    public int getTotalcnt() {
-        return totalcnt;
+    public int getTotalCnt() {
+        return totalCnt;
     }
 
-    public void setTotalcnt(int totalcnt) {
-        this.totalcnt = totalcnt;
+    public void setTotalCnt(int totalCnt) {
+        this.totalCnt = totalCnt;
     }
 
     public int getPageSize() {
@@ -110,7 +110,7 @@ public class PageHandler {
     @Override
     public String toString() {
         return "PageHandler{" +
-                "totalcnt=" + totalcnt +
+                "totalCnt=" + totalCnt +
                 ", pageSize=" + pageSize +
                 ", naviSize=" + naviSize +
                 ", totalPage=" + totalPage +

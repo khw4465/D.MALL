@@ -30,9 +30,9 @@ public class NotcController {
         m.addAttribute("page",page);
         m.addAttribute("pageSize",pageSize);
         try{
-            int rowcnt = notcService.remove(bbsoNo);
+            int rowCnt = notcService.remove(bbsoNo);
 
-            if(rowcnt!=1)
+            if(rowCnt!=1)
                 throw new Exception("notc remove error");
 
             rattr.addFlashAttribute("msg","DEL_OK");
@@ -66,12 +66,12 @@ public class NotcController {
         // 로그인을 안했으면 로그인 화면으로 이동
 
         try {
-            int totalcnt = notcService.getSearchResultcnt(sc);
-            m.addAttribute("totalcnt",totalcnt);
+            int totalCnt = notcService.getSearchResultCnt(sc);
+            m.addAttribute("totalCnt",totalCnt);
             m.addAttribute("page",sc.getPage());
             m.addAttribute("pageSize",sc.getPageSize());
 
-            NotcPageHandler notcpageHandler = new NotcPageHandler(totalcnt, sc);
+            NotcPageHandler notcpageHandler = new NotcPageHandler(totalCnt, sc);
             List<NotcDto> list = notcService.getSearchResultPage(sc);
             System.out.println("Controller = " + list);
             m.addAttribute("list",list);
@@ -82,7 +82,7 @@ public class NotcController {
         } catch (Exception e) {
             e.printStackTrace();
             m.addAttribute("msg","LIST_ERR");
-            m.addAttribute("totalcnt",0);
+            m.addAttribute("totalCnt",0);
         }
 
         return "cs_notc";

@@ -14,7 +14,7 @@ public interface OrderListService {
 
     int count(String custId) throws Exception;
 
-    int addOrder(String ordCd, String custId, String dlvAddrId, String dlvMsg) throws Exception;
+    int addOrder(String ordCd, String custId, int dlvAddrId, String dlvMsg) throws Exception;
 
     int modifyStatus(OrderDto dto) throws Exception;
 }

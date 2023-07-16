@@ -25,9 +25,9 @@ public class FaqController {
         if (pageSize == null) pageSize = 10;
 
         try{
-            int totalcnt = faqService.getCount();
-            m.addAttribute("totalcnt", totalcnt);
-            FaqPageHandler faqpageHandler = new FaqPageHandler(totalcnt, page, pageSize);
+            int totalCnt = faqService.getCount();
+            m.addAttribute("totalCnt", totalCnt);
+            FaqPageHandler faqpageHandler = new FaqPageHandler(totalCnt, page, pageSize);
 
             Map map = new HashMap();
             map.put("offset", (page - 1) * pageSize);

@@ -26,9 +26,9 @@ public class UserguidController {
         if (pageSize == null) pageSize = 10;
 
         try {
-            int totalcnt = guidService.getCount();
-            m.addAttribute("totalcnt", totalcnt);
-            GuidPageHandler guidpageHandler = new GuidPageHandler(totalcnt, page, pageSize);
+            int totalCnt = guidService.getCount();
+            m.addAttribute("totalCnt", totalCnt);
+            GuidPageHandler guidpageHandler = new GuidPageHandler(totalCnt, page, pageSize);
 
             Map map = new HashMap();
             map.put("offset", (page - 1) * pageSize);

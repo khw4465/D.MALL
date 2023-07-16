@@ -37,7 +37,7 @@ public class NotcServiceImpl implements NotcService {
     @Override
     public NotcDto read(String bbsoNo) throws Exception{
         NotcDto dto = notcDao.select(bbsoNo);
-//        notcDao.increaseViewcnt(bbsoNo);
+//        notcDao.increaseViewCnt(bbsoNo);
         return dto;
     }
 
@@ -59,7 +59,7 @@ public class NotcServiceImpl implements NotcService {
     }
 
     @Override
-    public int getSearchResultcnt(NotcSearchCondition sc) throws Exception{
-        return notcDao.searchResultcnt(sc);
+    public int getSearchResultCnt(NotcSearchCondition sc) throws Exception{
+        return notcDao.searchResultCnt(sc);
     }
 }

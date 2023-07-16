@@ -130,7 +130,7 @@
             text-align: left;
         }
 
-        td.viewcnt {
+        td.viewCnt {
             text-align: right;
         }
 

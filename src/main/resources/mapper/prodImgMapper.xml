@@ -22,7 +22,7 @@
     <!-- Insert -->
     <insert id="insert" parameterType="ProdImgDto">
         INSERT INTO PROD_IMG
-        (img_cd, prod_cd, img_type, img_desc, img_path, img_height, img_width, img_extns, file_limit, useYn, del_yn, remark, fstReg, fstRegr, lastUpd, lastUpdr)
+        (img_cd, prod_cd, img_type, img_desc, img_path, img_height, img_width, img_extns, file_limit, use_yn, del_yn, remark, fst_Reg, fst_Regr, last_Upd, last_Updr)
         VALUES
             (#{imgCd}, #{prodCd}, #{imgType}, #{imgDesc}, #{imgPath}, #{imgHeight}, #{imgWidth}, #{imgExtns}, #{fileLimit}, #{useYn}, #{delYn}, #{remark}, #{fstReg}, #{fstRegr}, #{lastUpd}, #{lastUpdr})
     </insert>

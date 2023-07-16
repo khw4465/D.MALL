@@ -3,10 +3,6 @@
 <%@ page session="false"%>
 <html>
 <c:set var="loginId" value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
-<c:set var="totalPrice" value="${totalPrice}"/>
-<c:set var="totalDcPrice" value="${totalDcPrice}"/>
-<c:set var="delPrice" value="${delPrice}"/>
-<c:set var="finalPrice" value="${totalPrice-totalDcPrice+delPrice}"/>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -71,10 +67,10 @@
                             <i class="ico-x-black"><span class="blind">삭제</span></i>
                         </button>
                     </div>
-<%--                        <input type="hidden" id="prod${cart.prodCd}" name="prod" value="${cart}">--%>
-<%--                        <input type="text" name="prodCd" value="${cart.prodCd}">--%>
-<%--                        <input type="text" name="prodQty" value="${cart.prodQty}">--%>
-<%--                        <input type="text" name="prodPrice" value="${cart.totSetlPrice}">--%>
+<%--                        <input type="text" name="totProdPrice" value="${cart}">--%>
+<%--                        <input type="text" name="totDcPrice" value="${cart.prodCd}">--%>
+<%--                        <input type="text" name="dlvPrice" value="${cart.prodQty}">--%>
+<%--                        <input type="text" name="finPrice" value="${cart.totSetlPrice}">--%>
                 </li>
             </c:forEach>
         </ul>
@@ -82,30 +78,31 @@
         <!-- ---------------------------------------------------5번 -->
 
         </div>
+        <c:set var="ord" value="${ord}" />
         <div class="price-info-all">
         <div class="colum">
             <dl class="price-info">
                 <dt class="tit">상품금액</dt>
-                <dd class="price"><em class="num" id="sumPrice">${totalPrice}</em>원</dd>
+                <dd class="price"><em class="num" id="sumPrice"><c:out value="${ord.totPrc}" /></em>원</dd>
             </dl>
         </div>
         <div class="colum">
             <dl class="price-info">
                 <dt class="tit">할인금액</dt>
-                <dd class="price"><em class="num" id="totalDcPrc">${totalDcPrice}</em>원</dd>
+                <dd class="price"><em class="num" id="totalDcPrc"><c:out value="${ord.totDcPrc}" /></em>원</dd>
             </dl>
         </div>
         <div class="colum">
             <dl class="price-info">
                 <dt class="tit">배송비</dt>
-                <dd class="price"><em class="num" id="dlvPrc">${delPrice}</em>원</dd>
+                <dd class="price"><em class="num" id="dlvPrc"><c:out value="${ord.dlvPrc}" /></em>원</dd>
             </dl>
         </div>
         <div class="colum">
             <dl class="price-info">
                 <dt class="tit">총 결제금액</dt>
                 <dd class="price">
-                    <em class="totalOrderPrice" id="totalPrice">${finalPrice}</em>원
+                    <em class="totalOrderPrice" id="totalPrice"><c:out value="${ord.finPrc}" /></em>원
                 </dd>
             </dl>
         </div>
@@ -120,11 +117,11 @@
     <form action="/order/order">
         <div class="btn-bottom-area">
             <a href="<c:url value='/'/>" class="btn-basic-xxlg btn-default-ex"><span>쇼핑계속하기</span></a>
-            <input type="hidden" name="prodPrice" value="${totalPrice}">
-            <input type="hidden" name="prodDcPrice" value="${totalDcPrice}">
-            <input type="hidden" name="prodDlvPrice" value="${delPrice}">
-            <input type="hidden" name="prodFinPrice" value="${finalPrice}">
-            <a herf="<c:url value='/order/order'/>"><input type="submit" class="totalOrderPrice" id="totalOrdPrice" value="${finalPrice}원 주문하기"></a>
+            <input type="hidden" name="prodPrice" value="<c:out value="${ord.totPrc}" />">
+            <input type="hidden" name="prodDcPrice" value="<c:out value="${ord.totDcPrc}" />">
+            <input type="hidden" name="prodDlvPrice" value="<c:out value="${ord.dlvPrc}" />">
+            <input type="hidden" name="prodFinPrice" value="<c:out value="${ord.finPrc}" />">
+            <a herf="<c:url value='/order/order'/>"><input type="submit" class="totalOrderPrice" id="totalOrdPrice" value="<c:out value="${ord.finPrc}" />원 주문하기"></a>
         </div>
     </form>
 </div>
@@ -249,14 +246,14 @@
 
             let qtyval = $("#qty"+prodCd)               // 상품의 수량 텍스트칸
             let prodQty = parseInt(qtyval.val());       // 수량 텍스트칸 안에 보이는 값 (수량)
-            let eachprc = parseInt($('#price'+prodCd)[0].innerText);    // 각 상품의 가격 (상품가격 * 상품수량)
-            let totSetlPrice = eachprc/prodQty;         // 각 상품의 1개 가격
+            let totProdPrice = parseInt($('#price'+prodCd)[0].innerText);    // 각 상품의 가격 (상품가격 * 상품수량)
+            let totSetlPrice = totProdPrice/prodQty;         // 각 상품의 1개 가격
             let expctDcPrc = 0;                         // 할인금액
 
             // delete
             $("#delete"+prodCd).click(function(){
 
-                let cartDto = {prodCd : prodCd, prodQty: prodQty, totSetlPrice: totSetlPrice, expctDcPrc: expctDcPrc};   // 상품코드 객체에 담기
+                let cartDto = {prodCd : prodCd, prodQty: prodQty, totSetlPrice: totSetlPrice, totProdPrice : totProdPrice, expctDcPrc: expctDcPrc};   // 상품코드 객체에 담기
                 $.ajax({
                     type:'DELETE',       // 요청 메서드
                     url: '/cart/remove',  // 요청 URI
@@ -271,7 +268,7 @@
                             listhead.style.display = "none";
                         }
                             // 총 상품금액 업데이트
-                            sumPrice -= eachprc;
+                            sumPrice -= totProdPrice;
                             $("#sumPrice").html(sumPrice);
                             // 총 할인금액 업데이트
                             DcPrice -= expctDcPrc;
@@ -299,10 +296,10 @@
                 if (prodQty > 1) {      // 수량이 1 아래로 떨어지지 않게
                     prodQty--;
                     qtyval.val(prodQty);
-                    eachprc -= totSetlPrice;
-                    let point = Math.round(eachprc/ 100);
+                    totProdPrice -= totSetlPrice;
+                    let point = Math.round(totProdPrice/ 100);
 
-                    let cartDto = {prodCd: prodCd, prodQty: prodQty, totSetlPrice: totSetlPrice, expctDcPrc: expctDcPrc};
+                    let cartDto = {prodCd: prodCd, prodQty: prodQty, totSetlPrice: totSetlPrice, totProdPrice: totProdPrice, expctDcPrc: expctDcPrc};
 
                     $.ajax({
                         type: 'PATCH',       // 요청 메서드
@@ -315,7 +312,7 @@
                             let qty = cartDto2.prodQty;
                             qtyval.val(qty);
                             // 가격 업데이트
-                            $("#price" + prodCd).html(eachprc);
+                            $("#price" + prodCd).html(totProdPrice);
                             // 포인트 업데이트
                             $("#point" + prodCd).html(point);
                             // 할인 금액 업데이트
@@ -343,9 +340,9 @@
             $("#plus"+prodCd).click(function(){
                 prodQty++;  // 개수 + 1
                 qtyval.val(prodQty); // 수량 칸에 입력
-                eachprc += totSetlPrice;
-                let point = Math.round(eachprc/ 100);
-                let cartDto = {prodCd: prodCd, prodQty: prodQty, totSetlPrice: totSetlPrice, expctDcPrc: expctDcPrc};
+                totProdPrice += totSetlPrice;
+                let point = Math.round(totProdPrice/ 100);
+                let cartDto = {prodCd: prodCd, prodQty: prodQty, totSetlPrice: totSetlPrice, totProdPrice: totProdPrice, expctDcPrc: expctDcPrc};
 
                 $.ajax({
                     type:'PATCH',       // 요청 메서드
@@ -358,7 +355,7 @@
                         let qty = cartDto2.prodQty;
                         qtyval.val(qty);
                         // 가격 업데이트
-                        $("#price" + prodCd).html(eachprc);
+                        $("#price" + prodCd).html(totProdPrice);
                         // 포인트 업데이트
                         $("#point" + prodCd).html(point);
                         // 할인 금액 업데이트

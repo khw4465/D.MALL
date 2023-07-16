@@ -23,11 +23,11 @@ public interface NotcDao {
 
     List<NotcDto> selectPage(Map map);
 
-    int increaseViewcnt(Integer notccnt);
+    int increaseViewCnt(Integer notcCnt);
 
 
     public List<NotcDto> searchSelectPage(NotcSearchCondition sc) throws Exception;
 
 
-    public int searchResultcnt(NotcSearchCondition sc) throws Exception;
+    public int searchResultCnt(NotcSearchCondition sc) throws Exception;
 }

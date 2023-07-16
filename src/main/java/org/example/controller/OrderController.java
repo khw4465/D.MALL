@@ -4,6 +4,9 @@ import org.example.domain.*;
 import org.example.service.CartService;
 import org.example.service.OrderListService;
 import org.example.service.OrderService;
+import org.springframework.http.HttpRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -15,7 +18,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.net.URLEncoder;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/order")
@@ -24,7 +29,7 @@ public class OrderController {
     OrderListService orderListService;
     CartService cartService;
 
-    public OrderController(OrderService orderService, OrderListService orderListService, CartService cartService) {
+    public OrderController( OrderService orderService, OrderListService orderListService, CartService cartService) {
         this.orderService = orderService;
         this.orderListService = orderListService;
         this.cartService = cartService;
@@ -32,6 +37,7 @@ public class OrderController {
 
     @GetMapping("/order")
     public String order(Model m, HttpServletRequest request) {
+
         if(!loginCheck(request))
             return "redirect:/login/login?toURL="+request.getRequestURL();  // 로그인을 안했으면 로그인 화면으로 이동
 //        if(!isValid(ol))
@@ -43,18 +49,16 @@ public class OrderController {
             String custId = (String)session.getAttribute("id");     // 세션으로 회원아이디 가져오기
 
             CustDto custInfo = orderService.getCust(custId);
-            m.addAttribute("custInfo", custInfo);   //  회원정보를 가져와 모델에 넣어줌
+            m.addAttribute("custInfo", custInfo);             //  회원정보를 가져와 모델에 넣어줌
 
             List<DlvAddrDto> dlvList = orderService.getDlvAddr(custId);
-            System.out.println(dlvList.get(0));
-            m.addAttribute("dlvList", dlvList.get(0));  // 배송지 정보를 가져와 모델에 넣어줌 (배송지가 여러개라 일단 첫번째것만)
+            m.addAttribute("dlvList", dlvList.get(0));        // 배송지 정보를 가져와 모델에 넣어줌 (배송지가 여러개면 일단 첫번째것만)
 
             List<CartDto> list = cartService.getCartList(custId);
-            m.addAttribute("list", list);
-//            System.out.println("ol.prodName = "+ol.getProdName());
-//            System.out.println("ol.prodQty = "+ol.getProdQty());
-//            System.out.println("ol.prodTotSetlPrice = "+ol.getProdTotPrice());
-//            System.out.println(ol);
+            m.addAttribute("list", list);                     // 장바구니에 담긴 상품의 정보를 모델에 넣어줌
+
+            OrderDto priceInfo = cartService.getOrdHist(custId);
+            m.addAttribute("prcInfo", priceInfo);                 // 최종금액을 합산한 것을 모델에 넣어줌
 
             return "order";
         } catch (Exception e) {
@@ -64,15 +68,31 @@ public class OrderController {
 
     @RequestMapping("/kakao")
     @ResponseBody
-    public String kakaopay() {
+    @Transactional(rollbackFor = Exception.class)
+    public String kakaopay(HttpServletRequest request) {
         try {
+            HttpSession session = request.getSession();
+            String custId = (String)session.getAttribute("id");     // 세션으로 회원아이디 가져오기
+            OrderDto dto = cartService.getOrdHist(custId);
+            System.out.println("qty = " + dto.getTotQty());
+            System.out.println("prc = " + dto.getFinPrc());
+
             URL url = new URL("https://kapi.kakao.com/v1/payment/ready");       // 결제 주소
             HttpURLConnection conn = (HttpURLConnection)  url.openConnection();      // 클라이언트와 서버를 연결해주는 역할 (형변환 필요)
             conn.setRequestMethod("POST");                                           // 전송 방식
             conn.setRequestProperty("Authorization", "KakaoAK 90be58aa2287576f2ebe7b9018a82b18");       // 인증 방식 , 서비스 앱 어드민키로 인증요청
             conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8"); // 요청 데이터 타입
             conn.setDoOutput(true);                                                  // 연결을 통해 서버에 전달해 줄 데이터가 있는지?  default = false
-            String param = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=닭가슴살&quantity=1&total_amount=2200&tax_free_amount=0&approval_url=http://localhost:8080/order/list&cancel_url=http://localhost:8080/order/order&fail_url=http://localhost:8080/order/order"; // 요청 매개변수를 적어줌
+            String param = "cid=TC0ONETIME" +                                        // 요청 매개변수를 적어줌
+                           "&partner_order_id=partner_order_id" +
+                           "&partner_user_id=partner_user_id" +
+                           "&item_name="+ URLEncoder.encode(dto.getProdName(), "UTF-8") +   // 한글이라 인코딩 필요
+                           "&quantity=" + dto.getTotQty() +
+                           "&total_amount=" + dto.getFinPrc() +
+                           "&tax_free_amount=0" +
+                           "&approval_url=http://localhost:8080/order/list" +       // 주문승인 시 이동 주소
+                           "&cancel_url=http://localhost:8080/order/order?" +        // 주문취소 시 이동 주소
+                           "&fail_url=http://localhost:8080/order/order";           // 주문실패 시 이동 주소
             OutputStream output = conn.getOutputStream();  // 서버에 주는 애
             DataOutputStream data = new DataOutputStream(output); // 무엇을 줄지 결정
             data.writeBytes(param);     // 매개변수를 byte타입으로 변환
@@ -91,9 +111,7 @@ public class OrderController {
             BufferedReader bufferedReader = new BufferedReader(read); // 받은 데이터를 형변환
 
             return bufferedReader.readLine();   // 형변환을 한 후 찍어냄
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "(\"result\" : \"NO\")";
@@ -102,18 +120,37 @@ public class OrderController {
     @GetMapping("/list")
     public String orderList(Model m, HttpServletRequest request){
         if(!loginCheck(request))
-            return "redirect:/login/login?toURL="+request.getRequestURL();  // 로그인을 안했으면 로그인 화면으로 이동
+            return "redirect:/login/login?toURL="+request.getRequestURL();      // 로그인을 안했으면 로그인 화면으로 이동
 
         try {
-            HttpSession session = request.getSession();     // 로그인 한 아이디 가져오기
+            HttpSession session = request.getSession();                         // 로그인 한 아이디 가져오기
             String custId = (String)session.getAttribute("id");
 
-            List<OrderDto> list = orderListService.getOrdMonth(custId,3);
+            List<OrderDto> list = orderListService.getOrdMonth(custId,3);    // 3달 이내의 주문목록 보여주기
             m.addAttribute("list", list);
 
             return "orderList";
         } catch (Exception e) {
             return "error";
+        }
+    }
+
+    @PostMapping("/list")
+    @ResponseBody
+    @Transactional(rollbackFor = Exception.class)
+    public ResponseEntity<OrderDto> orderList(@RequestBody OrderDto orderDto, HttpSession session) {
+        try {
+            String ordCd = orderDto.getOrdCd();                           // ord.jsp에서 tid를 주문코드로 얻어옴
+            String dlvMsg = orderDto.getDlvMsg();                         // ord.jsp에서 dlvMsg를 배송메시지로 얻어옴
+            String custId = (String)session.getAttribute("id");     // 세션으로 회원아이디 가져오기
+//            orderService.getOneAddr(custId, 1);                         // 회원의 배송지목록 1번의 dto 가져오기
+            System.out.println("dlvMsg = " + orderDto.getDlvMsg());
+            orderListService.addOrder(ordCd,custId,1,dlvMsg);    // 주문내역 추가
+            cartService.removeAll(custId);                                // 주문을 했으니 장바구니 목록 삭제
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 

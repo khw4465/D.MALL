@@ -11,7 +11,7 @@ public class NotcPageHandler {
     private final int naviSize= 10;
 //    private int naviSize = 10; // 페이지 내비게이션의 크기
 
-    private int totalcnt; // 총 게시물 개수
+    private int totalCnt; // 총 게시물 개수
 
     private int totalPage; // 전체 페이지의 크기
     private int beginPage; // 내비게이션의 첫번째 페이지
@@ -19,23 +19,23 @@ public class NotcPageHandler {
     private boolean showPrev; // 이전 페이지로 이동하는 링크를 보여줄 것인지의 여부
     private boolean showNext; // 다음 페이지로 이동하는 링크를 보여줄 것인지의 여부
 
-    public NotcPageHandler(int totalcnt, Integer page){
-        this(totalcnt, new NotcSearchCondition(page,10));
+    public NotcPageHandler(int totalCnt, Integer page){
+        this(totalCnt, new NotcSearchCondition(page,10));
     }
 
-    public NotcPageHandler(int totalcnt, Integer page, Integer pageSize){
-        this(totalcnt, new NotcSearchCondition(page, pageSize));
+    public NotcPageHandler(int totalCnt, Integer page, Integer pageSize){
+        this(totalCnt, new NotcSearchCondition(page, pageSize));
     }
 
-    public NotcPageHandler(int totalcnt, NotcSearchCondition sc){
-        this.totalcnt = totalcnt;
+    public NotcPageHandler(int totalCnt, NotcSearchCondition sc){
+        this.totalCnt = totalCnt;
         this.sc = sc;
-        doPaging(totalcnt,sc);
+        doPaging(totalCnt,sc);
     }
 
 
-    public void doPaging(int totalcnt, NotcSearchCondition sc) {
-        this.totalPage = totalcnt / sc.getPageSize() + (totalcnt % sc.getPageSize()==0 ? 0:1);
+    public void doPaging(int totalCnt, NotcSearchCondition sc) {
+        this.totalPage = totalCnt / sc.getPageSize() + (totalCnt % sc.getPageSize()==0 ? 0:1);
         this.sc.setPage(Math.min(sc.getPage(),totalPage));
 
         this.beginPage = (this.sc.getPage()-1) / naviSize * naviSize +1;
@@ -66,12 +66,12 @@ public class NotcPageHandler {
         this.sc = sc;
     }
 
-    public int getTotalcnt() {
-        return totalcnt;
+    public int getTotalCnt() {
+        return totalCnt;
     }
 
-    public void setTotalcnt(int totalcnt) {
-        this.totalcnt = totalcnt;
+    public void setTotalCnt(int totalCnt) {
+        this.totalCnt = totalCnt;
     }
 
     public int getNaviSize() {
@@ -131,7 +131,7 @@ public class NotcPageHandler {
     public String toString() {
         return "NotcPageHandler{" +
                 "sc=" + sc +
-                ", totalcnt=" + totalcnt +
+                ", totalCnt=" + totalCnt +
                 ", naviSize=" + naviSize +
                 ", totalPage=" + totalPage +
                 ", beginPage=" + beginPage +
