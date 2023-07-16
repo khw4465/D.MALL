@@ -317,3 +317,31 @@ body {
 .visible {
     display: block;
 }
+
+/* prodSearch에서 사용되는 태그*/
+#resultline{
+    padding: 0;
+}
+
+#relineli{
+    display: inline-block;
+}
+
+#refsearch{
+    padding: 0;
+}
+
+#refline{
+    display: inline-block;
+    margin-left: 30px;
+}
+
+#prodimg{
+    padding: 0;
+}
+
+#prodinfo{
+    display: inline-block;
+    text-align: center;
+}
+/* prodSearch에서 사용되는 태그*/

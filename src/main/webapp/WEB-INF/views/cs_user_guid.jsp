@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="<c:url value='/css/csmain.css'/>">
 </head>
 <body>
-<h1>드가자몰</h1>
+<h1><a href="/">드가자몰</a></h1>
 
 <!-- 상품 카테고리 보여주는 홈페이지 간판 밑  bar-->
 <div id="cate">
