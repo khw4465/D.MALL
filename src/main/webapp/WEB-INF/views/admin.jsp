@@ -30,8 +30,8 @@
         <h2>관리자 매뉴얼</h2>
         <button class="list">상품관리</button>
         <div class="panel">
-            <li><a href="/prod/index">상품등록 |</a></li>
-            <li>상품조회</li>
+            <li><a href="/prod/register">상품등록 |</a></li>
+            <li></li>
 
         </div>
 

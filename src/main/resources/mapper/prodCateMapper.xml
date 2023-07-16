@@ -4,8 +4,8 @@
 
 <mapper namespace="org.example.dao.ProdCateMapper">
     <!-- Select -->
-    <select id="select" parameterType="string" resultType="ProdCateDto">
-        SELECT * FROM prod_cate WHERE cate_cd = #{cate_cd}
+    <select id="select" parameterType="int" resultType="ProdCateDto">
+        SELECT * FROM prod_cate WHERE cate_cd = #{cateCd}
     </select>
 
     <!-- Select All -->
