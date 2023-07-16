@@ -10,7 +10,7 @@ import java.util.List;
 public class CustDaoImpl implements CustDao {
     @Autowired
     private SqlSession session;
-    private static String namespace = "com.fastcampus.ch4.dao.custMapper.";
+    private static String namespace = "org.example.dao.custMapper.";
     @Override
     public CustDto selectUser(String id) throws Exception {
         return session.selectOne(namespace+"select", id);
