@@ -8,6 +8,8 @@ import java.util.List;
 public interface OrderService {
     CustDto getCust(String custId) throws Exception;
 
+    DlvAddrDto getOneAddr(String custId, int addrNo) throws Exception;
+
     List<DlvAddrDto> getDlvAddr(String custId) throws Exception;
 
     int addDlvAddr(DlvAddrDto dto) throws Exception;

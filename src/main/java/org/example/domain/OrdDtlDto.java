@@ -3,13 +3,13 @@ import java.util.Date;
 import java.util.Objects;
 
 public class OrdDtlDto {
-    private String ordCd;
-    private String sn;
-    private String prodCd;
-    private String prodOpt;
-    private int prodPrc;
-    private int Qty;
-    private int ordPrc;
+    private String ordCd;   // 주문코드
+    private String sn;      // 일련번호
+    private String prodCd;  // 상품코드
+    private String prodOpt; // 상품옵션
+    private int prodPrc;    // 상품가격
+    private int Qty;        // 상품수량
+    private int ordPrc;     // 주문금액
     private String remark;
     private Date fstReg;
     private String fstRegr;

@@ -4,7 +4,7 @@ public class CustPageHandler {
 
     private custAdminCondition cac;
 
-    private int totalcnt; //총 게시물 갯수
+    private int totalCnt; //총 게시물 갯수
     private int naviSize=10; //페이지 네비게이션의 크기
     private  int totalPage; //전체 페이지의 갯수
     private int beginPage; //네비게이션의 첫번째 페이지
@@ -12,15 +12,15 @@ public class CustPageHandler {
     private  boolean showPrev; //이전페이지로 이동하는 링크를 보여줄 것인지 여부
     private  boolean showNext; //다음 페이지로 이동하는 링크를 보여줄 것인지 여부
 
-    public CustPageHandler(int totalcnt, custAdminCondition cac){
-        this.totalcnt = totalcnt;
+    public CustPageHandler(int totalCnt, custAdminCondition cac){
+        this.totalCnt = totalCnt;
         this.cac = cac;
 
-        doPaging(totalcnt,cac);
+        doPaging(totalCnt,cac);
     }
-    public void doPaging(int totalcnt,custAdminCondition cac){
-        this.totalcnt= totalcnt;
-        totalPage = (int)Math.ceil(totalcnt/ (double)cac.getPageSize());
+    public void doPaging(int totalCnt,custAdminCondition cac){
+        this.totalCnt= totalCnt;
+        totalPage = (int)Math.ceil(totalCnt/ (double)cac.getPageSize());
         beginPage = (cac.getPage()-1) / naviSize * naviSize +1;
         endPage = Math.min(beginPage+naviSize-1,totalPage);
         showPrev = beginPage!=1;
@@ -41,7 +41,7 @@ public class CustPageHandler {
     public String toString() {
         return "CustPageHandler{" +
                 "cac=" + cac +
-                ", totalcnt=" + totalcnt +
+                ", totalCnt=" + totalCnt +
                 ", naviSize=" + naviSize +
                 ", totalPage=" + totalPage +
                 ", beginPage=" + beginPage +
@@ -59,12 +59,12 @@ public class CustPageHandler {
         this.cac = cac;
     }
 
-    public int getTotalcnt() {
-        return totalcnt;
+    public int getTotalCnt() {
+        return totalCnt;
     }
 
-    public void setTotalcnt(int totalcnt) {
-        this.totalcnt = totalcnt;
+    public void setTotalCnt(int totalCnt) {
+        this.totalCnt = totalCnt;
     }
 
     public int getNaviSize() {

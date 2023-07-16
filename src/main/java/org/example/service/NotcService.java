@@ -23,6 +23,6 @@ public interface NotcService {
 
      List<NotcDto> getSearchResultPage(NotcSearchCondition sc) throws Exception;
 
-     int getSearchResultcnt(NotcSearchCondition sc) throws Exception;
+     int getSearchResultCnt(NotcSearchCondition sc) throws Exception;
 
 }

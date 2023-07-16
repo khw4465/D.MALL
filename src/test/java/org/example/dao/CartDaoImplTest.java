@@ -204,7 +204,7 @@ public class CartDaoImplTest {
 //    }
     @Test
     public void getHistTest() throws Exception{
-        // asdf가 장바구니에 있는 물건들을 구매 한 후의 주문내역
+        // asdf가 장바구니에 있는 물건들을 구매 한 후의 예상주문내역
         System.out.println(cartDao.ordHist("asdf"));
     }
 }

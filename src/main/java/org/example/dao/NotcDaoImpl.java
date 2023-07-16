@@ -60,8 +60,8 @@ public class NotcDaoImpl implements NotcDao {
         return session.selectList(namespace+"selectPage",map);
     }
     @Override
-    public int increaseViewcnt(Integer notccnt){
-        return session.update(namespace+"increaseViewcnt",notccnt);
+    public int increaseViewCnt(Integer notcCnt){
+        return session.update(namespace+"increaseViewCnt",notcCnt);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class NotcDaoImpl implements NotcDao {
     }
 
     @Override
-    public int searchResultcnt(NotcSearchCondition sc) throws Exception{
-        return session.selectOne(namespace+"searchResultcnt",sc);
+    public int searchResultCnt(NotcSearchCondition sc) throws Exception{
+        return session.selectOne(namespace+"searchResultCnt",sc);
     }
 }

@@ -18,7 +18,7 @@
             <div>주문상품 = ${ord.prodName}</div>
             <div>상품개수 = ${ord.totProdCnt}</div>
             <div>총상품수량 = ${ord.totQty}</div>
-            <div>총 가격 = ${ord.totPrc}</div>
+            <div>총 가격 = ${ord.finPrc}</div>
             <div>${ord.ordStus} + ${ord.stusChgDttm}</div>
 
                 <%--                        <input type="hidden" id="prod${cart.prodCd}" name="prod" value="${cart}">--%>

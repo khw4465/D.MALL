@@ -2,6 +2,7 @@ package org.example.service;
 
 import org.example.dao.CartDao;
 import org.example.domain.CartDto;
+import org.example.domain.OrderDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,11 +35,13 @@ public class CartServiceImpl implements CartService {
     }
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int modifyQty(int prodQty, String custId, String prodCd) throws Exception{    // 개수 ++
+    public int modifyQty(int prodQty, int totProdPrice, String custId, String prodCd) throws Exception{    // 개수 ++
         Map map = new HashMap<>();
+        map.put("prodQty", prodQty);
+        map.put("totProdPrice", totProdPrice);
         map.put("custId", custId);       // mapper에 map으로 넣어줄 때 key, value가 들어가는 게 아니라 value 값만 들어간다.
         map.put("prodCd", prodCd);
-        map.put("prodQty", prodQty);
+
 //           throw new Exception("test");
         return cartDao.update(map);
     }
@@ -52,4 +55,9 @@ public class CartServiceImpl implements CartService {
 ////           throw new Exception("test");
 //        return cartDao.decrease(map);
 //    }
+
+    @Override
+    public OrderDto getOrdHist(String custId) throws Exception {
+        return cartDao.ordHist(custId);
+    }
 }

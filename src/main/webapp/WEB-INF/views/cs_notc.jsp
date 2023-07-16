@@ -82,7 +82,7 @@
 <%--            <td> <fmt:formatDate value="${NotcDto.fstReg}" pattern="yyyy-MM-dd" type="date"/> </td>--%>
 <%--            </c:otherwise>--%>
 <%--        </c:choose>--%>
-<%--        <td> ${NotcDto.notccnt}</td>--%>
+<%--        <td> ${NotcDto.notcCnt}</td>--%>
       </tr>
     </c:forEach>
 
@@ -103,10 +103,10 @@
 <br>
 <!-- 핸들러 -->
 <div id="handle">
-  <c:if test="${totalcnt==null || totalcnt==0}">
+  <c:if test="${totalCnt==null || totalCnt==0}">
     <div> 게시물이 없습니다.</div>
   </c:if>
-  <c:if test="${totalcnt!=null && totalcnt!=0}">
+  <c:if test="${totalCnt!=null && totalCnt!=0}">
     <c:if test="${pagehandler.showPrev}">
       <a class="page" href="<c:url value="/notc/list${pagehandler.sc.getQueryString(pagehandler.beginPage-1)}"/> ">&lt;</a>
     </c:if>

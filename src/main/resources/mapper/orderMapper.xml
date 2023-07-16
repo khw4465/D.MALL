@@ -28,9 +28,9 @@
     </select>
     <insert id="insert" parameterType="OrderDto">
         INSERT INTO ord
-            (ord_cd, cust_id, prod_name, tot_prod_cnt, tot_prc, tot_qty, dlv_addr_id, dlv_msg)
+            (ord_cd, cust_id, prod_name, tot_prod_Cnt, tot_prc, tot_qty, tot_dc_prc, dlv_addr_id, dlv_prc, dlv_msg, fin_prc)
         VALUES
-            (#{ordCd}, #{custId}, #{prodName}, #{totProdcnt}, #{totPrc}, #{totQty}, #{dlvAddrId}, #{dlvMsg})
+            (#{ordCd}, #{custId}, #{prodName}, #{totProdCnt}, #{totPrc}, #{totQty}, #{totDcPrc}, #{dlvAddrId}, #{dlvPrc}, #{dlvMsg}, #{finPrc})
     </insert>
     <update id="update" parameterType="OrderDto">
         UPDATE ord

@@ -5,7 +5,7 @@
 <mapper namespace="org.example.dao.CartMapper">
     <select id="select" parameterType="map" resultType="CartDto">
         SELECT *
-        FROM cart
+        FROM cart , ord
         WHERE cust_id = #{custId}
         AND prod_cd = #{prodCd}
     </select>
@@ -38,15 +38,21 @@
     <update id="update" parameterType="map">
         UPDATE cart
         SET  prod_qty  = #{prodQty}
+           , tot_prod_price = #{totProdPrice}
         WHERE cust_id = #{custId}
         AND prod_cd = #{prodCd}
     </update>
 
     <select id="getOrdHist" parameterType="string" resultType="OrderDto">
         SELECT CUST_ID,
-               (SELECT CONCAT(PROD_NAME, ' 외 ', (select count(*)from cart where CUST_ID='asdf')-1, '개' ) FROM cart
-                WHERE CUST_ID = #{custId}
-                LIMIT 1) prodName, COUNT(*) totProdcnt, SUM(PROD_QTY*TOT_SETL_PRICE) totPrc, SUM(PROD_QTY) totQty FROM cart
+               (SELECT CONCAT(PROD_NAME, ' 외 ', (select count(*)from cart where CUST_ID=#{custId})-1, '개' ) FROM cart WHERE CUST_ID = #{custId} LIMIT 1) prodName
+               , COUNT(*) totProdCnt
+               , SUM(TOT_PROD_PRICE) totPrc
+               , SUM(PROD_QTY) totQty
+               , SUM(EXPCT_DC_PRC) totDcPrc
+               , CASE WHEN SUM(TOT_PROD_PRICE) >= 30000 THEN 0 ELSE 3000 END dlvPrc
+               , (SUM(TOT_PROD_PRICE) - SUM(EXPCT_DC_PRC) + (CASE WHEN SUM(TOT_PROD_PRICE) >= 30000 THEN 0 ELSE 3000 END)) finPrc
+        FROM cart
         WHERE CUST_ID = #{custId}
     </select>
 </mapper>

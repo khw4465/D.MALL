@@ -2,6 +2,7 @@ package org.example.service;
 
 import org.example.dao.CartDao;
 import org.example.dao.OrderListDao;
+import org.example.domain.DlvAddrDto;
 import org.example.domain.OrderDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,9 +46,9 @@ public class OrderListServiceImpl implements OrderListService {
         return orderListDao.count(custId);
     }
     @Override
-    public int addOrder(String ordCd, String custId, String dlvAddrId, String dlvMsg) throws Exception {
+    public int addOrder(String ordCd, String custId, int dlvAddrId, String dlvMsg) throws Exception {
         OrderDto dto = cartDao.ordHist(custId);
-        OrderDto dto1 = new OrderDto(ordCd, dto.getCustId(), dto.getProdName(), dto.getTotProdCnt(), dto.getTotPrc(), dto.getTotQty(), dlvAddrId, dlvMsg);
+        OrderDto dto1 = new OrderDto(ordCd, dto.getCustId(), dto.getProdName(), dto.getTotProdCnt(), dto.getTotPrc(), dto.getTotQty(), dto.getTotDcPrc(), dlvAddrId, dto.getDlvPrc(), dlvMsg, dto.getFinPrc());
         return orderListDao.insert(dto1);
     }
     @Override

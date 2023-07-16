@@ -50,16 +50,16 @@
             LIMIT #{offset}, #{pageSize}
     </select>
 
-    <update id="increaseViewcnt" parameterType="int">
+    <update id="increaseViewCnt" parameterType="int">
         update cs_notc
-        set notc_cnt = notc_cnt+1
+        set notc_Cnt = notc_Cnt+1
         where bbso_no = #{bbsoNo}
     </update>
 
 
 
     <select id="searchSelectPage" parameterType="NotcSearchCondition" resultType="NotcDto">
-        select bbso_no, ttl, cn, wrtd, wrtr, notc_cnt, cate, fst_reg, fst_regr, last_upd, last_updr, use_yn
+        select bbso_no, ttl, cn, wrtd, wrtr, notc_Cnt, cate, fst_reg, fst_regr, last_upd, last_updr, use_yn
         from cs_notc
         where true
         <choose>
@@ -72,7 +72,7 @@
         LIMIT #{offset}, #{pageSize}
     </select>
 
-    <select id="searchResultcnt" parameterType="NotcSearchCondition" resultType="int">
+    <select id="searchResultCnt" parameterType="NotcSearchCondition" resultType="int">
         select count(*)
         from cs_notc
         where true

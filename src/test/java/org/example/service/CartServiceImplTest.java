@@ -38,4 +38,9 @@ public class CartServiceImplTest {
 //    public void decreaseQty() throws Exception {
 //        System.out.println(cartService.decreaseQty("asdf","P00101", -1));
 //    }
+
+    @Test
+    public void getOrdHist() throws Exception {
+        System.out.println(cartService.getOrdHist("asdf"));
+    }
 }

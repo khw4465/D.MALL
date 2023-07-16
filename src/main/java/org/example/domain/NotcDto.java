@@ -9,7 +9,7 @@ public class NotcDto {
     private String cn;
     private String wrtd;
     private String wrtr;
-    private Integer notccnt;
+    private Integer notcCnt;
     private String cate;
     private Date fstReg;
     private String fstRegr;
@@ -20,26 +20,26 @@ public class NotcDto {
     public NotcDto(){}
 
     // DATE빠진 생성자
-    public NotcDto(String bbsoNo, String ttl, String cn, String wrtd, String wrtr, Integer notccnt, String cate, String fstRegr, String lastUpdr, String useYn) {
+    public NotcDto(String bbsoNo, String ttl, String cn, String wrtd, String wrtr, Integer notcCnt, String cate, String fstRegr, String lastUpdr, String useYn) {
         this.bbsoNo = bbsoNo;
         this.ttl = ttl;
         this.cn = cn;
         this.wrtd = wrtd;
         this.wrtr = wrtr;
-        this.notccnt = notccnt;
+        this.notcCnt = notcCnt;
         this.cate = cate;
         this.fstRegr = fstRegr;
         this.lastUpdr = lastUpdr;
         this.useYn = useYn;
     }
 
-    public NotcDto(String bbsoNo, String ttl, String cn, String wrtd, String wrtr, Integer notccnt, String cate, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr, String useYn) {
+    public NotcDto(String bbsoNo, String ttl, String cn, String wrtd, String wrtr, Integer notcCnt, String cate, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr, String useYn) {
         this.bbsoNo = bbsoNo;
         this.ttl = ttl;
         this.cn = cn;
         this.wrtd = wrtd;
         this.wrtr = wrtr;
-        this.notccnt = notccnt;
+        this.notcCnt = notcCnt;
         this.cate = cate;
         this.fstReg = fstReg;
         this.fstRegr = fstRegr;
@@ -88,12 +88,12 @@ public class NotcDto {
         this.wrtr = wrtr;
     }
 
-    public int getNotccnt() {
-        return notccnt;
+    public int getNotcCnt() {
+        return notcCnt;
     }
 
-    public void setNotccnt(int notccnt) {
-        this.notccnt = notccnt;
+    public void setNotcCnt(int notcCnt) {
+        this.notcCnt = notcCnt;
     }
 
     public String getCate() {
@@ -152,7 +152,7 @@ public class NotcDto {
                 ", cn='" + cn + '\'' +
                 ", wrtd='" + wrtd + '\'' +
                 ", wrtr='" + wrtr + '\'' +
-                ", notccnt=" + notccnt +
+                ", notcCnt=" + notcCnt +
                 ", cate='" + cate + '\'' +
                 ", fstReg=" + fstReg +
                 ", fstRegr='" + fstRegr + '\'' +

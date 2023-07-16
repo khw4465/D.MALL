@@ -13,6 +13,7 @@ public class CartDto {
     private String prodName;    // 상품명
     private int prodQty;    // 상품수량
     private int totSetlPrice;   // 상품가격
+    private int totProdPrice; // 상품수량 * 상품가격
     private int paymtPnt;   // 적립포인트
     private int expctDcPrc = 0; // 예상할인금액
     private int dexp;   // 배송비
@@ -33,6 +34,7 @@ public class CartDto {
         this.prodName = prodName;
         this.prodQty = prodQty;
         this.totSetlPrice = totSetlPrice;
+        this.totProdPrice = prodQty * totSetlPrice;
         this.paymtPnt = totSetlPrice/100;
     }
 
@@ -43,6 +45,7 @@ public class CartDto {
         this.prodName = prodName;
         this.prodQty = prodQty;
         this.totSetlPrice = totSetlPrice;
+        this.totProdPrice = prodQty * totSetlPrice;
         this.paymtPnt = paymtPnt;
         this.expctDcPrc = expctDcPrc;
         this.dexp = dexp;
@@ -100,6 +103,10 @@ public class CartDto {
     public void setTotSetlPrice(int totSetlPrice) {
         this.totSetlPrice = totSetlPrice;
     }
+
+    public int getTotProdPrice() { return totProdPrice; }
+
+    public void setTotProdPrice(int totProdPrice) { this.totProdPrice = totProdPrice; }
 
     public int getPaymtPnt() {
         return paymtPnt;
@@ -175,6 +182,7 @@ public class CartDto {
         if (seq != cartDto.seq) return false;
         if (prodQty != cartDto.prodQty) return false;
         if (totSetlPrice != cartDto.totSetlPrice) return false;
+        if (totProdPrice != cartDto.totProdPrice) return false;
         if (paymtPnt != cartDto.paymtPnt) return false;
         if (expctDcPrc != cartDto.expctDcPrc) return false;
         if (dexp != cartDto.dexp) return false;
@@ -196,6 +204,7 @@ public class CartDto {
         result = 31 * result + (prodName != null ? prodName.hashCode() : 0);
         result = 31 * result + prodQty;
         result = 31 * result + totSetlPrice;
+        result = 31 * result + totProdPrice;
         result = 31 * result + paymtPnt;
         result = 31 * result + expctDcPrc;
         result = 31 * result + dexp;
@@ -216,6 +225,7 @@ public class CartDto {
                 ", prodName='" + prodName + '\'' +
                 ", prodQty=" + prodQty +
                 ", totSetlPrice=" + totSetlPrice +
+                ", totProdPrice=" + totProdPrice +
                 ", paymtPnt=" + paymtPnt +
                 ", expctDcPrc=" + expctDcPrc +
                 ", dexp=" + dexp +

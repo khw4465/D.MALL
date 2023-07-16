@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import org.example.domain.CartDto;
+import org.example.domain.OrderDto;
 import org.example.domain.ProdDto;
 import org.example.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,35 +25,23 @@ public class CartController {
     @Autowired
     CartService cartService;
 
+
     @GetMapping("/list")
     public String getCart(Model m, HttpServletRequest request) {
-        int totalPrice = 0;    // 최종상품금액
-        int totalDcPrice = 0;   // 최종할인금액
-        int delPrice;   // 배송비
         try {
-            HttpSession session = request.getSession();     // 로그인 한 아이디 가져오기
-//            System.out.println("아이디는 = "+session.getAttribute("id"));
+            HttpSession session = request.getSession();           // 로그인 한 아이디 가져오기
             String custId = (String)session.getAttribute("id");
 
-            List<CartDto> list = cartService.getCartList(custId);// 로그인한 아이디에 담긴 장바구니 목록을 리스트로 담는다
-            m.addAttribute("list", list);   // list를 모델에 담는다.
+            List<CartDto> list = cartService.getCartList(custId); // 로그인한 아이디에 담긴 장바구니 목록을 리스트로 담는다
+            m.addAttribute("list", list);            // list를 모델에 담는다.
 
-            for (CartDto cart : list) {     // 리스트 각각의 가격을 더한다.
-                totalPrice += cart.getTotSetlPrice() * cart.getProdQty();
-                totalDcPrice += cart.getExpctDcPrc();
-            }
-            delPrice = totalPrice >= 20000 ? 0 : 3000;  // 최종상품금액이 20000원 이상이면 배송비 무료   //db에서 가져오기
-
-            m.addAttribute("totalPrice", totalPrice);
-            m.addAttribute("totalDcPrice", totalDcPrice);
-            m.addAttribute("delPrice", delPrice);
+            OrderDto orddto = cartService.getOrdHist(custId);    // 장바구니 내용을 하나로 합쳐서 주문에 넣기 위해 OrderDto 형식으로 요약해놓은것
+            m.addAttribute("ord",orddto);           // orddto를 모델에 담는다.
 
             return"cart"; // 로그인을 한 상태이면, 장바구니 화면으로 이동
-//        System.out.println("장바구니 내용 = " + cartService.getCartList((String)session.getAttribute("id")));
         } catch (Exception e) {
             return"error";
         }
-
     }
 
 //    @PostMapping("/list")
@@ -68,7 +57,7 @@ public class CartController {
             HttpSession session = request.getSession();
             String custId = (String)session.getAttribute("id");
 
-            cartService.modifyQty(dto.getProdQty(), custId, dto.getProdCd());
+            cartService.modifyQty(dto.getProdQty(), dto.getTotProdPrice(), custId, dto.getProdCd());
 
             return new ResponseEntity<>(dto, HttpStatus.OK);
         } catch (Exception e) {

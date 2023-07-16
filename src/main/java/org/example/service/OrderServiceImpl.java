@@ -6,7 +6,6 @@ import org.example.domain.CustDto;
 import org.example.domain.DlvAddrDto;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,6 +20,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public CustDto getCust(String custId) throws Exception {
         return custDao.selectUser(custId);
+    }
+    @Override
+    public DlvAddrDto getOneAddr(String custId, int addrNo) throws Exception {
+        return dlvAddrDao.select(custId, addrNo);
     }
     @Override
     public List<DlvAddrDto> getDlvAddr(String custId) throws Exception {
