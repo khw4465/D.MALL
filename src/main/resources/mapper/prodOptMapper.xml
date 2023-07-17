@@ -5,7 +5,9 @@
 <mapper namespace="org.example.dao.ProdOptMapper">
     <!-- select -->
     <select id="select" parameterType="string" resultType="ProdOptDto">
-        SELECT * FROM prod_opt WHERE opt_cd = #{optCd}
+        SELECT * FROM prod_opt
+        WHERE prod_cd = #{prodCd}
+        AND opt_cd = #{optCd}
     </select>
 
     <!-- select all -->
@@ -52,4 +54,8 @@
         DELETE FROM prod_opt
     </delete>
 
+    <select id="selectOpt" parameterType="string" resultType="ProdOptDto">
+        SELECT prod_cd, opt_name, sale_prc FROM prod_opt
+        WHERE prod_cd = #{prodCd}
+    </select>
 </mapper>

@@ -20,7 +20,7 @@ public class ProdDaoImplTest {
 
     @Test
     public void select() throws Exception {
-        System.out.println("prodDao.select(\"10101\") = " + prodDao.select("10101"));
+        System.out.println("prodDao.select(\"10101\") = " + prodDao.select("P010101"));
     }
 
     @Test

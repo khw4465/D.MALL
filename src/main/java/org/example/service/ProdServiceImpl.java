@@ -38,4 +38,9 @@ public class ProdServiceImpl implements ProdService {
         // 모든 정보가 설정된 후 prodDao를 사용하여 DB에 저장
         return prodDao.insert(prodDto);
     }
+
+    @Override
+    public ProdDto getProdDetail(String prodCd) throws Exception {
+        return prodDao.select(prodCd);
+    }
 }

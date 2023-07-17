@@ -11,21 +11,21 @@ import java.util.List;
 public class ProdImgDaoImpl implements ProdImgDao {
     @Autowired
     private SqlSession session;
-
     private static String namespace="org.example.dao.ProdImgMapper.";
-
     @Override
-    public ProdImgDto select(String imgCd) throws Exception {
-        return session.selectOne(namespace+"select",imgCd);
+    public ProdImgDto select(String prodCd) throws Exception {
+        return session.selectOne(namespace+"select",prodCd);
     }
-
     @Override
     public List<ProdImgDto> selectAll() throws Exception {
         return session.selectList(namespace+"selectAll");
     }
-
     @Override
     public int insert(ProdImgDto prodImgDto) throws Exception {
         return session.insert(namespace+"insert",prodImgDto);
+    }
+    @Override
+    public List<ProdImgDto> selectImage(String prodCd) throws Exception {
+        return session.selectList(namespace + "selectImage", prodCd);
     }
 }
