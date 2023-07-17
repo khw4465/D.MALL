@@ -29,9 +29,11 @@
 <div class="logo">
     <span id="search_logo">
             <a href="<c:url value='/'/>"><img id="logo" src="/dgajalogo.png" alt="logo"></a>
-            <form id="main_search" action="/board/list" class="search-form" method="get">
-            <input type="text" name="keyword" class="search-input" value="" placeholder="저녁 8시 이전 주문 시 내일 새벽 도착!"
-                   style="width: 310px">
+                <form id="main_search" action="/prod/search" class="search-form" method="get">
+<%--            <input type="text" name="keyword" class="search-input" value="" placeholder="저녁 8시 이전 주문 시 내일 새벽 도착!"--%>
+<%--                   style="width: 310px">--%>
+                     <input type="text" name="" class="search-input" value="" placeholder="저녁 8시 이전 주문 시 내일 새벽 도착!"
+                            style="width: 310px">
         <input type="submit" class="search-button" value="검색">
     </form>
     <a href="/"><img class="person" src="/coupon.png" alt="coupon"></a>

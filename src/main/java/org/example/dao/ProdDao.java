@@ -1,5 +1,6 @@
 package org.example.dao;
 
+import org.example.domain.NotcSearchCondition;
 import org.example.domain.ProdDcDto;
 import org.example.domain.ProdDto;
 
@@ -14,5 +15,10 @@ public interface ProdDao {
 
     int insert(ProdDto prodDto) throws Exception;
 
+    // 상품 검색에 사용 하는 메서드
+    List<ProdDto> prodSearch (NotcSearchCondition sc) throws Exception;
+
+    // 상품 검색에 사용 하는 메서드
+    int prodCount(NotcSearchCondition sc) throws Exception;
 
 }

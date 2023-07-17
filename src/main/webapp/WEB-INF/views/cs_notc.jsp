@@ -90,7 +90,7 @@
 </div>
 <!-- 게시물 검색창 -->
 <div>
-  <form action="<c:url value="/notc/list"/>" class="search-form" method="get">
+  <form id="cs_search" action="<c:url value="/notc/list"/>" class="search-form" method="get">
     <select class="search-option" name="option">
       <option value="T" ${pagehandler.sc.option=='T' ? "selected" : ""}>제목만</option>
     </select>

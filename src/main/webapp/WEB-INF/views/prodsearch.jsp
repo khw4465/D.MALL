@@ -8,6 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="loginId" value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
 <c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
@@ -35,11 +36,17 @@
         <span id="search_logo">
                 <a href="<c:url value='/'/>"><img id="logo" src="/dgajalogo.png" alt="logo"></a>
             <!-- 이게 검색창을 나타내는 코드 -->
-                <form id="main_search" action="/board/list" class="search-form" method="get">
-                <input type="text" name="keyword" class="search-input" value="" placeholder="저녁 8시 이전 주문 시 내일 새벽 도착!" style="width: 310px">
-            <input type="submit" class="search-button" value="검색">
-        </form>
+            <form id="main_search" action="/prod/search" class="search-form">
+                    <select class="search-option" name="option">
+                        <option value="T" ${pagehandler.sc.option=='T' ? 'selected' : ''}>상품명</option>
+                    </select>
+<%--                <input type="text" name="keyword" class="search-input" value="" placeholder="저녁 8시 이전 주문 시 내일 새벽 도착!"&ndash;%&gt;--%>
+<%--                   style="width: 310px">--%>
+                <input type="text" name="keyword" class="search-input" value="${pageHandler.sc.keyword}" placeholder="저녁 8시 이전 주문 시 내일 새벽 도착!" &ndash;%&gt; style="width: 310px">
+                <input type="submit" class="search-button" value="검색">
+            </form>
             <!-- 이게 검색창을 나타내는 코드 -->
+
         <a href="/"><img class="person" src="/coupon.png" alt="coupon"></a>
         <a href="<c:url value='/custMyPage'/>"><img class="person" src="/person.png" alt="mypaga"></a>
         <a href="<c:url value='/cart/list'/>"><img class="person" src="/cart.png" alt="cart"></a></span>
