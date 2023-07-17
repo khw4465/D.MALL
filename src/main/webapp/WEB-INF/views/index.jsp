@@ -27,7 +27,6 @@
         <input type="hidden" name="toURL" value="${param.toURL}">
     </ul>
 </div>
-
 <div class="logo">
         <span id="search_logo">
             <a href=${logo}><img id="logo" src="/img/logo1.png" alt="logo"></a>

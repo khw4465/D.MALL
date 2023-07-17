@@ -1,10 +1,13 @@
 package org.example.service;
 
 import org.example.dao.*;
+import org.example.domain.NotcSearchCondition;
 import org.example.domain.ProdDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class ProdServiceImpl implements ProdService {
@@ -43,4 +46,17 @@ public class ProdServiceImpl implements ProdService {
     public ProdDto getProdDetail(String prodCd) throws Exception {
         return prodDao.select(prodCd);
     }
+
+    // 상품 검색에 사용 하는 메서드
+    @Override
+    public List<ProdDto> getprodSearchResult(NotcSearchCondition sc) throws Exception{
+        return prodDao.prodSearch(sc);
+    }
+
+    // 상품 검색에 사용 하는 메서드
+    @Override
+    public int getprodCount(NotcSearchCondition sc) throws Exception{
+        return prodDao.prodCount(sc);
+    }
+
 }

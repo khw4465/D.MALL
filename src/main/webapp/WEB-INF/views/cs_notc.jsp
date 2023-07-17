@@ -17,7 +17,7 @@
 </head>
 
 <body>
-<h1>드가자몰</h1>
+<h1><a href="/">드가자몰</a></h1>
 
 <!-- 상품 카테고리 보여주는 홈페이지 간판 밑  bar-->
 <div id="cate">
@@ -90,7 +90,7 @@
 </div>
 <!-- 게시물 검색창 -->
 <div>
-  <form action="<c:url value="/notc/list"/>" class="search-form" method="get">
+  <form id="cs_search" action="<c:url value="/notc/list"/>" class="search-form" method="get">
     <select class="search-option" name="option">
       <option value="T" ${pagehandler.sc.option=='T' ? "selected" : ""}>제목만</option>
     </select>

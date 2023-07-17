@@ -1,8 +1,13 @@
 package org.example.controller;
 
+import org.example.domain.NotcPageHandler;
+import org.example.domain.NotcSearchCondition;
 import org.example.domain.ProdDto;
+<<<<<<< HEAD
 import org.example.domain.ProdImgDto;
 import org.example.service.ProdImgService;
+=======
+>>>>>>> dev1
 import org.example.service.ProdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +16,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 import java.util.List;
 
@@ -53,4 +61,23 @@ public class ProdController {
         }
         return "prodDetail";
     }
+
+    @GetMapping("/search")
+    public String prodSearchGET(Model m, NotcSearchCondition sc) throws Exception{
+        ProdDto prodDto = new ProdDto();
+
+        m.addAttribute("prodDto",prodDto);
+
+        int totalCnt = prodService.getprodCount(sc);
+        m.addAttribute("totalCnt",totalCnt);
+        List<ProdDto> list = prodService.getprodSearchResult(sc);
+        m.addAttribute("list",list);
+
+        NotcPageHandler notcPageHandler = new NotcPageHandler(totalCnt, sc);
+        m.addAttribute("pageHandler",notcPageHandler);
+
+
+        return "prodsearch";
+    }
+
 }

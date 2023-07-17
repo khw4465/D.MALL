@@ -255,3 +255,8 @@ table{
     top: 620px;
     left: 200px;
 }
+
+#cs_search{
+    display: inline;
+    width: 800px;
+}
