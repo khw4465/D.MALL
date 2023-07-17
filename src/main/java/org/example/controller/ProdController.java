@@ -1,15 +1,9 @@
 package org.example.controller;
 
-import org.example.domain.NotcPageHandler;
-import org.example.domain.NotcSearchCondition;
-import org.example.domain.ProdDto;
-<<<<<<< HEAD
-import org.example.domain.ProdImgDto;
+import org.example.domain.*;
 import org.example.service.ProdImgService;
-=======
->>>>>>> dev1
+import org.example.service.ProdOptService;
 import org.example.service.ProdService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,9 +21,11 @@ import java.util.List;
 public class ProdController {
     ProdService prodService;
     ProdImgService prodImgService;
-    public ProdController(ProdService prodService, ProdImgService prodImgService){
+    ProdOptService prodOptService;
+    public ProdController(ProdService prodService, ProdImgService prodImgService, ProdOptService prodOptService){
         this.prodService = prodService;
         this.prodImgService = prodImgService;
+        this.prodOptService = prodOptService;
     }
 
     @GetMapping("/register")
@@ -51,11 +47,14 @@ public class ProdController {
     @GetMapping("/detail/{prodCd}")     //  테스트용 데이터는 P010202
     public String prodDetail(@PathVariable String prodCd, Model m) {
         try {
-            ProdDto prodDto = prodService.getProdDetail(prodCd);
-            m.addAttribute("prodDto", prodDto);         // 상품의 정보들을 담은 dto
+            ProdDto prodDto = prodService.getProdDetail(prodCd);            // 상품의 정보들을 담은 dto
+            m.addAttribute("prodDto", prodDto);
 
-            List<ProdImgDto> list = prodImgService.getAllImg(prodCd);
-            m.addAttribute("imgList", list);            // 한 상품의 사진을 담은 dto 리스트
+            List<ProdImgDto> imgList = prodImgService.getAllImg(prodCd);    // 한 상품에 대한 이미지dto 리스트
+            m.addAttribute("imgList", imgList);
+
+            List<ProdOptDto> optList = prodOptService.getOptList(prodCd);   // 한 상품에 대한 옵션dto 리스트
+            m.addAttribute("optList", optList);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

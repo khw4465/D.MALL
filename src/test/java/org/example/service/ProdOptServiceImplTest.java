@@ -19,6 +19,6 @@ public class ProdOptServiceImplTest {
 
     @Test
     public void getOptList() throws Exception {
-        System.out.println(prodOptService.getOptList("P010101"));
+        System.out.println(prodOptService.getOptList("P010202"));
     }
 }
