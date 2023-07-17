@@ -132,7 +132,7 @@ public class LoginController {
 
         custService.temporaryPwdReturn(custDto);
         String subject = "비밀번호를 보내드립니다";
-        //String content =  "메일 테스트 내용" + "<img src=\"img/cart.png\">";
+
         String content = "<img src=\"https://postfiles.pstatic.net/MjAyMzA3MDVfMjc4/MDAxNjg4NTE2ODUwNzI1.tSsVmQZHdFxSpSINcOPi1p4aV8UB-JxoYZCMjghLehQg.mFUzLkRqn9SLC6I73Wv3mmUybQE4nHWQ6SruEou5tTAg.PNG.hsm1020ss/github.png?type=w966\">";
         content += "비밀번호는 " + password + "입니다. "; //위에 패스워드 흰색떠도 괜찮음 여기서 사용함.
         String from = "hsm1020ss@naver.com";
@@ -213,6 +213,16 @@ public class LoginController {
 //        //어드민페이지로 보낸다.
 //        return "admin";
 //    }
+        @GetMapping("/logoClick")
+        public String handleLogoClick(Model m,HttpServletRequest request) throws Exception {
+        //현재 아이디를 가져와서 서비스로 타입조회 //맞을시 모델에 저장
+            HttpSession session = request.getSession();
+
+            if(adminCHeck((String) session.getAttribute("id")))
+            m.addAttribute("loginAdminTrue", true);
+
+            return "forward:/";
+        }
 
     private boolean loginCheck(String id, String pwd) {
         CustDto user = null;
