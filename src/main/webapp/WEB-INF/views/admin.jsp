@@ -13,7 +13,7 @@
 <body>
 <div class="admin-menu">
     <ul class="menu-bar1">
-        <li class="logo"> <a href="<c:url value='/'/>">로고</a> </li>
+        <a href="<c:url value='/login/logoClick'/>"><img id="logo" src="/img/logo1.png" alt="logo" style="width:90px; height:90px;"></a>
     </ul>
     <ul class="menu-bar2">
         <li><a href="<c:url value='/prod/Manage'/>">상품관리</a></li>
@@ -52,7 +52,7 @@
     <div class="right-list">
         <div class="panel1">
             <jsp:include page="test1.jsp" flush="false"/>
-<%--            수정필요--%>
+            <%--            수정필요--%>
         </div>
     </div>
 </div>
