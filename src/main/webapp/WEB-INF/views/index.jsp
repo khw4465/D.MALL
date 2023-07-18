@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false"%>
-<c:set var="loginId" value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
+<c:set var="loginId" value="${pageContext.request.getSession(false)==null || pageContext.request.session.getAttribute('id')=='' ? '' : pageContext.request.session.getAttribute('id')}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
 <c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
 <c:set var="addAndModify" value="${loginId=='' ? '/register/add' : 'custModify'}"/>
@@ -31,9 +31,9 @@
         <span id="search_logo">
             <a href=${logo}><img id="logo" src="/img/logo1.png" alt="logo"></a>
 <%--            로그인되어있으면 컨트롤러로 보내고 아니면 그냥 홈으로 가야함--%>
-            <form id="main_search" action="/board/list" class="search-form" method="get">
-                <input type="text" name="keyword" class="search-input" value="">
-                <input type="submit" class="search-button" value="검색">
+            <form id="main_search" action="/prod/search" class="search-form" method="get">
+            <input type="text" name="keyword1" class="search-input" value="">
+            <input type="submit" class="search-button" value="검색">tr
             </form>
             <a href="/"><img class="person" src="/img/coupon.png" alt="coupon"></a>
             <a href="<c:url value='/custMyPage'/>"><img class="person" src="/img/mypage.png" alt="mypage"></a>
