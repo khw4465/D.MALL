@@ -82,7 +82,7 @@
 <%--            <td> <fmt:formatDate value="${NotcDto.fstReg}" pattern="yyyy-MM-dd" type="date"/> </td>--%>
 <%--            </c:otherwise>--%>
 <%--        </c:choose>--%>
-<%--        <td> ${NotcDto.notcCnt}</td>--%>
+        <td> ${NotcDto.notcCnt}</td>
       </tr>
     </c:forEach>
 

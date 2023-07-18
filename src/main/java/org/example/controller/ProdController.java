@@ -1,8 +1,6 @@
 package org.example.controller;
 
-import org.example.domain.NotcPageHandler;
-import org.example.domain.NotcSearchCondition;
-import org.example.domain.ProdDto;
+import org.example.domain.*;
 import org.example.service.ProdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,21 +37,26 @@ public class ProdController {
 
 
     @GetMapping("/search")
-    public String prodSearchGET(Model m, NotcSearchCondition sc) throws Exception{
-        ProdDto prodDto = new ProdDto();
+    public String search(Model m, ProdSearchCondition psc) {
 
-        m.addAttribute("prodDto",prodDto);
+        try{
+//            int totalCnt = prodService.getprodCount(psc);
+//            m.addAttribute("totalCnt",totalCnt);
+        ProdSearchHandler PageHandler = new ProdSearchHandler(psc);
+            List<ProdDto> list = prodService.getprodSearchResult(psc);
+            m.addAttribute("list",list);
+        m.addAttribute("PageHandler",PageHandler);
 
-        int totalCnt = prodService.getprodCount(sc);
-        m.addAttribute("totalCnt",totalCnt);
-        List<ProdDto> list = prodService.getprodSearchResult(sc);
-        m.addAttribute("list",list);
-
-        NotcPageHandler notcPageHandler = new NotcPageHandler(totalCnt, sc);
-        m.addAttribute("pageHandler",notcPageHandler);
+            System.out.println("list = " + list);
+        } catch (Exception e){
+            e.printStackTrace();
+            m.addAttribute("msg","SEARRCH_ERR");
+            m.addAttribute("totalCnt",0);
+        }
 
 
         return "prodsearch";
+//        return "index";
     }
 
 }

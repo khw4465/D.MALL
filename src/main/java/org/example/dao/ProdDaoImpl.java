@@ -3,6 +3,7 @@ package org.example.dao;
 import org.apache.ibatis.session.SqlSession;
 import org.example.domain.NotcSearchCondition;
 import org.example.domain.ProdDto;
+import org.example.domain.ProdSearchCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -33,12 +34,12 @@ public class ProdDaoImpl implements ProdDao{
 
     // 상품 검색에 사용 하는 메서드
     @Override
-    public List<ProdDto> prodSearch (NotcSearchCondition sc) throws Exception {
-        return session.selectList(namespace+"prodSearch",sc);
+    public List<ProdDto> prodSearch (ProdSearchCondition psc) throws Exception {
+        return session.selectList(namespace+"prodSearch",psc);
     }
     // 상품 검색에 사용 하는 메서드
-    @Override
-    public int prodCount(NotcSearchCondition sc) throws Exception {
-        return session.selectOne(namespace+"prodCount",sc);
-    }
+//    @Override
+//    public int prodCount(ProdSearchCondition psc) throws Exception {
+//        return session.selectOne(namespace+"prodCount", psc);
+//    }
 }

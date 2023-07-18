@@ -31,8 +31,11 @@
         <span id="search_logo">
             <a href=${logo}><img id="logo" src="/img/logo1.png" alt="logo"></a>
 <%--            로그인되어있으면 컨트롤러로 보내고 아니면 그냥 홈으로 가야함--%>
-            <form id="main_search" action="/board/list" class="search-form" method="get">
-                <input type="text" name="keyword" class="search-input" value="">
+           <form id="main_search" action="/prod/search" class="search-form" method="get">
+                <select class="search-option" name="option" hidden="">
+                    <option value="T" ${PageHandler.psc.option=='T' ? "selected" : ""}>제목만</option>
+                </select>
+                <input type="text" name="keyword" class="search-input" value="${PageHandler.psc.keyword}">
                 <input type="submit" class="search-button" value="검색">
             </form>
             <a href="/"><img class="person" src="/img/coupon.png" alt="coupon"></a>

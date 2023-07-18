@@ -14,9 +14,11 @@
 <c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
 <c:set var="addAndModify" value="${loginId=='' ? '/register/add' : 'custModify'}"/>
 <c:set var="register" value="${loginId=='' ? '회원가입' : '정보수정'}"/>
+<c:set var="logo" value="${loginId=='' ? '/' : '/login/logoClick'}"/>
 <html>
 <head>
-    <title>searchProdPage</title>
+    <meta charset="UTF-8">
+    <title>D.gaja</title>
     <link rel="stylesheet" href="<c:url value='/css/index.css'/>">
 </head>
 <body>
@@ -26,34 +28,30 @@
         <li><a href="<c:url value='${addAndModify}'/>">${register}</a></li>
         <li><a href="<c:url value='/order/list'/>">주문조회</a></li>
         <li><a href="<c:url value='/cs'/>">고객센터</a></li>
-        <li id="adminHome"> </li>
-        <!--        여기 관리자로 로그인시 관리자홈이라는 a 태그 생김-->
+        <c:if test="${loginAdminTrue}">
+            <li><a href="/admin">관리자홈</a></li>
+        </c:if>
         <input type="hidden" name="toURL" value="${param.toURL}">
     </ul>
 </div>
-
 <div class="logo">
         <span id="search_logo">
-                <a href="<c:url value='/'/>"><img id="logo" src="/dgajalogo.png" alt="logo"></a>
-            <!-- 이게 검색창을 나타내는 코드 -->
-            <form id="main_search" action="/prod/search" class="search-form">
-                    <select class="search-option" name="option">
-                        <option value="T" ${pagehandler.sc.option=='T' ? 'selected' : ''}>상품명</option>
-                    </select>
-<%--                <input type="text" name="keyword" class="search-input" value="" placeholder="저녁 8시 이전 주문 시 내일 새벽 도착!"&ndash;%&gt;--%>
-<%--                   style="width: 310px">--%>
-                <input type="text" name="keyword" class="search-input" value="${pageHandler.sc.keyword}" placeholder="저녁 8시 이전 주문 시 내일 새벽 도착!" &ndash;%&gt; style="width: 310px">
+            <a href=${logo}><img id="logo" src="/img/logo1.png" alt="logo"></a>
+<%--            로그인되어있으면 컨트롤러로 보내고 아니면 그냥 홈으로 가야함--%>
+<%--            검색창--%>
+             <form id="main_search" action="/prod/search" class="search-form" method="get">
+                <select class="search-option" name="option" hidden="">
+                    <option value="T" ${PageHandler.psc.option=='T'} hidden="hidden">제목만</option>
+                </select>
+                <input type="text" name="keyword" class="search-input" value="${PageHandler.psc.keyword}">
                 <input type="submit" class="search-button" value="검색">
             </form>
-            <!-- 이게 검색창을 나타내는 코드 -->
+            <a href="/"><img class="person" src="/img/coupon.png" alt="coupon"></a>
+            <a href="<c:url value='/custMyPage'/>"><img class="person" src="/img/mypage.png" alt="mypage"></a>
+            <a href="<c:url value='/cart/list'/>"><img class="person" src="/img/cart.png" alt="cart"></a>
+        </span>
 
-        <a href="/"><img class="person" src="/coupon.png" alt="coupon"></a>
-        <a href="<c:url value='/custMyPage'/>"><img class="person" src="/person.png" alt="mypaga"></a>
-        <a href="<c:url value='/cart/list'/>"><img class="person" src="/cart.png" alt="cart"></a></span>
-
-    <!--    여기에 문장 삽입하는 코드-->
 </div>
-
 <!-- 헤더 -->
 <div>
     <ul class="menu">
@@ -116,25 +114,28 @@
 
 <!-- 한줄에 네개 보여지는 코드 -->
 <ul id="prodimg">
+    <c:forEach var="Prod" items="${list}">
     <li id="prodinfo">
-        <div><img src="imgex/dice1.png" alt="">상품이미지가 들어갈 곳</div>
-        <div>상품 정보 및 가격이 들어갈 곳.</div>
+        <div><img src="imgex/dice1.png" alt="">.</div>
+        <div><a href="<c:url value='/prod/detail/${Prod.prodCd}'/>">${Prod.prodName}</div>
+        <div>${Prod.prodPrice}</div>
     </li>
+        </c:forEach>
 
-    <li id="prodinfo">
-        <div><img src="imgex/dice2.png" alt="">상품이미지가 들어갈 곳</div>
-        <div>상품 정보 및 가격이 들어갈 곳.</div>
-    </li>
+<%--    <li id="prodinfo">--%>
+<%--        <div><img src="imgex/dice2.png" alt="">상품이미지가 들어갈 곳</div>--%>
+<%--        <div>상품 정보 및 가격이 들어갈 곳.</div>--%>
+<%--    </li>--%>
 
-    <li id="prodinfo">
-        <div><img src="imgex/dice3.png" alt="">상품이미지가 들어갈 곳</div>
-        <div>상품 정보 및 가격이 들어갈 곳.</div>
-    </li>
+<%--    <li id="prodinfo">--%>
+<%--        <div><img src="imgex/dice3.png" alt="">상품이미지가 들어갈 곳</div>--%>
+<%--        <div>상품 정보 및 가격이 들어갈 곳.</div>--%>
+<%--    </li>--%>
 
-    <li id="prodinfo">
-        <div><img src="imgex/dice4.png" alt="">상품이미지가 들어갈 곳</div>
-        <div>상품 정보 및 가격이 들어갈 곳.</div>
-    </li>
+<%--    <li id="prodinfo">--%>
+<%--        <div><img src="imgex/dice4.png" alt="">상품이미지가 들어갈 곳</div>--%>
+<%--        <div>상품 정보 및 가격이 들어갈 곳.</div>--%>
+<%--    </li>--%>
 </ul>
 <!-- 한줄에 네개 보여지는 코드 -->
 

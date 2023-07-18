@@ -60,7 +60,7 @@ public class NotcController {
     }
 
     @GetMapping("/list")
-    public String list(NotcSearchCondition sc, Model m, String bbsoNo){
+    public String list(NotcSearchCondition sc, Model m){
 //        if(!loginCheck(request))
 //            return "redirect:/login/login?toURL="+request.getRequestURL();
         // 로그인을 안했으면 로그인 화면으로 이동

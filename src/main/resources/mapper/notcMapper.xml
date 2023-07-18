@@ -59,7 +59,7 @@
 
 
     <select id="searchSelectPage" parameterType="NotcSearchCondition" resultType="NotcDto">
-        select bbso_no, ttl, cn, wrtd, wrtr, notc_Cnt, cate, fst_reg, fst_regr, last_upd, last_updr, use_yn
+        select bbso_no, ttl, cn, wrtd, wrtr, notc_cnt, cate, fst_reg, fst_regr, last_upd, last_updr, use_yn
         from cs_notc
         where true
         <choose>

@@ -1,14 +1,18 @@
 package org.example.dao;
 
 import org.example.domain.ProdDto;
+import org.example.domain.ProdSearchCondition;
+import org.example.service.ProdServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -35,4 +39,5 @@ public class ProdDaoImplTest {
         ProdDto prodDto = new ProdDto("P020107", 202, "02", "차", "어쩌구", "저쩌구", 3000, "100", (float)3.5, "10", "Y", 100, "Y", "Y", "Y", "Y", 1, date, date, date, date, "비고", date, "User001", date, "User001");
         prodDao.insert(prodDto);
     }
+
 }

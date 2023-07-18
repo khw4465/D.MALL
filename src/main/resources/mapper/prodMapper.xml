@@ -65,28 +65,27 @@
     </delete>
 
     <!-- 상품 검색에 사용하는 SQL문   -->
-    <select id="prodSearch" parameterType="NotcSearchCondition" resultType="ProdDto">
+    <select id="prodSearch" parameterType="ProdSearchCondition" resultType="ProdDto">
         SELECT *
         FROM prod
         WHERE true
         <choose>
             <when test='option=="T"'>
-                AND ttl LIKE concat('%', #{keyword}, '%')
+                AND prod_name LIKE concat('%', #{keyword}, '%')
             </when>
         </choose>
 
         order by prod_cd desc, sale_yn desc
-        LIMIT #{offset}, #{pageSize}
     </select>
 
     <!-- 상품 검색에 사용하는 SQL문   -->
-    <select id="prodCount" parameterType="NotcSearchCondition" resultType="ProdDto">
+    <select id="prodCount" parameterType="ProdSearchCondition" resultType="ProdDto">
         SELECT count(*)
         FROM prod
         WHERE true
         <choose>
             <when test='option=="T"'>
-                AND ttl LIKE concat('%', #{keyword}, '%')
+                AND prod_name LIKE concat('%', #{keyword}, '%')
             </when>
         </choose>
     </select>
