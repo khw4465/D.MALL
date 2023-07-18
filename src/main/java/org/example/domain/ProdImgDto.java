@@ -4,8 +4,9 @@ import java.util.Objects;
 
 public class ProdImgDto {
 
-    private String imgCd;
+    private int seq;
     private String prodCd;
+    private String imgCd;
     private String imgType;
     private String imgDesc;
     private String imgPath;
@@ -22,9 +23,17 @@ public class ProdImgDto {
     private String lastUpdr;
 
     public ProdImgDto() {}
-    public ProdImgDto(String imgCd, String prodCd, String imgType, String imgDesc, String imgPath, Integer imgHeight, Integer imgWidth, String imgExtns, Integer fileLimit, String useYn, String delYn, String remark, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
+
+    public ProdImgDto(String imgCd, String imgPath, String imgExtns) {
         this.imgCd = imgCd;
+        this.imgPath = imgPath;
+        this.imgExtns = imgExtns;
+    }
+
+    public ProdImgDto(int seq, String prodCd, String imgCd, String imgType, String imgDesc, String imgPath, Integer imgHeight, Integer imgWidth, String imgExtns, Integer fileLimit, String useYn, String delYn, String remark, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
+        this.seq = seq;
         this.prodCd = prodCd;
+        this.imgCd = imgCd;
         this.imgType = imgType;
         this.imgDesc = imgDesc;
         this.imgPath = imgPath;
@@ -40,6 +49,10 @@ public class ProdImgDto {
         this.lastUpd = lastUpd;
         this.lastUpdr = lastUpdr;
     }
+
+    public int getSeq() { return seq; }
+
+    public void setSeq(int seq) { this.seq = seq; }
 
     public String getImgCd() {
         return imgCd;
@@ -176,8 +189,9 @@ public class ProdImgDto {
 
         ProdImgDto that = (ProdImgDto) o;
 
-        if (!Objects.equals(imgCd, that.imgCd)) return false;
+        if (seq != that.seq) return false;
         if (!Objects.equals(prodCd, that.prodCd)) return false;
+        if (!Objects.equals(imgCd, that.imgCd)) return false;
         if (!Objects.equals(imgType, that.imgType)) return false;
         if (!Objects.equals(imgDesc, that.imgDesc)) return false;
         if (!Objects.equals(imgPath, that.imgPath)) return false;
@@ -188,14 +202,17 @@ public class ProdImgDto {
         if (!Objects.equals(useYn, that.useYn)) return false;
         if (!Objects.equals(delYn, that.delYn)) return false;
         if (!Objects.equals(remark, that.remark)) return false;
+        if (!Objects.equals(fstReg, that.fstReg)) return false;
         if (!Objects.equals(fstRegr, that.fstRegr)) return false;
+        if (!Objects.equals(lastUpd, that.lastUpd)) return false;
         return Objects.equals(lastUpdr, that.lastUpdr);
     }
 
     @Override
     public int hashCode() {
-        int result = imgCd != null ? imgCd.hashCode() : 0;
+        int result = seq;
         result = 31 * result + (prodCd != null ? prodCd.hashCode() : 0);
+        result = 31 * result + (imgCd != null ? imgCd.hashCode() : 0);
         result = 31 * result + (imgType != null ? imgType.hashCode() : 0);
         result = 31 * result + (imgDesc != null ? imgDesc.hashCode() : 0);
         result = 31 * result + (imgPath != null ? imgPath.hashCode() : 0);
@@ -206,7 +223,9 @@ public class ProdImgDto {
         result = 31 * result + (useYn != null ? useYn.hashCode() : 0);
         result = 31 * result + (delYn != null ? delYn.hashCode() : 0);
         result = 31 * result + (remark != null ? remark.hashCode() : 0);
+        result = 31 * result + (fstReg != null ? fstReg.hashCode() : 0);
         result = 31 * result + (fstRegr != null ? fstRegr.hashCode() : 0);
+        result = 31 * result + (lastUpd != null ? lastUpd.hashCode() : 0);
         result = 31 * result + (lastUpdr != null ? lastUpdr.hashCode() : 0);
         return result;
     }
@@ -214,8 +233,9 @@ public class ProdImgDto {
     @Override
     public String toString() {
         return "ProdImgDto{" +
-                "imgCd='" + imgCd + '\'' +
+                "seq=" + seq +
                 ", prodCd='" + prodCd + '\'' +
+                ", imgCd='" + imgCd + '\'' +
                 ", imgType='" + imgType + '\'' +
                 ", imgDesc='" + imgDesc + '\'' +
                 ", imgPath='" + imgPath + '\'' +

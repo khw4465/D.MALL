@@ -11,6 +11,11 @@ public interface ProdService {
     int productRegister(ProdDto prodDto) throws Exception;
 
 
+
     List<ProdDto> getprodSearchResult(ProdSearchCondition psc) throws Exception;
 //    int getprodCount(ProdSearchCondition psc) throws Exception;
+
+    ProdDto getProdDetail(String prodCd) throws Exception;
+
+
 }

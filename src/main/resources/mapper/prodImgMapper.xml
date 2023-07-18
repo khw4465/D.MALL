@@ -6,7 +6,7 @@
 
     <!-- Select -->
     <select id="select" parameterType="string" resultType="ProdImgDto">
-        SELECT * FROM PROD_IMG WHERE img_cd = #{imgCd}
+        SELECT * FROM PROD_IMG WHERE prod_cd = #{prodCd}
     </select>
 
     <!-- Select All -->
@@ -58,4 +58,9 @@
     <delete id="deleteAll">
         DELETE FROM PROD_IMG
     </delete>
+
+    <select id="selectImage" parameterType="string" resultType="ProdImgDto">
+        SELECT * FROM PROD_IMG
+        WHERE prod_cd = #{prodCd}
+    </select>
 </mapper>

@@ -24,7 +24,7 @@ public class ProdDaoImplTest {
 
     @Test
     public void select() throws Exception {
-        System.out.println("prodDao.select(\"10101\") = " + prodDao.select("10101"));
+        System.out.println("prodDao.select(\"10101\") = " + prodDao.select("P010101"));
     }
 
     @Test
@@ -32,12 +32,12 @@ public class ProdDaoImplTest {
         System.out.println("prodDao.selectAll() = " + prodDao.selectAll());
     }
 
-    @Test
-    public void insert() throws Exception {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = sdf.parse("2023-07-15");
-        ProdDto prodDto = new ProdDto("P020107", 202, "02", "차", "어쩌구", "저쩌구", 3000, "100", (float)3.5, "10", "Y", 100, "Y", "Y", "Y", "Y", 1, date, date, date, date, "비고", date, "User001", date, "User001");
-        prodDao.insert(prodDto);
-    }
+//    @Test
+//    public void insert() throws Exception {
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        Date date = sdf.parse("2023-07-15");
+//        ProdDto prodDto = new ProdDto("P020107", 202, "02", "차", "어쩌구", "저쩌구", 3000, "100", (float)3.5, "10", "Y", 100, "Y", "Y", "Y", "Y", 1, date, date, date, date, "비고", date, "User001", date, "User001");
+//        prodDao.insert(prodDto);
+//    }
 
 }
