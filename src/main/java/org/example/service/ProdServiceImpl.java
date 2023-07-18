@@ -32,8 +32,7 @@ public class ProdServiceImpl implements ProdService {
     public int productRegister(ProdDto prodDto) throws Exception {
         // 각 DAO를 사용하여 ProdDto에 필요한 정보를 가져온 후 prodDto에 설정
 
-
-        prodDto.setCateCd(prodCateDao.select(1).getCateCd());
+        // prodDto.setCateCd(prodCateDao.select(1).getCateCd());
         // prodcate 테이블의 cate_cd 가져와서
         // prod 의 cate_cd에 저장
 

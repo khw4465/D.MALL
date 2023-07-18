@@ -1,9 +1,10 @@
 package org.example.domain;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 import java.util.Objects;
 
 public class ProdDto {
-
     private String prodCd;
     private int cateCd;
     private String sn;
@@ -21,13 +22,19 @@ public class ProdDto {
     private String optYn;
     private String delYn;
     private Integer minCnt;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date mftDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date useDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date saleStart;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date saleLast;
     private String remark;
+    // @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fstReg;
     private String fstRegr;
+    // @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date lastUpd;
     private String lastUpdr;
 
