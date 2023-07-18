@@ -30,12 +30,17 @@ public class ProdImgDaoImplTest {
         System.out.println("prodImgDao.selectAll() = " + prodImgDao.selectAll());
     }
 
-    @Test
-    public void insert() throws Exception {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = sdf.parse("2023-07-15");
+//    @Test
+//    public void insert() throws Exception {
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        Date date = sdf.parse("2023-07-15");
+//
+//        ProdImgDto prodImgDto = new ProdImgDto("111","101","추","닭가슴살추가이미지","webapp/resources/img",800,600,"jpg",480000,"Y","Y","비고",date,"User002",date,"User002");
+//        prodImgDao.insert(prodImgDto);
+//    }
 
-        ProdImgDto prodImgDto = new ProdImgDto("111","101","추","닭가슴살추가이미지","webapp/resources/img",800,600,"jpg",480000,"Y","Y","비고",date,"User002",date,"User002");
-        prodImgDao.insert(prodImgDto);
+    @Test
+    public void selectImage() throws Exception {
+        System.out.println(prodImgDao.selectImage("P010202"));
     }
 }

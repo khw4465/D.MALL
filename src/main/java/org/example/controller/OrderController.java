@@ -91,7 +91,7 @@ public class OrderController {
                            "&total_amount=" + dto.getFinPrc() +
                            "&tax_free_amount=0" +
                            "&approval_url=http://localhost:8080/order/list" +       // 주문승인 시 이동 주소
-                           "&cancel_url=http://localhost:8080/order/order?" +        // 주문취소 시 이동 주소
+                           "&cancel_url=http://localhost:8080/order/order?" +       // 주문취소 시 이동 주소
                            "&fail_url=http://localhost:8080/order/order";           // 주문실패 시 이동 주소
             OutputStream output = conn.getOutputStream();  // 서버에 주는 애
             DataOutputStream data = new DataOutputStream(output); // 무엇을 줄지 결정

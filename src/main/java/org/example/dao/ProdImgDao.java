@@ -13,4 +13,5 @@ public interface ProdImgDao {
 
     int insert(ProdImgDto prodImgDto) throws Exception;
 
+    List<ProdImgDto> selectImage(String prodCd) throws Exception;
 }

@@ -23,6 +23,6 @@
         <typeAlias alias="ProdOptDto" type="org.example.domain.ProdOptDto"/>
         <typeAlias alias="ProdDcDto" type="org.example.domain.ProdDcDto"/>
         <typeAlias alias="ProdImgDto" type="org.example.domain.ProdImgDto"/>
-
+        <typeAlias alias="ProdSearchCondition" type="org.example.domain.ProdSearchCondition"/>
     </typeAliases>
 </configuration>
