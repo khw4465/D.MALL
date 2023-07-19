@@ -20,6 +20,45 @@
     <meta charset="UTF-8">
     <title>D.gaja</title>
     <link rel="stylesheet" href="<c:url value='/css/index.css'/>">
+    <style>
+        #refsearch{
+            padding: 0;
+            margin: auto;
+        }
+
+        #refline{
+            display: inline-block;
+            margin: auto;
+        }
+
+        #prodimg{
+            padding: 0;
+        }
+
+        #prodinfo {
+            display: inline-block;
+            width: 260px;
+            height: 150px;
+        }
+
+        #prodwrap{
+            width: 1120px;
+            height: 4570px;
+            margin: auto;
+        }
+
+        #prodname{
+            width: 260px;
+            height: 44px;
+        }
+
+        #resultline{
+            margin : auto;
+        }
+
+
+
+    </style>
 </head>
 <body>
 <div>
@@ -87,9 +126,6 @@
 <div>
     <ul id="resultline">
         <h2>검색결과</h2>
-        <li id="relineli">전체</li>
-        <li id="relineli">기획전상품</li>
-        <li id="relineli">일반상품</li>
     </ul>
 </div>
 <!-- 같은 라인-->
@@ -98,14 +134,14 @@
 
 <div>
     <ul id="refsearch">
-        <li id="refline"><b>연관검색어</b></li>
+        <li id="refline"><b>추천검색어</b></li>
         <!-- 밑에는 예시로 키워드처럼 누르면 해당하는 상품들이 보여지게끔 하는 역할 -->
-        <li id="refline"><a>예시 잇메이트 닭가슴살 현미 볶음밥</a></li>
-        <li id="refline"><a>예시 랭커 스테이크</a></li>
-        <li id="refline"><a>예시 잇메이트 닭가슴살 핫도그</a></li>
-        <li id="refline"><a>예시 다이어트 떡볶이</a></li>
-        <li id="refline"><a>예시 러브잇</a></li>
-        <li id="refline"><a>예시 닭가슴살</a></li>
+        <li id="refline" ><a href="<c:url value="/prod/search?option=T&keyword=닭가슴살"/>" >닭가슴살</a></li>
+        <li id="refline" ><a href="<c:url value="/prod/search?option=T&keyword=샐러드"/>" >샐러드</a></li>
+        <li id="refline" ><a href="<c:url value="/prod/search?option=T&keyword=도시락"/>" >도시락</a></li>
+        <li id="refline" ><a href="<c:url value="/prod/search?option=T&keyword=제로"/>" >제로</a></li>
+        <li id="refline" ><a href="<c:url value="/prod/search?option=T&keyword=쉐이크"/>" >쉐이크</a></li>
+        <li id="refline" ><a href="<c:url value="/prod/search?option=T&keyword=단백질"/>" >단백질</a></li>
         <!-- 예시로 키워드처럼 누르면 해당하는 상품들이 보여지게끔 하는 역할 -->
     </ul>
 </div>
@@ -113,12 +149,13 @@
 <br>
 
 <!-- 한줄에 네개 보여지는 코드 -->
+<div id="prodwrap">
 <ul id="prodimg">
     <c:forEach var="Prod" items="${list}">
     <li id="prodinfo">
-        <div><img src="imgex/dice1.png" alt="">.</div>
-        <div><a href="<c:url value='/prod/detail/${Prod.prodCd}'/>">${Prod.prodName}</div>
-        <div>${Prod.prodPrice}</div>
+        <div><img class="thmImg" src="/img/<c:out value='${Prod.prodCd}' />.png" /></div>
+        <div id="prodname"><a href="<c:url value='/prod/detail/${Prod.prodCd}'/>">${Prod.prodName}</div>
+        <div id="prodprice">${Prod.prodPrice}</div>
     </li>
         </c:forEach>
 
@@ -138,7 +175,7 @@
 <%--    </li>--%>
 </ul>
 <!-- 한줄에 네개 보여지는 코드 -->
-
+</div>
 <!-- 푸터 -->
 <div class="footer">
     <h2>Footer</h2>

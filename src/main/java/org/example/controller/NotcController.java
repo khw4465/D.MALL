@@ -26,9 +26,10 @@ public class NotcController {
     NotcService notcService;
 
     @PostMapping("/remove")
-    public String remove(String bbsoNo, Model m, Integer page, Integer pageSize, RedirectAttributes rattr){
-        m.addAttribute("page",page);
-        m.addAttribute("pageSize",pageSize);
+    public String remove(String bbsoNo, Model m, NotcSearchCondition sc, RedirectAttributes rattr){
+        //        if(!loginCheck(request))
+        //            return "redirect:/login/login?toURL="+request.getRequestURL();
+        // 로그인을 안했으면 로그인 화면으로 이동
         try{
             int rowCnt = notcService.remove(bbsoNo);
 
@@ -40,6 +41,9 @@ public class NotcController {
             e.printStackTrace();
             rattr.addFlashAttribute("msg","DEL_ERR");
         }
+
+        m.addAttribute("page",sc.getPage());
+        m.addAttribute("pageSize",sc.getPageSize());
 
         return "redirect:/notc/list";
     }

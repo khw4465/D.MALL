@@ -170,3 +170,40 @@ li {
     to {opacity: 1}
 }
 
+.thmImg {
+    width: 256px;
+    height: 256px;
+    object-fit: cover;
+}
+
+#refsearch{
+    padding: 0;
+    margin: auto;
+}
+
+#refline{
+    display: inline-block;
+    margin: auto;
+}
+
+#prodimg{
+    padding: 0;
+}
+
+#prodinfo {
+    display: inline-block;
+}
+
+#prodwrap{
+    width: 1120px;
+    height: 4570px;
+}
+
+#prodname{
+    width: 260px;
+    height: 44px;
+}
+
+#resultline{
+    margin : auto;
+}

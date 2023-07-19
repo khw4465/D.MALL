@@ -75,7 +75,7 @@
             </when>
         </choose>
 
-        order by prod_cd desc, sale_yn desc
+        order by prod_cd asc, sale_yn desc
     </select>
 
     <!-- 상품 검색에 사용하는 SQL문   -->

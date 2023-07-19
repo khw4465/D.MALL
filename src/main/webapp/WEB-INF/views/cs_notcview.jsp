@@ -56,7 +56,7 @@
         <textarea name="content" id="" cols="30" rows="10" readonly="readonly" >${NotcDto.cn}</textarea>
         <%--        <button type="button" id="writeBtn" class="btn">등록</button>--%>
         <%--        <button type="button" id="modifyBtn" class="btn">수정</button>--%>
-        <%--        <button type="button" id="removeBtn" class="btn">삭제</button>--%>
+                <button type="button" id="removeBtn" class="btn">삭제</button>
         <button type="button" id="listBtn" class="btn">목록</button>
     </form>
 
@@ -67,9 +67,6 @@
         $('#listBtn').on("click",function (){
             location.href="<c:url value='/notc/list${notcSearchCondition.queryString}'/>";
         });
-        <%--$('#listBtn').on("click",function (){--%>
-        <%--    location.href="<c:url value='/notc/list${notcSearchCondition.getQueryString(page)}'/>";--%>
-        <%--});--%>
 
 
         $('#removeBtn').on("click",function (){
