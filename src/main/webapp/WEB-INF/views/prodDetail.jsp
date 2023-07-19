@@ -22,8 +22,8 @@
             width: 480px;
             height: 480px;
             vertical-align: top;
-            margin: 50px 60px 50px 50px;
-
+            margin: 60px;
+            border-radius: 20px;
         }
         .prodDesc{
             display: inline-block;
@@ -77,7 +77,7 @@
         .imgAll.opened button {
             display: none;
         }
-        #prodOpt {
+        .prodOpt {
             width: 300px;
             height: 30px;
             color: black;
@@ -100,12 +100,15 @@
         .cartBtn{
             color: black;
             background-color: white;
-            border: 1px solid black;
+            border: 1px solid darkgray;
         }
         .ordBtn{
             color: white;
             background-color: #ff7146;
             border: 0px;
+        }
+        .selectedOptionsList {
+            list-style-type: none;
         }
     </style>
 </head>
@@ -139,16 +142,21 @@
                 </tr>
                 <tr>
                     <th>상품 옵션</th>
-                    <td><select name="prodOpt" id="prodOpt">
-                        <option>옵션을 선택해주세요.</option>
-                        <c:forEach var="opt" items="${optList}">
-                            <option id="option${opt.optCd}" value="${opt.optCd}">${opt.optName} (${opt.salePrc}원)</option>
-                        </c:forEach>
-                    </select></td>
+                    <td>
+                        <select class="prodOpt" id="prodOpt" onchange="optionChange()">
+                            <option style="color: gray">옵션을 선택해주세요.</option>
+                            <c:forEach var="opt" items="${optList}">
+                                <option id="option${opt.optCd}" value="${opt.salePrc}" data-name="${opt.optName}">${opt.optName} (${opt.salePrc}원)</option>
+                            </c:forEach>
+                        </select>
+                    </td>
                 </tr>
                 </tbody>
             </table>
+                <ul id="selectedOptionsList" class="selectedOptionsList">
 
+                </ul>
+                    <div id="totalPrice">0원</div>
             </div>
             <div class="moveBtn">
                 <input class="cartBtn" type="button" value="장바구니">
@@ -170,9 +178,100 @@
 <script>
     $(document).ready(function() {
         $('.toggle').click(function() {
-            $('.imgAll').toggleClass('opened');
+            $('.imgAll').toggleClass('opened');         // 상품 이미지에 달린 토글버튼을 누르면 'opened'
         });
+
     });
+    let prcText;
+    function optionChange() {
+        const selectedOption = document.getElementById('prodOpt');
+        const selectedOptName = selectedOption.options[selectedOption.selectedIndex].getAttribute('data-name'); // 옵션 하나의 이름
+        const selectedOptionsList = document.getElementById('selectedOptionsList');     // 옵션 리스트
+        const selectedOptValue = parseInt(selectedOption.value);                // 옵션 하나의 가격
+
+
+        // 중복된 옵션인지 확인
+        const isDuplicate = Array.from(selectedOptionsList.children).some(option => option.textContent === selectedOptName);
+        if (!isDuplicate) {
+            const li = document.createElement('li');
+            const div = document.createElement('div');
+            const minusBtn = document.createElement('button');
+            const qtyText = document.createElement('input');
+            const plusBtn = document.createElement('button');
+            prcText = document.createElement('span');
+            li.textContent = selectedOptName;
+            minusBtn.textContent = '-';
+            qtyText.value = 1;
+            plusBtn.textContent = '+';
+            prcText.textContent = selectedOptValue+'원';
+
+            minusBtn.addEventListener('click', decreaseQty);
+            plusBtn.addEventListener('click', increaseQty);
+
+            li.append(div);
+            div.appendChild(minusBtn);
+            div.appendChild(qtyText);
+            div.appendChild(plusBtn);
+            div.appendChild(prcText);
+
+
+            // 오름차순으로 위치를 찾아서 삽입
+            let insertIndex = Array.from(selectedOptionsList.children)
+                .findIndex(option => option.textContent > selectedOptName);
+            if (insertIndex === -1) {
+                selectedOptionsList.appendChild(li); // 모든 값보다 큰 경우 맨 뒤에 삽입
+            } else {
+                selectedOptionsList.insertBefore(li, selectedOptionsList.children[insertIndex]);
+            }
+            calculateTotalPrice();
+        }
+    }
+    function decreaseQty(e) {
+        const quantityInput = e.target.nextElementSibling;
+        const priceInput = quantityInput.nextElementSibling.nextElementSibling;
+        let quantity = parseInt(quantityInput.value);
+        let onePrice = parseInt(priceInput.value)/quantity;
+        let totPrice;
+        if (quantity > 1) {
+            quantity--;
+            quantityInput.value = quantity;
+            totPrice = quantity * onePrice;
+            priceInput.value = totPrice;
+            prcText.textContent = totPrice + '원'
+            calculateTotalPrice();
+        }
+    }
+
+    function increaseQty(e) {
+        const quantityInput = e.target.previousElementSibling;
+        const priceInput = quantityInput.nextElementSibling.nextElementSibling;
+        let quantity = parseInt(quantityInput.value);
+        let onePrice = parseInt(priceInput.value)/quantity;
+        let totPrice;
+        quantity++;
+        quantityInput.value = quantity;
+        totPrice = quantity * onePrice;
+        priceInput.value = totPrice;
+        prcText.textContent = totPrice + '원'
+        calculateTotalPrice();
+    }
+
+    function calculateTotalPrice() {
+        let totalPrice = 0;
+        const selectedOptionsList = document.getElementById('selectedOptionsList');
+        const options = selectedOptionsList.children;
+
+        for (let i = 0; i < options.length; i++) {
+            const priceInput = options[i].querySelector('input[type="number"]');
+            const quantity = parseInt(options[i].querySelector('input[type="text"]').value);
+            const unitPrice = parseInt(priceInput.value);
+            const optionTotal = quantity * unitPrice;
+            totalPrice += optionTotal;
+        }
+
+        const totalPriceElement = document.getElementById('totalPrice');
+        totalPriceElement.textContent = `${totalPrice}원`;
+    }
 </script>
 </body>
 </html>

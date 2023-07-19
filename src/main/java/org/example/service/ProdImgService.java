@@ -8,4 +8,6 @@ public interface ProdImgService {
     ProdImgDto getOneImg(String prodCd) throws Exception;
 
     List<ProdImgDto> getAllImg(String prodCd) throws Exception;
+    int productImgRegister(ProdImgDto prodImgDto) throws Exception;
+
 }
