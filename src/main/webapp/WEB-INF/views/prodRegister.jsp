@@ -1,21 +1,61 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+         isELIgnored="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<%
+    request.setCharacterEncoding("UTF-8");
+%>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>상품등록</title>
     <link rel="stylesheet" href="<c:url value='/css/prodRegister.css'/>">
-<%--    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">--%>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script>
+        var cnt = 1;
+
+        function fn_addFile() {
+            var fileInput = "<input type='file' name='file" + cnt + "' class='image-upload'/>";
+            var widthInput = "<input type='hidden' name='imgWidth" + cnt + "' class='image-width'/>";
+            var heightInput = "<input type='hidden' name='imgHeight" + cnt + "' class='image-height'/>";
+            var newRow = "<div>" + fileInput + widthInput + heightInput + "</div>";
+            $("#d_file").append(newRow);
+            cnt++;
+        }
+
+        $(document).on('change', '.image-upload', function(e) {
+            var file = e.target.files[0];
+
+            // 이미지만 확인
+            if (!file.type.match('image.*')) {
+                alert("Only images are allowed!");
+                return;
+            }
+
+            // 이미지 크기 확인
+            var img = new Image();
+            img.src = URL.createObjectURL(file);
+            img.onload = function() {
+                var width = img.naturalWidth;
+                var height = img.naturalHeight;
+
+                // Hidden fields update
+                $(e.target).siblings('.image-width').val(width);
+                $(e.target).siblings('.image-height').val(height);
+            };
+        });
+    </script>
 </head>
 <body>
 <div class="mTitle">
     <h1>상품 등록</h1>
 </div>
-<%--enctype="multipart/form-data"--%>
-<form  id="prodRegister" method="POST" action="/prod/register">
+
+<form  id="prodRegister" method="POST" action="/prod/register" enctype="multipart/form-data">
     <div class="section" id="QA_register1">
         <div class="toggleArea" style="display:block;">
             <div class="mBoard typeProduct">
@@ -217,38 +257,10 @@
         </div>
     </div>
     <!-- ------------------------------------------------------------------------------------ -->
-
-
     <h2>이미지 등록</h2>
     <table border="1">
-        <tr>
-            <th scope="row">
-                <label for="main-image">대표 이미지 (권장 500px * 500px):</label>
-            </th>
-            <td>
-                <input type="file" id="main-image" name="prodImg" accept="image/*" onchange="previewImage(event, 'preview')">
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <div>
-                    <img id="preview" src="#" alt="Image Preview" style="display: none; max-width: 500px;"/>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">
-                <label for="additional-images">상세 이미지 (권장 300px * 300px):</label>
-            </th>
-            <td>
-                <input type="file" id="additional-images"  accept="image/*" multiple onchange="previewAdditionalImages(event)">
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <div id="additional-previews"></div>
-            </td>
-        </tr>
+        <input type="button" value="이미지 추가" onclick="fn_addFile()"><br>
+        <div id="d_file"></div>
     </table>
 
     <br>

@@ -38,10 +38,12 @@ public class ProdDto {
     private Date lastUpd;
     private String lastUpdr;
 
+    private String prodImgName;
+
     public ProdDto() {}
 
 
-    public ProdDto(String prodCd, int cateCd, String sn, String prodName, String prodSmrvDesc, String prodDtlDesc, Integer prodPrice, String prodImg, Float ascr, String dcCd, String invYn, Integer invQty, String saleYn, String sortYn, String optYn, String delYn, Integer minCnt, Date mftDate, Date useDate, Date saleStart, Date saleLast, String remark, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
+    public ProdDto(String prodCd, int cateCd, String sn, String prodName, String prodSmrvDesc, String prodDtlDesc, Integer prodPrice, String prodImg, Float ascr, String dcCd, String invYn, Integer invQty, String saleYn, String sortYn, String optYn, String delYn, Integer minCnt, Date mftDate, Date useDate, Date saleStart, Date saleLast, String remark, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr, String prodImgName) {
         this.prodCd = prodCd;
         this.cateCd = cateCd;
         this.sn = sn;
@@ -68,6 +70,15 @@ public class ProdDto {
         this.fstRegr = fstRegr;
         this.lastUpd = lastUpd;
         this.lastUpdr = lastUpdr;
+        this.prodImgName = prodImgName;
+    }
+
+    public String getProdImgName() {
+        return prodImgName;
+    }
+
+    public void setProdImgName(String prodImgName) {
+        this.prodImgName = prodImgName;
     }
 
     public String getProdCd() {
@@ -283,55 +294,13 @@ public class ProdDto {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         ProdDto prodDto = (ProdDto) o;
-
-        if (cateCd != prodDto.cateCd) return false;
-        if (!Objects.equals(prodCd, prodDto.prodCd)) return false;
-        if (!Objects.equals(sn, prodDto.sn)) return false;
-        if (!Objects.equals(prodName, prodDto.prodName)) return false;
-        if (!Objects.equals(prodSmrvDesc, prodDto.prodSmrvDesc))
-            return false;
-        if (!Objects.equals(prodDtlDesc, prodDto.prodDtlDesc)) return false;
-        if (!Objects.equals(prodPrice, prodDto.prodPrice)) return false;
-        if (!Objects.equals(prodImg, prodDto.prodImg)) return false;
-        if (!Objects.equals(ascr, prodDto.ascr)) return false;
-        if (!Objects.equals(dcCd, prodDto.dcCd)) return false;
-        if (!Objects.equals(invYn, prodDto.invYn)) return false;
-        if (!Objects.equals(invQty, prodDto.invQty)) return false;
-        if (!Objects.equals(saleYn, prodDto.saleYn)) return false;
-        if (!Objects.equals(sortYn, prodDto.sortYn)) return false;
-        if (!Objects.equals(optYn, prodDto.optYn)) return false;
-        if (!Objects.equals(delYn, prodDto.delYn)) return false;
-        if (!Objects.equals(minCnt, prodDto.minCnt)) return false;
-        if (!Objects.equals(remark, prodDto.remark)) return false;
-        if (!Objects.equals(fstRegr, prodDto.fstRegr)) return false;
-        return Objects.equals(lastUpdr, prodDto.lastUpdr);
+        return cateCd == prodDto.cateCd && Objects.equals(prodCd, prodDto.prodCd) && Objects.equals(sn, prodDto.sn) && Objects.equals(prodName, prodDto.prodName) && Objects.equals(prodSmrvDesc, prodDto.prodSmrvDesc) && Objects.equals(prodDtlDesc, prodDto.prodDtlDesc) && Objects.equals(prodPrice, prodDto.prodPrice) && Objects.equals(prodImg, prodDto.prodImg) && Objects.equals(ascr, prodDto.ascr) && Objects.equals(dcCd, prodDto.dcCd) && Objects.equals(invYn, prodDto.invYn) && Objects.equals(invQty, prodDto.invQty) && Objects.equals(saleYn, prodDto.saleYn) && Objects.equals(sortYn, prodDto.sortYn) && Objects.equals(optYn, prodDto.optYn) && Objects.equals(delYn, prodDto.delYn) && Objects.equals(minCnt, prodDto.minCnt) && Objects.equals(remark, prodDto.remark) && Objects.equals(fstRegr, prodDto.fstRegr) && Objects.equals(lastUpdr, prodDto.lastUpdr) && Objects.equals(prodImgName, prodDto.prodImgName);
     }
 
     @Override
     public int hashCode() {
-        int result = prodCd != null ? prodCd.hashCode() : 0;
-        result = 31 * result + cateCd;
-        result = 31 * result + (sn != null ? sn.hashCode() : 0);
-        result = 31 * result + (prodName != null ? prodName.hashCode() : 0);
-        result = 31 * result + (prodSmrvDesc != null ? prodSmrvDesc.hashCode() : 0);
-        result = 31 * result + (prodDtlDesc != null ? prodDtlDesc.hashCode() : 0);
-        result = 31 * result + (prodPrice != null ? prodPrice.hashCode() : 0);
-        result = 31 * result + (prodImg != null ? prodImg.hashCode() : 0);
-        result = 31 * result + (ascr != null ? ascr.hashCode() : 0);
-        result = 31 * result + (dcCd != null ? dcCd.hashCode() : 0);
-        result = 31 * result + (invYn != null ? invYn.hashCode() : 0);
-        result = 31 * result + (invQty != null ? invQty.hashCode() : 0);
-        result = 31 * result + (saleYn != null ? saleYn.hashCode() : 0);
-        result = 31 * result + (sortYn != null ? sortYn.hashCode() : 0);
-        result = 31 * result + (optYn != null ? optYn.hashCode() : 0);
-        result = 31 * result + (delYn != null ? delYn.hashCode() : 0);
-        result = 31 * result + (minCnt != null ? minCnt.hashCode() : 0);
-        result = 31 * result + (remark != null ? remark.hashCode() : 0);
-        result = 31 * result + (fstRegr != null ? fstRegr.hashCode() : 0);
-        result = 31 * result + (lastUpdr != null ? lastUpdr.hashCode() : 0);
-        return result;
+        return Objects.hash(prodCd, cateCd, sn, prodName, prodSmrvDesc, prodDtlDesc, prodPrice, prodImg, ascr, dcCd, invYn, invQty, saleYn, sortYn, optYn, delYn, minCnt, remark, fstRegr, lastUpdr, prodImgName);
     }
 
     @Override
@@ -363,6 +332,7 @@ public class ProdDto {
                 ", fstRegr='" + fstRegr + '\'' +
                 ", lastUpd=" + lastUpd +
                 ", lastUpdr='" + lastUpdr + '\'' +
+                ", prodImgName='" + prodImgName + '\'' +
                 '}';
     }
 }

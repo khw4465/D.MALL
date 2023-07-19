@@ -20,4 +20,9 @@ public class ProdImgServiceImpl implements ProdImgService {
     public List<ProdImgDto> getAllImg(String prodCd) throws Exception{
         return prodImgDao.selectImage(prodCd);
     }
+
+    @Override
+    public int productImgRegister(ProdImgDto prodImgDto) throws Exception {
+        return prodImgDao.insert(prodImgDto);
+    }
 }
