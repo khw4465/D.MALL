@@ -10,6 +10,7 @@
     <typeAliases>
         <typeAlias alias="CustDto" type="org.example.domain.CustDto"/>
         <typeAlias alias="CartDto" type="org.example.domain.CartDto"/>
+        <typeAlias alias="CartOptDto" type="org.example.domain.CartOptDto"/>
         <typeAlias alias="DlvAddrDto" type="org.example.domain.DlvAddrDto"/>
         <typeAlias alias="NotcDto" type="org.example.domain.NotcDto"/>
     <typeAlias alias="NotcSearchCondition" type="org.example.domain.NotcSearchCondition"/>

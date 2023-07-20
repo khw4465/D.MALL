@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.dao.CartOptMapper">
+    <select id="select" parameterType="map" resultType="CartOptDto">
+        SELECT *
+        FROM cart_opt
+        WHERE cust_id = #{custId}
+        AND prod_cd = #{prodCd}
+        AND opt_cd = #{optCd}
+    </select>
+    <select id="selectProd" parameterType="map" resultType="CartOptDto">
+        SELECT *
+        FROM cart_opt
+        WHERE cust_id = #{custId}
+        AND prod_cd = #{prodCd}
+    </select>
+    <select id="selectAll" parameterType="string" resultType="CartOptDto">
+        SELECT *
+        FROM cart_opt
+        WHERE cust_id=#{custId}
+    </select>
+    <select id="count" parameterType="string" resultType="int">
+        SELECT COUNT(*)
+        FROM cart_opt
+        WHERE cust_id = #{custId}
+    </select>
+    <select id="countProd" parameterType="string" resultType="int">
+        SELECT COUNT(pL)
+        FROM (SELECT COUNT(DISTINCT PROD_CD) pL
+                    FROM cart_opt
+                    WHERE CUST_ID = #{custId}
+                    GROUP BY PROD_CD) AS subquery
+        WHERE pL = 1
+    </select>
+    <insert id="insert" parameterType="CartDto">
+        INSERT INTO cart_opt
+            (cust_id, prod_cd, prod_name, opt_cd, opt_name, opt_qty, opt_price, tot_opt_price)
+        values
+            (#{custId}, #{prodCd}, #{prodName}, #{optCd}, #{optName}, #{optQty}, #{optPrice}, #{optQty}*#{optPrice})
+    </insert>
+    <delete id="delete" parameterType="map">
+        DELETE
+        FROM cart_opt
+        WHERE cust_id = #{custId}
+        AND prod_cd = #{prodCd}
+        AND opt_cd = #{optCd}
+    </delete>
+    <delete id="deleteProd" parameterType="map">
+        DELETE
+        FROM cart_opt
+        WHERE cust_id = #{custId}
+        AND prod_cd = #{prodCd}
+    </delete>
+    <delete id="deleteAll" parameterType="string">
+        DELETE FROM cart_opt
+        WHERE cust_id=#{custId}
+    </delete>
+    <update id="update" parameterType="map">
+        UPDATE cart_opt
+        SET  opt_qty  = #{optQty}
+           , tot_opt_price = #{totOptPrice}
+        WHERE cust_id = #{custId}
+        AND prod_cd = #{prodCd}
+        AND opt_cd = #{optCd}
+    </update>
+    <select id="getProdOptList" parameterType="map" resultType="CartDto">
+        SELECT CUST_ID custId
+             , PROD_CD prodCd
+             , PROD_NAME prodName
+             , COUNT(*) prodQty
+             , SUM(TOT_OPT_PRICE) totProdPrice
+             , SUM(TOT_OPT_PRICE)/100 paymtPnt
+        FROM cart_opt
+        WHERE CUST_ID = #{custId}
+        AND PROD_CD = #{prodCd}
+        group by PROD_CD, PROD_CD, PROD_NAME
+    </select>
+</mapper>

@@ -57,7 +57,7 @@ public class CartController {
             HttpSession session = request.getSession();
             String custId = (String)session.getAttribute("id");
 
-            cartService.modifyQty(dto.getProdQty(), dto.getTotProdPrice(), custId, dto.getProdCd());
+//            cartService.modifyQty(dto.getProdQty(), dto.getTotProdPrice(), custId, dto.getProdCd());
 
             return new ResponseEntity<>(dto, HttpStatus.OK);
         } catch (Exception e) {
@@ -74,7 +74,7 @@ public class CartController {
             HttpSession session = request.getSession();
             String custId = (String)session.getAttribute("id"); // id 받아오기
 
-            cartService.remove(custId, dto.getProdCd());
+//            cartService.remove(custId, dto.getProdCd());
             return new ResponseEntity<>(dto, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
