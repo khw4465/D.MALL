@@ -4,7 +4,7 @@
 
 <mapper namespace="org.example.dao.notcMapper">
 
-    <select id="select" parameterType="String" resultType="NotcDto">
+    <select id="select" parameterType="int" resultType="NotcDto">
         select bbso_no, ttl, cn, wrtd, wrtr, cate, use_yn, notc_cnt
         from cs_notc
         where bbso_no = #{bbsoNo}
@@ -56,8 +56,6 @@
         where bbso_no = #{bbsoNo}
     </update>
 
-
-
     <select id="searchSelectPage" parameterType="NotcSearchCondition" resultType="NotcDto">
         select bbso_no, ttl, cn, wrtd, wrtr, notc_cnt, cate, fst_reg, fst_regr, last_upd, last_updr, use_yn
         from cs_notc
@@ -68,7 +66,7 @@
             </when>
         </choose>
 
-        order by wrtd DESC, bbso_no DESC
+        order by bbso_no DESC, wrtd DESC
         LIMIT #{offset}, #{pageSize}
     </select>
 
