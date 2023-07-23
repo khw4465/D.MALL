@@ -91,6 +91,9 @@ public class CartOptDaoImplTest {
 
     @Test
     public void summeryOpt() throws Exception {
-        System.out.println(cartOptDao.summeryOpt("asdf", "P010301"));
+        Map<String, String> map = new HashMap<>();
+        map.put("custId", "asdf");
+        map.put("prodCd", "P010301");
+        System.out.println(cartOptDao.summeryOpt(map));
     }
 }

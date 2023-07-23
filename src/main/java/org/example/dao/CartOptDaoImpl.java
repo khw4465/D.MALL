@@ -61,11 +61,9 @@ public class CartOptDaoImpl implements CartOptDao {
         return session.update(namespace + "update", map);
     }
     @Override
-    public CartDto summeryOpt(String custId, String prodCd) throws Exception {
+    public CartDto summeryOpt(Map<String, String> map) throws Exception {
         // 장바구니에 담긴 하나의 상품에 대한 다양한 옵션목록을 합쳐 요약해 놓는 메서드
-        Map<String, String> map = new HashMap<>();
-        map.put("custId", custId);
-        map.put("prodCd", prodCd);
+
         return session.selectOne(namespace + "getProdOptList", map);
     }
 }

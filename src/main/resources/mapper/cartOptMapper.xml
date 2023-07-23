@@ -71,7 +71,7 @@
              , PROD_NAME prodName
              , COUNT(*) prodQty
              , SUM(TOT_OPT_PRICE) totProdPrice
-             , SUM(TOT_OPT_PRICE)/100 paymtPnt
+             , floor(SUM(TOT_OPT_PRICE/100)) paymtPnt
         FROM cart_opt
         WHERE CUST_ID = #{custId}
         AND PROD_CD = #{prodCd}

@@ -27,5 +27,5 @@ public interface CartOptDao {
 
     int update(Map map) throws Exception;
 
-    CartDto summeryOpt(String custId, String prodCd) throws Exception;
+    CartDto summeryOpt(Map<String, String> map) throws Exception;
 }

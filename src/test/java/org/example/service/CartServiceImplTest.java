@@ -23,7 +23,14 @@ public class CartServiceImplTest {
     public void getCartList() throws Exception {
         System.out.println(cartService.getCartList("asdf"));
     }
-
+    @Test
+    public void getProdList() throws Exception {
+        System.out.println(cartService.getProdList("asdf"));
+    }
+    @Test
+    public void getProdOptList() throws Exception {
+//        System.out.println(cartService.getProdOptList("asdf"));
+    }
     @Test
     public void getAllOptList() throws Exception {
         System.out.println(cartService.getAllOptList("asdf"));
@@ -45,25 +52,25 @@ public class CartServiceImplTest {
         list1.add(dto3);
         cartService.addCart("asdf", list1);
 
-        CartOptDto dto4 = new CartOptDto("asdf","P010102","맛있닭 저염·프로 닭가슴살 혼합 100~120g","1","10팩",1,10000);
-        CartOptDto dto5 = new CartOptDto("asdf","P010102","맛있닭 저염·프로 닭가슴살 혼합 100~120g","2","30팩",1,30000);
-        CartOptDto dto6 = new CartOptDto("asdf","P010102","맛있닭 저염·프로 닭가슴살 혼합 100~120g","3","50팩",1,50000);
+        CartOptDto dto4 = new CartOptDto("asdf","P010102","맛있닭 저염·프로 닭가슴살 혼합 100~120g","1","10팩",1,12000);
+        CartOptDto dto5 = new CartOptDto("asdf","P010102","맛있닭 저염·프로 닭가슴살 혼합 100~120g","2","30팩",1,36000);
+        CartOptDto dto6 = new CartOptDto("asdf","P010102","맛있닭 저염·프로 닭가슴살 혼합 100~120g","3","50팩",1,60000);
         list2.add(dto4);
         list2.add(dto5);
         list2.add(dto6);
         cartService.addCart("asdf", list2);
 
-        CartOptDto dto7 = new CartOptDto("asdf","P010201","맛있닭 닭가슴살 스테이크 오리지널 100g","1","10팩",1,10000);
-        CartOptDto dto8 = new CartOptDto("asdf","P010201","맛있닭 닭가슴살 스테이크 오리지널 100g","2","30팩",1,30000);
-        CartOptDto dto9 = new CartOptDto("asdf","P010201","맛있닭 닭가슴살 스테이크 오리지널 100g","3","50팩",1,50000);
+        CartOptDto dto7 = new CartOptDto("asdf","P010201","맛있닭 닭가슴살 스테이크 오리지널 100g","1","10팩",1,13000);
+        CartOptDto dto8 = new CartOptDto("asdf","P010201","맛있닭 닭가슴살 스테이크 오리지널 100g","2","30팩",1,39000);
+        CartOptDto dto9 = new CartOptDto("asdf","P010201","맛있닭 닭가슴살 스테이크 오리지널 100g","3","50팩",1,65000);
         list3.add(dto7);
         list3.add(dto8);
         list3.add(dto9);
         cartService.addCart("asdf", list3);
 
-        CartOptDto dto10 = new CartOptDto("asdf","P010202","맛있닭 닭가슴살 스테이크 갈릭맛 100g","1","10팩",1,10000);
-        CartOptDto dto11 = new CartOptDto("asdf","P010202","맛있닭 닭가슴살 스테이크 갈릭맛 100g","2","30팩",1,30000);
-        CartOptDto dto12 = new CartOptDto("asdf","P010202","맛있닭 닭가슴살 스테이크 갈릭맛 100g","3","50팩",1,50000);
+        CartOptDto dto10 = new CartOptDto("asdf","P010202","맛있닭 닭가슴살 스테이크 갈릭맛 100g","1","10팩",1,15000);
+        CartOptDto dto11 = new CartOptDto("asdf","P010202","맛있닭 닭가슴살 스테이크 갈릭맛 100g","2","30팩",1,45000);
+        CartOptDto dto12 = new CartOptDto("asdf","P010202","맛있닭 닭가슴살 스테이크 갈릭맛 100g","3","50팩",1,75000);
         list4.add(dto10);
         list4.add(dto11);
         list4.add(dto12);
@@ -74,21 +81,32 @@ public class CartServiceImplTest {
 
     @Test
     public void removeOpt() throws Exception {
+        cartService.removeOpt("asdf","P010101", "1");
+        cartService.removeOpt("asdf","P010101", "2");
+
         cartService.removeOpt("asdf","P010101", "3");
-        cartService.removeOpt("asdf","P010102", "3");
-        cartService.removeOpt("asdf","P010201", "3");
-        cartService.removeOpt("asdf","P010202", "3");
+//        cartService.removeOpt("asdf","P010102", "3");
+//        cartService.removeOpt("asdf","P010201", "3");
+//        cartService.removeOpt("asdf","P010202", "3");
 
-        System.out.println("전체" + cartService.getAllOptList("asdf"));
-
-        System.out.println("1번" + cartOptDao.summeryOpt("asdf", "P010101"));
-        System.out.println("2번" + cartOptDao.summeryOpt("asdf", "P010102"));
-        System.out.println("3번" + cartOptDao.summeryOpt("asdf", "P010201"));
-        System.out.println("4번" + cartOptDao.summeryOpt("asdf", "P010202"));
+//        System.out.println("전체" + cartService.getAllOptList("asdf"));
+//
+//        System.out.println("1번" + cartOptDao.summeryOpt("asdf", "P010101"));
+//        System.out.println("2번" + cartOptDao.summeryOpt("asdf", "P010102"));
+//        System.out.println("3번" + cartOptDao.summeryOpt("asdf", "P010201"));
+//        System.out.println("4번" + cartOptDao.summeryOpt("asdf", "P010202"));
     }
 
     @Test
     public void removeProd() throws Exception {
+        System.out.println(cartService.getCartList("asdf"));
+
+        List<String> prodCds = new ArrayList<>();
+        prodCds.add("P010201");
+        prodCds.add("P010202");
+        cartService.removeProd("asdf", prodCds);
+
+        System.out.println(cartService.getCartList("asdf"));
     }
 
     @Test

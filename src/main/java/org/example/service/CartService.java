@@ -11,13 +11,17 @@ import java.util.Set;
 public interface CartService {
     List<CartDto> getCartList(String custId) throws  Exception;
 
+    List<String> getProdList(String custId) throws Exception;
+
+    List<CartOptDto> getProdOptList(String custId, String prodCd) throws Exception;
+
     List<List<CartOptDto>> getAllOptList(String custId) throws Exception;
 
     int addCart(String custId, List<CartOptDto> list) throws Exception;
 
     int removeOpt(String custId, String prodCd, String optCd) throws Exception;
 
-    int removeProd(String custId, String prodCd) throws Exception;
+    int removeProd(String custId, List<String> prodCd) throws Exception;
 
     @Transactional(rollbackFor = Exception.class)
     int removeAll(String custId) throws Exception;
