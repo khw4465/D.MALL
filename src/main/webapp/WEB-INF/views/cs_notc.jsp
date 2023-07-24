@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page session="true"%>
+<%@ page session="false"%>
 <html>
 <head>
   <title>공지사항</title>
@@ -60,6 +60,9 @@
 </script>
 
 <div id="main_1">
+
+<%--  <button type="button" id="writeBtn" onclick="location.href='<c:url value="/notc/write"/>'">글쓰기</button>--%>
+
   <table id="CS_tb">
     <h3><a href="/notc/list">공지사항</a></h3>
     <tr id="CS_tb">
@@ -67,6 +70,7 @@
       <th id="CS_tb_cate">카테고리</th>
       <th id="CS_tb_td">제목</th>
       <th id="CS_tb_day">등록일</th>
+      <th id="CS_tb_day">조회수</th>
     </tr>
     <c:forEach var="NotcDto" items="${list}">
       <tr>
@@ -74,14 +78,14 @@
         <td id="CS_tb_cate">${NotcDto.cate}</td>
         <td id="CS_tb_td"><a href="<c:url value='/notc/read?bbsoNo=${NotcDto.bbsoNo}&page=${page}&pageSize=${pageSize}'/> ">${NotcDto.ttl}</a></td>
         <td id="CS_tb_day">${NotcDto.wrtd}</td>
-<%--        <c:choose>--%>
-<%--          <c:when test="${NotcDto.fstReg.time >= startOfToday}">--%>
-<%--            <td> <fmt:formatDate value="${NotcDto.fstReg}" pattern="HH:mm" type="time"/> </td>--%>
-<%--          </c:when>--%>
-<%--          <c:otherwise>--%>
-<%--            <td> <fmt:formatDate value="${NotcDto.fstReg}" pattern="yyyy-MM-dd" type="date"/> </td>--%>
-<%--            </c:otherwise>--%>
-<%--        </c:choose>--%>
+          <%--        <c:choose>--%>
+          <%--          <c:when test="${NotcDto.fstReg.time >= startOfToday}">--%>
+          <%--            <td> <fmt:formatDate value="${NotcDto.fstReg}" pattern="HH:mm" type="time"/> </td>--%>
+          <%--          </c:when>--%>
+          <%--          <c:otherwise>--%>
+          <%--            <td> <fmt:formatDate value="${NotcDto.fstReg}" pattern="yyyy-MM-dd" type="date"/> </td>--%>
+          <%--            </c:otherwise>--%>
+          <%--        </c:choose>--%>
         <td> ${NotcDto.notcCnt}</td>
       </tr>
     </c:forEach>

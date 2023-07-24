@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -25,8 +26,61 @@ public class NotcController {
     @Autowired
     NotcService notcService;
 
+    @PostMapping("/modify")
+    public String modify(NotcDto dto, HttpSession session, RedirectAttributes rattr, Model m){
+        String wrtr = (String) session.getAttribute("id");
+        dto.setWrtr(wrtr);
+
+        try {
+            int rowCnt = notcService.modify(dto);
+
+            if (rowCnt != 1)
+                throw new Exception("modify error");
+
+            rattr.addFlashAttribute("msg","MOD_OK");
+
+            return "redirect:/notc/list";
+        } catch (Exception e) {
+            e.printStackTrace();
+            m.addAttribute("dto",dto);
+            m.addAttribute("msg","MOD_ERR");
+            return "cs_notcview";
+        }
+
+    }
+
+
+    @GetMapping("/write")
+    public String write(Model m){
+        m.addAttribute("mode","new");
+        return "cs_notcview"; // 읽기와 쓰기에 사용.
+    }
+
+    @PostMapping("/write")
+    public String write(NotcDto dto, HttpSession session, RedirectAttributes rattr, Model m){
+        String wrtr = (String) session.getAttribute("id");
+        dto.setWrtr(wrtr);
+
+        try {
+            int rowCnt = notcService.write(dto);
+
+            if (rowCnt != 1)
+                throw new Exception("write error");
+
+            rattr.addFlashAttribute("msg","WRT_OK");
+
+            return "redirect:/notc/list";
+        } catch (Exception e) {
+            e.printStackTrace();
+            m.addAttribute("dto",dto);
+            m.addAttribute("msg","WRT_ERR");
+            return "cs_notcview";
+        }
+
+    }
+
     @PostMapping("/remove")
-    public String remove(String bbsoNo, Model m, NotcSearchCondition sc, RedirectAttributes rattr){
+    public String remove(Integer bbsoNo, Model m, NotcSearchCondition sc, RedirectAttributes rattr){
         //        if(!loginCheck(request))
         //            return "redirect:/login/login?toURL="+request.getRequestURL();
         // 로그인을 안했으면 로그인 화면으로 이동
@@ -49,7 +103,7 @@ public class NotcController {
     }
 
     @GetMapping("/read")
-    public String read(String bbsoNo, Model m, NotcSearchCondition sc, RedirectAttributes rattr){
+    public String read(Integer bbsoNo, Model m, NotcSearchCondition sc, RedirectAttributes rattr){
         try {
             NotcDto NotcDto = notcService.read(bbsoNo);
             m.addAttribute("NotcDto",NotcDto);

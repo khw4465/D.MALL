@@ -19,7 +19,7 @@ public class NotcDaoImpl implements NotcDao {
 
 
     @Override
-    public NotcDto select(String bbsoNo) throws Exception{
+    public NotcDto select(Integer bbsoNo) throws Exception{
         return session.selectOne(namespace+"select",bbsoNo);
     }
 
@@ -39,8 +39,8 @@ public class NotcDaoImpl implements NotcDao {
     }
 
     @Override
-    public int deleteForAdmin(String bbsoNo){
-        return session.delete(namespace+"delete", bbsoNo);
+    public int deleteForAdmin(Integer bbsoNo){
+        return session.delete(namespace+"deleteForAdmin", bbsoNo);
     }
 
     @Override
@@ -58,13 +58,13 @@ public class NotcDaoImpl implements NotcDao {
         return session.selectList(namespace+"selectPage",map);
     }
     @Override
-    public int increaseViewCnt(String bbsoNo){
+    public int increaseViewCnt(Integer bbsoNo){
         return session.update(namespace+"increaseViewCnt",bbsoNo);
     }
 
     @Override
     public List<NotcDto> searchSelectPage(NotcSearchCondition sc) throws Exception{
-       return session.selectList(namespace + "searchSelectPage", sc);
+        return session.selectList(namespace + "searchSelectPage", sc);
     }
 
     @Override
