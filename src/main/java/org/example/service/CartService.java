@@ -27,7 +27,7 @@ public interface CartService {
     int removeAll(String custId) throws Exception;
 
     @Transactional(rollbackFor = Exception.class)
-    int modifyQty(int prodQty, int totProdPrice, String custId, String prodCd, String optCd) throws Exception;
+    int modifyQty(int prodQty, String custId, String prodCd, String optCd) throws Exception;
 
     OrderDto getOrdHist(String custId) throws Exception;
 }

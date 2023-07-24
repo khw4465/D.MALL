@@ -60,7 +60,7 @@
     <update id="update" parameterType="map">
         UPDATE cart_opt
         SET  opt_qty  = #{optQty}
-           , tot_opt_price = #{totOptPrice}
+           , tot_opt_price = #{optQty} * opt_price
         WHERE cust_id = #{custId}
         AND prod_cd = #{prodCd}
         AND opt_cd = #{optCd}

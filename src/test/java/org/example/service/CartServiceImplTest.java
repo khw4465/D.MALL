@@ -116,7 +116,7 @@ public class CartServiceImplTest {
 
     @Test
     public void modifyQty() throws Exception {
-        cartService.modifyQty(5,50000,"asdf","P010101","1");
+        cartService.modifyQty(5,"asdf","P010101","1");
 
         System.out.println();
         System.out.println(cartService.getAllOptList("asdf"));

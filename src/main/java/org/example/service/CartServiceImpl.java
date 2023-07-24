@@ -109,10 +109,9 @@ public class CartServiceImpl implements CartService {
     }
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int modifyQty(int optQty, int totOptPrice, String custId, String prodCd, String optCd) throws Exception{    // 개수 ++
+    public int modifyQty(int optQty, String custId, String prodCd, String optCd) throws Exception{    // 개수 ++
         Map map = new HashMap<>();
         map.put("optQty", optQty);
-        map.put("totOptPrice", totOptPrice);
         map.put("custId", custId);       // mapper에 map으로 넣어줄 때 key, value가 들어가는 게 아니라 value 값만 들어간다.
         map.put("prodCd", prodCd);
         map.put("optCd", optCd);

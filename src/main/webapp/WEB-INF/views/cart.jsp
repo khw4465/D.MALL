@@ -76,7 +76,7 @@
                                                 <li id="list${opt.prodCd}_${opt.optCd}" class="${opt.optCd}">
                                                     <dl style="display: inline-block">
                                                         <dt style="text-align: center">${opt.optName}</dt>
-                                                        <dt style="text-align: center">${opt.optPrice}원</dt>
+                                                        <dt style="text-align: center" class="onePrc${opt.prodCd}_${opt.optCd}">${opt.optPrice}원</dt>
                                                     </dl>
                                                     <div style="display: inline-block; margin-left: 280px">
                                                         <div class="qtyTag" style="display: inline-block;">
@@ -101,7 +101,7 @@
                             </tbody>
                         </table>
                         <div style="text-align: center">총 상품 금액 : <em class="totPrc${cart.prodCd}">${cart.totProdPrice}</em>원</div>
-                        <div style="text-align: center">적립 포인트 : <em class="totPnt${cart.prodCd}">${Math.floor(cart.totProdPrice/100)}</em>p</div>
+                        <div style="text-align: center">적립 포인트 : <em class="totPnt${cart.prodCd}">${Math.round(cart.totProdPrice/100)}</em>p</div>
                     </div>
                 </li>
             </c:forEach>
@@ -262,152 +262,69 @@
     };
 
     // AJAX
-    $(document).ready(function(){
+    $(document).ready(function() {
 
         emptyCartMsg();
-
-        let prodlist = Array.from(document.getElementById("cart").children);       // 장바구니 목록의 자식(개별상품 목록)을 배열화
 
         let totPrc = parseInt(document.getElementsByClassName('totPrc')[0].innerText);       // 모든 상품의 가격을 합한 금액
         let totDcPrc = parseInt(document.getElementsByClassName('totDcPrc')[0].innerText);      // 각각의 할인 금액을 모두 더한 금액
         let dlvPrc = parseInt(document.getElementsByClassName('dlvPrc')[0].innerText);         // 배송비
         let finPrc = parseInt(document.getElementsByClassName('finPrc')[0].innerText);   // 위의 3개의 가격을 계산한 최종 금액
 
-        prodlist.forEach(function(cartList){                               // 장바구니에서 상품을 하나씩 뽑아냄
-            let prodCd = cartList.className; // 상품코드 출력
-            let prodOpt = cartList.getElementsByClassName('opt' + prodCd)[0];     // 상품의 옵션을 묶어놓은 ul태그
-            let prodQty = 0;
-            let totProdPrc = parseInt(document.getElementsByClassName('totPrc'+prodCd)[0].innerText);   // 상품별 최종가격
-            let optlist = Array.from(prodOpt.children);                     // 상품의 옵션을 배열화
+        let prodlist = Array.from(document.getElementById("cart").children);       // 장바구니 목록의 자식(개별상품 목록)을 배열화
 
-            optlist.forEach(function(optList){                             // 각 상품에서 옵션을 하나씩 뽑아냄
-                let optCd = optList.className;                                 // 상품 옵션코드
-                let optVal = document.querySelector('.' + prodCd + '_' + optCd + '_qty');                 // 옵션 수량
-                let optQty = parseInt(optVal.value);
-                let totOptPrice = document.querySelector('.' + prodCd + '_' + optCd + '_totPrice').value;       // 옵션별 총 금액
-                let optPrice = totOptPrice/optQty;
-                prodQty += parseInt(optQty);
-
-                console.log('prodQty = ' + prodQty)
-
-                //  modify --1
-                $("#minus"+ prodCd + '_' + optCd).click(function(){
-
-                    if (optQty > 1) {      // 수량이 1 아래로 떨어지지 않게
-                        optQty--;
-                        optVal.value = optQty;
-                        totOptPrice -= optPrice;
-                        totProdPrc  -= optPrice;
-                        totPrc -= optPrice
-                        let point = Math.floor(totProdPrc/ 100);
-
-                        let cartOptDto = {prodCd: prodCd, optCd: optCd, optQty: optQty, totOptPrice: totOptPrice};
-
-                        $.ajax({
-                            type: 'PATCH',       // 요청 메서드
-                            url: '/cart/modify',  // 요청 URI
-                            headers: {"content-type": "application/json"}, // 요청 헤더
-                            dataType: 'text', // 전송받을 데이터의 타입
-                            data: JSON.stringify(cartOptDto),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
-                            success: function (result) {  // 서버로부터 응답이 도착하면 호출될 함수
-                                let cartOptDto2 = JSON.parse(result);
-                                let qty = cartOptDto2.optQty;
-                                optVal.value = qty;
-
-                                $('.' + prodCd + '_' + optCd + '_totPrice').html(totOptPrice)
-
-                                // // 가격 업데이트
-                                // $("#price" + prodCd).html(totProdPrice);
-                                // // 포인트 업데이트
-                                // $("#point" + prodCd).html(point);
-                                // // 할인 금액 업데이트
-                                // $("#dcprc" + prodCd).html(expctDcPrc);
-
-                                dlvPrc = totPrc > 30000 ? 0 : 3000;
-                                finPrc = totPrc - totDcPrc + dlvPrc;
-
-                                $('.totPrc' + prodCd).html(totProdPrc);   // 상품별 총 금액 업데이트
-                                $('.totPnt' + prodCd).html(point)       // 상품별 총 포인트
-                                $('.totPrc').html(totPrc);              // 총 상품금액 업데이트
-                                $('.totDcPrc').html(totDcPrc);          // 총 할인금액 업데이트
-                                $('.dlvPrc').html(dlvPrc);              // 배송비 업데이트
-                                $('.finPrc').html(finPrc);              // 최종금액 업데이트
-                                $('.totalOrderPrice').html(finPrc+'원 주문하기');
-                            },
-                            error: function () { alert("error") } // 에러가 발생했을 때, 호출될 함수
-                        });
-                    }
-                });
-
-                // modify ++1
-                $("#plus" + prodCd + '_' + optCd).click(function(){
-                    prodQty++;  // 개수 + 1
-                    optVal.value = optQty;
-                    totOptPrice += optPrice;
-                    totProdPrc  += optPrice;
-                    totPrc += optPrice
-                    let point = Math.floor(totProdPrc/100);
-
-                    let cartOptDto = {prodCd: prodCd, optCd: optCd, optQty: optQty, totOptPrice: totOptPrice};
-
-                    $.ajax({
-                        type:'PATCH',       // 요청 메서드
-                        url: '/cart/modify',  // 요청 URI
-                        headers : { "content-type": "application/json"}, // 요청 헤더
-                        dataType : 'text', // 전송받을 데이터의 타입
-                        data : JSON.stringify(cartOptDto),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
-                        success : function(result) {   // 서버로부터 응답이 도착하면 호출될 함수
-                           let cartOptDto2 = JSON.parse(result);
-                            let qty = cartOptDto2.optQty;
-                            optVal.value = qty;
-
-                            // // 가격 업데이트
-                            // $("#price" + prodCd).html(totProdPrice);
-                            // // 포인트 업데이트
-                            // $("#point" + prodCd).html(point);
-                            // // 할인 금액 업데이트
-                            // $("#dcprc" + prodCd).text(expctDcPrc);
+        let prodCd;                         // 상품코드 출력
+        let prodOpt;                        // 상품의 옵션을 묶어놓은 ul태그
+        let prodQty = 0;                    // 상품 수량
+        let totProdPrc = 0;                 // 상품별 최종가격
 
 
-                            dlvPrc = totPrc > 30000 ? 0 : 3000;
-                            finPrc = totPrc - totDcPrc + dlvPrc;
+        // let optCd;
+        prodlist.forEach(function (cartList) {                               // 장바구니에서 상품을 하나씩 뽑아냄
+            const prodCd = cartList.className;
+            prodOpt = cartList.getElementsByClassName('opt' + prodCd)[0];
 
-                            $('.totPrc' + prodCd).html(totProdPrc);   // 상품별 총 금액 업데이트
-                            $('.totPnt' + prodCd).html(point)       // 상품별 총 포인트
-                            $('.totPrc').html(totPrc);              // 총 상품금액 업데이트
-                            $('.totDcPrc').html(totDcPrc);          // 총 할인금액 업데이트
-                            $('.dlvPrc').html(dlvPrc);              // 배송비 업데이트
-                            $('.finPrc').html(finPrc);              // 최종금액 업데이트
-                            $('.totalOrderPrice').html(finPrc+'원 주문하기');
-                        },
-                        error   : function(){ alert("error") } // 에러가 발생했을 때, 호출될 함수
-                    });
-                });
+            const optlist = Array.from(prodOpt.children);                    // 상품의 옵션을 배열화
 
+            optlist.forEach(function (optList) {                             // 각 상품에서 옵션을 하나씩 뽑아냄
+                const optCd = optList.className;                             // 상품 옵션코드
+                let optVal = 0;
+                let optQty = 0;
+                let totOptPrice = 0;
+                let optPrice = 0;
 
                 // 개별 delete
-                $("#delete"+prodCd+'_'+optCd).click(function(){
+                $("#delete" + prodCd + '_' + optCd).click(function () {
+                    optVal = document.querySelector('.' + prodCd + '_' + optCd + '_qty');                                 // 옵션 수량
+                    totProdPrc = parseInt(document.getElementsByClassName('totPrc' + prodCd)[0].innerText);
+                    optQty = parseInt(optVal.value);                                                                      // 옵션 수량
+                    totOptPrice = document.querySelector('.' + prodCd + '_' + optCd + '_totPrice').value;                 // 옵션별 총 금액
+                    optPrice = parseInt(document.getElementsByClassName('onePrc' + prodCd + '_' + optCd) [0].innerText);  // 옵션 개당 금액
 
-                    let cartOptDto = {prodCd : prodCd, optCd : optCd, optQty: optQty, optPrice: optPrice, totOptPrice: totOptPrice};   // 상품코드 객체에 담기
-                    // let ordDto = {totPrc: '', totDcPrc: '', dlvPrc: '', finPrc: ''};
+                    console.log('hi'+prodCd+'.'+optCd);
+                    let cartOptDto = {prodCd: prodCd, optCd: optCd, optQty: optQty, optPrice: optPrice, totOptPrice: totOptPrice};   // 상품코드 객체에 담기
+                    let ordDto = {totPrc: '', totDcPrc: '', dlvPrc: '', finPrc: ''};
                     $.ajax({
-                        type:'DELETE',       // 요청 메서드
+                        type: 'DELETE',       // 요청 메서드
                         url: '/cart/remove',  // 요청 URI
-                        headers : { "content-type": "application/json"}, // 요청 헤더
-                        dataType : 'text', // 전송받을 데이터의 타입
-                        data : JSON.stringify(cartOptDto),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
-                        success : function(result){  // 서버로부터 응답이 도착하면 호출될 함수
+                        headers: {"content-type": "application/json"}, // 요청 헤더
+                        dataType: 'text', // 전송받을 데이터의 타입
+                        data: JSON.stringify(cartOptDto),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
+                        success: function (result) {  // 서버로부터 응답이 도착하면 호출될 함수
                             // ordDto = JSON.parse(result);
 
-                            $("#list"+prodCd+'_'+optCd).remove();     // 해당 상품의 <li> 삭제
-                            if ($('.opt'+prodCd).children().length === 0) {
-                                $('#list'+prodCd).remove();           // 해당 상품이 없을 경우 상품 전체 삭제
+                            $("#list" + prodCd + '_' + optCd).remove();     // 해당 상품의 <li> 삭제
+                            if ($('.opt' + prodCd).children().length === 0) {
+                                $('#list' + prodCd).remove();           // 해당 상품이 없을 경우 상품 전체 삭제
                             }
                             emptyCartMsg();
 
-                            let point = Math.round(totOptPrice/ 100);
+                            let point = Math.round(totOptPrice / 100);
 
+                            console.log('totPRodPrc = ' + totProdPrc);
+                            console.log('totOptPrc = ' + totOptPrice);
                             totProdPrc -= totOptPrice;
+                            console.log('totPRodPrc = ' + totProdPrc);
                             totPrc -= totOptPrice
                             dlvPrc = totPrc > 30000 ? 0 : 3000;
                             finPrc = totPrc - totDcPrc + dlvPrc;
@@ -418,56 +335,192 @@
                             $('.totDcPrc').html(totDcPrc);          // 총 할인금액 업데이트
                             $('.dlvPrc').html(dlvPrc);              // 배송비 업데이트
                             $('.finPrc').html(finPrc);              // 최종금액 업데이트
-                            $('.totalOrderPrice').html(finPrc+'원 주문하기');
+                            $('.totalOrderPrice').html(finPrc + '원 주문하기');
                         },
-                        error   : function(){ alert("error") } // 에러가 발생했을 때, 호출될 함수
+                        error: function () {
+                            alert("error")
+                        } // 에러가 발생했을 때, 호출될 함수
                     }); // $.ajax()
                 });
+
+
+                //  modify --1
+                $("#minus" + prodCd + '_' + optCd).click(function () {
+
+                    optVal = document.querySelector('.' + prodCd + '_' + optCd + '_qty');                               // 옵션 수량
+                    optQty = parseInt(optVal.value);                                                                    // 옵션 수량
+                    totOptPrice = parseInt(document.querySelector('.' + prodCd + '_' + optCd + '_totPrice').value);     // 옵션별 총 금액
+                    totProdPrc = parseInt(document.getElementsByClassName('totPrc' + prodCd)[0].innerText);             // 상품 별 금액
+                    optPrice = parseInt(document.getElementsByClassName('onePrc' + prodCd + '_' + optCd)[0].innerText); // 옵션 개당 금액
+
+
+                    if (optQty > 1) {      // 수량이 1 아래로 떨어지지 않게
+                        --optQty;
+                        totOptPrice -= optPrice;
+                        totProdPrc -= optPrice;
+                        totPrc -= optPrice
+
+
+                        let cartOptDto = {prodCd: prodCd, optCd: optCd, optQty: optQty, totOptPrice: totOptPrice};
+                        let cartOptDto2 = {};
+                        $.ajax({
+                            type: 'PATCH',       // 요청 메서드
+                            url: '/cart/modify',  // 요청 URI
+                            headers: {"content-type": "application/json"}, // 요청 헤더
+                            dataType: 'text', // 전송받을 데이터의 타입
+                            data: JSON.stringify(cartOptDto),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
+                            success: function (result) {  // 서버로부터 응답이 도착하면 호출될 함수
+                                cartOptDto2 = JSON.parse(result);
+                                let qty = cartOptDto2.optQty;
+                                let prc = cartOptDto2.totOptPrice;
+                                // $('.totPrc' + prodCd)[0].html(totProdPrc);
+                                // // 가격 업데이트
+                                // $("#price" + prodCd).html(totProdPrice);
+                                // // 포인트 업데이트
+                                // $("#point" + prodCd).html(point);
+                                // // 할인 금액 업데이트
+                                // $("#dcprc" + prodCd).html(expctDcPrc);
+
+                                let point = Math.round(totProdPrc / 100);
+                                dlvPrc = totPrc > 30000 ? 0 : 3000;
+                                finPrc = totPrc - totDcPrc + dlvPrc;
+
+                                optVal.value = qty;
+                                $('.' + prodCd + '_' + optCd + '_totPrice')[0].value = prc;
+                                $('.totPrc' + prodCd).html(totProdPrc);   // 상품별 총 금액 업데이트
+                                $('.totPnt' + prodCd).html(point)       // 상품별 총 포인트
+                                $('.totPrc').html(totPrc);              // 총 상품금액 업데이트
+                                $('.totDcPrc').html(totDcPrc);          // 총 할인금액 업데이트
+                                $('.dlvPrc').html(dlvPrc);              // 배송비 업데이트
+                                $('.finPrc').html(finPrc);              // 최종금액 업데이트
+                                $('.totalOrderPrice').html(finPrc + '원 주문하기');
+                            },
+                            error: function () {
+                                alert("error")
+                            } // 에러가 발생했을 때, 호출될 함수
+                        });
+                    }
+                });
+
+
+                // modify ++1
+                $("#plus" + prodCd + '_' + optCd).click(function () {
+
+                    optVal = document.querySelector('.' + prodCd + '_' + optCd + '_qty');     // 옵션 수량
+                    optQty = parseInt(optVal.value);                             // 옵션 수량
+                    totOptPrice = parseInt(document.querySelector('.' + prodCd + '_' + optCd + '_totPrice').value);         // 옵션별 총 금액
+                    totProdPrc = parseInt(document.getElementsByClassName('totPrc' + prodCd)[0].innerText);                 // 상품 별 금액
+                    optPrice = parseInt(document.getElementsByClassName('onePrc' + prodCd + '_' + optCd) [0].innerText);    // 옵션 개당 금액
+
+
+                    ++optQty;  // 개수 + 1
+                    totOptPrice += optPrice;
+                    totProdPrc += optPrice;
+                    totPrc += optPrice
+
+
+                    let cartOptDto = {prodCd: prodCd, optCd: optCd, optQty: optQty, totOptPrice: totOptPrice};
+                    let cartOptDto2 = {};
+                    $.ajax({
+                        type: 'PATCH',       // 요청 메서드
+                        url: '/cart/modify',  // 요청 URI
+                        headers: {"content-type": "application/json"}, // 요청 헤더
+                        dataType: 'text', // 전송받을 데이터의 타입
+                        data: JSON.stringify(cartOptDto),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
+                        success: function (result) {   // 서버로부터 응답이 도착하면 호출될 함수
+                            cartOptDto2 = JSON.parse(result);
+                            let qty = cartOptDto2.optQty;
+                            let prc = cartOptDto2.totOptPrice;
+                            // // 가격 업데이트
+                            // $("#price" + prodCd).html(totProdPrice);
+                            // // 포인트 업데이트
+                            // $("#point" + prodCd).html(point);
+                            // // 할인 금액 업데이트
+                            // $("#dcprc" + prodCd).text(expctDcPrc);
+
+                            let point = Math.round(totProdPrc / 100);
+                            dlvPrc = totPrc > 30000 ? 0 : 3000;
+                            finPrc = totPrc - totDcPrc + dlvPrc;
+
+                            optVal.value = qty;
+                            $('.' + prodCd + '_' + optCd + '_totPrice')[0].value = prc;
+                            $('.totPrc' + prodCd).html(totProdPrc);   // 상품별 총 금액 업데이트
+                            $('.totPnt' + prodCd).html(point)       // 상품별 총 포인트
+                            $('.totPrc').html(totPrc);              // 총 상품금액 업데이트
+                            $('.totDcPrc').html(totDcPrc);          // 총 할인금액 업데이트
+                            $('.dlvPrc').html(dlvPrc);              // 배송비 업데이트
+                            $('.finPrc').html(finPrc);              // 최종금액 업데이트
+                            $('.totalOrderPrice').html(finPrc + '원 주문하기');
+                        },
+                        error: function () {
+                            alert("error")
+                        } // 에러가 발생했을 때, 호출될 함수
+                    });
+                });
+
+
+
 
             });
 
             // 전체 delete
-            $("#removeAll").click(function(){
+            $("#removeAll").click(function () {
                 $.ajax({
-                    type:'DELETE',       // 요청 메서드
+                    type: 'DELETE',       // 요청 메서드
                     url: '/cart/removeAll',  // 요청 URI
-                    headers : { "content-type": "application/json"}, // 요청 헤더
-                    dataType : 'text', // 전송받을 데이터의 타입
-                    success : function(result){  // 서버로부터 응답이 도착하면 호출될 함수
+                    headers: {"content-type": "application/json"}, // 요청 헤더
+                    dataType: 'text', // 전송받을 데이터의 타입
+                    success: function (result) {  // 서버로부터 응답이 도착하면 호출될 함수
                         $('#cart').children()[0].remove()
                         emptyCartMsg();
                     },
-                    error   : function(){ alert("error") } // 에러가 발생했을 때, 호출될 함수
+                    error: function () {
+                        alert("error")
+                    } // 에러가 발생했을 때, 호출될 함수
                 }); // $.ajax()
             });
-        });
-        // 선택 delete
-        $("#removeCheck").click(function(){
-            const selectedProdCds = [];
-            const checkboxes = document.querySelectorAll('[type="checkbox"][class^="CBox"]:checked')
+            // 선택 delete
+            $("#removeCheck").click(function () {
+                const selectedProdCds = [];
+                totProdPrc = 0;
+                const checkboxes = document.querySelectorAll('[type="checkbox"][class^="CBox"]:checked')
+                checkboxes.forEach(function (checkbox) {
+                    const prodCd = checkbox.classList[0].substring(4);
+                    selectedProdCds.push(prodCd);
+                    const optPrices = document.querySelectorAll('.totPrc' + prodCd);
+                    optPrices.forEach(function (optPriceElem) {
+                        totProdPrc += parseInt(optPriceElem.innerHTML);
+                    });
+                    const jsonData = JSON.stringify({prodCds: selectedProdCds})
+                    $.ajax({
+                        type: 'DELETE',       // 요청 메서드
+                        url: '/cart/removeChecks',  // 요청 URI
+                        headers: {"content-type": "application/json"}, // 요청 헤더
+                        dataType: 'json', // 전송받을 데이터의 타입
+                        data: jsonData,  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
+                        success: function (result) {  // 서버로부터 응답이 도착하면 호출될 함수
+                            for (let i = 0; i < selectedProdCds.length; i++) {
+                                // console.log(selectedProdCds[i])
+                                document.querySelector("#list" + selectedProdCds[i]).remove();
+                            }
+                            emptyCartMsg();
 
-            checkboxes.forEach(function (checkbox) {
-                const prodCd = checkbox.classList[0].substring(4);
-                selectedProdCds.push(prodCd);
+                            totPrc -= totProdPrc
+                            dlvPrc = totPrc > 30000 ? 0 : 3000;
+                            finPrc = totPrc - totDcPrc + dlvPrc;
+
+                            $('.totPrc').html(totPrc);              // 총 상품금액 업데이트
+                            $('.totDcPrc').html(totDcPrc);          // 총 할인금액 업데이트
+                            $('.dlvPrc').html(dlvPrc);              // 배송비 업데이트
+                            $('.finPrc').html(finPrc);              // 최종금액 업데이트
+                            $('.totalOrderPrice').html(finPrc + '원 주문하기');
+                        },
+                        error: function () { alert("error"); } // 에러가 발생했을 때, 호출될 함수
+                    }); // $.ajax()
+                });
             });
-            const jsonData = JSON.stringify({prodCds : selectedProdCds})
-
-            $.ajax({
-                type:'DELETE',       // 요청 메서드
-                url: '/cart/removeCheck',  // 요청 URI
-                headers : { "content-type": "application/json"}, // 요청 헤더
-                dataType : 'json', // 전송받을 데이터의 타입
-                data : jsonData,  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
-                success : function(result){  // 서버로부터 응답이 도착하면 호출될 함수
-                    console.log('ok')
-
-                },
-                error   : function(textStatus, error){ console.log('Error', textStatus, error) } // 에러가 발생했을 때, 호출될 함수
-            }); // $.ajax()
         });
     });
-
-
 
 
 </script>

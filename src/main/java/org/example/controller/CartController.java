@@ -61,7 +61,7 @@ public class CartController {
             HttpSession session = request.getSession();
             String custId = (String)session.getAttribute("id");
 
-            cartService.modifyQty(dto.getOptQty(), dto.getTotOptPrice(), custId, dto.getProdCd(), dto.getOptCd());
+            cartService.modifyQty(dto.getOptQty(), custId, dto.getProdCd(), dto.getOptCd());
 
             return new ResponseEntity<>(dto, HttpStatus.OK);
         } catch (Exception e) {
@@ -86,7 +86,7 @@ public class CartController {
         }
     }
 
-    @DeleteMapping("/removeCheck")
+    @DeleteMapping("/removeChecks")
     @ResponseBody
     @Transactional(rollbackFor = Exception.class)
     public ResponseEntity<?> removeProd(@RequestBody Map<String, List<String>> requestBody, HttpServletRequest request) {
