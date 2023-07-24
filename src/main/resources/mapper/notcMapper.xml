@@ -4,8 +4,8 @@
 
 <mapper namespace="org.example.dao.notcMapper">
 
-    <select id="select" parameterType="String" resultType="NotcDto">
-        select bbso_no, ttl, cn, wrtd, wrtr, cate, fst_regr, last_updr, use_yn
+    <select id="select" parameterType="int" resultType="NotcDto">
+        select bbso_no, ttl, cn, wrtd, wrtr, cate, use_yn, notc_cnt
         from cs_notc
         where bbso_no = #{bbsoNo}
     </select>
@@ -16,17 +16,17 @@
 
     <insert id="insert" parameterType="NotcDto">
         insert into cs_notc
-            (bbso_no, ttl, cn, wrtd, wrtr, cate, fst_reg, fst_regr, last_upd,last_updr)
+            (bbso_no, ttl, cn, wrtd, wrtr, cate)
         VALUES
-            (#{bbsoNo}, #{ttl},#{cn}, #{wrtd},#{wrtr}, #{cate},#{fstReg}, #{fstRegr}, #{lastUpd} ,#{lastUpdr})
+            (#{bbsoNo}, #{ttl},#{cn}, #{wrtd},#{wrtr}, #{cate})
     </insert>
 
     <update id="update" parameterType="NotcDto">
         update cs_notc
         set ttl = #{ttl}, cn = #{cn}
           , wrtd = #{wrtd}
-          , last_upd = #{lastUpd}
-        where bbso_no = ${bbsoNo} and wrtr = ${wrtr}
+          , last_upd = now()
+        where bbso_no = ${bbsoNo}
     </update>
 
     <delete id="deleteForAdmin">
@@ -38,7 +38,7 @@
     </delete>
 
     <select id="selectAll" resultType="NotcDto">
-        select bbso_no, ttl, cn, wrtd, wrtr, cate, fst_reg, fst_regr, last_upd, last_updr, use_yn
+        select bbso_no, ttl, cn, wrtd, wrtr, cate, fst_reg,  use_yn
         from cs_notc
         order by bbso_no desc, wrtd desc
     </select>
@@ -56,8 +56,6 @@
         where bbso_no = #{bbsoNo}
     </update>
 
-
-
     <select id="searchSelectPage" parameterType="NotcSearchCondition" resultType="NotcDto">
         select bbso_no, ttl, cn, wrtd, wrtr, notc_cnt, cate, fst_reg, fst_regr, last_upd, last_updr, use_yn
         from cs_notc
@@ -68,7 +66,7 @@
             </when>
         </choose>
 
-        order by wrtd DESC, bbso_no DESC
+        order by bbso_no DESC, wrtd DESC
         LIMIT #{offset}, #{pageSize}
     </select>
 

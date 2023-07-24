@@ -20,7 +20,7 @@ public class NotcServiceImpl implements NotcService {
     }
 
     @Override
-    public int remove(String bbsoNo){
+    public int remove(Integer bbsoNo){
         return notcDao.deleteForAdmin(bbsoNo);
     }
 
@@ -35,9 +35,9 @@ public class NotcServiceImpl implements NotcService {
     }
 
     @Override
-    public NotcDto read(String bbsoNo) throws Exception{
+    public NotcDto read(Integer bbsoNo) throws Exception{
         NotcDto dto = notcDao.select(bbsoNo);
-//        notcDao.increaseViewCnt(bbsoNo);
+        notcDao.increaseViewCnt(bbsoNo);
         return dto;
     }
 

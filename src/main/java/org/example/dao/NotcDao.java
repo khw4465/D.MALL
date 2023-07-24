@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface NotcDao {
-    NotcDto select(String bbsoNo) throws Exception;
+    NotcDto select(Integer bbsoNo) throws Exception;
 
     int count();
 
@@ -15,7 +15,7 @@ public interface NotcDao {
 
     int deleteAll();
 
-    int deleteForAdmin(String bbsoNo);
+    int deleteForAdmin(Integer bbsoNo);
 
     int update(NotcDto dto);
 
@@ -23,7 +23,7 @@ public interface NotcDao {
 
     List<NotcDto> selectPage(Map map);
 
-    int increaseViewCnt(Integer notcCnt);
+    int increaseViewCnt(Integer bbsoNo);
 
 
     public List<NotcDto> searchSelectPage(NotcSearchCondition sc) throws Exception;

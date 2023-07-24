@@ -4,12 +4,12 @@ import java.sql.Date;
 
 public class NotcDto {
 
-    private String bbsoNo;
+    private Integer bbsoNo;
     private String ttl;
     private String cn;
     private String wrtd;
     private String wrtr;
-    private Integer notcCnt;
+    private int notcCnt;
     private String cate;
     private Date fstReg;
     private String fstRegr;
@@ -17,10 +17,11 @@ public class NotcDto {
     private String lastUpdr;
     private String useYn;
 
-    public NotcDto(){}
+    public NotcDto() {
+    }
 
     // DATE빠진 생성자
-    public NotcDto(String bbsoNo, String ttl, String cn, String wrtd, String wrtr, Integer notcCnt, String cate, String fstRegr, String lastUpdr, String useYn) {
+    public NotcDto(Integer bbsoNo, String ttl, String cn, String wrtd, String wrtr, int notcCnt, String cate, String fstRegr, String lastUpdr, String useYn) {
         this.bbsoNo = bbsoNo;
         this.ttl = ttl;
         this.cn = cn;
@@ -33,7 +34,7 @@ public class NotcDto {
         this.useYn = useYn;
     }
 
-    public NotcDto(String bbsoNo, String ttl, String cn, String wrtd, String wrtr, Integer notcCnt, String cate, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr, String useYn) {
+    public NotcDto(Integer bbsoNo, String ttl, String cn, String wrtd, String wrtr, int notcCnt, String cate, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr, String useYn) {
         this.bbsoNo = bbsoNo;
         this.ttl = ttl;
         this.cn = cn;
@@ -48,11 +49,11 @@ public class NotcDto {
         this.useYn = useYn;
     }
 
-    public String getBbsoNo() {
+    public Integer getBbsoNo() {
         return bbsoNo;
     }
 
-    public void setBbsoNo(String bbsoNo) {
+    public void setBbsoNo(Integer bbsoNo) {
         this.bbsoNo = bbsoNo;
     }
 
