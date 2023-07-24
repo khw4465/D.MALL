@@ -7,7 +7,7 @@ public class NotcDto {
     private Integer bbsoNo;
     private String ttl;
     private String cn;
-    private String wrtd;
+    private Date wrtd = new Date(System.currentTimeMillis());
     private String wrtr;
     private int notcCnt;
     private String cate;
@@ -17,11 +17,13 @@ public class NotcDto {
     private String lastUpdr;
     private String useYn;
 
+    private String selectedOption;
+
     public NotcDto() {
     }
 
     // DATE빠진 생성자
-    public NotcDto(Integer bbsoNo, String ttl, String cn, String wrtd, String wrtr, int notcCnt, String cate, String fstRegr, String lastUpdr, String useYn) {
+    public NotcDto(Integer bbsoNo, String ttl, String cn, Date wrtd, String wrtr, int notcCnt, String cate, String fstRegr, String lastUpdr, String useYn) {
         this.bbsoNo = bbsoNo;
         this.ttl = ttl;
         this.cn = cn;
@@ -34,7 +36,7 @@ public class NotcDto {
         this.useYn = useYn;
     }
 
-    public NotcDto(Integer bbsoNo, String ttl, String cn, String wrtd, String wrtr, int notcCnt, String cate, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr, String useYn) {
+    public NotcDto(Integer bbsoNo, String ttl, String cn, Date wrtd, String wrtr, int notcCnt, String cate, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr, String useYn) {
         this.bbsoNo = bbsoNo;
         this.ttl = ttl;
         this.cn = cn;
@@ -47,6 +49,14 @@ public class NotcDto {
         this.lastUpd = lastUpd;
         this.lastUpdr = lastUpdr;
         this.useYn = useYn;
+    }
+
+    public String getSelectedOption() {
+        return selectedOption;
+    }
+
+    public void setSelectedOption(String selectedOption) {
+        this.selectedOption = selectedOption;
     }
 
     public Integer getBbsoNo() {
@@ -73,11 +83,11 @@ public class NotcDto {
         this.cn = cn;
     }
 
-    public String getWrtd() {
+    public Date getWrtd() {
         return wrtd;
     }
 
-    public void setWrtd(String wrtd) {
+    public void setWrtd(Date wrtd) {
         this.wrtd = wrtd;
     }
 

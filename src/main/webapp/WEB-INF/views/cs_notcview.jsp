@@ -40,7 +40,7 @@
             <li><a href="/notc/list">공지사항</a></li>
             <li><a href="/user/list">이용안내</a></li>
             <li><a href="/faq/list">자주묻는FAQ</a></li>
-            <li><a href="/cs/inqry">1:1문의</a></li>
+<%--            <li><a href="/cs/inqry">1:1문의</a></li>--%>
         </ul>
     </nav>
 </div>
@@ -63,19 +63,8 @@
 
 <%--        <button type="button" id="modifyBtn" class="btn">수정</button>--%>
 <%--        <button type="button" id="removeBtn" class="btn">삭제</button>--%>
-<%--        <button type="button" id="listBtn" class="btn">목록</button>--%>
+        <button type="button" id="listBtn" class="btn">목록</button>
     </form>
-
-<%--    <form action="" id="form">--%>
-
-<%--        <input type="text" name="bbsoNo" value="${NotcDto.bbsoNo}" readonly="readonly">--%>
-<%--        <input type="text" name="ttl" value="${NotcDto.ttl}" readonly="readonly">--%>
-<%--        <textarea name="content" id="" cols="30" rows="10" readonly="readonly" >${NotcDto.cn}</textarea>--%>
-<%--        <button type="button" id="writeBtn" class="btn">등록</button>--%>
-<%--        <button type="button" id="modifyBtn" class="btn">수정</button>--%>
-<%--        <button type="button" id="removeBtn" class="btn">삭제</button>--%>
-<%--        <button type="button" id="listBtn" class="btn">목록</button>--%>
-<%--    </form>--%>
 
 </div>
 

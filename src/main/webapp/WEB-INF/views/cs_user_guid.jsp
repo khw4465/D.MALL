@@ -39,7 +39,7 @@
             <li><a href="/notc/list">공지사항</a></li>
             <li><a href="/user/list">이용안내</a></li>
             <li><a href="/faq/list">자주묻는FAQ</a></li>
-            <li><a href="/cs/inqry">1:1문의</a></li>
+<%--            <li><a href="/cs/inqry">1:1문의</a></li>--%>
         </ul>
     </nav>
 </div>

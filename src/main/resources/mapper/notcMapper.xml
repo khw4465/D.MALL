@@ -18,7 +18,7 @@
         insert into cs_notc
             (bbso_no, ttl, cn, wrtd, wrtr, cate)
         VALUES
-            (#{bbsoNo}, #{ttl},#{cn}, #{wrtd},#{wrtr}, #{cate})
+            (#{bbsoNo}, #{ttl},#{cn}, #{wrtd},#{wrtr}, #{selectedOption})
     </insert>
 
     <update id="update" parameterType="NotcDto">
@@ -81,4 +81,6 @@
             </when>
         </choose>
     </select>
+
+
 </mapper>

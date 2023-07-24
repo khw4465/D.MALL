@@ -42,7 +42,7 @@
       <li><a href="/notc/list">공지사항</a></li>
       <li><a href="/user/list">이용안내</a></li>
       <li><a href="/faq/list">자주묻는FAQ</a></li>
-      <li><a href="/cs/inqry">1:1문의</a></li>
+<%--      <li><a href="/cs/inqry">1:1문의</a></li>--%>
     </ul>
   </nav>
 </div>
@@ -95,11 +95,11 @@
 <!-- 게시물 검색창 -->
 <div>
   <form id="cs_search" action="<c:url value="/notc/list"/>" class="search-form" method="get">
-    <select class="search-option" name="option">
-      <option value="T" ${pagehandler.sc.option=='T' ? "selected" : ""}>제목만</option>
+    <select class="search-option" name="option" hidden="hidden">
+      <option value="T" ${pagehandler.sc.option=='T' ? "selected" : ""} hidden="hidden">제목만</option>
     </select>
 
-    <input type="text" name="keyword" class="search-input" type="text" value="${pagehandler.sc.keyword}">
+    <input type="text" name="keyword" class="search-input" type="text" value="${pagehandler.sc.keyword}" placeholder="제목을 검색해주세요">
     <input type="submit" class="search-button" value="검색">
   </form>
 </div>
