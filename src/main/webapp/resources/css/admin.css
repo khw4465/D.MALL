@@ -52,12 +52,12 @@ li {
 }
 
 .panel {
-    max-height: 0;
+    max-height: none;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
 
 .active+.panel {
-    max-height: 50px;
+    max-height: none;
     /* 필요에 따라 변경 */
 }

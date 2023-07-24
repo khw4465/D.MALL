@@ -11,7 +11,6 @@ public interface CustService {
 
     CustDto loginCust(String id) throws Exception;
     int registerCust(CustDto custDto) throws Exception;
-
     CustDto modifyselect(String id) throws Exception;
 
     int withdrawal(String id) throws Exception; // 탈퇴

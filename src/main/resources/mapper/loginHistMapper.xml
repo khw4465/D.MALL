@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.dao.loginHistMapper">
+
+    <select id="select" resultType="LoginHistoryDTO" parameterType="LoginHistoryDTO">
+        SELECT *
+        FROM cust_lgin_hist
+        WHERE cust_id = #{custId}
+    </select>
+
+    <insert id="insert" parameterType="LoginHistoryDTO">
+        INSERT INTO cust_lgin_hist
+        (LGIN_HIST_ID, CUST_ID, DTTM, SCSS_YN, IP, TP, FAIL_CAUS, NATN, MHRLS, VLD_TERM, FAIL_CNT, FST_REG, FST_REGR, LAST_UPD, LAST_UPDR)
+        VALUES
+            (#{lginHistId}, #{custId}, #{dttm}, #{scssYn}, #{ip}, #{tp}, #{failCaus}, #{natn}, #{mhrLS}, #{vldTerm}, #{failCnt}, #{fstReg}, #{fstRegr}, #{lastUpd}, #{lastUpdr})
+    </insert>
+
+    <select id="selectAll" resultType="LoginHistoryDTO">
+        SELECT *
+        FROM cust_lgin_hist
+    </select>
+
+    <select id="count" resultType="int" parameterType="String">
+        SELECT COUNT(*) FROM cust_lgin_hist WHERE cust_id = #{custId}
+    </select>
+
+    <select id="resetFailCountSelect" parameterType="String" resultType="LoginHistoryDTO">
+        SELECT *
+        FROM cust_lgin_hist
+        WHERE cust_id = #{custId}
+        ORDER BY DTTM DESC
+            LIMIT 1
+    </select>
+
+    <update id="resetFailCountUpdate" parameterType="LoginHistoryDTO">
+        UPDATE cust_lgin_hist
+        SET FAIL_CNT = 0
+        WHERE cust_id = #{custId}
+            ORDER BY DTTM DESC
+        LIMIT 1;
+    </update>
+
+    <select id="stats" resultType="CustStatsDto">
+        select *
+        from cust_stats
+    </select>
+
+</mapper>

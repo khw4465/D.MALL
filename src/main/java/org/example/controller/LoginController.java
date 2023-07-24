@@ -1,7 +1,9 @@
 package org.example.controller;
 
+import org.checkerframework.checker.units.qual.A;
 import org.example.dao.*;
 import org.example.domain.*;
+import org.example.service.CustLoginHistService;
 import org.example.service.CustService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -20,18 +22,21 @@ import javax.servlet.http.HttpSession;
 import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.security.SecureRandom;
+import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("/login")
 public class LoginController {
-    @Autowired
     CustDao custDao;
-
-    @Autowired
     CustService custService;
-
+    CustLoginHistService custLoginHistService;
     @Autowired
     private JavaMailSender mailSender;
+    public LoginController(CustDao custDao, CustService custService, CustLoginHistService custLoginHistService) {
+        this.custDao = custDao;
+        this.custService = custService;
+        this.custLoginHistService = custLoginHistService;
+    }
 
     @GetMapping("/findId")
     public String findidget() {
@@ -169,50 +174,66 @@ public class LoginController {
     @PostMapping("/login")
     public String login(Model m, String id, String pwd, String toURL, boolean rememberId,
                         HttpServletRequest request, HttpServletResponse response) throws Exception {
+        LoginHistoryDTO loginHistoryDTO = new LoginHistoryDTO();
+        loginHistoryDTO.setCustId(id); //아이디
+        loginHistoryDTO.setDttm(LocalDateTime.now()); // 발생시간
+        loginHistoryDTO.setIp(request.getRemoteAddr()); //IP 로컬일때는 0 0 0 0 임
+        loginHistoryDTO.setNatn(request.getHeader("Accept-Language")); //국가 추론
+        loginHistoryDTO.setMhrLS(request.getHeader("User-Agent")); //기기(기계) 추론
 
-        // 1. id와 pwd를 확인
-        if (!loginCheck(id, pwd)) {
-            // 2-1   일치하지 않으면, loginForm으로 이동
-            String msg = URLEncoder.encode("id 또는 pwd가 일치하지 않습니다.", "utf-8");
-            return "redirect:/login/login?msg=" + msg;
+//        if (custLoginHistService.HistCountSelect(id).getFailCnt()>=3){
+//            // 비밀번호가 3회이상 틀렸습니다. 창 나오게 하기
+//            String histmsg = URLEncoder.encode("비밀번호가 3회이상 틀렸습니다.", "utf-8");
+//
+//            return "redirect:/login/login?msg=" + histmsg;
+//        } // 이거 잘못하니까 널포인터익셉션
+
+        try {
+            // 1. id와 pwd를 확인
+            if (!loginCheck(id, pwd)) {
+                // 2-1   일치하지 않으면, loginForm으로 이동
+                String msg = URLEncoder.encode("id 또는 pwd가 일치하지 않습니다.", "utf-8");
+                loginHistoryDTO.setScssYn("N");
+
+                // 기존의 아이디의 최신 날짜의 정보를 가져와서 카운트를 확인하고
+                // 그 카운트를 증가시켜줘야한다.
+                loginHistoryDTO.setFailCnt(custLoginHistService.HistCountSelect(id).getFailCnt()+1);
+                // 틀리면서 예외터질때도 예외처리해야함.
+                return "redirect:/login/login?msg=" + msg;
+            }
+            // 2-2. id와 pwd가 일치하면,
+            HttpSession session = request.getSession();//  세션 객체를 얻어오기
+            session.setAttribute("id", id);//  세션 객체에 id를 저장
+
+            if (rememberId) {
+                Cookie cookie = new Cookie("id", id); // 1. 쿠키를 생성
+                response.addCookie(cookie);//2. 응답에 저장
+            } else {
+                Cookie cookie = new Cookie("id", id); // 1. 쿠키를 삭제
+                cookie.setMaxAge(0); // 쿠키를 삭제
+                response.addCookie(cookie);//		       2. 응답에 저장
+            }
+            toURL = toURL == null || toURL.equals("") ? "/" : toURL;//		       3. 홈으로 이동
+
+
+            // 아이디 비번이 어드민이 맞는지 확인
+            if (adminCHeck(id)) { // 어드민일경우
+                m.addAttribute("loginAdminTrue", true);
+                return "index";
+            }
+            loginHistoryDTO.setScssYn("Y");
+            return "redirect:" + toURL;
+        } catch (Exception e) {
+            loginHistoryDTO.setScssYn("N");
+            loginHistoryDTO.setFailCaus(e.getMessage()); // 메세지저장
+            loginHistoryDTO.setFailCnt(custLoginHistService.HistCountSelect(id).getFailCnt()+1);
+            e.printStackTrace();
+            System.out.println("e.getMessage() = " + e.getMessage());
+            return "error";
+        }finally {
+            custLoginHistService.LoginHistInsert(loginHistoryDTO); // 제일마지막에 저장
         }
-        // 2-2. id와 pwd가 일치하면,
-        //  세션 객체를 얻어오기
-        HttpSession session = request.getSession();
-        //  세션 객체에 id를 저장
-        session.setAttribute("id", id);
-
-        if (rememberId) {
-            //     1. 쿠키를 생성
-            Cookie cookie = new Cookie("id", id); // ctrl+shift+o 자동 import
-//		       2. 응답에 저장
-            response.addCookie(cookie);
-        } else {
-            // 1. 쿠키를 삭제
-            Cookie cookie = new Cookie("id", id); // ctrl+shift+o 자동 import
-            cookie.setMaxAge(0); // 쿠키를 삭제
-//		       2. 응답에 저장
-            response.addCookie(cookie);
-        }
-//		       3. 홈으로 이동
-        toURL = toURL == null || toURL.equals("") ? "/" : toURL;
-
-
-        // 아이디 비번이 어드민이 맞는지 확인
-        if (adminCHeck(id)) { // 어드민일경우
-            m.addAttribute("loginAdminTrue", true);
-            return "index";
-        }
-        return "redirect:" + toURL;
     }
-
-//    @RequestMapping("/admin")
-//    public String admin() {
-//        //로그인되어있는지 확인한다.
-//        //어드민인지 확인한다.
-//        //어드민페이지로 보낸다.
-//        return "admin";
-//    }
         @GetMapping("/logoClick")
         public String handleLogoClick(Model m,HttpServletRequest request) throws Exception {
         //현재 아이디를 가져와서 서비스로 타입조회 //맞을시 모델에 저장
@@ -238,10 +259,10 @@ public class LoginController {
         return user != null && user.getPwd().equals(pwd);
 //        return "asdf".equals(id) && "1234".equals(pwd);
     }
-
     private boolean adminCHeck(String id) throws Exception {
         String tp = "2";
         CustDto dto = custService.loginCust(id);
+        System.out.println("dto.getCustTp() = " + dto.getCustTp());
         return dto.getCustTp().equals(tp);
     }
 }

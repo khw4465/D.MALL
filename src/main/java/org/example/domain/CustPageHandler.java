@@ -2,45 +2,58 @@ package org.example.domain;
 
 public class CustPageHandler {
 
-    private custAdminCondition cac;
+     //private custAdminCondition cac;
+     private int page; // 현재 페이지
+    private int pageSize; // 한 페이지의 크기
+    private int totalCnt; // 총 게시물 개수
 
-    private int totalCnt; //총 게시물 갯수
-    private int naviSize=10; //페이지 네비게이션의 크기
-    private  int totalPage; //전체 페이지의 갯수
-    private int beginPage; //네비게이션의 첫번째 페이지
-    private int endPage; // 네비게이션의 마지막 페이지
-    private  boolean showPrev; //이전페이지로 이동하는 링크를 보여줄 것인지 여부
-    private  boolean showNext; //다음 페이지로 이동하는 링크를 보여줄 것인지 여부
+    private int naviSize = 10; // 페이지 내비게이션의 크기
+    private int totalPage; // 전체 페이지의 크기
 
-    public CustPageHandler(int totalCnt, custAdminCondition cac){
+    private int beginPage; // 내비게이션의 첫번째 페이지
+    private int endPage; // 내비게이션의 마지막 페이지
+    private boolean showPrev; // 이전 페이지로 이동하는 링크를 보여줄 것인지의 여부
+    private boolean showNext; // 다음 페이지로 이동하는 링크를 보여줄 것인지의 여부
+
+    public CustPageHandler(int totalCnt,int page) {
+        this(totalCnt,page,10);
+    }
+
+    public CustPageHandler(int totalCnt, int page, int pageSize){
         this.totalCnt = totalCnt;
-        this.cac = cac;
+        this.page = page;
+        this.pageSize = pageSize;
 
-        doPaging(totalCnt,cac);
+        totalPage = (int)Math.ceil(totalCnt / (double)pageSize);
+        beginPage = (page-1) / naviSize * naviSize +1;
+        endPage = Math.min(beginPage + naviSize-1, totalPage);
+        showPrev = beginPage !=1;
+        showNext = endPage !=totalPage;
+        //doPaging(totalCnt,cac);
     }
-    public void doPaging(int totalCnt,custAdminCondition cac){
-        this.totalCnt= totalCnt;
-        totalPage = (int)Math.ceil(totalCnt/ (double)cac.getPageSize());
-        beginPage = (cac.getPage()-1) / naviSize * naviSize +1;
-        endPage = Math.min(beginPage+naviSize-1,totalPage);
-        showPrev = beginPage!=1;
-        showNext = endPage != totalPage;
-    }
+//    public void doPaging(int totalCnt,custAdminCondition cac){
+//        this.totalCnt= totalCnt;
+//        totalPage = (int)Math.ceil(totalCnt/ (double)cac.getPageSize());
+//        beginPage = (cac.getPage()-1) / naviSize * naviSize +1;
+//        endPage = Math.min(beginPage+naviSize-1,totalPage);
+//        showPrev = beginPage!=1;
+//        showNext = endPage != totalPage;
+//    }
 
     void print(){
-        System.out.println("page = " + cac.getPage());
+        System.out.println("page = " + page);
         System.out.print(showPrev ? "[PREV] " : "");
-        for (int i = beginPage; i <=endPage ; i++) {
-            System.out.print(i+" ");
-            //System.out.print(i+"-");
+        for (int i = beginPage; i <= endPage; i++) {
+            System.out.print(i+"    ");
         }
-        System.out.print(showNext ? " [NEXT] " : "");
+        System.out.println(showNext ? "  [NEXT]" : "");
     }
 
     @Override
     public String toString() {
         return "CustPageHandler{" +
-                "cac=" + cac +
+                "page=" + page +
+                ", pageSize=" + pageSize +
                 ", totalCnt=" + totalCnt +
                 ", naviSize=" + naviSize +
                 ", totalPage=" + totalPage +
@@ -51,12 +64,20 @@ public class CustPageHandler {
                 '}';
     }
 
-    public custAdminCondition getCac() {
-        return cac;
+    public int getPage() {
+        return page;
     }
 
-    public void setCac(custAdminCondition cac) {
-        this.cac = cac;
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
     }
 
     public int getTotalCnt() {

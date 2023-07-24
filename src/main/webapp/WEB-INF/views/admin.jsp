@@ -42,6 +42,8 @@
         <button class="list">회원관리</button>
         <div class="panel">
             <li><a href="<c:url value='/custselect'/>">회원리스트</a></li>
+            <li><a href="<c:url value='/loginHist'/>">회원로그인이력</a></li>
+            <li><a href="<c:url value='/stats'/>">회원로그인통계</a></li>
         </div>
         <button class="list">게시판관리</button>
         <div class="panel">
