@@ -5,7 +5,7 @@
 <mapper namespace="org.example.dao.CartMapper">
     <select id="select" parameterType="map" resultType="CartDto">
         SELECT *
-        FROM cart , ord
+        FROM cart
         WHERE cust_id = #{custId}
         AND prod_cd = #{prodCd}
     </select>
@@ -21,9 +21,9 @@
     </select>
     <insert id="insert" parameterType="CartDto">
         INSERT INTO cart
-            (cust_id, prod_cd, prod_name, prod_qty, tot_setl_price)
+            (cust_id, prod_cd, prod_name, prod_qty, tot_prod_price, paymt_pnt)
         values
-            (#{custId}, #{prodCd}, #{prodName}, #{prodQty}, #{totSetlPrice})
+            (#{custId}, #{prodCd}, #{prodName}, #{prodQty}, #{totProdPrice}, #{totProdPrice}/100)
     </insert>
     <delete id="delete" parameterType="map">
         DELETE
@@ -39,6 +39,7 @@
         UPDATE cart
         SET  prod_qty  = #{prodQty}
            , tot_prod_price = #{totProdPrice}
+           , paymt_pnt = #{totProdPrice}/100
         WHERE cust_id = #{custId}
         AND prod_cd = #{prodCd}
     </update>

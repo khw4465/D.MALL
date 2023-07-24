@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<c:set var="loginId"
-       value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
+<c:set var="loginId" value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
 <c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
 <html>
@@ -40,53 +39,53 @@
             <%--        onsubmit="return logincheck();--%>
             <form action="<c:url value="/login/login"/>" method="post" onsubmit="return formCheck(this);">
                 <!-- 시작 -->
-<%--                <h3 id="title">Login</h3>--%>
+                <%--                <h3 id="title">Login</h3>--%>
                 <div id="msg">
                     <c:if test="${not empty param.msg}">
                         <i class="fa fa-exclamation-circle"> ${URLDecoder.decode(param.msg)}</i>
                     </c:if>
                 </div>
                 <%--  여기부터 완성해야함--%>
-<%--                <fieldset>--%>
-<%--                    <legend>아이디/비밀번호 입력</legend>--%>
+                <%--                <fieldset>--%>
+                <%--                    <legend>아이디/비밀번호 입력</legend>--%>
 
-                    <!-- 아이디 입력칸 시작 -->
-                    <div class="input-id">
-                        <label for="id" class="id-info">아이디</label>
-                        <input type="text" id="id" name="id" value="${cookie.id.value}" class="input-text"
-                               placeholder="아이디" maxlength="20">
+                <!-- 아이디 입력칸 시작 -->
+                <div class="input-id">
+                    <label for="id" class="id-info">아이디</label>
+                    <input type="text" id="id" name="id" value="${cookie.id.value}" class="input-text"
+                           placeholder="아이디" maxlength="20">
+                </div>
+                <!-- 아이디 입력칸 종료 -->
+
+                <!-- 비번 입력칸 시작 -->
+                <div class="input-pwd">
+                    <label for="pw" class="id-info">비밀번호</label>
+                    <input type="password" id="pw" name="pwd" class="input-text" placeholder="비밀번호" maxlength="30">
+                </div>
+                <!-- 비번 입력칸 종료 -->
+                <input type="hidden" name="toURL" value="${param.toURL}">
+                <button type="submit" class="login-submit"><span>로그인</span></button>
+                <%--  여기부터 완성해야함--%>
+
+
+                <!-- 체크박스 시작 -->
+                <div class="check-sso">
+                    <!-- 자동로그인 기능 시작 -->
+                    <!-- <div class="auto-login"> -->
+                    <!--    <input type="checkbox" id="remember1" class="checkbox" name="remember1" -->
+                    <!--        ><label for="remember1"> 자동로그인 </label> -->
+                    <!--</div> -->
+                    <!-- 자동로그인 기능 종료 -->
+                    <!-- 아이디저장 기능 시작 -->
+                    <div class="save-ld">
+                        <input type="checkbox" id="remember2" class="checkbox" name="remember2"
+                        ><label for="remember2"> 아이디저장 </label>
                     </div>
-                    <!-- 아이디 입력칸 종료 -->
+                    <!-- 아이디저장 기능 종료 -->
+                </div>
+                <!-- 체크박스 종료 -->
 
-                    <!-- 비번 입력칸 시작 -->
-                    <div class="input-pwd">
-                        <label for="pw" class="id-info">비밀번호</label>
-                        <input type="password" id="pw" name="pwd" class="input-text" placeholder="비밀번호" maxlength="30">
-                    </div>
-                    <!-- 비번 입력칸 종료 -->
-                    <input type="hidden" name="toURL" value="${param.toURL}">
-                    <button type="submit" class="login-submit"><span>로그인</span></button>
-                    <%--  여기부터 완성해야함--%>
-
-
-                    <!-- 체크박스 시작 -->
-                    <div class="check-sso">
-                        <!-- 자동로그인 기능 시작 -->
-                        <!-- <div class="auto-login"> -->
-                        <!--    <input type="checkbox" id="remember1" class="checkbox" name="remember1" -->
-                        <!--        ><label for="remember1"> 자동로그인 </label> -->
-                        <!--</div> -->
-                        <!-- 자동로그인 기능 종료 -->
-                        <!-- 아이디저장 기능 시작 -->
-                        <div class="save-ld">
-                            <input type="checkbox" id="remember2" class="checkbox" name="remember2"
-                            ><label for="remember2"> 아이디저장 </label>
-                        </div>
-                        <!-- 아이디저장 기능 종료 -->
-                    </div>
-                    <!-- 체크박스 종료 -->
-
-<%--                </fieldset>--%>
+                <%--                </fieldset>--%>
                 <!-- 종료 -->
 
                 <!-- 아이디비번 찾기 코드 시작 -->
@@ -98,12 +97,30 @@
                     </ul>
                 </div>
                 <!-- 아이디비번 찾기 코드 종료 -->
-
             </form>
             <!-- 로그인폼 종료 -->
         </div>
 
     </div>
     <!-- 로그인창 코드 종료 -->
+    <script>
+        // 페이지가 로드되면 실행
+        window.onload = function() {
+            // URL의 쿼리 매개변수를 읽어옴
+            var urlParams = new URLSearchParams(window.location.search);
+
+            // 'msg' 매개변수가 있는지 확인
+            if(urlParams.has('msg')) {
+                var msg = urlParams.get('msg');// 'msg' 매개변수의 값을 읽어옴
+                msg = decodeURIComponent(msg);// 메시지를 디코딩
+                alert(msg);// 알림을 표시
+            }
+            if(urlParams.has('histmsg')) {
+                var msg = urlParams.get('histmsg');  // 'msg' 매개변수의 값을 읽어옴
+                msg = decodeURIComponent(msg); // 메시지를 디코딩
+                alert(msg);  // 알림을 표시
+            }
+        };
+    </script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+    /*padding: 0;*/
+    /*margin: 0;*/
+    /*box-sizing: border-box;*/
 }
 body {
     font-family: Arial, sans-serif;
@@ -64,7 +64,7 @@ body {
     color: inherit;
 }
 .dropdown-content {
-    display: none;
+    /*display: none;*/
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
@@ -168,6 +168,17 @@ li {
 
     from {opacity: .4}
     to {opacity: 1}
+}
+.includeList{
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.includeItem{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .thmImg {

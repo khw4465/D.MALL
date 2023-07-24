@@ -27,6 +27,30 @@
 </div>
 
 <div class="content">
+    <div class="left-list">
+        <h2>관리자 매뉴얼</h2>
+        <button class="list">상품관리</button>
+        <div class="panel">
+            <li><a href="/prod/register">상품등록 |</a></li>
+            <li></li>
+
+        </div>
+
+        <button class="list">주문관리</button>
+        <div class="panel">
+            <li>hello</li>
+        </div>
+        <button class="list">회원관리</button>
+        <div class="panel">
+            <li><a href="<c:url value='/custselect'/>">회원리스트</a></li>
+            <li><a href="<c:url value='/loginHist'/>">회원로그인이력</a></li>
+            <li><a href="<c:url value='/stats'/>">회원로그인통계</a></li>
+        </div>
+        <button class="list">게시판관리</button>
+        <div class="panel">
+            <li>hello</li>
+        </div>
+    </div>
     <div class="right-list">
         <div class="panel1">
 
