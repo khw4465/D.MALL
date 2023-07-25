@@ -13,6 +13,10 @@
         SELECT * FROM cate_main
     </select>
 
+    <select id="getCateCd" resultType="string">
+        SELECT main_cate FROM cate_main
+    </select>
+
     <!-- Count -->
     <select id="count" resultType="int">
         SELECT COUNT(*) FROM cate_main

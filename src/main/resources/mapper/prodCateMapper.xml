@@ -13,6 +13,15 @@
         SELECT * FROM prod_cate
     </select>
 
+    <select id="getCateCd" resultType="string">
+        SELECT main_cate FROM prod_cate
+    </select>
+
+    <select id="getMainCate" parameterType="string" resultType="ProdCateDto">
+        SELECT * FROM prod_cate
+        WHERE main_cate = #{mainCate}
+    </select>
+
     <!-- Count -->
     <select id="count" resultType="int">
         SELECT COUNT(*) FROM prod_cate

@@ -11,6 +11,10 @@ public interface ProdCateDao {
     // 특정 cate코드를 입력하면 dto반환
 
     List<ProdCateDto> selectAll() throws Exception;
+
+    List<String> getCateCd() throws Exception;
+
+    List<List<ProdCateDto>> getMainCate() throws Exception;
     // cate코드 모두출력
 
 }
