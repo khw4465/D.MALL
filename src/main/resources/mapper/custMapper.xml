@@ -18,7 +18,7 @@
 
     <insert id="insert" parameterType="CustDto">
         INSERT INTO cust
-            (cust_id,PWD,NAME,RCMDR,EMAIL,mpno,CUST_TP,GRADE,STUS,REG_DATE,LGIN_DTTM,fstReg,fstRegr,lastUpd,lastUpdr)
+            (cust_id,PWD,NAME,RCMDR,EMAIL,mpno,CUST_TP,GRADE,STUS,REG_DATE,LGIN_DTTM,fst_Reg,fst_Regr,last_Upd,last_Updr)
         VALUES
             (#{custId}, #{pwd}, #{name}, #{rcmdr}, #{email},#{mpNo},#{custTp},#{grade},#{stus},#{regDate},#{lginDttm},#{fstReg},#{fstRegr},#{lastUpd},#{lastUpdr})
     </insert>

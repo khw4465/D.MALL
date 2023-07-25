@@ -186,6 +186,7 @@
 
     const allDelBtn = document.getElementById('deleteAll');          // 전체삭제 버튼
     const selectDelBtn = document.getElementById('deleteCheck');     // 선택삭제 버튼
+
     const cart = document.getElementById("cart");
     const cartOpt = document.getElementById("cart-option");
     // const listhead = document.getElementById("list-head");
@@ -521,8 +522,6 @@
             });
         });
     });
-
-
 </script>
 
 </body>

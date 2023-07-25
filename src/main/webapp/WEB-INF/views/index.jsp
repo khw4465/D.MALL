@@ -84,19 +84,19 @@
                 <div class="hd_state">
                     <ul class="statelog clearfix">
                         <li class="xans-element- xans-layout xans-layout-statelogoff "><a
-                                href="/member/login.html">로그인</a>
+                                href="<c:url value='${loginOutLink}'/>">${loginOut}</a>
                         </li>
                         <li class="xans-element- xans-layout xans-layout-statelogoff "><a
-                                href="/member/join.html">회원가입</a>
+                                href="<c:url value='${addAndModify}'/>">${register}</a>
                         </li>
-                        <li><a href="/myshop/order/list.html">주문/배송</a></li>
-                        <li><a href="/board/index.html">고객센터</a></li>
+                        <li><a href="<c:url value='/order/list'/>">주문조회</a></li>
+                        <li><a href="<c:url value='/cs'/>">고객센터</a></li>
                     </ul>
                     <ul class="hd_icons clearfix">
                         <li class="hdMyshop"><a href="/myshop/index.html">마이쇼핑</a></li>
-                        <li class="hdWish"><a href="/myshop/wish_list.html">관심상품</a></li>
+                        <li class="hdWish"><a href="<c:url value='/custMyPage'/>">마이페이지</a></li>
                         <li class="xans-element- xans-layout xans-layout-statelogoff hdBasket "><a
-                                href="/order/basket.html">장바구니 <span
+                                href="<c:url value='/cart/list'/>">장바구니 <span
                                 class="count EC-Layout_Basket-count-display"><span
                                 class="EC-Layout-Basket-count">0</span></span></a>
                         </li>
@@ -166,6 +166,7 @@
         </div>
     </div>
 </div>
+
 <div id="header_warp" style="height: 248px;"></div>
 <hr class="layout">
 <div id="wrap">
@@ -2632,7 +2633,6 @@
     </div>
 </div>
 <!-- // 결제를 위한 필수 영역 -->
-
 
 <span itemscope="" itemtype="https://schema.org/Organization">
             <link itemprop="url" href="https://www.moguchonmall.com">

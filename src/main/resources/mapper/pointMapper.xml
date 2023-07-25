@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.dao.pointMapper">
+
+<!--   특정 회원이 가지고있는 포인트들 -->
+    <select id="select" resultType="pointDto" parameterType="String">
+        SELECT *
+        FROM pnt_mst
+        WHERE CUST_ID = #{custId}
+    </select>
+
+    <!--   특정 포인트아이디가 가지고있는 포인트 -->
+    <select id="selectPointId" resultType="int" parameterType="String">
+        SELECT *
+        FROM pnt_mst
+        WHERE PNT_ID = #{pntId}
+    </select>
+
+    <select id="selectPage" parameterType="map" resultType="pointDto">
+        SELECT *
+        FROM pnt_mst
+        WHERE CUST_ID = #{custId}
+        ORDER BY dttm DESC
+            LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <insert id="insert" parameterType="pointDto">
+        INSERT INTO pnt_mst
+        (PNT_ID, CUST_ID, STUS, CHNG_PNT, point, DTTM, EXPI_DTTM, CHG_CN, REMARK, PNT_CD, FST_REG, FST_REGR, LAST_UPD, LAST_UPDR)
+        VALUES
+            (#{pntId}, #{custId}, #{stus}, #{chngPnt}, #{point}, #{dttm}, #{expiDttm}, #{chgCn}, #{remark}, #{pntCd}, #{fstReg}, #{fstRegr}, #{lastUpd}, #{lastUpdr})
+    </insert>
+
+    <update id="update" parameterType="pointDto">
+        UPDATE pnt_mst
+        SET CUST_ID = #{custId}, STUS = #{stus}, CHNG_PNT = #{chngPnt}, point = #{point}, DTTM = #{dttm}, EXPI_DTTM = #{expiDttm}, CHG_CN = #{chgCn}, REMARK = #{remark}, PNT_CD = #{pntCd}, FST_REG = #{fstReg}, FST_REGR = #{fstRegr}, LAST_UPD = #{lastUpd}, LAST_UPDR = #{lastUpdr}
+        WHERE PNT_ID = #{pntId}
+    </update>
+
+    <select id="selectAll" resultType="pointDto">
+        SELECT *
+        FROM pnt_mst
+    </select>
+
+<!--    회원전용 count-->
+    <select id="count" resultType="int" parameterType="String">
+        SELECT COUNT(*)
+        FROM pnt_mst
+        WHERE CUST_ID = #{custId}
+    </select>
+
+</mapper>

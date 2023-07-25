@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session="false"%>
 <html>
 <head>
@@ -39,7 +40,7 @@
             <li><a href="/notc/list">공지사항</a></li>
             <li><a href="/user/list">이용안내</a></li>
             <li><a href="/faq/list">자주묻는FAQ</a></li>
-            <li><a href="/inqry">1:1문의</a></li>
+<%--            <li><a href="/inqry">1:1문의</a></li>--%>
         </ul>
     </nav>
 </div>

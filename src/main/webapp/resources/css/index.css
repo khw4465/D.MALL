@@ -5640,6 +5640,17 @@ a.btnLink:after {
     font-weight: bold;
     background-color: #f9f9f9;
 }
+.includeList{
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.includeItem{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
 
 .ecBase.ec-base-table td {
     padding: 20px 0 20px 15px;
