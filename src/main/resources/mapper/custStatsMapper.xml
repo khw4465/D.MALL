@@ -4,6 +4,7 @@
 
 <mapper namespace="org.example.dao.custStatsMapper">
 
+    <!-- 모든 회원의 로그인통계 -->
     <select id="stats" resultType="CustStatsDto">
         select *
         from cust_stats

@@ -5,6 +5,8 @@ import org.example.domain.CustDto;
 import org.example.domain.LoginHistoryDTO;
 import org.example.domain.custValidator;
 import org.example.service.CustLoginHistService;
+import org.example.service.CustService;
+import org.example.service.CustServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -33,23 +35,28 @@ public class RegisterController {
     @Autowired
     CustLoginHistService custLoginHistService;
 
+    @Autowired
+    CustService custService;
+
+    // 회원가입화면 보여준다.
     @GetMapping("/add")
     public String add() {
         return "register";
     }
 
+    // 회원가입 로직
     @PostMapping("/add")
     public String addPost(HttpServletRequest request,String toURL, HttpSession session, Model model, @Valid CustDto custDto, BindingResult result, String pwd, String pwd2) throws Exception {
 
+        // 회원가입시 로그인상태가 되는데 로그인이력 남기기 위한 코드
         LoginHistoryDTO loginHistoryDTO = new LoginHistoryDTO();
         loginHistoryDTO.setCustId(custDto.getCustId()); //아이디
         loginHistoryDTO.setDttm(LocalDateTime.now()); // 발생시간
         loginHistoryDTO.setIp(request.getRemoteAddr()); //IP 로컬일때는 0 0 0 0 임
         loginHistoryDTO.setNatn(request.getHeader("Accept-Language")); // 국가 추론
         loginHistoryDTO.setMhrLS(request.getHeader("User-Agent")); // 기기(기계) 추론
-        loginHistoryDTO.setScssYn("Y");
-
-        loginHistoryDTO.setFailCnt(0);
+        loginHistoryDTO.setScssYn("Y"); //로그인성공여부
+        loginHistoryDTO.setFailCnt(0); //로그인실패카운트
 
         try {
             if(!(pwd.equals(pwd2))){
@@ -61,19 +68,19 @@ public class RegisterController {
                 System.out.println("Validation Error");
                 System.out.println("result = " + result);
                 return "register";
-            }
+            } // 벨리데이터 에러가 나면 다시 회원가입화면으로 간다.
 
             session.setAttribute("id", custDto.getCustId());
-            custDto.setCustTp("1");
+            custDto.setCustTp("1"); // 회원의 상태를 1로한다.
             model.addAttribute("user", custDto);
 
-            custDao.insertUser(custDto);
-            System.out.println("User successfully registered");
+//            custDao.insertUser(custDto); // 회원가입
+            custService.registerCust(custDto); // 회원가입
 
             toURL = toURL == null || toURL.equals("") ? "/" : toURL;
             return "redirect:" + toURL;
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e); //e. 찍으면 return 써줘야하네
         } finally {
             custLoginHistService.LoginHistInsert(loginHistoryDTO);
         }

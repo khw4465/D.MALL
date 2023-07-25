@@ -57,6 +57,40 @@
         </div>
     </div>
 </div>
+<!-- 왼쪽 메뉴바 -->
+<div class="left-list">
+    <h2>관리자 매뉴</h2>
+    <button class="list">상품관리</button>
+    <div class="panel">
+        <li class="panel-text"><a href="/prod/register">상품등록</a></li>
+        <li></li>
+
+    </div>
+
+    <button class="list">주문관리</button>
+    <div class="panel">
+        <li class="panel-text"><a>hello</a></li>
+    </div>
+    <button class="list">회원관리</button>
+    <div class="panel">
+        <li class="panel-text"><a href="<c:url value='/custselect'/>">회원리스트</a></li>
+    </div>
+    <button class="list">게시판관리</button>
+    <div class="panel">
+        <li class="panel-text"><a href="<c:url value='/notc/adminlist'/>"> 공지사항 관리 </a></li>
+    </div>
+</div>
+
+
+<div class="center-content">
+
+    <table>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+        </tr>
+    </table>
+</div>
 
 <!-- 왼쪽 메뉴바 -->
 <div class="left-list">

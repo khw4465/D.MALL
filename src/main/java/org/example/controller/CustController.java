@@ -8,6 +8,7 @@ import org.example.service.CustLoginHistService;
 import org.example.service.CustService;
 import org.example.service.PointService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +37,7 @@ public class CustController {
 
     @GetMapping("/custselect")
     public String selectAll(CustDto custDto, Model m) throws Exception {
+        //관리자페이지에 회원리스트 보여주는 코드
         List<CustDto> list = custService.getCustList();
         m.addAttribute("list",list);
         m.addAttribute("test1","test1");
@@ -90,32 +92,38 @@ public class CustController {
     @PostMapping("/custModify")
     @ResponseBody
     public ResponseEntity<?> modifyCustomer(@RequestBody Map<String, String> payload, HttpServletRequest request) throws Exception {
-        HttpSession session = request.getSession();
+        try {
+            HttpSession session = request.getSession();
 
-        String custName = payload.get("cust-name");
-        String custMpNo = payload.get("cust-mpno");
-        String custEmail = payload.get("cust-email");
-        String custAcno = payload.get("cust-acno");
+            String custName = payload.get("cust-name");
+            String custMpNo = payload.get("cust-mpno");
+            String custEmail = payload.get("cust-email");
+            String custAcno = payload.get("cust-acno");
 
-        CustDto dto = custDao.selectUser((String) session.getAttribute("id"));
+            CustDto dto = custDao.selectUser((String) session.getAttribute("id"));
 
-        dto.setName(custName);
-        dto.setMpNo(custMpNo);
-        dto.setEmail(custEmail);
-        dto.setAcno(custAcno);
+            dto.setName(custName);
+            dto.setMpNo(custMpNo);
+            dto.setEmail(custEmail);
+            dto.setAcno(custAcno);
 
-        custDao.updateUser(dto);
-        System.out.println("Updated Customer Info = " + dto.toString());
+            custDao.updateUser(dto);
+            System.out.println("Updated Customer Info = " + dto.toString());
 
-        // Now we return the updated customer as the response body
-        return ResponseEntity.ok(dto);
+            // Now we return the updated customer as the response body
+            return ResponseEntity.ok(dto);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("An error occurred while updating the customer data.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-    @RequestMapping("deleteCust")
+    @GetMapping("deleteCust")
     public String deleteCust(CustDto dto,Model m , HttpServletRequest request) throws Exception {
         HttpSession session = request.getSession(); // 세션을 받아온다.
         custService.withdrawal((String) session.getAttribute("id"));
         session.invalidate();
+
         return "redirect:/";
     }
 

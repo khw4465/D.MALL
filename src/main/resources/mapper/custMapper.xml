@@ -4,18 +4,21 @@
 
 <mapper namespace="org.example.dao.custMapper">
 
+    <!-- 특정 회원 아이디로 정보를 조회 -->
     <select id="select" resultType="CustDto">
         select *
         from cust
         where cust_id = #{custId}
     </select>
 
+    <!-- 회원 이름, 이메일, 휴대폰 번호로 아이디를 찾습니다. -->
     <select id="findid" resultType="String" parameterType="CustDto">
         select CUST_ID
         from cust
         where name = #{name} and email = #{email} and mpno = #{mpNo}
     </select>
 
+    <!-- 회원 정보를 새로 저장 -->
     <insert id="insert" parameterType="CustDto">
         INSERT INTO cust
             (cust_id,PWD,NAME,RCMDR,EMAIL,mpno,CUST_TP,GRADE,STUS,REG_DATE,LGIN_DTTM,fst_Reg,fst_Regr,last_Upd,last_Updr)
@@ -23,10 +26,14 @@
             (#{custId}, #{pwd}, #{name}, #{rcmdr}, #{email},#{mpNo},#{custTp},#{grade},#{stus},#{regDate},#{lginDttm},#{fstReg},#{fstRegr},#{lastUpd},#{lastUpdr})
     </insert>
 
+    <!-- 특정 회원 아이디로 정보를 삭제 -->
     <delete id="delete" parameterType="String">
-        DELETE FROM cust where cust_id = #{CUST_ID}
+        DELETE
+        FROM cust
+        where cust_id = #{CUST_ID}
     </delete>
 
+    <!-- 특정 회원 정보 업데이트 -->
     <update id="update" parameterType="CustDto">
         UPDATE cust
         SET pwd = #{pwd}
@@ -38,38 +45,44 @@
         where cust_id = #{custId}
     </update>
 
-
+    <!-- 모든 회원 정보를 조회 -->
     <select id="selectAll" resultType="CustDto">
         select CUST_ID,NAME,MPNO,CUST_TP,GRADE,STUS,BIRTH,EMAIL,AcnO,Gender
         from cust
     </select>
 
+    <!-- 모든 회원정보 삭제 -->
     <delete id="deleteAll">
         delete from cust
     </delete>
 
+    <!-- 전체 회원 수를 조회 -->
     <select id="count" resultType="int">
         SELECT count(*) FROM cust
     </select>
 
+    <!-- 특정 회원의 일부 정보를 조회, 정보수정을 위한 select -->
     <select id="modifyselect" resultType="CustDto" parameterType="String">
     select pwd,name,mpno,grade,birth,email,acno
     from cust
     where cust_id = #{custId}
     </select>
 
+    <!-- 임시 비밀번호 발급을 위한 회원 정보를 조회 -->
     <select id="temporaryPwd" resultType="CustDto" parameterType="CustDto">
         select *
         from cust
         where cust_id = #{custId} and name = #{name} and mpno = #{mpNo} and email = #{email}
     </select>
 
+    <!-- 임시 비밀번호로 업데이트 -->
     <update id="temporaryPwdReturn" parameterType="CustDto">
         UPDATE cust
         SET pwd = #{pwd}
         where cust_id = #{custId}
     </update>
 
+    <!-- 회원 인증번호 컬럼 수정 -->
     <update id="custSms" parameterType="CustDto">
         UPDATE cust
         SET sms = #{sms}
