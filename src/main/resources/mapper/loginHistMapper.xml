@@ -4,12 +4,14 @@
 
 <mapper namespace="org.example.dao.loginHistMapper">
 
+    <!-- 특정 회원 아이디에 해당하는 로그인 이력을 조회 -->
     <select id="select" resultType="LoginHistoryDTO" parameterType="LoginHistoryDTO">
         SELECT *
         FROM cust_lgin_hist
         WHERE cust_id = #{custId}
     </select>
 
+    <!-- 새로운 로그인 이력을 저장 -->
     <insert id="insert" parameterType="LoginHistoryDTO">
         INSERT INTO cust_lgin_hist
         (LGIN_HIST_ID, CUST_ID, DTTM, SCSS_YN, IP, TP, FAIL_CAUS, NATN, MHRLS, VLD_TERM, FAIL_CNT, FST_REG, FST_REGR, LAST_UPD, LAST_UPDR)
@@ -17,15 +19,20 @@
             (#{lginHistId}, #{custId}, #{dttm}, #{scssYn}, #{ip}, #{tp}, #{failCaus}, #{natn}, #{mhrLS}, #{vldTerm}, #{failCnt}, #{fstReg}, #{fstRegr}, #{lastUpd}, #{lastUpdr})
     </insert>
 
+    <!-- 모든 회원의 로그인 이력을 조회 -->
     <select id="selectAll" resultType="LoginHistoryDTO">
         SELECT *
         FROM cust_lgin_hist
     </select>
 
+    <!-- 특정 회원의 로그인 횟수를 조회 -->
     <select id="count" resultType="int" parameterType="String">
-        SELECT COUNT(*) FROM cust_lgin_hist WHERE cust_id = #{custId}
+        SELECT COUNT(*)
+        FROM cust_lgin_hist
+        WHERE cust_id = #{custId}
     </select>
 
+    <!-- 특정 회원의 가장 최근 로그인 이력을 조회 -->
     <select id="resetFailCountSelect" parameterType="String" resultType="LoginHistoryDTO">
         SELECT *
         FROM cust_lgin_hist
@@ -34,6 +41,7 @@
             LIMIT 1
     </select>
 
+    <!-- 특정 회원의 가장 최근 로그인 실패 횟수를 0으로 초기화 -->
     <update id="resetFailCountUpdate" parameterType="LoginHistoryDTO">
         UPDATE cust_lgin_hist
         SET FAIL_CNT = 0
@@ -41,10 +49,5 @@
             ORDER BY DTTM DESC
         LIMIT 1;
     </update>
-
-    <select id="stats" resultType="CustStatsDto">
-        select *
-        from cust_stats
-    </select>
 
 </mapper>

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class PointServiceImpl implements PointService{
@@ -40,6 +41,11 @@ public class PointServiceImpl implements PointService{
     @Override
     public int countPoint(String id) throws Exception {
         return pointDao.count(id);
+    }
+
+    @Override
+    public List<pointDto> selectPointPage(Map map) throws Exception {
+        return pointDao.selectPage(map);
     }
 
 }

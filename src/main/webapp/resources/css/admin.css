@@ -3,12 +3,31 @@ li {
 }
 /* li의 모든 점들을 없앤다. */
 
+/* 모든 a태그 적용 */
+a{
+    color: #ffffff;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+/* 모든 h2태그 적용 */
+h2{
+    text-align: center;
+}
+
 /* 메뉴바 */
 .admin-menu {
     background-color: white;
     overflow: hidden;
     display: flex;
     justify-content: space-between;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
 }
 
 .admin-menu ul {
@@ -34,7 +53,10 @@ li {
     color: black;
     text-align: center;
     text-decoration: none;
+
 }
+
+
 
 /* 컨텐트 */
 .content {
@@ -44,6 +66,36 @@ li {
 /* 왼쪽 사이드바 시작 */
 .left-list {
     flex: 1;
+    position: fixed;
+    top: 100px;
+    left: 0;
+    height: 100%;
+    background-color: #2d3a58;
+    color: #ffffff;
+    width: 10%;
+}
+
+/* 왼쪽 리스트 버튼 */
+.list{
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 10px 35px 10px 16px;
+    font-size: 17px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #2d3a58;
+    color: #ffffff;
+    border: none;
+    width: 100%;
+}
+
+.list:hover{
+    background-color: #c4c4c4;
+    transition: 0.5s;
+    color: #ffffff;
+
 }
 
 /* 오른쪽 사이드바 시작 */
@@ -55,9 +107,31 @@ li {
     max-height: none;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
+    text-align: center;
+    height: 30px;
+
+}
+
+.panel-text{
+    text-align: center;
+    height: 50px;
+
+
+}
+.panel-text:hover{
+    background-color: #c4c4c4;
+    transition: 0.5s;
+    color: #ffffff;
 }
 
 .active+.panel {
     max-height: none;
     /* 필요에 따라 변경 */
+}
+
+/* 중앙부분 */
+.center-content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }

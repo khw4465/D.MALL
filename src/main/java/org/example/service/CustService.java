@@ -21,4 +21,5 @@ public interface CustService {
     //임시 비밀번호 발급시 db에 업데이트 쳐주는거
     int custSms(CustDto custDto)throws Exception;
 
+
 }

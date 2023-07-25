@@ -15,7 +15,6 @@ import java.util.List;
 
 @Controller
 public class CustHistController { // 이력통계작업 여기서가자
-
     CustLoginHistService custLoginHistService; //
     CustLoginHistDao custLoginHistDao; // 임시 테스트용
 
@@ -31,7 +30,9 @@ public class CustHistController { // 이력통계작업 여기서가자
     @GetMapping("/loginHist")
     public String loginHist(LoginHistoryDTO loginHistoryDTO, Model m) throws Exception {
         List<LoginHistoryDTO> loginlist = custLoginHistService.selectAllLoginHist();
+        // 회원의 로그인이력 리스트들을 가져온다.
         m.addAttribute("loginlist",loginlist);
+        //모델에 로그인이력 리스트 저장
 
         return "loginlist"; // 바꿔야함 나중에
     }
@@ -40,9 +41,10 @@ public class CustHistController { // 이력통계작업 여기서가자
     @GetMapping("/stats")
     public String selectAllStats(LoginHistoryDTO loginHistoryDTO, Model m) throws Exception {
         List<CustStatsDto> loginstats = custStatsService.selectAllLoginStats();
-        System.out.println("loginstats = " + loginstats);
+        // 모든 로그인 정보의 통계를 List로 가져온다. (특정회원아님)
         m.addAttribute("loginstats",loginstats);
+        // 모델에 담는다.
 
-        return "stats";
+        return "stats"; //나중에 관리자페이지에서 바꿔야함.
     }
 }
