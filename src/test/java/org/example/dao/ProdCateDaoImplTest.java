@@ -23,4 +23,13 @@ public class ProdCateDaoImplTest {
     public void selectAll() throws Exception{
         System.out.println("prodCateDao.selectAll() = " + prodCateDao.selectAll());
     }
+
+    @Test
+    public void getCateCd() throws Exception {
+        System.out.println(prodCateDao.getCateCd());
+    }
+    @Test
+    public void getMainCate() throws Exception{
+        System.out.println("prodCate = "+prodCateDao.getMainCate());
+    }
 }
