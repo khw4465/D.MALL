@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Page</title>
-    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="<c:url value='/css/admin.css'/>">
 </head>
 <body>
 <!-- 상단 메뉴바 -->
@@ -57,88 +57,32 @@
         </div>
     </div>
 </div>
-<!-- 왼쪽 메뉴바 -->
-<div class="left-list">
-    <h2>관리자 매뉴</h2>
-    <button class="list">상품관리</button>
-    <div class="panel">
-        <li class="panel-text"><a href="/prod/register">상품등록</a></li>
-        <li></li>
-
-    </div>
-
-    <button class="list">주문관리</button>
-    <div class="panel">
-        <li class="panel-text"><a>hello</a></li>
-    </div>
-    <button class="list">회원관리</button>
-    <div class="panel">
-        <li class="panel-text"><a href="<c:url value='/custselect'/>">회원리스트</a></li>
-    </div>
-    <button class="list">게시판관리</button>
-    <div class="panel">
-        <li class="panel-text"><a href="<c:url value='/notc/adminlist'/>"> 공지사항 관리 </a></li>
-    </div>
-</div>
-
-
-<div class="center-content">
-
-    <table>
-        <tr>
-            <td>1</td>
-            <td>2</td>
-        </tr>
-    </table>
-</div>
-
-<!-- 왼쪽 메뉴바 -->
-<div class="left-list">
-    <h2>관리자 매뉴</h2>
-    <button class="list">상품관리</button>
-    <div class="panel">
-        <li class="panel-text"><a href="/prod/register">상품등록</a></li>
-        <li></li>
-
-    </div>
-
-    <button class="list">주문관리</button>
-    <div class="panel">
-        <li class="panel-text"><a>hello</a></li>
-    </div>
-    <button class="list">회원관리</button>
-    <div class="panel">
-        <li class="panel-text"><a href="<c:url value='/custselect'/>">회원리스트</a></li>
-    </div>
-    <button class="list">게시판관리</button>
-    <div class="panel">
-        <li class="panel-text"><a href="<c:url value='/notc/adminlist'/>"> 공지사항 관리 </a></li>
-    </div>
-</div>
-
-
-<div class="center-content">
-
-    <table>
-        <tr>
-            <td>1</td>
-            <td>2</td>
-        </tr>
-    </table>
-</div>
 
 <script>
-    var list = document.getElementsByClassName("list");
+    // "list"라는 클래스를 가진 요소를 모두 선택
+    var acc = document.getElementsByClassName("list");
+    var i;
 
-    for (var i = 0; i < list.length; i++) {
-        list[i].addEventListener("click", function () {
+    // 각 "list" 버튼에 대하여
+    for (i = 0; i < acc.length; i++) {
+        // 클릭 이벤트 리스너를 추가
+        acc[i].addEventListener("click", function() {
+            // 버튼이 클릭되면 "active" 클래스를 토글(추가/제거)
+            // 이는 버튼이 눌렸음을 시각적으로 표시
             this.classList.toggle("active");
+
+            // 이 버튼 바로 다음에 위치한 패널 요소를 선택
+            var panel = this.nextElementSibling;
+
+            // 패널이 이미 열려 있다면 닫고, 그렇지 않다면 열어서 표시
+            if (panel.style.maxHeight){
+                panel.style.maxHeight = null;  // 패널 닫기
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";  // 패널 열기
+            }
         });
     }
-
-
 </script>
-
 </body>
 
 </html>
