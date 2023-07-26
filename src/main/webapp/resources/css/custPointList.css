@@ -1,8 +1,8 @@
 * {
     box-sizing: border-box;
-    margin: 10px;
-    padding: 10px;
-    font-family: "Noto Sans KR", sans-serif;
+    /*margin: 10px;*/
+    /*padding: 10px;*/
+    /*font-family: "Noto Sans KR", sans-serif;*/
 }
 
 a {
@@ -174,4 +174,18 @@ td.title:hover {
 
 .btn-write:hover {
     text-decoration: underline;
+}
+.cust-container{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+.dashboard1{
+    flex: 1.5;
+    background-color: #343a40;
+    color: #fff;
+}
+.dashboard2 {
+    flex: 8.5;
+    background-color: #ccc;
 }

@@ -10,7 +10,14 @@
     <link rel="stylesheet" href="<c:url value='/css/custPointList.css'/>">
 </head>
 <body>
+<jsp:include page="adminHeader.jsp"/>
+
 <div class="cust-container">
+    <div class="dashboard1">
+        <jsp:include page="admin.jsp"/>
+    </div>
+
+    <div class="dashboard2">
     <table border="1">
         <tr>
             <th class="">회원아이디</th>
@@ -52,6 +59,7 @@
                 <a href="<c:url value='/point/custSelectAll?page=${ph.endPage+1}&pageSize=${ph.pageSize}'/>">&gt;</a>
             </c:if>
         </c:if>
+    </div>
     </div>
 </div>
 </body>

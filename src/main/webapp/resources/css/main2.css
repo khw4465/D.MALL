@@ -730,8 +730,9 @@ body .titleArea h2 {
     src: local("NanumSquareRoundEB"),url("/design/kr/font/NanumSquareRoundEB.eot"),url("/design/kr/font/NanumSquareRoundEB.eot?#iefix") format("embedded-opentype"),url("/design/kr/font/NanumSquareRoundEB.woff2") format("woff2"),url("/design/kr/font/NanumSquareRoundEB.woff") format("woff"),url("/design/kr/font/NanumSquareRoundEB.ttf") format("truetype");
 }
 
-html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,img {
+html,body,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,fieldset,legend,input,textarea,p,blockquote,th,td,img {
     margin: 0;
+    /* 2023/07/27 mhs 위에서 form,div 제거 */
     padding: 0;
     outline: none;
 }
@@ -743,7 +744,8 @@ html {
 
 body,code {
     font: 0.75em 'NanumSquareRound','Noto Sans KR','Nanum Gothic',Malgun Gothic,'맑은 고딕',AppleGothic,Dotum,'돋움',sans-serif;
-    color: #717171;
+    /*color: #717171;*/
+    /* 2023/07/27 mhs 주석처리  */
     background: #fff;
 }
 

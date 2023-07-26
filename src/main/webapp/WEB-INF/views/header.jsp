@@ -61,6 +61,9 @@
                         <li class="xans-element- xans-layout xans-layout-statelogon "><a href="<c:url value='${addAndModify}'/>">${register}</a></li>
                         <li><a href="<c:url value='/order/list'/>">주문조회</a></li>
                         <li><a href="<c:url value='/cs'/>">고객센터</a></li>
+                        <c:if test="${loginAdminTrue}">
+                            <li><a href="/admin">관리자홈</a></li>
+                        </c:if>
                     </ul>
                     <ul class="hd_icons clearfix"><li class="hdMyshop"><a href="/myshop/index.html">마이쇼핑</a></li>
                         <li class="hdWish"><a href="<c:url value='/custMyPage'/>">마이페이지</a></li>

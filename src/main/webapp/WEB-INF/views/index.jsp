@@ -25,11 +25,6 @@
 <div id="wrap">
     <div id="container">
         <div id="contents">
-
-
-
-
-
             <div class="main_visual_wrap">
                 <div class="visual_box">
                     <div class="slider visual_list slick-initialized slick-slider slick-dotted" role="toolbar">

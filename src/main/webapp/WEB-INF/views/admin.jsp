@@ -11,77 +11,103 @@
     <link rel="stylesheet" href="<c:url value='/css/admin.css'/>">
 </head>
 <body>
-<!-- 상단 메뉴바 -->
-<div class="admin-menu">
-    <ul class="menu-bar1">
-        <a href="<c:url value='/login/logoClick'/>"><img id="logo" src="/logo.jpg" alt="logo" style="width:90px; height:90px;"></a>
-    </ul>
-    <ul class="menu-bar2">
-        <li><a href="<c:url value='/prod/Manage'/>">상품관리</a></li>
-        <li><a href="<c:url value='/ord/Manage'/>">주문관리</a></li>
-        <li><a href="<c:url value='/cust/Manage'/>">회원관리</a></li>
-        <li><a href="<c:url value='/board/manager'/>">게시판관리</a></li>
-        <li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>
-        <input type="hidden" name="toURL" value="${param.toURL}">
-    </ul>
-</div>
-
-<div class="content">
-    <div class="left-list">
-        <h2>관리자 매뉴얼</h2>
-        <button class="list">상품관리</button>
-        <div class="panel">
-            <li><a href="/prod/register">상품등록 |</a></li>
-            <li></li>
-
+<div id="wrap" class="beta">
+    <div id="container">
+        <div id="sidebar1" class="dashboard1">
+            <div class="logo">
+                <h1>
+                    <a href="">
+                        <p>드가닭</p>
+                    </a>
+                </h1>
+            </div>
+            <div class="snbArea">
+                <div id="menuList" class="eCustomScrollbar mCustomScrollbar _mCS_2 mCS-autoHide">
+                    <div id="mCSB_2" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside"
+                         style="max-height: 736px;" tabindex="0">
+                        <div id="mCSB_2_container" class="mCSB_container" style="position:relative; top:0; left:0;"
+                             dir="ltr">
+                            <ul class="menu">
+                                <li class="hasChild ">
+                                    <a data-gtm="LNB_1681" id="order" href="#none" class="link order" name="주문">
+                                        주문
+                                    </a>
+                                    <ul class="submenu" style="display: none;">
+                                        <li><a href="#">주문 관리</a></li>
+                                        <li><a href="#">회원 배송지 관리</a></li>
+                                        <li><a href="#">주문 이력</a></li>
+                                        <li><a href="#">주문 통계</a></li>
+                                    </ul>
+                                </li>
+                                <li class="hasChild ">
+                                    <a data-gtm="LNB_6" id="member" href="#none" class="link member" name="회원">
+                                        회원
+                                    </a>
+                                    <ul class="submenu" style="display: none;">
+                                        <li><a href="<c:url value='/custselect'/>">회원리스트</a></li>
+                                        <li><a href="<c:url value='/loginHist'/>">회원로그인이력</a></li>
+                                        <li><a href="<c:url value='/stats'/>">회원로그인통계</a></li>
+                                        <li><a href="<c:url value='/point/custSelectAll'/>">회원포인트조회</a></li>
+                                        <c:if test="">
+                                            <li><a href="/admin">관리자홈</a></li>
+                                        </c:if>
+                                    </ul>
+                                </li>
+                                <li class="hasChild ">
+                                    <a data-gtm="LNB_7" id="board" href="#none" class="link board" name="게시판">
+                                        게시판
+                                    </a>
+                                    <ul class="submenu" style="display: none;">
+                                        <li><a href="#">공지사항관리</a></li>
+                                        <li><a href="#">리뷰관리</a></li>
+                                        <li><a href="#">하위메뉴</a></li>
+                                    </ul>
+                                </li>
+                                <li class="hasChild ">
+                                    <a data-gtm="LNB_2056" id="product" href="#none" class="link product" name="상품">
+                                        상품
+                                    </a>
+                                    <ul class="submenu" style="display: none;">
+                                        <li><a href="<c:url value='/prod/register'/>">상품등록</a></li>
+                                        <li><a href="#">상품 관리</a></li>
+                                        <li><a href="#">상품 수정</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <button class="list">주문관리</button>
-        <div class="panel">
-            <li>hello</li>
-        </div>
-        <button class="list">회원관리</button>
-        <div class="panel">
-            <li><a href="<c:url value='/custselect'/>">회원리스트</a></li>
-            <li><a href="<c:url value='/loginHist'/>">회원로그인이력</a></li>
-            <li><a href="<c:url value='/stats'/>">회원로그인통계</a></li>
-        </div>
-        <button class="list">게시판관리</button>
-        <div class="panel">
-            <li>hello</li>
-        </div>
+<%--        <div id="sidebar2" class="dashboard2">--%>
+<%--            <h1>include</h1>--%>
+<%--        </div>--%>
     </div>
-    <div class="right-list">
-        <div class="panel1">
-
-        </div>
-    </div>
 </div>
-
 <script>
-    // "list"라는 클래스를 가진 요소를 모두 선택
-    var acc = document.getElementsByClassName("list");
-    var i;
-
-    // 각 "list" 버튼에 대하여
-    for (i = 0; i < acc.length; i++) {
-        // 클릭 이벤트 리스너를 추가
-        acc[i].addEventListener("click", function() {
-            // 버튼이 클릭되면 "active" 클래스를 토글(추가/제거)
-            // 이는 버튼이 눌렸음을 시각적으로 표시
-            this.classList.toggle("active");
-
-            // 이 버튼 바로 다음에 위치한 패널 요소를 선택
-            var panel = this.nextElementSibling;
-
-            // 패널이 이미 열려 있다면 닫고, 그렇지 않다면 열어서 표시
-            if (panel.style.maxHeight){
-                panel.style.maxHeight = null;  // 패널 닫기
-            } else {
-                panel.style.maxHeight = panel.scrollHeight + "px";  // 패널 열기
-            }
-        });
+    window.onload = function(){
+        var menuItems = document.getElementsByClassName("hasChild");
+        for (var i = 0; i < menuItems.length; i++) {
+            // menuItem 변수를 각 반복에 대한 클로저(closure)로 이동시키기
+            (function() {
+                var menuItem = menuItems[i].getElementsByTagName("a")[0];
+                var submenu = menuItem.nextElementSibling;
+                menuItem.addEventListener("click", function(event){
+                    event.preventDefault();
+                    event.stopPropagation();
+                    if(submenu.style.display === "none"){
+                        submenu.style.display = "block";
+                    }else{
+                        submenu.style.display = "none";
+                    }
+                });
+            })();  // 클로저를 즉시 실행
+        }
     }
+
+    fetch('adminheader.html')
+        .then(response => response.text())
+        .then(html => document.getElementById('sideMultiShop').innerHTML = html);
 </script>
 </body>
 
