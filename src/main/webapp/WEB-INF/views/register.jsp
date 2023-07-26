@@ -31,6 +31,7 @@
 <!-- 폼 시작 -->
 <form id="user" action="/register/add" method="post" onsubmit="return check(this)">
     <h1>회원가입</h1>
+    <br>
     <!-- 아이디 입력 시작-->
     <div class="login-input">
         <label for="loginJoinCustId" class="login_input_label">아이디 입력</label>
@@ -99,14 +100,14 @@
     </div>
 
     <!-- 추천인아이디 시작 Recommend_ID-->
-<%--    <div class="login-input">--%>
-<%--        <label for="loginJoinRecommend_Id" class="login_input_label"> 추천인 아이디</label>--%>
+    <div class="login-input">
+        <label for="loginJoinRecommend_Id" class="login_input_label"> 추천인 아이디</label>
 
-<%--        <input type="text" id="loginJoinRecommend_Id" name="rcmdr" placeholder="추천인 아이디" maxlength="12" class="">--%>
-<%--        <br>--%>
-<%--        <p class="login-Space"></p>  <!-- 공백 -->--%>
-<%--    </div>--%>
-<%--    <br>--%>
+        <input type="text" id="loginJoinRecommend_Id" name="rcmdr" placeholder="추천인 아이디" maxlength="12" class="">
+        <br>
+        <p class="login-Space"></p>  <!-- 공백 -->
+    </div>
+    <br>
     <!-- 추천인아이디 종료-->
 
     <!-- 가입하기 버튼 시작 -->

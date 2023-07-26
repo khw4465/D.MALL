@@ -1398,7 +1398,8 @@ input[type=radio],input[type=checkbox] {
 }
 
 input[type=text],input[type=password] {
-    height: 18px;
+    /*height: 18px;*/
+    /* 7/27 mhs 주석처리 */
     line-height: 20px;
     padding: 2px 4px;
     border: 1px solid #d5d5d5;
