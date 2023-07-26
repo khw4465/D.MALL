@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Header</title>
 </head>
 <body>
 <div id="skipNavigation">
@@ -45,7 +45,7 @@
                                     <option value="T" ${PageHandler.psc.option=='T' ? "selected" : ""}>제목만</option>
                                 </select>
                                 <input id="keyword" name="keyword" fw-filter="" fw-label="검색어" fw-msg="" class="inputTypeText" placeholder="" onmousedown="SEARCH_BANNER.clickSearchForm(this)" value="${PageHandler.psc.keyword}" type="text">
-                                <button type="submit" src= alt="검색" onclick="SEARCH_BANNER.submitSearchBanner(this); return false;" >
+                                <button type="submit" src= alt="검색" onclick="SEARCH_BANNER.submitSearchBanner(this); return false;" style="background-color: #f5f5f5">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" style="text-align: center"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                                         <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
                                     </svg>
@@ -64,7 +64,9 @@
                     </ul>
                     <ul class="hd_icons clearfix"><li class="hdMyshop"><a href="/myshop/index.html">마이쇼핑</a></li>
                         <li class="hdWish"><a href="<c:url value='/custMyPage'/>">마이페이지</a></li>
-                        <li class="xans-element- xans-layout xans-layout-statelogon hdBasket "><a href="<c:url value='/cart/list'/>">장바구니<span class="count EC-Layout_Basket-count-display"><span class="EC-Layout-Basket-count">2</span></span></a></li>
+                        <c:set var="cartCnt" value="${cartList.size()}"/>
+                        <li class="xans-element- xans-layout xans-layout-statelogon hdBasket "><a href="<c:url value='/cart/list'/>"><i class="fa-solid fa-cart-shopping fa-2xl" style="color: #b8b8b8;"></i>
+                            <span class="count EC-Layout_Basket-count-display"><span class="EC-Layout-Basket-count">${cartCnt}</span></span></a></li>
                     </ul>
                 </div>
             </div>

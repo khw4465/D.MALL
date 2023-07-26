@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:set var="loginId"
-       value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
+<c:set var="loginId" value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
 <c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
 <c:set var="addAndModify" value="${loginId=='' ? '/register/add' : '/register/modify'}"/>
@@ -10,39 +9,20 @@
 <head>
     <title>마이페이지</title>
     <link rel="stylesheet" href="<c:url value='/css/myPage.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/myPageSideBar.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/main2.css'/>">
 </head>
 <body>
 <!-- 전체 div -->
+<header>
+    <nav>
+        <jsp:include page="header.jsp"/>
+    </nav>
+</header>
+<div id="header_warp" style="height: 248px;"></div>
 <div id="" class="content">
     <!-- 그다음 div -->
-    <div id="" class="left-content">
-        <!-- 왼쪽에 붙일 div -->
-        <div class="left-content2">
-            <!-- 왼쪽 위에 고정할 div -->
-            <h3>마이페이지 </h3>
-            <ul id="item-list-1" class="item-list">
-                <li class="item"><a href="">주문내역조회</a></li>
-                <li class="item"><a href="">취소/반품내역</a></li>
-<%--                <li class="item"><a href="">관심상품</a></li>--%>
-                <li class="item"><a href="">최근본상품</a></li>
-                <li class="item"><a href="">좋아요 상품</a></li>
-            </ul>
-        </div>
-        <!-- 왼쪽 아래에 고정할 div -->
-        <div class="">
-            <ul id="item-list-2" class="item-list">
-                <li class="item"><a href="<c:url value='/custModify'/>">회원정보수정</a></li>
-                <li class="item"><a href="<c:url value='/point/custSelectAll'/>">포인트 조회</a></li>
-                <li class="item"><a href="">쿠폰</a></li>
-                <li class="item"><a href="">1대1문의</a></li>
-                <li class="item"><a href="">상품후기</a></li>
-                <li class="item"><a href="">상품문의내역</a></li>
-                <li class="item"><a href="">배송 주소록 관리</a></li>
-                <li class="item"><a href="<c:url value='/deleteCust'/>">회원탈퇴</a></li>
-                <%--                <li class="item"><a id="delete-button" href="<c:url value='/deleteCust'/>">회원탈퇴</a></li>--%>
-            </ul>
-        </div>
-    </div>
+    <jsp:include page="myPageSideBar.jsp"/>
     <form id="form" action="/" method="get">
     </form>
     <div class="right-content">
@@ -134,6 +114,9 @@
 
     </div>
 </div>
+<footer>
+    <jsp:include page="footer.jsp"/>
+</footer>
 <script>
     //  let gomain = document.getElementById("form");
     // 회원탈퇴 로직 시작

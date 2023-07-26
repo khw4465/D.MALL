@@ -1,0 +1,137 @@
+.frame-left {
+    float:left
+}
+[class*="frame-"]:after {
+    display:block;
+    clear:both;
+    content:'';
+}
+
+.aside-menu-wrap {
+    width: 220px
+}
+
+.aside-menu {
+    padding: 10px 24px;
+    border: 1px solid #E6E6E6;
+}
+
+.aside-menu .menu-list {
+    padding-left: 0;
+}
+
+.aside-menu .menu-list > li {
+    list-style: none;
+    padding: 15px 0;
+    border-top: 1px solid #eee
+}
+
+.aside-menu .menu-list > li > a {
+    text-decoration: none;
+}
+
+.aside-menu .menu-list > li:first-child {
+    border-top: 0;
+}
+
+.aside-menu .menu-list > li .menu {
+    font-size: 15px;
+    color: #000;
+    font-weight: 500;
+}
+
+.aside-menu .menu-list > li .depth2 {
+    margin-top: 8px;
+    padding-left: 0;
+}
+
+.aside-menu .menu-list > li .depth2 > li {
+    padding-left: 0;
+    list-style: none;
+    font-size: 14px;
+    color: #666;
+}
+.aside-menu .menu-list > li .depth2 > li > a {
+    color: gray;
+    text-decoration: none;
+}
+
+.aside-menu .menu-list > li .depth2 > li :hover {
+    color: #ff5e01c4;
+}
+
+.aside-menu .menu-list > li .depth2 > li .sub {
+    color: #999;
+    font-size: 12px;
+}
+
+.aside-menu .menu-list > li .depth2 > li + li {
+    margin-top: 8px
+}
+
+
+.aside-menu .menu-list > li .depth2 > li.current > a {
+
+    color: #FF6001;
+    font-weight: 500
+}
+
+.aside-link-box {
+    border: 1px solid #E6E6E6;
+    margin-top: 20px;
+    padding: 18px 20px;
+}
+
+.aside-link-box > a {
+    display: block;
+    position: relative;
+    color: #000;
+    font-size: 15px;
+}
+
+.aside-link-box > a .ico-bl-speaker {
+    vertical-align: middle;
+    margin-top: -3px;
+    margin-right: 8px;
+}
+
+.aside-link-box > a .ico-arr-right {
+    position: absolute;
+    right: 0;
+    top: 5px
+}
+
+.aside-link-box > a [class*="ico-arr-"]:after, .aside-link-box > a [class*="ico-arr-"]:before {
+    background: #666
+}
+
+.aside-guide-box {
+    padding: 30px 24px;
+    border: 1px solid #E6E6E6;
+    margin-top: 15px;
+}
+
+.aside-guide-box dl + dl {
+    border-top: 1px solid #eee;
+    padding-top: 30px;
+    margin-top: 30px
+}
+
+.aside-guide-box dl dt {
+    color: #333;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 8px
+}
+
+.aside-guide-box dd {
+    color: #666;
+    line-height: 19px
+}
+
+.aside-guide-box .phone-num {
+    color: #333;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 5px
+}

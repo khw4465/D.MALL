@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false"%>
-<c:set var="loginId" value="${pageContext.request.getSession(false)==null || pageContext.request.session.getAttribute('id')=='' ? '' : pageContext.request.session.getAttribute('id')}"/>
-<c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
-<c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
-<c:set var="addAndModify" value="${loginId=='' ? '/register/add' : 'custModify'}"/>
-<c:set var="register" value="${loginId=='' ? '회원가입' : '정보수정'}"/>
-<c:set var="logo" value="${loginId=='' ? '/' : '/login/logoClick'}"/>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,12 +10,14 @@
     <title>HOME</title>
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/main1.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/main2.css'/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/main3.css'/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/main4.css'/>">
+<%--    <link rel="stylesheet" type="text/css" href="<c:url value='/css/main3.css'/>">--%>
+<%--    <link rel="stylesheet" type="text/css" href="<c:url value='/css/main4.css'/>">--%>
 </head>
 <body>
 <header>
-    <jsp:include page="header.jsp"/>
+    <nav>
+        <jsp:include page="header.jsp"/>
+    </nav>
 </header>
 
 <div id="header_warp" style="height: 248px;"></div>
