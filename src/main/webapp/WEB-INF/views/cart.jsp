@@ -8,10 +8,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
-    <link rel="stylesheet" href="<c:url value='/css/index.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/main2.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/cart.css'/>">
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <script src="https://kit.fontawesome.com/dfc70c918b.js" crossorigin="anonymous"></script>
 </head>
+<body>
+<header>
+    <jsp:include page="header.jsp"/>
+</header>
 <div class="cart-section-block">
 <div>
     <div class="body-frame">
@@ -229,6 +234,9 @@
         </div>
     </form>
 </div>
+<footer>
+    <jsp:include page="footer.jsp"/>
+</footer>
 <script>
     const allCBox = document.getElementById('checkAll');    // 전체 체크박스
     const eachCBox = Array.from(document.getElementsByName('eachcheck'));   // 상품별 체크박스

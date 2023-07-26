@@ -14,126 +14,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOME</title>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/index.css'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/main1.css'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/main2.css'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/main3.css'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/main4.css'/>">
 </head>
-<body id="main">
-<div id="skipNavigation">
-    <p><a href="#category">전체상품목록 바로가기</a></p>
-    <p><a href="#contents">본문 바로가기</a></p>
-</div>
-
-<div id="header" class="" style="transform: translateY(0px);">
-    <div class="hd_box">
-        <div class="w_custom">
-            <div class="hd_box_table">
-                <h1 class="xans-element- xans-layout xans-layout-logotop "><a href="/index.html"><img
-                        src="/design/kr/156005c5baf40ff51a327f1c34f2975b_53977.jpg"
-                        alt="logo"><!--moguchonmall.com--></a>
-                </h1>
-                <div class="hd_search">
-                    <form id="searchBarForm" name="" action="/product/search.html" method="get" target="_self"
-                          enctype="multipart/form-data">
-                        <input id="banner_action" name="banner_action" value="" type="hidden">
-                        <div class="xans-element- xans-layout xans-layout-searchheader ">
-
-                            <fieldset>
-                                <legend>검색</legend>
-                                <input id="keyword" name="keyword" fw-filter="" fw-label="검색어" fw-msg=""
-                                       class="inputTypeText" placeholder=""
-                                       onmousedown="SEARCH_BANNER.clickSearchForm(this)" value=""
-                                       type="text"><input type="image" src="/design/kr/icon_hd_search.png" alt="검색"
-                                                          onclick="SEARCH_BANNER.submitSearchBanner(this); return false;">
-                                <ul class="autoDrop" id=""></ul>
-                            </fieldset>
-                        </div>
-                    </form>
-
-                </div>
-                <div class="hd_state">
-                    <ul class="statelog clearfix">
-                        <li class="xans-element- xans-layout xans-layout-statelogoff "><a
-                                href="<c:url value='${loginOutLink}'/>">${loginOut}</a>
-                        </li>
-                        <li class="xans-element- xans-layout xans-layout-statelogoff "><a
-                                href="<c:url value='${addAndModify}'/>">${register}</a>
-                        </li>
-                        <li><a href="<c:url value='/order/list'/>">주문조회</a></li>
-                        <li><a href="<c:url value='/cs'/>">고객센터</a></li>
-                    </ul>
-                    <ul class="hd_icons clearfix">
-                        <li class="hdMyshop"><a href="/myshop/index.html">마이쇼핑</a></li>
-                        <li class="hdWish"><a href="<c:url value='/custMyPage'/>">마이페이지</a></li>
-                        <li class="xans-element- xans-layout xans-layout-statelogoff hdBasket "><a
-                                href="<c:url value='/cart/list'/>">장바구니 <span
-                                class="count EC-Layout_Basket-count-display"><span
-                                class="EC-Layout-Basket-count">0</span></span></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="hd_all_layer">
-            <div class="hd_all_wrap">
-                <div class="xans-element- xans-layout xans-layout-category categoryTwo">
-                    <div class="position">
-                        <ul class="clearfix">
-                            <li>
-                            </li>
-                            <li class="xans-record- cate48"><a href="/category/베스트/48/">베스트</a>
-                                <div class="sub-category">
-                                    <ul>
-                                        <li><a href="/category/육가공품/49/">육가공품</a></li>
-                                        <li><a href="/category/냉동제품/50/">냉동제품</a></li>
-                                        <li><a href="/category/가정간편식/51/">가정간편식</a></li>
-                                        <li><a href="/category/유제품/52/">유제품</a></li>
-                                        <li><a href="/category/정육/53/">정육</a></li>
-                                        <li><a href="/category/닭가슴살/76/">닭가슴살</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="xans-record- cate56"><a href="/category/깜짝특가/56/">깜짝특가</a></li>
-                            <li class="xans-record- cate74"><a href="/category/한정특가/74/">한정특가</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="hd_lnb">
-        <div id="category" class="xans-element- xans-layout xans-layout-category categoryOne">
-            <div class="position">
-                <div class="dropdown">
-                        <ul class="clearfix">
-                            <li class="xans-record-" onmouseover="showDropdown()"><a href="/category/카테고리/48/">카테고리</a></li>
-                            <li class="xans-record-"><a href="/category/베스트/48/">베스트</a></li>
-                            <li class="xans-record-"><a href="/category/깜짝특가/56/">깜짝특가</a></li>
-                            <li class="xans-record-"><a href="/category/한정특가/74/">한정특가</a></li>
-                            <li><a href="/board/gallery/list.html?board_no=2">이벤트</a></li>
-                        </ul>
-                    <div class="dropdown-content" style="width: 100%; height: 120px">
-                                <c:forEach var="mainCategory" items="${cateMain}">
-                                    <span class="inner-dropdown" onmouseover="showInnerDropdown(this)">
-                                        <a href="" style="margin: 20px 50px">
-                                            <i class="ico-cate-gnb">
-                                            </i>
-                                            <span>${mainCategory.mainName}</span>
-                                        </a>
-                                        <div class="inner-dropdown-content" style="width: 100%; height: 200px">
-                                            <c:forEach var="subCate" items="${prodCate.get(cateMain.indexOf(mainCategory))}">
-                                                <span>
-                                                    <a href="">${subCate.medName}</a>
-                                                </span>
-                                            </c:forEach>
-                                        </div>
-                                    </span>
-                                </c:forEach>
-                            </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<body>
+<header>
+    <jsp:include page="header.jsp"/>
+</header>
 
 <div id="header_warp" style="height: 248px;"></div>
 <hr class="layout">
@@ -2554,60 +2443,10 @@
     <hr class="layout">
 </div>
 <hr class="layout">
-<div id="footer" class="xans-element- xans-layout xans-layout-footer ">
-    <div class="ft_gnb">
-        <div class="w_custom clearfix">
-            <ul class="ft_gnb_menu">
-                <li><a href="/shopinfo/company.html">회사소개</a></li>
-                <li><a href="/member/agreement.html">이용약관</a></li>
-                <li><a href="/member/privacy.html"><strong>개인정보처리방침</strong></a></li>
-                <li><a href="/shopinfo/guide.html">이용안내</a></li>
-            </ul>
 
-        </div>
-    </div>
-    <div class="ft_info w_custom clearfix">
-
-        <div class="ft_txt">
-            <p>
-                상호 : (주)드가닭<span class="bar"></span>주소 : <!--05398--> 서울특별시 종로2가9
-                <span class="bar"></span>대표 : 김유성<br>
-                사업자등록번호 : 123-12-12345 <a href="#none"
-                                          onclick="window.open('http://www.ftc.go.kr/bizCommPop.do?wrkr_no=2068542226', 'bizCommPop', 'width=750, height=950;');return false;">[사업자정보확인]</a><span
-                    class="bar"></span>통신판매업신고번호 : 2023-서울종로-1234<span class="bar"></span>개인정보관리자 : 김현우<br>
-                대표번호 : 1234-1234<span class="bar"></span>팩스번호 : 02-1234-1234<span class="bar"></span>메일 : <a
-                    href="mailto:moguchonmall@naver.com">github.com/Useodam</a>
-            </p>
-
-        </div>
-    </div>
-</div>
-
-<!-- 결제를 위한 필수 영역 -->
-<div id="progressPaybar" style="display:none;">
-    <div id="progressPaybarBackground" class="layerProgress"></div>
-    <div id="progressPaybarView">
-        <div class="box">
-            <p class="graph">
-                        <span><img src="//img.echosting.cafe24.com/skin/base_ko_KR/layout/txt_progress.gif"
-                                   alt="현재 결제가 진행중입니다."></span>
-                <span><img src="//img.echosting.cafe24.com/skin/base/layout/img_loading.gif" alt=""></span>
-            </p>
-            <p class="txt">
-                본 결제 창은 결제완료 후 자동으로 닫히며,결제 진행 중에 본 결제 창을 닫으시면<br>
-                주문이 되지 않으니 결제 완료 될 때 까지 닫지 마시기 바랍니다.
-            </p>
-        </div>
-    </div>
-</div>
-<!-- // 결제를 위한 필수 영역 -->
-
-<span itemscope="" itemtype="https://schema.org/Organization">
-            <link itemprop="url" href="https://www.moguchonmall.com">
-        </span>
-
-
-
+<footer>
+    <jsp:include page="footer.jsp"/>
+</footer>
 
 <!-- External Script Start -->
 
@@ -2765,58 +2604,6 @@
     CAFE24.APPSCRIPT_SDK_DATA = CAFE24.APPSCRIPT_SDK_DATA || ['store', 'supply', 'application', 'category', 'design', 'product', 'collection', 'customer', 'order', 'personal', 'promotion', 'community', 'privacy', 'mileage', 'salesreport', 'shipping', 'notification'];
     var EC_APPSCRIPT_ASSIGN_DATA = CAFE24.getDeprecatedNamespace('EC_APPSCRIPT_ASSIGN_DATA');
     var EC_APPSCRIPT_SDK_DATA = CAFE24.getDeprecatedNamespace('EC_APPSCRIPT_SDK_DATA');
-
-
-    function showDropdown() {
-        const dropdownContent = document.querySelector('.dropdown-content');
-        dropdownContent.style.display = 'block';
-    }
-
-    function hideDropdown() {
-        const dropdownContent = document.querySelector('.dropdown-content');
-        dropdownContent.style.display = 'none';
-    }
-
-    function showInnerDropdown(element) {
-        hideAllInnerDropdowns(); // hide all inner dropdowns first
-        const innerDropdownContent = element.querySelector('.inner-dropdown-content');
-        innerDropdownContent.style.display = 'block';
-    }
-
-    function hideAllInnerDropdowns() {
-        const allInnerDropdownContents = document.querySelectorAll('.inner-dropdown-content');
-        allInnerDropdownContents.forEach((innerDropdownContent) => {
-            innerDropdownContent.style.display = 'none';
-        });
-    }
-
-    // Get all .inner-dropdown elements
-    const innerDropdowns = document.querySelectorAll('.inner-dropdown');
-
-    // For each .inner-dropdown element...
-    innerDropdowns.forEach((innerDropdown) => {
-        // When mouse enters, hide all inner dropdown contents, and then show this one
-        innerDropdown.addEventListener('mouseenter', function() {
-            showInnerDropdown(innerDropdown);
-        });
-    });
-
-    // When mouse leaves the whole dropdown content area, hide all inner dropdown contents
-    const dropdownContent = document.querySelector('.dropdown-content');
-    dropdownContent.addEventListener('mouseleave', hideAllInnerDropdowns);
-
-    // Get dropdown
-    const dropdown = document.querySelector('.dropdown');
-
-    // When mouse enters the dropdown, show the dropdown content
-    dropdown.addEventListener('mouseenter', showDropdown);
-
-    // When mouse leaves the dropdown, hide the dropdown content
-    dropdown.addEventListener('mouseleave', hideDropdown);
-
-
-
-
 
 </script>
 <iframe
