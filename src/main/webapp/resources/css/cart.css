@@ -38,7 +38,8 @@ body {
     margin-right: 10px;
 }
 
-li{
+li {
+    list-style: none;
     margin-top: 10px;
 }
 
@@ -136,9 +137,6 @@ li{
     display: none;
 }
 
-.delivery-product-89761600NY{
-    border-bottom : 1px solid #ccc;
-}
 .qtyTag button,
 .qtyTag input {
     padding: 0px;
@@ -162,4 +160,34 @@ li{
 }
 button {
     background-color: white;
+}
+.cart-section-block {
+    max-width: 90%;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    padding: 20px;
+}
+.cartTitle h1 {
+    margin: 0 0 20px;
+    line-height: 1.4;
+    font-size: 25px;
+    font-weight: 600;
+    color: #111;
+}
+
+.cartTitle > ul li {
+    display: inline-block;
+    font-size: 16px;
+    color: #bdbcbc;
+}
+
+.cartTitle > ul li.end {
+    margin: 0;
+    padding: 0;
+    background: none;
+}
+
+.cartTitle > ul li.this {
+    color: #3e3d3c;
+    font-weight: bold;
 }

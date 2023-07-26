@@ -21,6 +21,7 @@
     <p><a href="#category">전체상품목록 바로가기</a></p>
     <p><a href="#contents">본문 바로가기</a></p>
 </div>
+
 <div id="header" class="" style="transform: translateY(0px);">
     <div class="hd_box">
         <div class="w_custom">
@@ -46,6 +47,7 @@
                             </fieldset>
                         </div>
                     </form>
+
                 </div>
                 <div class="hd_state">
                     <ul class="statelog clearfix">
@@ -2764,24 +2766,7 @@
     var EC_APPSCRIPT_ASSIGN_DATA = CAFE24.getDeprecatedNamespace('EC_APPSCRIPT_ASSIGN_DATA');
     var EC_APPSCRIPT_SDK_DATA = CAFE24.getDeprecatedNamespace('EC_APPSCRIPT_SDK_DATA');
 
-    // function showDropdown() {
-    //     const dropdownContent = document.querySelector('.dropdown-content');
-    //     dropdownContent.style.display = 'block';
-    //
-    //     dropdownContent.addEventListener('mouseleave', function (event) {
-    //         dropdownContent.style.display = 'none';
-    //     });
-    // };
-    //
-    // function showInnerDropdown(element) {
-    //     const innerDropdownContent = element.querySelector('.inner-dropdown-content');
-    //     innerDropdownContent.style.display = 'block';
-    //
-    //     innerDropdownContent.addEventListener('mouseleave', function (event) {
-    //         innerDropdownContent.style.display = 'none';
-    //     })
-    // };
-    //-------------
+
     function showDropdown() {
         const dropdownContent = document.querySelector('.dropdown-content');
         dropdownContent.style.display = 'block';
@@ -2793,69 +2778,43 @@
     }
 
     function showInnerDropdown(element) {
+        hideAllInnerDropdowns(); // hide all inner dropdowns first
         const innerDropdownContent = element.querySelector('.inner-dropdown-content');
         innerDropdownContent.style.display = 'block';
     }
 
-    function hideInnerDropdown(element) {
-        const innerDropdownContent = element.querySelector('.inner-dropdown-content');
-        innerDropdownContent.style.display = 'none';
-    }
-
-    function observeInnerDropdownChanges() {
-        const innerDropdowns = document.querySelectorAll('.dropdown');
-
-        const observer = new MutationObserver(function (mutationsList, observer) {
-            for (const mutation of mutationsList) {
-                if (mutation.type === 'childList') {
-                    // innerDropdown 내용이 변경될 때 수행할 동작
-                    // 여기서 필요한 추가 작업을 수행하면 됩니다.
-                    // 서브 카테고리 영역에 마우스가 진입할 때 서브 카테고리 보여주기
-                    const innerDropdowns = document.querySelectorAll('.inner-dropdown');
-                    innerDropdowns.forEach(function (element) {
-                        element.addEventListener('mouseenter', function () {
-                            showInnerDropdown(this);
-                        });
-                    });
-
-                    // 서브 카테고리 영역에서 마우스가 벗어날 때 서브 카테고리 숨기기
-                    innerDropdowns.forEach(function (element) {
-                        element.addEventListener('mouseleave', function () {
-                            hideInnerDropdown(this);
-                        });
-                    });
-                    console.log('innerDropdown 내용이 변경되었습니다.');
-                }
-            }
+    function hideAllInnerDropdowns() {
+        const allInnerDropdownContents = document.querySelectorAll('.inner-dropdown-content');
+        allInnerDropdownContents.forEach((innerDropdownContent) => {
+            innerDropdownContent.style.display = 'none';
         });
-
-        observer.observe(innerDropdowns[0], { childList: true, subtree: true });
     }
 
-    // 드롭다운 메뉴 영역에 마우스가 진입할 때 드롭다운 메뉴 보여주기
+    // Get all .inner-dropdown elements
+    const innerDropdowns = document.querySelectorAll('.inner-dropdown');
+
+    // For each .inner-dropdown element...
+    innerDropdowns.forEach((innerDropdown) => {
+        // When mouse enters, hide all inner dropdown contents, and then show this one
+        innerDropdown.addEventListener('mouseenter', function() {
+            showInnerDropdown(innerDropdown);
+        });
+    });
+
+    // When mouse leaves the whole dropdown content area, hide all inner dropdown contents
+    const dropdownContent = document.querySelector('.dropdown-content');
+    dropdownContent.addEventListener('mouseleave', hideAllInnerDropdowns);
+
+    // Get dropdown
     const dropdown = document.querySelector('.dropdown');
+
+    // When mouse enters the dropdown, show the dropdown content
     dropdown.addEventListener('mouseenter', showDropdown);
 
-    // 드롭다운 메뉴 영역에서 마우스가 벗어날 때 드롭다운 메뉴 숨기기
+    // When mouse leaves the dropdown, hide the dropdown content
     dropdown.addEventListener('mouseleave', hideDropdown);
 
-    // // 서브 카테고리 영역에 마우스가 진입할 때 서브 카테고리 보여주기
-    // const innerDropdowns = document.querySelectorAll('.inner-dropdown');
-    // innerDropdowns.forEach(function (element) {
-    //     element.addEventListener('mouseenter', function () {
-    //         showInnerDropdown(this);
-    //     });
-    // });
-    //
-    // // 서브 카테고리 영역에서 마우스가 벗어날 때 서브 카테고리 숨기기
-    // innerDropdowns.forEach(function (element) {
-    //     element.addEventListener('mouseleave', function () {
-    //         hideInnerDropdown(this);
-    //     });
-    // });
-    // innerDropdowns의 변화를 감지하는 함수 실행
-    observeInnerDropdownChanges();
-    //---------
+
 
 
 
@@ -2874,66 +2833,7 @@
 <script
         src="https://instagram-widget.wehost24.com/scripttag/instagram-widget.js?vs=20221107163302.1&amp;client_id=pOawpY4gJZ0oBnihDmiReG"></script>
 <script type="text/javascript" src="https://instagram-widget.wehost24.com/js/instagram-widget.js"></script>
-<style>
-    .drag-resize-div:hover {
-        cursor: move;
-        /* fallback if unsupported */
-        cursor: -webkit-grab;
-        cursor: -moz-grab;
-        cursor: grab;
-    }
 
-    .drag-resize-div:active {
-        cursor: move;
-        /* fallback if unsupported */
-        cursor: -webkit-grabbing;
-        cursor: -moz-grabbing;
-        cursor: grabbing;
-    }
-
-    .resize-handle {
-        background-color: white;
-        border: 1px solid black;
-        position: absolute;
-        z-index: 9999;
-    }
-
-    .resize-square-handle {
-        width: 10px !important;
-        height: 10px !important;
-    }
-
-    .resize-circle-handle {
-        width: 11px !important;
-        height: 11px !important;
-        border-radius: 50%;
-    }
-
-    #s-handle {
-        bottom: -5px;
-        left: 50%;
-    }
-
-    #w-handle {
-        top: 50%;
-        left: -5px;
-    }
-
-    #e-handle {
-        top: 50%;
-        right: -5px;
-    }
-
-    #sw-handle {
-        bottom: -5px;
-        left: -5px;
-    }
-
-    #se-handle {
-        bottom: -5px;
-        right: -5px;
-    }
-</style>
 </body>
 
 </html>

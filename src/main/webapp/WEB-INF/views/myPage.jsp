@@ -22,7 +22,8 @@
             <h3>마이페이지 </h3>
             <ul id="item-list-1" class="item-list">
                 <li class="item"><a href="">주문내역조회</a></li>
-                <li class="item"><a href="">관심상품</a></li>
+                <li class="item"><a href="">취소/반품내역</a></li>
+<%--                <li class="item"><a href="">관심상품</a></li>--%>
                 <li class="item"><a href="">최근본상품</a></li>
                 <li class="item"><a href="">좋아요 상품</a></li>
             </ul>
@@ -31,9 +32,11 @@
         <div class="">
             <ul id="item-list-2" class="item-list">
                 <li class="item"><a href="<c:url value='/custModify'/>">회원정보수정</a></li>
-                <li class="item"><a href="">쿠폰 조회 및 등록</a></li>
                 <li class="item"><a href="<c:url value='/point/custSelectAll'/>">포인트 조회</a></li>
-                <li class="item"><a href="">게시물 관리</a></li>
+                <li class="item"><a href="">쿠폰</a></li>
+                <li class="item"><a href="">1대1문의</a></li>
+                <li class="item"><a href="">상품후기</a></li>
+                <li class="item"><a href="">상품문의내역</a></li>
                 <li class="item"><a href="">배송 주소록 관리</a></li>
                 <li class="item"><a href="<c:url value='/deleteCust'/>">회원탈퇴</a></li>
                 <%--                <li class="item"><a id="delete-button" href="<c:url value='/deleteCust'/>">회원탈퇴</a></li>--%>

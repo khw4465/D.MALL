@@ -18,34 +18,19 @@ public class adminController {
     @RequestMapping("/admin")
     public String admin() {
         return "admin";
+        //관리자페이지를 불러온다.
     }
 
     @RequestMapping("/modifyInfo")
     public String modifyInfo() {
         return "modifyInfo";
+        //정보수정 페이지를 불러온다.
     }
 
     @RequestMapping("/myPage")
     public String myPage() {
         return "myPage";
+        //마이페이지를 불러온다.
     }
 
-//    @RequestMapping("/")
-//    public String home(Model m,HttpServletRequest request) throws Exception {
-//        HttpSession session = request.getSession();
-//        // 세션을 가져와서 하다가 논리적에러
-//        if(session.getAttribute("id")==null){
-//            return "index";
-//        }
-//
-//        adminCHeck((String) session.getAttribute("id"));
-//        m.addAttribute("loginAdminTrue1",true);
-//
-//        return "index";
-//    }
-//    private boolean adminCHeck(String id) throws Exception {
-//        String tp="2";
-//        CustDto dto = custService.loginCust(id);
-//        return dto.getCustTp().equals(tp);
-//    }
 }
