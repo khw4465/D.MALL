@@ -139,3 +139,27 @@ li{
 .delivery-product-89761600NY{
     border-bottom : 1px solid #ccc;
 }
+.qtyTag button,
+.qtyTag input {
+    padding: 0px;
+    margin: 0px;
+    width: 20px;
+    height: 20px;
+    border: none;
+    text-align: center;
+}
+.qtyTag {
+    border: 1px solid black;
+    margin: 0 50px;
+}
+.totTag input {
+    width: 50px;
+}
+.totTag button {
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+}
+button {
+    background-color: white;
+}

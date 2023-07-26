@@ -4960,6 +4960,49 @@ a.btnLink:after {
     right: 0;
 }
 
+.ec-base-button.justify {
+    font-size: 0;
+}
+
+.ec-base-button.justify .btn1,.ec-base-button.justify .btn2 {
+    display: inline-block;
+    width: 203px;
+    height: 55px;
+    line-height: 53px;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.ec-base-button.justify .btn1 {
+    border: 1px solid #ff7117;
+    color: #ff7117;
+    background: #fff;
+}
+
+.ec-base-button.justify .btn2 {
+    border: 1px solid #666;
+    color: #666;
+    background: #fff;
+}
+
+.ec-base-button.justify .btn1:hover {
+    color: #fff;
+    background: #ff7117;
+}
+
+.ec-base-button.justify .btn2:hover {
+    color: #fff;
+    background: #666;
+}
+
+.ec-base-button.justify [class^='btn'] + [class^='btn'] {
+    margin: 0 0 0 10px;
+}
+
 .ec-base-button .text {
     margin: 0 6px 0 10px;
     color: #353535;
@@ -8431,12 +8474,12 @@ h1,h3 {
 }
 .dropdown-content {
     display: none;
-    /*text-align: center;*/
+    text-align: center;
 }
 
 .inner-dropdown-content {
     display: none;
-    /*text-align: center;*/
+    text-align: center;
     position: absolute;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
@@ -8456,4 +8499,199 @@ h1,h3 {
 
 .dropdown-content a:hover {
     background-color: #f1f1f1;
+}
+@charset "UTF-8";
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.body-frame {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.page-title-area {
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.title-page {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.cart-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cart-option label {
+    margin-right: 10px;
+}
+
+li{
+    margin-top: 10px;
+}
+
+.btn-option {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.btn-option btn-default{
+    text-align: right;
+}
+
+.btn-option:hover {
+    background-color: #666;
+}
+
+.price-info-all {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.colum {
+    border: 1px solid #eee;
+    padding: 20px;
+}
+
+.price-info .tit {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.price-info .num {
+    color: #e60023;
+    font-weight: bold;
+}
+
+.page-guide-center {
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-bottom: 40px;
+}
+
+.page-guide-center .list-type1 {
+    padding-left: 20px;
+}
+
+.btn-bottom-area {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn-basic-xxlg {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 30px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-bottom-area input:first-child {
+    background-color: #e60023;
+    color: #fff;
+    padding: 15px 30px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-basic-xxlg:hover,
+.btn-bottom-area a:last-child:hover {
+    opacity: 0.8;
+}
+
+.cart-list-area {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.list-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.dlv-guide {
+    display: none;
+}
+
+.delivery-product-89761600NY{
+    border-bottom : 1px solid #ccc;
+}
+.qtyTag button,
+.qtyTag input {
+    padding: 0px;
+    margin: 0px;
+    width: 20px;
+    height: 20px;
+    border: none;
+    text-align: center;
+}
+.qtyTag {
+    border: 1px solid black;
+    margin: 0 50px;
+}
+.totTag input {
+    width: 50px;
+}
+.totTag button {
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+}
+button {
+    background-color: white;
+}
+.cart-section-block {
+    max-width: 90%;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    padding: 20px;
+}
+.cartTitle h1 {
+    margin: 0 0 20px;
+    line-height: 1.4;
+    font-size: 25px;
+    font-weight: 600;
+    color: #111;
+}
+
+.cartTitle > ul li {
+    display: inline-block;
+    font-size: 16px;
+    color: #bdbcbc;
+}
+
+.cartTitle > ul li.end {
+    margin: 0;
+    padding: 0;
+    background: none;
+}
+
+.cartTitle > ul li.this {
+    color: #3e3d3c;
+    font-weight: bold;
 }

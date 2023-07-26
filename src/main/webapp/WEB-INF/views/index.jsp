@@ -13,42 +13,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME</title>
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/index.css'/>">
-    <title></title>
-    <style>
-        .dropdown-content{
-            display: none;
-            text-align: center;
-        }
-        .dropdown.show-content .dropdown-content{
-            display: block;
-        }
-        .inner-dropdown-content{
-            display: none;
-            text-align: center;
-            position: absolute;
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            z-index: 1;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            padding: 10px;
-        }
-        .inner-dropdown-content.show-content {
-            display: inline-block;
-        }
-        .dropdown-content a {
-            color: black;
-            text-decoration: none;
-            display: inline-block;
-            padding: 8px;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #f1f1f1;
-        }
-    </style>
 </head>
 <body id="main">
 <div id="skipNavigation">
