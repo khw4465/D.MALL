@@ -47,6 +47,11 @@ html #logindiv #dgaja_header .backBtn {
     background: url(//storage.keepgrow.com/admin/20230625233259293.png) no-repeat 0!important;
     background-size: auto 16px!important
 }
+#logindiv #dgaja_header .backBtn a {
+    display: block;
+    width: 100%;
+    height: 100%
+}
 
 #logindiv #dgaja_header .backBtn:hover {
     background-color: #fafafa;
