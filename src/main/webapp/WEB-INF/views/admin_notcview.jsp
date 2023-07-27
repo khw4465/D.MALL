@@ -35,7 +35,6 @@
         <div class="panel">
             <li><a href="/prod/register">상품등록 |</a></li>
             <li></li>
-
         </div>
 
         <button class="list">주문관리</button>
@@ -50,39 +49,36 @@
         <div class="panel">
             <li><a href="<c:url value="/notc/adminlist"/>"> 공지사항 관리 </a></li>
         </div>
-    </div>
-</div>
-
-<div class="clear"></div>
+    </div> <!-- left-list -->
 
 <script>
     let msg="${msg}";
     if(msg=="WRT_ERR") alert("공지사항 등록에 실패했습니다");
     if(msg=="MOD_READY") alert("수정하실 수 있습니다.")
 </script>
-<div id="main_1">
-    <h3>공지사항${mode=="new" ? "쓰기" : ""}</h3>
-
-    <form action="" id="form">
-
-        <input type="hidden" name="bbsoNo" value="${NotcDto.bbsoNo}" readonly="readonly">
-        <input type="text" name="cate" value="${NotcDto.cate}" ${mode=="new" ? '' : 'readonly="readonly"'}>
-        <input type="text" name="ttl" value="${NotcDto.ttl}" placeholder="제목을 입력하세요."${mode=="new" ? '' : 'readonly="readonly"'}>
-        <textarea name="cn" cols="30" rows="10" placeholder="내용을 입력하세요." ${mode=="new" ? '' : 'readonly="readonly"'} >${NotcDto.cn}</textarea>
+    <div class="right-list">
+        <h3>공지사항${mode=="new" ? "쓰기" : ""}</h3>
+        <div class="use-guide">
+            <form action="" id="form">
+                <input type="hidden" name="bbsoNo" value="${NotcDto.bbsoNo}" readonly="readonly">
+                <input type="text" name="cate" value="${NotcDto.cate}" ${mode=="new" ? '' : 'readonly="readonly"'}>
+                <h3>제목</h3>
+                <input type="text" name="ttl" value="${NotcDto.ttl}" placeholder="제목을 입력하세요."${mode=="new" ? '' : 'readonly="readonly"'}>
+                <h3>내용</h3>
+                <textarea name="cn" cols="30" rows="10" placeholder="내용을 입력하세요." ${mode=="new" ? '' : 'readonly="readonly"'} >${NotcDto.cn}</textarea>
 <%--        <button type="button" id="writeBtn" class="btn">등록</button>--%>
 <%--        --%>
 <%--        --%>
     <br>
-    <div>
-        <button type="button" id="modifyBtn" class="btn">수정</button>
-        <button type="button" id="removeBtn" class="btn">삭제</button>
-        <button type="button" id="listBtn" class="btn">목록</button>
-    </div>
-    </form>
-
-<%--    <form action="" id="form">--%>
-
-</div>
+                <div class="btnlist">
+                    <button type="button" id="modifyBtn" class="btn">수정</button>
+                    <button type="button" id="removeBtn" class="btn">삭제</button>
+                    <button type="button" id="listBtn" class="btn">목록</button>
+                </div>
+            </form> <%--    <form action="" id="form">--%>
+        </div> <!-- use-guide -->
+    </div> <!-- right-list -->
+</div> <!-- content -->
 
 <script>
     $(document).ready(function (){
@@ -124,11 +120,8 @@
             form.submit();
 
         });
-
-
     });
 
 </script>
-
 </body>
 </html>

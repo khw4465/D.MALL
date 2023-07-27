@@ -33,7 +33,6 @@
     <div class="panel">
       <li><a href="/prod/register">상품등록 |</a></li>
       <li></li>
-
     </div>
 
     <button class="list">주문관리</button>
@@ -48,78 +47,74 @@
     <div class="panel">
       <li><a href="<c:url value="/notc/adminlist"/>"> 공지사항 관리 </a></li>
     </div>
-  </div>
+  </div> <!-- left-list -->
 
 
-</div>
 
-  <!-- 게시물 검색창 -->
-  <div class="notcsearch">
-    <form id="cs_search" action="<c:url value="/notc/adminlist"/>" class="search-form" method="get">
-      <select class="search-option" name="option" hidden="hidden">
-        <option value="T" ${pagehandler.sc.option=='T' ? "selected" : ""} hidden="hidden">제목만</option>
-      </select>
+<div class="right-list">
 
-      <input type="text" name="keyword" class="search-input" type="text" value="${pagehandler.sc.keyword}" placeholder="제목을 검색해주세요">
-      <input type="submit" class="search-button" value="검색">
-    </form>
-  </div>
-  <!-- 게시물 검색창 -->
-</div>
+  <div class="use-guide">
+    <table>
+      <h3><a href="/notc/adminlist">공지사항 관리</a></h3>
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>카테고리</th>
+          <th>제목</th>
+          <th>등록일</th>
+          <th>조회수</th>
+        </tr>
+      </thead>
+      <tbody>
+        <c:forEach var="NotcDto" items="${list}">
+          <tr>
+            <td>${NotcDto.bbsoNo}</td>
+            <td>${NotcDto.cate}</td>
+            <td class="none-center"><a href="<c:url value='/notc/adminread?bbsoNo=${NotcDto.bbsoNo}&amp;page=${page}&amp;pageSize=${pageSize}' />">${NotcDto.ttl}</a></td>
+            <td class="td-weak">${NotcDto.wrtd}</td>
+            <td class="td-weak">${NotcDto.notcCnt}</td>
+          </tr>
+        </c:forEach>
+      </tbody>
+    </table>
+    <div class="writeBtn">
+      <button type="button" id="writeBtn" onclick="location.href='<c:url value="/notc/adminwrite"/>'">글쓰기</button>
+    </div> <!-- writeBtn -->
+    <br>
+    <!-- 게시물 검색창 -->
+    <div class="notcsearch">
+      <form id="cs_search" action="<c:url value="/notc/adminlist"/>" class="search-form" method="get">
+        <select class="search-option" name="option" hidden="hidden">
+          <option value="T" ${pagehandler.sc.option=='T' ? "selected" : ""} hidden="hidden">제목만</option>
+        </select>
 
-
-<table id="CS_tb">
-  <h3><a href="/notc/adminlist">공지사항 관리</a></h3>
-  <thead>
-  <tr>
-    <th class="CS_tb_bno">번호</th>
-    <th class="CS_tb_cate">카테고리</th>
-    <th class="CS_tb_td">제목</th>
-    <th class="CS_tb_day">등록일</th>
-    <th>조회수</th>
-  </tr>
-  </thead>
-  <tbody>
-  <c:forEach var="NotcDto" items="${list}">
-    <tr>
-      <td class="CS_tb_bno">${NotcDto.bbsoNo}</td>
-      <td class="CS_tb_cate">${NotcDto.cate}</td>
-      <td class="CS_tb_td"><a href="<c:url value='/notc/adminread?bbsoNo=${NotcDto.bbsoNo}&amp;page=${page}&amp;pageSize=${pageSize}' />">${NotcDto.ttl}</a></td>
-      <td class="CS_tb_day">${NotcDto.wrtd}</td>
-      <td>${NotcDto.notcCnt}</td>
-    </tr>
-  </c:forEach>
-  </tbody>
-</table>
-
-</div>
-
-  <div>
-    <button type="button" id="writeBtn" class="writeBtn" onclick="location.href='<c:url value="/notc/adminwrite"/>'">글쓰기</button>
-  </div>
-
-
-<br>
-<!-- 핸들러 -->
-<div id="handle">
-  <c:if test="${totalCnt==null || totalCnt==0}">
-    <div> 게시물이 없습니다.</div>
-  </c:if>
-  <c:if test="${totalCnt!=null && totalCnt!=0}">
-    <c:if test="${pagehandler.showPrev}">
-      <a class="page" href="<c:url value="/notc/adminlist${pagehandler.sc.getQueryString(pagehandler.beginPage-1)}"/> ">&lt;</a>
-    </c:if>
-    <c:forEach var="i" begin="${pagehandler.beginPage}" end="${pagehandler.endPage}">
-      <a class="page ${i==pagehandler.sc.page? "paging-active" : ""}" href="<c:url value="/notc/adminlist${pagehandler.sc.getQueryString(i)}"/>">${i}</a>
-    </c:forEach>
-    <c:if test="${pagehandler.showNext}">
-      <a class="page" href="<c:url value="/notc/adminlist${pagehandler.sc.getQueryString(pagehandler.endPage)}"/> ">&gt;</a>
-    </c:if>
-  </c:if>
-</div>
-<!-- 핸들러 -->
+        <input type="text" name="keyword" class="search-input" type="text" value="${pagehandler.sc.keyword}" placeholder="제목을 검색해주세요">
+        <input type="submit" class="search-button" value="검색">
+      </form>
+    </div>
+    <!-- 게시물 검색창 -->
+    <!-- 핸들러 -->
+    <div id="handle">
+      <c:if test="${totalCnt==null || totalCnt==0}">
+        <div> 게시물이 없습니다.</div>
+      </c:if>
+      <c:if test="${totalCnt!=null && totalCnt!=0}">
+        <c:if test="${pagehandler.showPrev}">
+          <a class="page" href="<c:url value="/notc/adminlist${pagehandler.sc.getQueryString(pagehandler.beginPage-1)}"/> ">&lt;</a>
+        </c:if>
+        <c:forEach var="i" begin="${pagehandler.beginPage}" end="${pagehandler.endPage}">
+          <a class="page ${i==pagehandler.sc.page? "paging-active" : ""}" href="<c:url value="/notc/adminlist${pagehandler.sc.getQueryString(i)}"/>">${i}</a>
+        </c:forEach>
+        <c:if test="${pagehandler.showNext}">
+          <a class="page" href="<c:url value="/notc/adminlist${pagehandler.sc.getQueryString(pagehandler.endPage)}"/> ">&gt;</a>
+        </c:if>
+      </c:if>
+    </div>
+    <!-- 핸들러 -->
+  </div>  <!-- use-guide -->
+</div> <!-- right-list -->
 <div class="clear"></div>
-
+</div> <!-- content -->
 
 <script>
   $(document).ready(function () {

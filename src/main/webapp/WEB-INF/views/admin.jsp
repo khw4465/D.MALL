@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="<c:url value='/css/admin.css'/>">
 </head>
 <body>
-<<<<<<< HEAD
 <div id="wrap" class="beta">
     <div id="container">
         <div id="sidebar1" class="dashboard1">
