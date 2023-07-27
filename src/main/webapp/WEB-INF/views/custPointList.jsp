@@ -22,7 +22,7 @@
 
 <%--<div class="cust-container">--%>
 <%--임시수정--%>
-<div id="header_warp" style="height: 248px;"></div>
+<div id="header_warp"></div>
 <div id="" class="content">
 
     <div class="dashboard1">

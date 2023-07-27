@@ -26,7 +26,8 @@
     </nav>
 </header>
 
-<div id="header_warp" style="height: 248px;"></div>
+<div id="header_warp"></div>
+<%--스타일248지움 정보수정에서 길이 늘어나서 제거대상--%>
 <hr class="layout">
 <div id="wrap">
     <div id="container">

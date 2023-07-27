@@ -4143,8 +4143,8 @@ a.btnLink:after {
 }
 
 #header_warp {
-    height: 218px;
-    min-height: 216px;
+    /*height: 218px;*/
+    /*min-height: 216px;*/
 }
 
 #main #header {
@@ -4156,7 +4156,8 @@ a.btnLink:after {
 }
 
 #header {
-    position: fixed;
+    /*position: fixed;*/
+    /* 7/27 mhs 주석처리 정보수정에서 건드려야함 */
     top: 0;
     left: 0;
     width: 100%;

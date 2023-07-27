@@ -205,7 +205,7 @@ td.title:hover {
 }
 .dashboard1{
     flex: 1.5;
-
+    margin-right: 50px;
     color: #fff;
 }
 .dashboard2 {

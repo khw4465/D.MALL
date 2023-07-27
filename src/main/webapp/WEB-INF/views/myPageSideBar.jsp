@@ -22,8 +22,9 @@
           <li>
             <a href="#" class="menu">혜택관리</a>
             <ul class="depth2">
-              <li class=""><a href="/mypage/myCoupon">쿠폰</a></li>
-              <li class=""><a href="/mypage/myPoint">포인트</a></li>
+              <li class=""><a href="/mypage/mycoupon">쿠폰</a></li>
+              <li class=""><a href="<c:url value='/point/custSelectAll'/>">포인트</a></li>
+
             </ul>
           </li>
           <li>
@@ -40,7 +41,7 @@
             <a href="/mypage/delivery" class="menu">회원정보관리</a>
             <ul class="depth2">
               <li class=""><a href="/mypage/delivery">배송지 관리</a></li>
-              <li><a href="/mypage/info/mypage">정보수정</a></li><!-- 활성화될 경우 li에 addClass current  -->
+              <li><a href="<c:url value='/custModify'/>">정보수정</a></li><!-- 활성화될 경우 li에 addClass current  -->
             </ul>
           </li>
         </ul>
