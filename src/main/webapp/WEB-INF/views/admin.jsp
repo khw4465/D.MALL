@@ -14,7 +14,7 @@
 <!-- 상단 메뉴바 -->
 <div class="admin-menu">
     <ul class="menu-bar1">
-        <a href="<c:url value='/login/logoClick'/>"><img id="logo" src="/logo.jpg" alt="logo" style="width:90px; height:90px;"></a>
+        <a href="<c:url value='/login/logoClick'/>"><img id="logo" src="/img/logo1.png" alt="logo" style="width:90px; height:90px;"></a>
     </ul>
     <ul class="menu-bar2">
         <li><a href="<c:url value='/prod/Manage'/>">상품관리</a></li>
