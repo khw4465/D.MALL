@@ -20,8 +20,8 @@
     <div class="logindiv-con">
         <div id="dgaja_header">
             <div class="topNav">
+<%--                display: block;--%>
                 <div class="backBtn"><a href="/"></a></div>
-<%--                나중에 이전경로로 고쳐야함--%>
                 <div class="homeBtn"><a href="/"></a></div>
             </div>
             <h1 class="mallName"><a href="/">드가닭</a></h1>
