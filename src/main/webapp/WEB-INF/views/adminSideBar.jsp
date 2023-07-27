@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
 <c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
@@ -9,13 +9,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Page</title>
-    <link rel="stylesheet" href="<c:url value='/css/admin.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/adminHeader.css'/>">
 </head>
 <body>
-<jsp:include page="adminHeader.jsp"/>
-
-    <div id="container">
+<div id="wrap" class="beta">
         <div id="sidebar1" class="dashboard1">
             <div class="logo">
                 <h1>
@@ -26,10 +22,8 @@
             </div>
             <div class="snbArea">
                 <div id="menuList" class="eCustomScrollbar mCustomScrollbar _mCS_2 mCS-autoHide">
-                    <div id="mCSB_2" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside"
-                         >
-                        <div id="mCSB_2_container" class="mCSB_container"
-                             dir="ltr">
+                    <div id="mCSB_2" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside">
+                        <div id="mCSB_2_container" class="mCSB_container" dir="ltr">
                             <ul class="menu">
                                 <li class="hasChild ">
                                     <a data-gtm="LNB_1681" id="order" href="#none" class="link order" name="주문">
@@ -81,29 +75,22 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
-        <div id="sidebar2" class="dashboard2">
-            <p>helklo</p>
-            <jsp:include page="stats.jsp"/>
-        </div>
-    </div>
-
+</div>
 <script>
-    window.onload = function(){
+    window.onload = function () {
         var menuItems = document.getElementsByClassName("hasChild");
         for (var i = 0; i < menuItems.length; i++) {
             // menuItem 변수를 각 반복에 대한 클로저(closure)로 이동시키기
-            (function() {
+            (function () {
                 var menuItem = menuItems[i].getElementsByTagName("a")[0];
                 var submenu = menuItem.nextElementSibling;
-                menuItem.addEventListener("click", function(event){
+                menuItem.addEventListener("click", function (event) {
                     event.preventDefault();
                     event.stopPropagation();
-                    if(submenu.style.display === "none"){
+                    if (submenu.style.display === "none") {
                         submenu.style.display = "block";
-                    }else{
+                    } else {
                         submenu.style.display = "none";
                     }
                 });
