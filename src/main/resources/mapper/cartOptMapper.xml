@@ -62,8 +62,7 @@
         SET  opt_qty  = #{optQty}
            , tot_opt_price = #{optQty} * opt_price
         WHERE cust_id = #{custId}
-        AND prod_cd = #{prodCd}
-        AND opt_cd = #{optCd}
+        AND prod_cd = #{prodCd}       AND opt_cd = #{optCd}
     </update>
     <select id="getProdOptList" parameterType="map" resultType="CartDto">
         SELECT CUST_ID custId

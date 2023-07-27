@@ -44,9 +44,11 @@
         AND prod_cd = #{prodCd}
     </update>
 
+
     <select id="getOrdHist" parameterType="string" resultType="OrderDto">
-        SELECT CUST_ID,
-               (SELECT CONCAT(PROD_NAME, ' 외 ', (select count(*)from cart where CUST_ID=#{custId})-1, '개' ) FROM cart WHERE CUST_ID = #{custId} LIMIT 1) prodName
+        SELECT CUST_ID
+               , (SELECT PROD_CD from cart LIMIT 1) main_prodCd
+               , IF(COUNT(*) > 1, CONCAT((SELECT PROD_NAME FROM cart WHERE CUST_ID = #{custId} LIMIT 1), ' 외 ', COUNT(*)-1, '개'), (SELECT PROD_NAME FROM cart WHERE CUST_ID = #{custId} LIMIT 1)) AS prodName
                , COUNT(*) totProdCnt
                , SUM(TOT_PROD_PRICE) totPrc
                , SUM(PROD_QTY) totQty

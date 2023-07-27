@@ -2,7 +2,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false"%>
 <html>
-<c:set var="loginId" value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
+<c:set var="loginId" value="${pageContext.request.getSession(false)==null || pageContext.request.session.getAttribute('id')=='' ? '' : pageContext.request.session.getAttribute('id')}"/>
+<c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
+<c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
+<c:set var="addAndModify" value="${loginId=='' ? '/register/add' : 'custModify'}"/>
+<c:set var="register" value="${loginId=='' ? '회원가입' : '정보수정'}"/>
+<c:set var="logo" value="${loginId=='' ? '/' : '/login/logoClick'}"/>
 <c:set var="ord" value="${ord}" />
 <head>
     <meta charset="UTF-8">
@@ -14,9 +19,9 @@
     <script src="https://kit.fontawesome.com/dfc70c918b.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<header>
-    <jsp:include page="header.jsp"/>
-</header>
+
+<jsp:include page="header.jsp"/>
+
 <div class="cart-section-block">
 <div>
     <div class="body-frame">
@@ -194,11 +199,9 @@
 </div>
 
     <div class="xans-element- xans-order xans-order-totalorder ec-base-button justify">
-        <a href="<c:url value='/order/order'/>" onclick="Basket.orderAll(this)" link-order="/order/orderform.html?basket_type=all_buy" link-login="/member/login.html" class="btn1 sizeM  ">전체상품주문</a>
-        <a href="<c:url value='/order/order'/>" onclick="Basket.orderSelectBasket(this)" link-order="/order/orderform.html?basket_type=all_buy" link-login="/member/login.html" class="btn2 sizeM ">선택상품주문</a><span class="gRight">
-        <a href="/" class="btn2 sizeM">쇼핑계속하기</a>
-        </span>
-
+        <a href="/" onclick="Basket.orderSelectBasket(this)" link-order="/order/orderform.html?basket_type=all_buy" link-login="/member/login.html" class="btn2 sizeM ">쇼핑계속하기</a>
+        <a href="<c:url value='/order/order'/>" onclick="Basket.orderAll(this)" link-order="/order/orderform.html?basket_type=all_buy" link-login="/member/login.html" class="btn1 sizeM  ">상품주문하기</a>
+        <span class=품"gRight"></span>
         <!--상품상세페이지에 추가되는 앱 관련 결제버튼 div-->
         <div id="appPaymentButtonBox"></div>
     </div>
@@ -234,9 +237,9 @@
         </div>
     </form>
 </div>
-<footer>
-    <jsp:include page="footer.jsp"/>
-</footer>
+
+<jsp:include page="footer.jsp"/>
+
 <script>
     const allCBox = document.getElementById('checkAll');    // 전체 체크박스
     const eachCBox = Array.from(document.getElementsByName('eachcheck'));   // 상품별 체크박스

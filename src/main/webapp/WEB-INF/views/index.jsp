@@ -1,15 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page session="false" %><html>
 <c:set var="loginId" value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
 <c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
 <c:set var="addAndModify" value="${loginId=='' ? '/register/add' : '/register/modify'}"/>
 <c:set var="register" value="${loginId=='' ? '회원가입' : '정보수정'}"/>
-
-<!DOCTYPE html>
-<html lang="en">
-
+<c:set var="logo" value="${loginId=='' ? '/' : '/login/logoClick'}"/>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,11 +17,8 @@
 <%--    <link rel="stylesheet" type="text/css" href="<c:url value='/css/main4.css'/>">--%>
 </head>
 <body>
-<header>
-    <nav>
-        <jsp:include page="header.jsp"/>
-    </nav>
-</header>
+
+<jsp:include page="header.jsp"/>
 
 <div id="header_warp" style="height: 248px;"></div>
 <hr class="layout">
@@ -2441,9 +2435,7 @@
 </div>
 <hr class="layout">
 
-<footer>
-    <jsp:include page="footer.jsp"/>
-</footer>
+<jsp:include page="footer.jsp"/>
 
 <!-- External Script Start -->
 

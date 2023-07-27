@@ -54,8 +54,11 @@ public class OrderController {
             List<DlvAddrDto> dlvList = orderService.getDlvAddr(custId);
             m.addAttribute("dlvList", dlvList.get(0));        // 배송지 정보를 가져와 모델에 넣어줌 (배송지가 여러개면 일단 첫번째것만)
 
-            List<CartDto> list = cartService.getCartList(custId);
-            m.addAttribute("list", list);                     // 장바구니에 담긴 상품의 정보를 모델에 넣어줌
+            List<CartDto> cartList = cartService.getCartList(custId);
+            m.addAttribute("cartList", cartList);             // 장바구니에 담긴 상품의 정보를 모델에 넣어줌
+
+            List<List<CartOptDto>> optLists = cartService.getAllOptList(custId);
+            m.addAttribute("optLists", optLists);
 
             OrderDto priceInfo = cartService.getOrdHist(custId);
             m.addAttribute("prcInfo", priceInfo);                 // 최종금액을 합산한 것을 모델에 넣어줌

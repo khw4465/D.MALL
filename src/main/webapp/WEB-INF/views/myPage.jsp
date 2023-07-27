@@ -14,11 +14,9 @@
 </head>
 <body>
 <!-- 전체 div -->
-<header>
-    <nav>
-        <jsp:include page="header.jsp"/>
-    </nav>
-</header>
+
+<jsp:include page="header.jsp"/>
+
 <div id="header_warp" style="height: 248px;"></div>
 <div id="" class="content">
     <!-- 그다음 div -->
@@ -114,9 +112,9 @@
 
     </div>
 </div>
-<footer>
-    <jsp:include page="footer.jsp"/>
-</footer>
+
+<jsp:include page="footer.jsp"/>
+
 <script>
     //  let gomain = document.getElementById("form");
     // 회원탈퇴 로직 시작

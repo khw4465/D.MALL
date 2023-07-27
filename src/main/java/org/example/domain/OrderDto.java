@@ -5,6 +5,7 @@ import java.util.Objects;
 public class OrderDto {
     private String ordCd;   // 주문코드
     private String custId;  // 회원아이디
+    private String mainProdCd; // 대표상품코드
     private String prodName; // 상품명
     private int totProdCnt;  // 상품개수
     private int totPrc;  // 총금액
@@ -26,16 +27,18 @@ public class OrderDto {
 
     public OrderDto() {
     }
-    public OrderDto(String custId, String prodName, int totProdCnt, int totPrc, int totQty) {
+    public OrderDto(String custId, String mainProdCd, String prodName, int totProdCnt, int totPrc, int totQty) {
         this.custId = custId;
+        this.mainProdCd = mainProdCd;
         this.prodName = prodName;
         this.totProdCnt = totProdCnt;
         this.totPrc = totPrc;
         this.totQty = totQty;
     }
-    public OrderDto(String ordCd, String custId, String prodName, int totProdCnt, int totPrc, int totQty, int totDcPrc, int dlvAddrId, int dlvPrc, String dlvMsg, int finPrc) {
+    public OrderDto(String ordCd, String custId, String mainProdCd, String prodName, int totProdCnt, int totPrc, int totQty, int totDcPrc, int dlvAddrId, int dlvPrc, String dlvMsg, int finPrc) {
         this.ordCd = ordCd;
         this.custId = custId;
+        this.mainProdCd = mainProdCd;
         this.prodName = prodName;
         this.totProdCnt = totProdCnt;
         this.totPrc = totPrc;
@@ -53,18 +56,20 @@ public class OrderDto {
         this.custId = custId;
     }
 
-    public OrderDto(String ordCd, String custId, String prodName, int totProdCnt, int totPrc, int totQty, int totDcPrc, String ordStus, Date stusChgDttm, String cfmYn, Date ordDttm, String dlvAddrId, int dlvPrc, String dlvMsg, int finPrc, String remark, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
+    public OrderDto(String ordCd, String custId, String mainProdCd, String prodName, int totProdCnt, int totPrc, int totQty, int totDcPrc, String ordStus, Date stusChgDttm, String cfmYn, Date ordDttm, String dlvAddrId, int dlvPrc, String dlvMsg, int finPrc, String remark, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
         this.ordCd = ordCd;
         this.custId = custId;
+        this.mainProdCd = mainProdCd;
         this.prodName = prodName;
         this.totProdCnt = totProdCnt;
         this.totPrc = totPrc;
         this.totQty = totQty;
     }
 
-    public OrderDto(String ordCd, String custId, String prodName, int totProdCnt, int totPrc, int totQty, int totDcPrc, String ordStus, Date stusChgDttm, String cfmYn, Date ordDttm, int dlvAddrId, int dlvPrc, String dlvMsg, int finPrc, String remark, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
+    public OrderDto(String ordCd, String custId, String mainProdCd, String prodName, int totProdCnt, int totPrc, int totQty, int totDcPrc, String ordStus, Date stusChgDttm, String cfmYn, Date ordDttm, int dlvAddrId, int dlvPrc, String dlvMsg, int finPrc, String remark, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
         this.ordCd = ordCd;
         this.custId = custId;
+        this.mainProdCd = mainProdCd;
         this.prodName = prodName;
         this.totProdCnt = totProdCnt;
         this.totPrc = totPrc;
@@ -100,6 +105,10 @@ public class OrderDto {
     public void setCustId(String custId) {
         this.custId = custId;
     }
+
+    public String getMainProdCd() { return mainProdCd; }
+
+    public void setMainProdCd(String mainProdCd) { this.mainProdCd = mainProdCd; }
 
     public String getProdName() {
         return prodName;
@@ -261,6 +270,7 @@ public class OrderDto {
         if (finPrc != orderDto.finPrc) return false;
         if (!Objects.equals(ordCd, orderDto.ordCd)) return false;
         if (!Objects.equals(custId, orderDto.custId)) return false;
+        if (!Objects.equals(mainProdCd, orderDto.mainProdCd)) return false;
         if (!Objects.equals(prodName, orderDto.prodName)) return false;
         if (!Objects.equals(ordStus, orderDto.ordStus)) return false;
         if (!Objects.equals(stusChgDttm, orderDto.stusChgDttm))
@@ -279,6 +289,7 @@ public class OrderDto {
     public int hashCode() {
         int result = ordCd != null ? ordCd.hashCode() : 0;
         result = 31 * result + (custId != null ? custId.hashCode() : 0);
+        result = 31 * result + (mainProdCd != null ? mainProdCd.hashCode() : 0);
         result = 31 * result + (prodName != null ? prodName.hashCode() : 0);
         result = 31 * result + totProdCnt;
         result = 31 * result + totPrc;
@@ -305,6 +316,7 @@ public class OrderDto {
         return "OrderDto{" +
                 "ordCd='" + ordCd + '\'' +
                 ", custId='" + custId + '\'' +
+                ", mainProdCd='" + mainProdCd + '\'' +
                 ", prodName='" + prodName + '\'' +
                 ", totProdCnt=" + totProdCnt +
                 ", totPrc=" + totPrc +

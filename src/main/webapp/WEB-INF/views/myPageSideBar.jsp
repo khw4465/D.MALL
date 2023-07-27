@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false"%>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>myPage</title>
-</head>
-<body>
   <div class="frame-left">
     <div class="aside-menu-wrap">
       <nav class="aside-menu">
@@ -40,12 +33,10 @@
             <a href="/mypage/delivery" class="menu">회원정보관리</a>
             <ul class="depth2">
               <li class=""><a href="/mypage/delivery">배송지 관리</a></li>
-              <li><a href="/mypage/info/mypage">정보수정</a></li><!-- 활성화될 경우 li에 addClass current  -->
+              <li><a href="<c:url value='/custModify'/>">정보수정</a></li><!-- 활성화될 경우 li에 addClass current  -->
             </ul>
           </li>
         </ul>
       </nav><!--// menu-mypage -->
     </div><!--// aside-menu-wrap -->
   </div>
-</body>
-</html>

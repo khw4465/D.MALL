@@ -161,8 +161,8 @@ button {
     background-color: white;
 }
 .cart-section-block {
-    max-width: 90%;
-    margin: 0 auto;
+    max-width: 70%;
+    margin: 100px auto;
     background-color: #FFFFFF;
     padding: 20px;
 }

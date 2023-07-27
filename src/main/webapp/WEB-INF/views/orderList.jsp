@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false"%>
-<html>
+<%@ page session="false"%><html>
+<c:set var="loginId" value="${pageContext.request.getSession(false)==null || pageContext.request.session.getAttribute('id')=='' ? '' : pageContext.request.session.getAttribute('id')}"/>
+<c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
+<c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
+<c:set var="addAndModify" value="${loginId=='' ? '/register/add' : 'custModify'}"/>
+<c:set var="register" value="${loginId=='' ? '회원가입' : '정보수정'}"/>
+<c:set var="logo" value="${loginId=='' ? '/' : '/login/logoClick'}"/>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,12 +16,10 @@
     <link rel="stylesheet" href="<c:url value='/css/orderList.css'/>">
 </head>
 <body>
-<header>
-    <nav>
-        <jsp:include page="header.jsp"/>
-        <div id="header_warp" style="height: 248px;"></div>
-    </nav>
-</header>
+
+<jsp:include page="header.jsp"/>
+
+
 <div class="content">
 <div class="left-content">
     <jsp:include page="myPageSideBar.jsp"/>
@@ -70,7 +73,7 @@
                             <li class="order-div-item">
                                 <div class="prd-info-area">
                                     <div class="inner">
-                                        <div class="column img"><a href="javascript:void(0);" onclick="onClickMyPageOrderListOrderCd(this); return false;" ordercd="${ord.ordCd}"><img src="" alt="상품이미지"></a></div>
+                                        <div class="column img"><a href="javascript:void(0);" onclick="onClickMyPageOrderListOrderCd(this); return false;" ordercd="${ord.ordCd}"><img src="/img/${ord.mainProdCd}.png" alt="상품이미지" style="width: 50px; height: 50px"></a></div>
                                         <div class="column tit">
                                             <div class="prd-state-row">
                                                 <strong class="prd-state-head">${ord.ordStus}</strong>
@@ -109,8 +112,8 @@
     </div>
 </div>
 </div>
-<footer>
-    <jsp:include page="footer.jsp"/>
-</footer>
+
+<jsp:include page="footer.jsp"/>
+
 </body>
 </html>
