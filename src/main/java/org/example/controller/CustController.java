@@ -35,13 +35,12 @@ public class CustController {
         this.custLoginHistService = custLoginHistService;
     }
 
-    @GetMapping("/custselect")
+    @GetMapping("/custSelectAll")
     public String selectAll(CustDto custDto, Model m) throws Exception {
         //관리자페이지에 회원리스트 보여주는 코드
         List<CustDto> list = custService.getCustList();
         m.addAttribute("list",list);
-        m.addAttribute("test1","test1");
-        return "admin";
+        return "custSelectAll";
     }
 
 

@@ -148,11 +148,34 @@ td.title:hover {
 }
 
 .paging-container {
-    width: 100%;
-    height: 70px;
     display: flex;
-    margin-top: 50px;
-    margin: auto;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.paging-container a {
+    color: #337ab7;
+    text-decoration: none;
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px solid #337ab7;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.paging-container a:hover {
+    background-color: #337ab7;
+    color: #ffffff;
+}
+
+.paging-container .spacing {
+    margin: 0 10px;
+}
+
+.spacing {
+    margin-right: 10px;
 }
 
 .btn-write {
@@ -182,10 +205,34 @@ td.title:hover {
 }
 .dashboard1{
     flex: 1.5;
-    background-color: #343a40;
+    margin-right: 50px;
     color: #fff;
 }
 .dashboard2 {
     flex: 8.5;
-    background-color: #ccc;
+
+
 }
+.forEachTag th {
+    padding-bottom: 10px;
+}
+
+table {
+    width: 100%; /* 테이블 전체 너비 */
+    border-collapse: collapse; /* 테이블 경계선 결합 */
+}
+
+th {
+
+    padding: 15px; /* 패딩값 설정 */
+    text-align: left; /* 제목 텍스트 왼쪽 정렬 */
+}
+
+.forEachTag {
+    border: 1px solid #ddd; /* 행마다 경계선 설정 */
+    padding: 8px; /* 행 패딩값 설정 */
+}
+
+.forEachTag:nth-child(even){background-color: #f2f2f2;} /* 짝수 행 배경색상 */
+
+.forEachTag:hover {background-color: #ddd;} /* 마우스 오버 시 행 배경색상 */

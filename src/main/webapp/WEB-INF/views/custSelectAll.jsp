@@ -5,42 +5,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로그인이력</title>
-    <link rel="stylesheet" href="<c:url value='/css/loginlist.css'/>">
+    <title>회원리스트</title>
+    <link rel="stylesheet" href="<c:url value='/css/custSelectAll.css'/>">
+    .
     <link rel="stylesheet" href="<c:url value='/css/adminHeader.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/admin.css'/>">
-
 </head>
 <body>
 <jsp:include page="adminHeader.jsp"/>
 
 <div id="container">
-        <jsp:include page="adminSideBar.jsp"/>
+    <jsp:include page="adminSideBar.jsp"/>
+
     <div id="sidebar2" class="dashboard2">
         <div class="cust-container">
             <table>
                 <tr>
                     <th class="">회원아이디</th>
-                    <th class="">로그인일자</th>
-                    <th class="">로그인성공여부</th>
-                    <th class="">로그인IP</th>
-                    <th class="">로그인실패원인</th>
-                    <th class="">로그인국가</th>
-                    <th class="">로그인기기</th>
-                    <th class="">실패횟수</th>
-
+                    <th class="">이름</th>
+                    <th class="">핸드폰번호</th>
+                    <th class="">분류</th>
+                    <th class="">등급</th>
+                    <th class="">상태</th>
+                    <th class="">생일</th>
+                    <th class="">이메일</th>
+                    <th class="">계좌번호</th>
+                    <th class="">성별</th>
                 </tr>
 
-                <c:forEach var="LoginHistoryDTO" items="${loginlist}">
+                <c:forEach var="custDto" items="${list}">
                     <tr>
-                        <th class="">${LoginHistoryDTO.custId}</th>
-                        <th class="">${LoginHistoryDTO.dttm}</th>
-                        <th class="">${LoginHistoryDTO.scssYn}</th>
-                        <th class="">${LoginHistoryDTO.ip}</th>
-                        <th class="">${LoginHistoryDTO.failCaus}</th>
-                        <th class="">${LoginHistoryDTO.natn}</th>
-                        <th class="">${LoginHistoryDTO.mhrLS}</th>
-                        <th class="">${LoginHistoryDTO.failCnt}</th>
+                        <th class="">${custDto.custId}</th>
+                        <th class="">${custDto.name}</th>
+                        <th class="">${custDto.mpNo}</th>
+                        <th class="">${custDto.custTp}</th>
+                        <th class="">${custDto.grade}</th>
+                        <th class="">${custDto.stus}</th>
+                        <th class="">${custDto.birth}</th>
+                        <th class="">${custDto.email}</th>
+                        <th class="">${custDto.acno}</th>
+                        <th class="">${custDto.gender}</th>
                     </tr>
                 </c:forEach>
 

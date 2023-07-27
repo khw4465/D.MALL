@@ -15,8 +15,9 @@
           <li>
             <a href="#" class="menu">혜택관리</a>
             <ul class="depth2">
-              <li class=""><a href="/mypage/myCoupon">쿠폰</a></li>
-              <li class=""><a href="/mypage/myPoint">포인트</a></li>
+              <li class=""><a href="/mypage/mycoupon">쿠폰</a></li>
+              <li class=""><a href="<c:url value='/point/custSelectAll'/>">포인트</a></li>
+
             </ul>
           </li>
           <li>

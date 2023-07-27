@@ -18,6 +18,16 @@ body {
     margin: 0 auto;
     padding: 20px;
 }
+.dashboard1{
+    flex: 1.5;
+
+    color: #fff;
+}
+.dashboard2 {
+    flex: 8.5;
+
+
+}
 
 /* 왼쪽 사이드바 설정 */
 .left-content {

@@ -17,7 +17,7 @@
 
 <jsp:include page="header.jsp"/>
 
-<div id="header_warp" style="height: 248px;"></div>
+<%--스타일248 제거대상 mhs--%>
 <div id="" class="content">
     <!-- 그다음 div -->
     <jsp:include page="myPageSideBar.jsp"/>
