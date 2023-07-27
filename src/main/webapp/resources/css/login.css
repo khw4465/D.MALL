@@ -1,63 +1,221 @@
-* {
-    box-sizing: border-box;
+
+#logindiv::-webkit-scrollbar {
+    display: none
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
+#logindiv * {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
 }
 
-h1,
-p {
-    text-align: center;
+#logindiv .logindiv-con {
+    margin: 0 auto;
+    width: 420px
 }
 
-.input-id,
-.input-pwd {
-    margin-bottom: 10px;
-}
-
-.input-text {
+#logindiv .btn {
+    margin-top: 10px;
+    padding: 0;
+    display: inline-block;
     width: 100%;
-    padding: 10px;
+    height: 54px!important;
+    max-height: unset;
+    line-height: 54px!important;
+    border: 1px;
+    border-radius: 10px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 17px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer
+}
+
+#logindiv a:hover {
+    text-decoration: none
+}
+
+#logindiv #dgaja_header {
+    border: none
+}
+
+#logindiv #dgaja_header:after,#logindiv #dgaja_header:before {
+    display: none
+}
+
+html #logindiv #dgaja_header .backBtn {
+    background: url(//storage.keepgrow.com/admin/20230625233259293.png) no-repeat 0!important;
+    background-size: auto 16px!important
+}
+
+#logindiv #dgaja_header .backBtn:hover {
+    background-color: #fafafa;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    color: #222
 }
 
-.login-container {
-    background-color: #fff;
-    border-radius: 5px;
-    width: 300px;
-}
-
-.login-area {
-    margin: 20px 0;
-}
-
-.check-sso {
+#logindiv #dgaja_header .topNav {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    padding: 17px 20px
 }
 
-.login-submit {
+#logindiv #dgaja_header .topNav>div {
+    display: block!important;
+    width: 16px;
+    height: 16px
+}
+
+#logindiv #dgaja_header .homeBtn {
+    background: url(//storage.keepgrow.com/admin/20230625234558976.png) no-repeat 0;
+    background-size: auto 16px
+}
+
+#logindiv #dgaja_header .homeBtn a {
+    display: block;
     width: 100%;
-    padding: 10px;
-    border: none;
-    background-color: #007BFF;
-    color: white;
-    text-transform: uppercase;
-    cursor: pointer;
-    border-radius: 5px;
+    height: 100%
 }
 
-.login-submit:hover {
-    background-color: #0056b3;
+#logindiv #dgaja_header .mallName {
+    overflow: hidden;
+    margin: auto!important;
+    padding: 5px 20px 0!important;
+    line-height: normal!important;
+    font-size: 19px;
+    font-weight: 500;
+    text-align: center;
+    color: #222
+}
+
+#logindiv #dgaja_header .mallName a {
+    font-size: 19px;
+    font-weight: 500;
+    color: #222;
+    vertical-align: unset!important
+}
+
+
+
+body #logindiv #dgaja_header .mallName img {
+    height: auto!important
+}
+
+#logindiv #dgaja-section {
+    padding: 0 20px
+}
+
+#logindiv #dgaja-section .contents {
+    position: relative;
+    width: 100%;
+    padding: 35px 0;
+    border-top: 1px solid #f5f5f5
+}
+
+
+
+#logindiv #dgaja-section .contents:first-child {
+    border-top: none
+}
+
+#logindiv #dgaja-section .contents:first-child:after {
+    display: none
+}
+
+#logindiv .contents .title {
+    margin: 0 0 5px;
+    color: #222;
+    font-size: 23px;
+    font-weight: 700;
+    line-height: normal
+}
+
+#logindiv .contents .text,#logindiv .mappingLogin #forminfo .text {
+    margin-bottom: 15px;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: normal;
+    color: #222
+}
+
+
+
+
+html #logindiv .tabMenu {
+    margin: 3px 3px 15px!important;
+    padding: 0!important;
+    font-size: 0;
+    letter-spacing: 0;
+    border-radius: 20px;
+    background: #f6f7f9
+}
+
+#logindiv .tabMenu li {
+    display: inline-block;
+    width: 50%
+}
+
+#logindiv .tabMenu li a {
+    display: inline-block;
+    width: 100%;
+    height: 34px;
+    line-height: 32px;
+    background: #f6f7f9;
+    border: unset;
+    border-radius: 17px;
+    font-size: 15px;
+    font-weight: 400;
+    text-align: center;
+    color: #888;
+    box-sizing: border-box
+}
+
+#logindiv .tabMenu li.active a {
+    position: relative;
+    background: #222;
+    border: unset;
+    color: #fff
+}
+
+#logindiv #forminfo>form {
+    width: 100%;
+    padding: 0;
+    margin: 0
+}
+
+
+
+
+#logindiv #forminfo .inputBox input {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    border: none!important;
+    border-bottom: 1px solid #e5e5e5!important;
+    border-radius: unset;
+    font-size: 15px;
+    color: #000;
+    box-sizing: border-box;
+    outline: none
+}
+
+
+
+
+
+
+#logindiv #forminfo .loginCheckBox {
+    margin: 15px 0
+}
+
+#logindiv #forminfo .loginBtn,#logindiv #forminfo .nomemberLoginBtn,#logindiv #memberJoin .joinBtn,#logindiv #memberJoin .joinBtn a,#logindiv #memberLogin .redirectBtn {
+    padding: 0;
+    background: #f6f7f9;
+    font-size: 17px;
+    color: #222;
+    font-weight: 500
 }
 
 .find-register {
@@ -98,13 +256,4 @@ p {
 .find-register .info a {
     text-decoration: none;
     color: black;
-}
-
-.message {
-    text-align: center
-}
-
-.login-info1,
-.login-info2 {
-    font-size: 12px;
 }

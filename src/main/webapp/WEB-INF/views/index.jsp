@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false"%>
+<%@ page session="false" %>
+<c:set var="loginId" value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
+<c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
+<c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
+<c:set var="addAndModify" value="${loginId=='' ? '/register/add' : '/register/modify'}"/>
+<c:set var="register" value="${loginId=='' ? '회원가입' : '정보수정'}"/>
+
 <!DOCTYPE html>
 <html lang="en">
 

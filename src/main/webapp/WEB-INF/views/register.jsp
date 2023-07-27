@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false"%>
+<%@ page session="false" %>
+<c:set var="loginId" value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
+<c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
+<c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
+<c:set var="addAndModify" value="${loginId=='' ? '/register/add' : '/register/modify'}"/>
+<c:set var="register" value="${loginId=='' ? '회원가입' : '정보수정'}"/>
 <html>
 <head>
     <title>Title</title>
@@ -10,24 +15,7 @@
 
 </head>
 <body>
-<%--<header>--%>
-<%--    <nav>--%>
-<%--        <jsp:include page="header.jsp"/>--%>
-<%--        <div id="header_warp" style="height: 248px;"></div>--%>
-<%--    </nav>--%>
-<%--</header>--%>
-<%--<div id="menu">--%>
-<%--    <ul>--%>
-<%--        <li id="logo">dgaja</li>--%>
-<%--        <li><a href="<c:url value='/'/>">Home</a></li>--%>
-<%--        <li><a href="<c:url value='/board/list'/>">게시판</a></li>--%>
-<%--        <li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>--%>
-<%--        <li><a href="<c:url value='/register/add'/>">회원가입</a></li>--%>
-<%--    </ul>--%>
-<%--</div>--%>
 <br><br><br><br>
-
-
 <!-- 폼 시작 -->
 <form id="user" action="/register/add" method="post" onsubmit="return check(this)">
     <h1>회원가입</h1>
