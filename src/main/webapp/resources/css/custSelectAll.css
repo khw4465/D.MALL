@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+button,
+input {
+    border: none;
+    outline: none;
+}
+.search-option>option {
+    text-align: center;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border-top: 2px solid rgb(39, 39, 39);
+}
+tr:nth-child(even) {
+    background-color: #f0f0f070;
+}
+th,
+td {
+    width: 300px;
+    text-align: center;
+    padding: 10px 12px;
+    border-bottom: 1px solid #ddd;
+}
+td {
+    color: rgb(53, 53, 53);
+}
+.paging {
+    color: black;
+    width: 100%;
+    align-items: center;
+}
+.page {
+    color: black;
+    padding: 6px;
+    margin-right: 10px;
+}
+.paging-container {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    margin-top: 50px;
+    margin: auto;
+}
