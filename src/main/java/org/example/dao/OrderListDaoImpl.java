@@ -18,6 +18,10 @@ public class OrderListDaoImpl implements OrderListDao {
         return session.selectOne(namespace + "select", map);
     }
     @Override
+    public OrderDto getLastOrd(String custId) throws Exception {
+        return session.selectOne(namespace + "lastOrder", custId);
+    }
+    @Override
     public List<OrderDto> selectByMonth(Map map) throws Exception {     // 현재부터 N개월 전까지의 주문내역 리스트 반환
         return session.selectList(namespace + "selectAllByMonth", map);
     }

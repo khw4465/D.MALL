@@ -93,9 +93,9 @@ public class OrderController {
                            "&quantity=" + dto.getTotQty() +
                            "&total_amount=" + dto.getFinPrc() +
                            "&tax_free_amount=0" +
-                           "&approval_url=http://localhost:8080/order/list" +       // 주문승인 시 이동 주소
-                           "&cancel_url=http://localhost:8080/order/order?" +       // 주문취소 시 이동 주소
-                           "&fail_url=http://localhost:8080/order/order";           // 주문실패 시 이동 주소
+                           "&approval_url=http://localhost:8080/order/complete" +       // 주문승인 시 이동 주소
+                           "&cancel_url=http://localhost:8080/order/cancle" +       // 주문취소 시 이동 주소
+                           "&fail_url=http://localhost:8080/order/fail";           // 주문실패 시 이동 주소
             OutputStream output = conn.getOutputStream();  // 서버에 주는 애
             DataOutputStream data = new DataOutputStream(output); // 무엇을 줄지 결정
             data.writeBytes(param);     // 매개변수를 byte타입으로 변환
@@ -122,39 +122,85 @@ public class OrderController {
 
     @GetMapping("/list")
     public String orderList(Model m, HttpServletRequest request){
-        if(!loginCheck(request))
-            return "redirect:/login/login?toURL="+request.getRequestURL();      // 로그인을 안했으면 로그인 화면으로 이동
-
         try {
-            HttpSession session = request.getSession();                         // 로그인 한 아이디 가져오기
-            String custId = (String)session.getAttribute("id");
+            if(!loginCheck(request)) {
+                return "redirect:/login/login?toURL="+request.getRequestURL();      // 로그인을 안했으면 로그인 화면으로 이동
+            }
 
-            List<OrderDto> list = orderListService.getOrdMonth(custId,3);    // 3달 이내의 주문목록 보여주기
-            m.addAttribute("list", list);
+            HttpSession session = request.getSession();
+            String custId = (String) session.getAttribute("id");         // 로그인 한 아이디 가져오기
+
+            List<OrderDto> ordList = orderListService.getOrdMonth(custId,1);
+            m.addAttribute("list", ordList);
 
             return "orderList";
         } catch (Exception e) {
             return "error";
         }
+
+    }
+
+    @GetMapping("/cnclRtn")
+    public String cnclRtn(HttpServletRequest request) {
+        if(!loginCheck(request))
+            return "redirect:/login/login?toURL="+request.getRequestURL();      // 로그인을 안했으면 로그인 화면으로 이동
+
+            HttpSession session = request.getSession();                         // 로그인 한 아이디 가져오기
+            String custId = (String)session.getAttribute("id");
+
+        return "cnclRtn";
     }
 
     @PostMapping("/list")
     @ResponseBody
     @Transactional(rollbackFor = Exception.class)
-    public ResponseEntity<OrderDto> orderList(@RequestBody OrderDto orderDto, HttpSession session) {
+    public ResponseEntity<OrderDto> ordComplete(@RequestBody OrderDto orderDto, Model m, HttpSession session) {
         try {
             String ordCd = orderDto.getOrdCd();                           // ord.jsp에서 tid를 주문코드로 얻어옴
             String dlvMsg = orderDto.getDlvMsg();                         // ord.jsp에서 dlvMsg를 배송메시지로 얻어옴
             String custId = (String)session.getAttribute("id");     // 세션으로 회원아이디 가져오기
+
 //            orderService.getOneAddr(custId, 1);                         // 회원의 배송지목록 1번의 dto 가져오기
-            System.out.println("dlvMsg = " + orderDto.getDlvMsg());
+
             orderListService.addOrder(ordCd,custId,1,dlvMsg);    // 주문내역 추가
+
+            OrderDto ordDto1 = orderListService.getLastOrd(custId);       // 세션에 최근 주문내역 저장
+            session.setAttribute("lastOrder", ordDto1);
+
             cartService.removeAll(custId);                                // 주문을 했으니 장바구니 목록 삭제
 
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+    }
+
+   @GetMapping("/complete")
+   public String ordComplete(Model m, HttpSession session) {
+       try {
+           OrderDto ordDto2 = (OrderDto) session.getAttribute("lastOrder");    // 세션으로 주문한 건의 내역 가져오기
+           m.addAttribute("ordInfo", ordDto2);
+
+           return "ordComplete";
+       } catch (Exception e) {
+           System.out.println("Error in ordComplete: " + e.getMessage()); // 로그 추가: 에러 메시지 출력
+           return "error";
+       }
+
+   }
+
+    @GetMapping("/cancle")
+    public String ordCancle(HttpSession session) {
+        String custId = (String)session.getAttribute("id");     // 세션으로 회원아이디 가져오기
+
+        return "ordCancle";
+    }
+
+    @GetMapping("/fail")
+    public String ordFail(HttpSession session) {
+        String custId = (String)session.getAttribute("id");     // 세션으로 회원아이디 가져오기
+
+        return "ordFail";
     }
 
     private boolean loginCheck(HttpServletRequest request) {

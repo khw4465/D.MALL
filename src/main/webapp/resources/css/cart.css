@@ -162,7 +162,7 @@ button {
 }
 .cart-section-block {
     max-width: 70%;
-    margin: 100px auto;
+    margin: 0 auto;
     background-color: #FFFFFF;
     padding: 20px;
 }
@@ -190,3 +190,4 @@ button {
     color: #3e3d3c;
     font-weight: bold;
 }
+

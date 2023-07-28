@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session="false"%><html>
 <c:set var="loginId" value="${pageContext.request.getSession(false)==null || pageContext.request.session.getAttribute('id')=='' ? '' : pageContext.request.session.getAttribute('id')}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
@@ -18,58 +19,6 @@
     <link rel="stylesheet" href="<c:url value='/css/order.css'/>">
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 </head>
-<style>
-    /* 스타일 추가 */
-    .cart-list {
-        list-style: none;
-        padding: 0;
-    }
-
-    .cart-list li {
-        border: 2px solid #ccc;
-        margin-bottom: 10px;
-        padding: 10px;
-    }
-
-    .cart-list img {
-        width: 100px;
-        height: 100px;
-    }
-
-    .cart-list .prd-info-area {
-        display: flex;
-        align-items: center;
-    }
-
-    .cart-list .column.tit {
-        flex: 1;
-        padding-left: 20px;
-    }
-
-    .cart-list .desc {
-        margin-bottom: 5px;
-    }
-
-    .cart-list .price-item {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-    }
-
-    .cart-list .price-item li {
-        margin-right: 20px;
-    }
-
-    .cart-list .price-item li:last-child {
-        margin-right: 0;
-    }
-
-    .cart-list .column.price.w70 {
-        font-size: 1.2em;
-        font-weight: bold;
-    }
-</style>
 <body>
 
 <jsp:include page="header.jsp"/>
@@ -122,7 +71,7 @@
                             </tr>
                             <tr>
                                 <th scope="row">주소</th>
-                                <td>(<c:out value="${dlv.zpcd}" />) <c:out value="${dlv.dlvAddr}" /> <c:out value="${dlv.dtlAddr}" /><em class="badge-point" style="display: inline-block">기본배송지</em></td>
+                                <td>(<c:out value="${dlv.zpcd}" />) <c:out value="${dlv.dlvAddr}" /> <c:out value="${dlv.dtlAddr}" />&nbsp;<em class="badge-point" style="display: inline-block">기본배송지</em></td>
                             </tr>
                             <tr>
                                 <th scope="row">휴대전화</th>
@@ -133,7 +82,7 @@
                     </div>
                 </div>
 
-                <div id="userOrderList">
+                <div id="userOrderList" class="user-order-list">
                     <div class="list-head">
                         <h3 class="title-list">주문 상품</h3>
                     </div>
@@ -143,46 +92,49 @@
                             <li>
                                 <div class="prd-info-area">
                                     <input type="hidden" class="vProductCd" value="${cart.prodCd}">
-                                    <div class="inner">
-                                        <div class="column img">
-                                            <img src="/img/${cart.prodCd}.png" alt="상품이미지" style="width: 100px; height: 100px">
-                                        </div>
-                                        <div class="column tit">
-                                            <p class="tit">${cart.prodName}</p>
-                                        </div>
+                                    <div class="column img">
+                                        <img src="/img/${cart.prodCd}.png" alt="상품이미지" style="height: 100px; width: 100px">
+                                    </div>
+                                    <div class="column tit">
+                                        <p class="prod-desc">${cart.prodName}</p>
+                                        <c:forEach var="opt" items="${optLists.get(cartList.indexOf(cart))}" varStatus="i">
+                                            <div class="prd-info-area option-line">
+                                                <div class="inner">
+                                                    <div class="column tit">
+                                                        <p class="desc">${opt.optName}</p>
+                                                        <ul class="price-item">
+                                                            <li><span class="num"><fmt:formatNumber value="${opt.optPrice}" type="number" pattern="#,###"/></span>원</li>
+                                                            <li><span class="num">${opt.optQty}</span>개</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="column price w70">
+                                                        <span class="num"><fmt:formatNumber value="${opt.totOptPrice}" type="number" pattern="#,###"/></span>원
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </c:forEach>
                                     </div>
                                 </div>
                             </li>
-                            <!-- 옵션 리스트 -->
-                            <c:forEach var="opt" items="${optLists.get(cartList.indexOf(cart))}" varStatus="i">
-                                <li>
-                                    <div class="prd-info-area">
-                                        <div class="inner">
-                                            <div class="column tit">
-                                                <p class="desc">옵션명: ${opt.optName}</p>
-                                                <ul class="price-item">
-                                                    <li><span class="num">옵션가격: ${opt.optPrice}</span>원</li>
-                                                    <li><span class="num">옵션수량: ${opt.optQty}</span>개</li>
-                                                </ul>
-                                                <div class="column price w70">
-                                                    <span class="num">옵션 총 가격: ${opt.totOptPrice}</span>원
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </c:forEach>
                         </c:forEach>
                     </ul>
                 </div>
             </form>
-        </div>
-    </div>
 
-    <div>
-        <h2>배송 요청사항</h2>
-        <input type="text" id="dlvMsg" placeholder="메시지를 입력해 주세요." style="width: 300px; height: 50px" >
-    </div>
+            <div class="dlv-request-box" id="expReqBox" style="display: block">
+
+                <div class="inner-div">
+                    <div class="request-detail">
+                        <div class="epx-m-chk-con">
+                            <div class="custom-radio s-li s-li1">
+                                <h4 for="epx-m-chk1" class="custom-label">배송요청사항</h4>
+                                <p id="express-memo-p" style=""><input type="text" name="expressMemo01" id="dlvMsg" class="input-text epx-txt" placeholder="예) 문 앞에 두고 벨 눌러주세요." maxlength="300"><span class="notice">· 요청사항을 입력해주세요.</span></p>
+                            </div>
+                        </div>
+
+                    </div><!--// request-detail -->
+                </div><!--// inner-div -->
+            </div>
 
     <div class="lineless-table type1">
         <h3 class="title-list">포인트 / 쿠폰 사용</h3>
@@ -231,6 +183,8 @@
         </table>
     </div>
 
+        </div>
+    </div>
 
     <div class="side-fix-area fixed">
         <div class="payment-info-box ui-box-fix" style="top: 1439.22px;">
@@ -241,7 +195,7 @@
                         <div class="list-inner">
                             <span class="tit">상품금액</span>
                             <p class="price">
-                                <strong class="num resetOrderPaySide" id="txt_tot_price"><c:out value="${prc.totPrc}" /></strong> 원
+                                <strong class="num resetOrderPaySide" id="txt_tot_price"><fmt:formatNumber value="${prc.totPrc}" type="number" pattern="#,###"/></strong> 원
                             </p>
                         </div>
                     </li>
@@ -249,7 +203,7 @@
                         <div class="list-inner">
                             <span class="tit">할인금액</span>
                             <p class="price">
-                                <strong class="num resetOrderPaySide" id="totalDiscountPrice"><c:out value="${prc.totDcPrc}" /></strong> 원
+                                <strong class="num resetOrderPaySide" id="totalDiscountPrice"><fmt:formatNumber value="${prc.totDcPrc}" type="number" pattern="#,###"/></strong> 원
                             </p>
                         </div>
                     </li>
@@ -257,7 +211,7 @@
                         <div class="list-inner">
                             <span class="tit">배송비</span>
                             <p class="price">
-                                <strong class="num resetOrderPaySide" id="txt_tot_dlv_price"><c:out value="${prc.dlvPrc}" /></strong> 원
+                                <strong class="num resetOrderPaySide" id="txt_tot_dlv_price"><fmt:formatNumber value="${prc.dlvPrc}" type="number" pattern="#,###"/></strong> 원
                             </p>
                         </div>
                     </li>
@@ -266,7 +220,7 @@
                     <div class="list-inner">
                         <span class="tit">최종 결제금액</span>
                         <div class="price">
-                            <strong class="num text-primary resetOrderPaySide" id="txt_tot_pg_price"><c:out value="${prc.finPrc}" /></strong> 원
+                            <strong class="num text-primary resetOrderPaySide" id="txt_tot_pg_price"><fmt:formatNumber value="${prc.finPrc}" type="number" pattern="#,###"/></strong> 원
                         </div>
                     </div>
                 </div>
@@ -305,7 +259,7 @@
                 </div>
             </div>
             <button type="button" id="kakaoPay" class="btn-basic-xlg btn-primary">
-                <span class="num"><span id="txt_btn_payment" class="resetOrderPaySide"><c:out value="${prc.finPrc}" /></span>원 결제하기</span>
+                <span class="num"><span id="txt_btn_payment" class="resetOrderPaySide"><fmt:formatNumber value="${prc.finPrc}" type="number" pattern="#,###"/></span>원 결제하기</span>
             </button>
         </div> <!--// payment-info-box -->
     </div>
@@ -315,6 +269,13 @@
 <jsp:include page="footer.jsp"/>
 
 <script>
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        let childElement = document.getElementsByClassName("side-fix-area")[0];
+        childElement.style.top = window.scrollY + "px";
+    }
+
         $('#kakaoPay').click(function(){
             let dlvMsg = $('#dlvMsg'.valueOf())
             $.ajax({
@@ -323,20 +284,24 @@
                 success:function (data){
                     let tid = data.tid; // 주문코드로 쓸 tid
                     // alert(tid);
+
+
                     $.ajax({
                         url: '/order/list',
-                        method: 'POST',     // post를 안적었더니 에러남..  URL이 order/list?ordCd=~~~&dlvMsg=~~~ 형식이라 그런듯
+                        method: 'POST',     // post를 안적었더니 에러남..  URL이 order/complete?ordCd=~~~&dlvMsg=~~~ 형식이라 그런듯
                         headers: {"content-type": "application/json"}, // 요청 헤더
                         dataType: 'text', // 전송받을 데이터의 타입
                         data: JSON.stringify({ordCd: tid, dlvMsg: dlvMsg.val()}),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
                         success: function(response){
-                            // alert('주문이 완료되었습니다.')
+                            alert('주문이 완료되었습니다.')
                         },
                         error: function(error) {
                             alert('주문 중 오류가 발생하였습니다.');
                             console.log(error);
                         }
                     });
+
+
 
                     let url = data.next_redirect_pc_url;
                     window.location.replace(url);

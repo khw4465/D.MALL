@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session="false"%><html>
 <c:set var="loginId" value="${pageContext.request.getSession(false)==null || pageContext.request.session.getAttribute('id')=='' ? '' : pageContext.request.session.getAttribute('id')}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
@@ -62,7 +63,7 @@
             <c:forEach var="ord" items="${list}">
                 <li id="list${ord.ordCd}" class="${ord.ordCd}">
                     <div class="order-list-head">
-                        <strong class="date">${ord.ordDttm}</strong>
+                        <strong class="date"> <fmt:formatDate value="${ord.ordDttm}" pattern="yyyy.MM.dd"/></strong>
                         <div class="right">
                             <span class="order-item-id">${ord.ordCd}</span>
                             <a href="" class="btn-link-txt5" style="text-decoration: none; color:lightgray"><span>주문상세</span> &nbsp <strong> > </strong> </a>
@@ -77,7 +78,7 @@
                                         <div class="column tit">
                                             <div class="prd-state-row">
                                                 <strong class="prd-state-head">${ord.ordStus}</strong>
-                                                <span class="prd-state-date">${ord.stusChgDttm} ${ord.ordStus}</span>
+                                                <span class="prd-state-date"><fmt:formatDate value="${ord.stusChgDttm}" pattern="MM월 dd일"/> ${ord.ordStus}</span>
                                             </div>
                                             <!-- [Dev] 20220420 추가 : 당일/새벽배송 아이콘 추가 -->
                                             <p class="tit"><a href="javascript:void(0);" onclick="onClickMyPageOrderListOrderCd(this); return false;" ordercd="${ord.ordCd}">${ord.prodName}</a></p>
@@ -85,7 +86,7 @@
                                         <div class="price-item">
                                             <div class="dlv-nmr">
                                                 <p class="dlv-nmr-price">
-                                                    <span class="num">${ord.finPrc}</span>원
+                                                    <span class="num"><fmt:formatNumber value="${ord.finPrc}" type="number" pattern="#,###"/></span>원
                                                 </p>
                                                 <p class="dlv-nmr-cnt">
                                                     <span class="num">${ord.totProdCnt}</span>개

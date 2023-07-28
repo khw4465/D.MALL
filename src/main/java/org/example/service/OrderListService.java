@@ -8,6 +8,8 @@ import java.util.List;
 public interface OrderListService {
     OrderDto getOrder(String ordCd, String custId) throws Exception;
 
+    OrderDto getLastOrd(String custId) throws Exception;
+
     List<OrderDto> getOrdMonth(String custId, int i) throws Exception;
 
     List<OrderDto> getSelDate(String custId, LocalDate startDate, LocalDate endDate) throws Exception;

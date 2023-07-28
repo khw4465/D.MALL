@@ -7,6 +7,7 @@
 <c:set var="addAndModify" value="${loginId=='' ? '/register/add' : 'custModify'}"/>
 <c:set var="register" value="${loginId=='' ? '회원가입' : '정보수정'}"/>
 <c:set var="logo" value="${loginId=='' ? '/' : '/login/logoClick'}"/>
+<c:set var="cartCnt" value="${cartList.size()}"/>
 <header>
     <nav>
         <div id="skipNavigation">
@@ -62,7 +63,6 @@
                             </ul>
                             <ul class="hd_icons clearfix"><li class="hdMyshop"><a href="/myshop/index.html">마이쇼핑</a></li>
                                 <li class="hdWish"><a href="<c:url value='/custMyPage'/>">마이페이지</a></li>
-                                <c:set var="cartCnt" value="${cartList.size()}"/>
                                 <li class="xans-element- xans-layout xans-layout-statelogon hdBasket "><a href="<c:url value='/cart/list'/>"><i class="fa-solid fa-cart-shopping fa-2xl" style="color: #b8b8b8;"></i>
                                     <span class="count EC-Layout_Basket-count-display"><span class="EC-Layout-Basket-count">${cartCnt}</span></span></a></li>
                             </ul>
@@ -103,7 +103,7 @@
                 </div>
             </div>
         </div>
-        <div id="header_warp" style="height: 248px;"></div>
+<%--        <div id="header_warp" style="height: 200px;"></div>--%>
         <script>
                 function showDropdown() {
                 const dropdown = document.querySelector('.dropdown');
