@@ -8,54 +8,35 @@
 <head>
   <meta charset="UTF-8">
   <title>Admin Notc</title>
-  <link rel="stylesheet" href="<c:url value='/css/adminnotc.css'/>">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="<c:url value='/css/adminnotc.css'/>">
+  <link rel="stylesheet" href="<c:url value='/css/loginlist.css'/>">
+  <link rel="stylesheet" href="<c:url value='/css/adminHeader.css'/>">
+  <link rel="stylesheet" href="<c:url value='/css/admin.css'/>">
+
 </head>
 <body>
-<div class="admin-menu">
-  <ul class="menu-bar1">
-    <a href="<c:url value='/login/logoClick'/>"><img id="logo" src="/img/logo1.png" alt="logo" style="width:90px; height:90px;"></a>
-  </ul>
-  <ul class="menu-bar2">
-    <li><a href="<c:url value='/prod/Manage'/>">상품관리</a></li>
-    <li><a href="<c:url value='/ord/Manage'/>">주문관리</a></li>
-    <li><a href="<c:url value='/cust/Manage'/>">회원관리</a></li>
-    <li><a href="<c:url value='/board/Manage'/>">게시판관리</a></li>
-    <li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>
-    <input type="hidden" name="toURL" value="${param.toURL}">
-  </ul>
-</div>
+<jsp:include page="adminHeader.jsp"/>
 
-<div class="content">
-  <div class="left-list">
-    <h2>관리자 매뉴얼</h2>
-    <button class="list">상품관리</button>
-    <div class="panel">
-      <li><a href="/prod/register">상품등록 |</a></li>
-      <li></li>
-    </div>
+<div id="container">
+  <jsp:include page="adminSideBar.jsp"/>
 
-    <button class="list">주문관리</button>
-    <div class="panel">
-      <li>hello</li>
-    </div>
-    <button class="list">회원관리</button>
-    <div class="panel">
-      <li><a href="<c:url value='/custselect'/>">회원리스트</a></li>
-    </div>
-    <button class="list">게시판관리</button>
-    <div class="panel">
-      <li><a href="<c:url value="/notc/adminlist"/>"> 공지사항 관리 </a></li>
-    </div>
-  </div> <!-- left-list -->
-
-
-
-<div class="right-list">
+  <div class="right-list">
 
   <div class="use-guide">
     <table>
       <h3><a href="/notc/adminlist">공지사항 관리</a></h3>
+      <!-- 게시물 검색창 -->
+      <div class="notcsearch">
+        <form id="cs_search" action="<c:url value="/notc/adminlist"/>" class="search-form" method="get">
+          <select class="search-option" name="option" hidden="hidden">
+            <option value="T" ${pagehandler.sc.option=='T' ? "selected" : ""} hidden="hidden">제목만</option>
+          </select>
+          <input type="text" name="keyword" class="cs-search-input" type="text" value="${pagehandler.sc.keyword}" placeholder="제목을 검색해주세요">
+          <input type="submit" class="cs-search-button move-right" value="검색">
+        </form>
+      </div>
+      <!-- 게시물 검색창 -->
       <thead>
         <tr>
           <th>번호</th>
@@ -81,18 +62,7 @@
       <button type="button" id="writeBtn" onclick="location.href='<c:url value="/notc/adminwrite"/>'">글쓰기</button>
     </div> <!-- writeBtn -->
     <br>
-    <!-- 게시물 검색창 -->
-    <div class="notcsearch">
-      <form id="cs_search" action="<c:url value="/notc/adminlist"/>" class="search-form" method="get">
-        <select class="search-option" name="option" hidden="hidden">
-          <option value="T" ${pagehandler.sc.option=='T' ? "selected" : ""} hidden="hidden">제목만</option>
-        </select>
 
-        <input type="text" name="keyword" class="search-input" type="text" value="${pagehandler.sc.keyword}" placeholder="제목을 검색해주세요">
-        <input type="submit" class="search-button" value="검색">
-      </form>
-    </div>
-    <!-- 게시물 검색창 -->
     <!-- 핸들러 -->
     <div id="handle">
       <c:if test="${totalCnt==null || totalCnt==0}">
