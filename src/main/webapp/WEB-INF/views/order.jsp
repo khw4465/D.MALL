@@ -17,6 +17,7 @@
     <title>Order</title>
     <link rel="stylesheet" href="<c:url value='/css/main2.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/order.css'/>">
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 </head>
 <body>
@@ -30,8 +31,6 @@
         </div>
 
         <div class="order-payment-area">
-            <input type="hidden" id="holidayDlvFlag" value="Y">
-            <form id="ordFrm" name="ordFrm" action="/order/order" method="post">
 
                 <div class="order-info" id="orderUserInfo">
                     <div class="list-head">
@@ -52,7 +51,7 @@
 
                     <div class="list-head-sub">
                         <h3 class="title-list">배송지 정보</h3>
-                        <button class="btn-basic-sm2 btn-default">
+                        <button id="myBtn" class="btn-basic-sm2 btn-default">
                             <span>배송지변경</span><i class="ico-arr-right"></i>
                         </button>
                     </div>
@@ -79,6 +78,155 @@
                             </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+
+
+                <div id="myModal" class="modal" style="display: none">
+                    <div class="modal-content">
+                        <div class="layer-wrap onload" id="popup-myAddress" style="display:block;">
+                            <div id="userDeliveryList" class="layer-pop dlv-addr-pop hideLayers" style="display: block">
+                                <div class="layer-inner">
+                                    <div class="layer-head">
+                                        <h4 class="layer-pop-title">배송지 목록</h4>
+                                        <button type="button" id="addDlvBtn" class="btn-basic-sm btn-default-ex" data-v-deliveryid="new" data-func="defaultForm">
+                                            <i class="ico-plus"></i><span>신규 배송지 추가</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="layer-content">
+                                        <div class="inner">
+                                            <div class="scroll-area ui-custom-scroll mCustomScrollbar _mCS_2 mCS_no_scrollbar"><div id="mCSB_2" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0"><div id="mCSB_2_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                                <ul class="dlv-addr-list">
+                                                    <li>
+                                                        <div class="custom-radio">
+                                                            <input type="radio" id="radio-delivery-20220424000000916645" class="radio" name="vDeliveryid" value="20220424000000916645" data-v-deliveryid="20220424000000916645" data-v-postcd="01336" data-v-addr="서울특별시 도봉구 마들로 646(방학동, 방학동 삼성래미안)" data-v-addr-dtl="107동 602호" data-v-addr1="" data-v-addr2="" data-v-addr3="" data-v-delivery-tel="" data-v-delivery-cell="01050904465" data-v-delivery-cell1="010" data-v-delivery-cell2="50904465" data-v-delivery-nm="김현우" data-v-door-access-method-save-yn="N" data-v-door-access-method-cd="" data-v-door-access-method-memo="" data-v-basic-dlv-yn="Y" data-v-express-yn="Y" data-v-today-dlv-yn="Y" data-v-dawn-dlv-yn="Y" data-v-dawn-dlv-alarm-yn="Y" data-v-exdlv-area="10001" checked="checked">
+                                                            <label for="radio-delivery-20220424000000916645">
+                                                                <span class="name">드가자</span>
+                                                                <em class="badge-sm-navy">기본배송지</em><em class="imgbadge-dlv-exp">
+                                                                <span class="blind">특급배송</span>
+                                                            </em>
+                                                                <span class="addr-txt">종로2가 9</span>
+                                                            </label>
+                                                        </div><!--// custom-radio -->
+                                                        <div class="bottom-line">
+                                                            <p class="tel">01012345678</p>
+                                                            <div class="btn-area">
+                                                                <button type="button" class="btn-option btn-default" data-v-deliveryid="20220424000000916645" data-func="openForm"><span>수정</span></button>
+                                                            </div>
+                                                        </div><!--// bottom-line -->
+                                                    </li>
+                                                </ul><!--// dlv-addr-list -->
+                                                <!-- paging -->
+                                                <div class="pagination">
+                                                </div>
+                                                <!--// paging -->
+                                            </div><div id="mCSB_2_scrollbar_vertical" class="mCSB_scrollTools mCSB_2_scrollbar mCS-light mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_2_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 0px; height: 0px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 0px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div><!--// scroll-area -->
+                                        </div>
+                                    </div><!--// layer-content -->
+
+                                    <div class="layer-bottom type-shadow">
+                                        <div class="btn-area">
+                                            <button type="button" class="btn-basic-lg2 btn-black w-full" onclick="addrReturn();"><span>확인</span></button>
+                                        </div>
+                                    </div><!--// layer-bottom -->
+
+                                    <button type="button" id="closeBtn" class="btn-x-md2 ui-close-pop" title=""><i class="ico-x-black"></i><span class="blind">닫기</span></button>
+                                </div><!--// layer-inner -->
+                            </div>
+
+                        </div>
+                        <form id="userDeliveryForm" name="userDeliveryForm"  action="/order/order/userDeliveryList" method="post">
+                            <div id="userDeliveryDiv" class="layer-pop dlv-addr-pop hideLayers" style="display: none;">
+                                <div class="layer-inner">
+                                    <div class="layer-head">
+                                        <h4 class="layer-pop-title" id="popTitle">배송지 추가</h4>
+                                    </div>
+
+                                    <div class="layer-content">
+                                        <div class="inner">
+                                            <div class="lineless-table type2" style="border: none">
+                                                <table>
+                                                    <caption>정보 입력</caption>
+                                                    <colgroup>
+                                                        <col style="width:70px">
+                                                        <col>
+                                                    </colgroup>
+                                                    <tbody>
+                                                    <tr>
+                                                        <th scope="row">받는분 <em class="es"><span class="blind">필수입력</span></em></th>
+                                                        <td>
+                                                            <input type="text" name="vDeliveryNm" title="" class="input-text w-full removeEmoji" placeholder="받는 분 입력" value="">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">주소 <em class="es"><span class="blind">필수입력</span></em></th>
+                                                        <td>
+                                                            <div class="input-group">
+                                                                <input type="text" id="vPostcd" name="vPostcd" title="" class="input-text" placeholder="우편번호" readonly="readonly" value="">
+                                                                <span class="input-group-btn">
+                                            <a href="#" id="PostNo" class="btn-ex-white"><span>우편번호 찾기</span></a>
+                                        </span>
+                                                            </div>
+                                                            <div class="input-group w-full">
+                                                                <input type="text" id="vAddr" name="vAddr" title="" class="input-text" placeholder="기본주소" readonly="readonly" value="">
+                                                            </div>
+                                                            <div class="input-group w-full">
+                                                                <input type="text" name="vAddrDtl" title="" class="input-text removeEmoji" placeholder="상세주소" value="" maxlength="80">
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">휴대폰 <em class="es"><span class="blind">필수입력</span></em></th>
+                                                        <td>
+                                                            <div class="input-group w-full">
+                                                                <input type="text" name="vDeliveryTel" title="" class="input-text w-full" value="" maxlength="11" onkeydown="return numberOnly(event)" onkeyup="removeChar(event)">
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">전화번호</th>
+                                                        <td>
+                                                            <div class="input-group w-full">
+                                                                <input type="text" name="vDeliveryTel" title="" class="input-text w-full" value="" maxlength="11" onkeydown="return numberOnly(event)" onkeyup="removeChar(event)">
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row"></th>
+                                                        <td>
+                                                            <div class="custom-checkbox">
+                                                                <input type="checkbox" id="check-101" class="checkbox" name="vBasicDlvYn" value="">
+                                                                <label for="check-101"> 기본배송지로 등록</label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div><!--// layer-content -->
+
+                                    <div class="layer-bottom">
+                                        <div class="btn-area">
+                                            <button type="button" class="btn-basic-lg2 btn-grey3 closeDiv"><span>취소</span></button>
+                                            <button type="button" class="btn-basic-lg2 btn-black" onclick="save();"><span>확인</span></button>
+                                        </div>
+                                    </div><!--// layer-bottom -->
+
+                                    <button type="button" class="btn-x-md2 ui-close-pop closeDiv" title=""><i class="ico-x-black"></i><span class="blind">닫기</span></button>
+                                </div><!--// layer-inner -->
+                            </div>
+                        </form>
+                        <div id="userPostNo" class="userPostNo" style="display: none">
+                            <div class="layer-inner">
+                                <div class="layer-head">
+                                    <h4 class="layer-pop-title">우편번호 검색</h4>
+                                </div>
+                                <div id="postCd-body" class="postCd-body" ></div>
+                                <button type="button" class="btn-x-md2 ui-close-pop" title=""><i class="ico-x-black"></i><span class="blind">닫기</span></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -118,7 +266,6 @@
                         </c:forEach>
                     </ul>
                 </div>
-            </form>
 
             <div class="dlv-request-box" id="expReqBox" style="display: block">
 
@@ -291,6 +438,79 @@
             document.getElementById('customRequest').style.display = 'none';
         }
     });
+
+    // 모달을 얻어온다.
+    const modal = document.getElementById("myModal");
+
+    // 모달을 여는 버튼의 요소를 얻어온다.
+    const btn = document.getElementById("myBtn");
+
+    // 모달 창을 닫는 요소의 엘리먼트를 가져온다.
+    const xBtn = Array.from(document.querySelectorAll(".ui-close-pop"));
+
+    // 모달을 여는 버튼을 클릭하면 모달을 보여준다.(default = display.none)
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    // <span> x 를 클릭하면 모달창을 닫는다.
+    xBtn.forEach(btn => {
+        btn.onclick = function () {
+            modal.style.display = "none";
+            resetDlv();
+        }
+    })
+
+    const addBtn = document.querySelector("#addDlvBtn");
+    addBtn.addEventListener('click', () => {
+        document.getElementById('popup-myAddress').style.display = 'none';
+        document.getElementById('userDeliveryDiv').style.display = 'block';
+    });
+
+    let resetDlv =function() {
+        document.getElementById('popup-myAddress').style.display = 'block';
+        document.getElementById('userDeliveryDiv').style.display = 'none';
+        document.getElementById('userPostNo').style.display = 'none';
+    };
+
+    // 우편번호 버튼
+    const findPostNo = document.getElementById("PostNo");
+
+    // 우편번호 팝업을 담을 div요소
+    const postCdContent = document.getElementById("postCd-body");
+
+    const postCd = document.getElementById('vPostcd');
+    const dlvAddr = document.getElementById('vAddr');
+
+    findPostNo.addEventListener('click', () => {
+        document.getElementById('userDeliveryDiv').style.display = 'none';
+        document.getElementById('userPostNo').style.display = 'block';
+        new daum.Postcode({
+            oncomplete: function(data) {
+                let mainAddr = '';
+
+                postCd.value = data.zonecode;
+
+                if(data.userSelectedType === 'R') {
+                    mainAddr = data.roadAddress;
+                } else {
+                    mainAddr = data.jibunAddress;
+                }
+
+                dlvAddr.value = mainAddr;
+
+                returnDlv();
+            }
+        }).embed(postCdContent);
+    })
+
+    function returnDlv() {
+        if(postCd.value !== ''){
+            document.getElementById('userPostNo').style.display = 'none';
+            document.getElementById('userDeliveryDiv').style.display = 'block';
+        }
+    }
+
 
         $('#kakaoPay').click(function(){
             let dlvMsg = $('#dlvMsg'.valueOf())
