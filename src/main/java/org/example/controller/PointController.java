@@ -39,7 +39,7 @@ public class PointController {
             return "login";
         }
         // 마이페이지 진입시 포인트 보여야함 ( 접속한 회원의 id 꺼)
-        List<pointDto> pointList = pointService.selectPoint(custId);
+        pointDto pointList = pointService.selectPointOne(custId);
         // custid주고 포인트목록 불러와서 모델에 저장
         m.addAttribute("pointResult",pointList);
         // 포인트 누를시 특정회원의 포인트상세 나옴.

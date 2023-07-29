@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface PointService {
-    List<pointDto> selectPoint(String id) throws Exception;
+    List<pointDto> selectPoint(String id) throws Exception; //폐기
     int insertPoint(pointDto pointDto) throws Exception;
     int updatePoint(pointDto pointDto) throws Exception;
     List<pointDto> selectAllPoint() throws Exception;

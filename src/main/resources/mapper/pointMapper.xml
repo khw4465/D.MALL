@@ -11,6 +11,7 @@
         WHERE CUST_ID = #{custId}
         ORDER BY dttm DESC
     </select>
+<!-- 위에 폐기했음 나중에 다른거로 활용예정-->
 
     <!--   특정 포인트아이디가 가지고있는 모든정보 -->
     <select id="selectPointId" resultType="int" parameterType="String">
@@ -40,9 +41,9 @@
     <!-- 새로운 포인트 정보를 추가 -->
     <insert id="insert" parameterType="pointDto">
         INSERT INTO pnt_mst
-        (PNT_ID, CUST_ID, STUS, CHNG_PNT, point, DTTM, EXPI_DTTM, CHG_CN, REMARK, PNT_CD, FST_REG, FST_REGR, LAST_UPD, LAST_UPDR)
+        (PNT_ID, CUST_ID, STUS, CHNG_PNT, point, DTTM, EXPI_DTTM, CHG_CN, REMARK, PNT_CD)
         VALUES
-            (#{pntId}, #{custId}, #{stus}, #{chngPnt}, #{point}, #{dttm}, #{expiDttm}, #{chgCn}, #{remark}, #{pntCd}, #{fstReg}, #{fstRegr}, #{lastUpd}, #{lastUpdr})
+            (#{pntId}, #{custId}, #{stus}, #{chngPnt}, #{point}, #{dttm}, #{expiDttm}, #{chgCn}, #{remark}, #{pntCd})
     </insert>
 
     <!-- 특정 포인트 정보를 업데이트 -->

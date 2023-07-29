@@ -59,13 +59,8 @@ public class CustController {
             return "login";
         }
         // 마이페이지 진입시 포인트 보여야함 ( 접속한 회원의 id 꺼)
-        List<pointDto> pointList = pointService.selectPoint(custId);
-        for (pointDto point : pointList) {
-            pointLast = point.getPoint(); //마지막꺼를 가지고와야하는구나.
-            // 일부러 더하지 않고 마지막꺼만 저장 이유는 매퍼에 select 쿼리 재사용위해서
-            // 나중에 포인트상세에서 써먹으려고
-        }
-        m.addAttribute("pointResult",pointLast);
+        pointDto pointList = pointService.selectPointOne(custId);
+        m.addAttribute("pointResult",pointList.getPoint());
 
         //System.out.println("session.getAttribute(\"id\") = " + session.getAttribute("id"));
         //System.out.println("session.getAttribute(\"custId\") = " + session.getAttribute("custId"));
