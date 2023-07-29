@@ -94,7 +94,7 @@ th,
 td {
     width: 300px;
     text-align: center;
-    padding: 10px 12px;
+    /*padding: 10px 12px;*/
     border-bottom: 1px solid #ddd;
 }
 
@@ -148,8 +148,10 @@ td.title:hover {
     width: 100%;
     height: 70px;
     display: flex;
-    margin-top: 50px;
-    margin: auto;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* 필요한 간격으로 조정 */
+    /*margin-top: 50px;*/
 }
 
 .btn-write {

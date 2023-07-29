@@ -60,7 +60,7 @@ public class PointController {
             map.put("pageSize",pageSize);
             map.put("custId", custId);
            // List<pointDto> pointlist = pointDao.selectPage(map); //다오
-            List<pointDto> pointlist = pointService.selectPointPage(map);
+            List<pointDto> pointlist = pointService.selectPointPage(map); //변수명 수정해야함
             // 페이지핸들러와 회원의 포인트이력 모두 뽑아서 모델에 저장
             m.addAttribute("pointlist",pointlist);
             m.addAttribute("ph",handler);

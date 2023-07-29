@@ -3,6 +3,7 @@ package org.example.service;
 import org.example.domain.CustDto;
 import org.example.domain.CustStatsDto;
 import org.example.domain.LoginHistoryDTO;
+import org.example.domain.pointDto;
 
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,9 @@ public interface CustLoginHistService {
 
     int HistCountUpdate(LoginHistoryDTO loginHistoryDTO)throws Exception;
 
+    List<LoginHistoryDTO> selectLoginHistPage(Map map)throws Exception;
+
+    int countAllHist() throws Exception;
 
 
 
