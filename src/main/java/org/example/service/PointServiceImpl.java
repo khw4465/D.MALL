@@ -48,4 +48,9 @@ public class PointServiceImpl implements PointService{
         return pointDao.selectPage(map);
     }
 
+    @Override
+    public pointDto selectPointOne(String id) throws Exception {
+        return pointDao.selectOne(id);
+    }
+
 }

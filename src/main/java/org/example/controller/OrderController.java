@@ -20,6 +20,7 @@ import java.net.URL;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -72,7 +73,7 @@ public class OrderController {
             List<pointDto> pointList = pointService.selectPoint(custId);
             int pointLast=0; //포인트 담을 변수
             for (pointDto point : pointList) {
-                pointLast = point.getPoint(); //마지막꺼를 가지고오기
+                pointLast = point.getPoint(); // 마지막꺼를 가지고오기
                 // 일부러 더하지 않고 마지막꺼만 저장 이유는 매퍼에 select 쿼리 재사용위해서
                 // 나중에 포인트상세에서 써먹으려고
             }
@@ -96,6 +97,9 @@ public class OrderController {
             OrderDto dto = cartService.getOrdHist(custId);
             System.out.println("qty = " + dto.getTotQty());
             System.out.println("prc = " + dto.getFinPrc());
+
+            // 구매시 포인트 적립을 위한 메서드 07.29 mhs
+            pointDto pointDto = settingPointDto(custId, dto);
 
             URL url = new URL("https://kapi.kakao.com/v1/payment/ready");       // 결제 주소
             HttpURLConnection conn = (HttpURLConnection)  url.openConnection();      // 클라이언트와 서버를 연결해주는 역할 (형변환 필요)
@@ -123,6 +127,9 @@ public class OrderController {
             InputStream input;      // 데이터를 받는 애
             if(result == 200){      // 200번대 => 성공적이면
                 input = conn.getInputStream();  // 데이터를 받아옴
+
+                pointService.insertPoint(pointDto); //포인트 insert
+
             } else{                             // 실패하면
                 input = conn.getErrorStream();  // 에러를 받아옴
             }
@@ -130,11 +137,30 @@ public class OrderController {
             InputStreamReader read = new InputStreamReader(input); // 받은 데이터를 읽음
             BufferedReader bufferedReader = new BufferedReader(read); // 받은 데이터를 형변환
 
+
+
             return bufferedReader.readLine();   // 형변환을 한 후 찍어냄
         } catch (Exception e) {
             e.printStackTrace();
         }
         return "(\"result\" : \"NO\")";
+    }
+
+    // 구매시 포인트 적립을 위한 메서드 07.29 mhs
+    private pointDto settingPointDto(String custId, OrderDto dto) throws Exception { // 07.29 mhs
+        pointDto pointDto = pointService.selectPointOne(custId); // id 주면 최신포인트이력 한줄 가져온다.
+        pointDto newPointDto = new pointDto();
+        // 최신이력 1줄을 받아와 수정해서 새로 저장 시작
+        newPointDto.setPntId(pointDto.getPntId()+1); // 포인트
+        newPointDto.setCustId(pointDto.getCustId()); // 회원아이디
+        newPointDto.setStus("적립"); //상태
+        newPointDto.setChngPnt((dto.getTotPrc()/100)); //변화포인트
+        newPointDto.setPoint(pointDto.getPoint()+(dto.getTotPrc()/100)); // 최신이력 + 총금액/100 저장 나머지 절삭
+        newPointDto.setDttm(LocalDateTime.now()); // 현재날짜시간 //만료기간은 저장하지않음
+        newPointDto.setChgCn("구매"); //사유
+        newPointDto.setRemark("구매 적립"); //비고
+        newPointDto.setPntCd("0"); // 코드
+        return pointDto;
     }
 
     @GetMapping("/list")
