@@ -2,6 +2,7 @@ package org.example.controller;
 
 import org.example.dao.CustDao;
 import org.example.domain.CustDto;
+import org.example.domain.CustPageHandler;
 import org.example.domain.LoginHistoryDTO;
 import org.example.domain.pointDto;
 import org.example.service.CustLoginHistService;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,10 +38,33 @@ public class CustController {
     }
 
     @GetMapping("/custSelectAll")
-    public String selectAll(CustDto custDto, Model m) throws Exception {
+    public String selectAll(CustDto custDto, Model m,HttpServletRequest request,
+                            @RequestParam(defaultValue = "1") Integer page,
+                            @RequestParam(defaultValue = "10") Integer pageSize) throws Exception {
         //관리자페이지에 회원리스트 보여주는 코드
-        List<CustDto> list = custService.getCustList();
-        m.addAttribute("list",list);
+        List<CustDto> custList = custService.getCustList();
+        m.addAttribute("custList",custList);
+
+        //---------
+        int totalCnt = custList.size();
+        //페이지핸들러를 위한 회원수
+
+        m.addAttribute("cust_totalCnt",totalCnt);
+
+        CustPageHandler handler = new CustPageHandler(totalCnt,page,pageSize);
+
+        // map에 offset,pageSize 입력
+
+        Map map = new HashMap();
+        map.put("offset", (page-1)*pageSize);
+        map.put("pageSize",pageSize);
+        //10개씩 가져오는 매퍼 필요
+        List<CustDto> CustList = custService.CustPage(map);
+        m.addAttribute("CustListPage",CustList);
+        m.addAttribute("cust_ph",handler);
+        //--------
+
+
         return "custSelectAll";
     }
 

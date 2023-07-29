@@ -44,7 +44,8 @@
                                         <li><a href="<c:url value='/custSelectAll'/>">회원리스트</a></li>
                                         <li><a href="<c:url value='/loginHist'/>">회원로그인이력</a></li>
                                         <li><a href="<c:url value='/stats'/>">회원로그인통계</a></li>
-                                        <li><a href="<c:url value='/point/custSelectAll'/>">회원포인트조회</a></li>
+<%--                                        <li><a href="<c:url value=''/>">회원포인트조회</a></li>--%>
+<%--                                        07/29 부터 안씀 회원포인트조회는--%>
                                         <c:if test="">
                                             <li><a href="/admin">관리자홈</a></li>
                                         </c:if>
