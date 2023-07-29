@@ -8,48 +8,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Notc</title>
-    <link rel="stylesheet" href="<c:url value='/css/adminnotc.css'/>">
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <link rel="stylesheet" href="<c:url value='/css/adminnotc.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/adminnotc.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/loginlist.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/adminHeader.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/admin.css'/>">
+
 </head>
 <body>
-<div class="admin-menu">
-    <ul class="menu-bar1">
-        <a href="<c:url value='/login/logoClick'/>"><img id="logo" src="/img/logo1.png" alt="logo" style="width:90px; height:90px;"></a>
-    </ul>
-    <ul class="menu-bar2">
-        <li><a href="<c:url value='/prod/Manage'/>">상품관리</a></li>
-        <li><a href="<c:url value='/ord/Manage'/>">주문관리</a></li>
-        <li><a href="<c:url value='/cust/Manage'/>">회원관리</a></li>
-        <li><a href="<c:url value='/board/Manage'/>">게시판관리</a></li>
-        <li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>
-        <input type="hidden" name="toURL" value="${param.toURL}">
-    </ul>
-</div>
-<div class="clear"></div>
+<jsp:include page="adminHeader.jsp"/>
 
-<!-- 왼쪽 사이드에 붙어있는 각 페이지로 들어가게 하는 메뉴bar-->
-<div class="content">
-    <div class="left-list">
-        <h2>관리자 매뉴얼</h2>
-        <button class="list">상품관리</button>
-        <div class="panel">
-            <li><a href="/prod/register">상품등록 |</a></li>
-            <li></li>
-        </div>
-
-        <button class="list">주문관리</button>
-        <div class="panel">
-            <li>hello</li>
-        </div>
-        <button class="list">회원관리</button>
-        <div class="panel">
-            <li><a href="<c:url value='/custselect'/>">회원리스트</a></li>
-        </div>
-        <button class="list">게시판관리</button>
-        <div class="panel">
-            <li><a href="<c:url value="/notc/adminlist"/>"> 공지사항 관리 </a></li>
-        </div>
-    </div> <!-- left-list -->
+<div id="container">
+    <jsp:include page="adminSideBar.jsp"/>
+    <div id="sidebar2" class="dashboard2">
 
 <script>
     let msg="${msg}";
@@ -57,7 +29,7 @@
     if(msg=="MOD_READY") alert("수정하실 수 있습니다.")
 </script>
     <div class="right-list">
-        <h3>공지사항${mode=="new" ? "쓰기" : ""}</h3>
+        <h3 class="viewtitle">공지사항${mode=="new" ? "쓰기" : ""}</h3>
         <div class="use-guide">
             <form action="" id="form">
                 <input type="hidden" name="bbsoNo" value="${NotcDto.bbsoNo}" readonly="readonly">
@@ -71,15 +43,15 @@
 <%--        --%>
     <br>
                 <div class="btnlist">
-                    <button type="button" id="modifyBtn" class="btn">수정</button>
-                    <button type="button" id="removeBtn" class="btn">삭제</button>
-                    <button type="button" id="listBtn" class="btn">목록</button>
+                    <button type="button" id="modifyBtn" class="CSBtn">수정</button>
+                    <button type="button" id="removeBtn" class="CSBtn">삭제</button>
+                    <button type="button" id="listBtn" class="CSBtn">목록</button>
                 </div>
             </form> <%--    <form action="" id="form">--%>
         </div> <!-- use-guide -->
     </div> <!-- right-list -->
-</div> <!-- content -->
-
+</div> <!-- sidebar2 -->
+</div> <!-- container -->
 <script>
     $(document).ready(function (){
         $('#listBtn').on("click",function (){
@@ -111,7 +83,7 @@
                 $("input[name=ttl]").attr("readonly",false);
                 $("textarea").attr("readonly",false);
                 $("modifyBtn").html("등록");
-                $("h3").html("공지사항 수정");
+                $(".viewtitle").html("공지사항 수정");
                 return;
             }
         //  2. 수정 상태이면, 수정된 내용을 서버로 전송

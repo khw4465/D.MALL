@@ -162,7 +162,7 @@ button {
 }
 .cart-section-block {
     max-width: 70%;
-    margin: 0 auto;
+    margin: auto;
     background-color: #FFFFFF;
     padding: 20px;
 }

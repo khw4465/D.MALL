@@ -20,5 +20,7 @@ public interface PointDao {
 
     int selectPointId(String id)throws Exception;
 
+    pointDto selectOne(String id) throws Exception;
+
 
 }
