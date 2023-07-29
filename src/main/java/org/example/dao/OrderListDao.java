@@ -8,6 +8,8 @@ import java.util.Map;
 public interface OrderListDao {
     OrderDto select(Map map) throws Exception;
 
+    OrderDto getLastOrd(String custId) throws Exception;
+
     List<OrderDto> selectByMonth(Map map) throws Exception;
 
     List<OrderDto> selectByDate(Map map) throws Exception;

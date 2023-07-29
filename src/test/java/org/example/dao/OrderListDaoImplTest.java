@@ -23,7 +23,10 @@ public class OrderListDaoImplTest {
 
         System.out.println(orderListDao.select(map));
     }
-
+    @Test
+    public void getLastOrd() throws Exception {
+        System.out.println(orderListDao.getLastOrd("asdf"));
+    }
     @Test
     public void selectByMonthTest() throws Exception {
         Map map = new HashMap();

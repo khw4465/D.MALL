@@ -28,8 +28,12 @@ public class CustLoginHistDaoImpl implements CustLoginHistDao{
         return session.selectList(namespace+"selectAll");
     }
 
+    @Override
     public int count(String custId) throws Exception {
         return session.selectOne(namespace+"count",custId);
+    }
+    public int countAll() throws Exception {
+        return session.selectOne(namespace+"countAll");
     }
     public LoginHistoryDTO FailCountSelect(String custId) throws Exception {
         return session.selectOne(namespace+"resetFailCountSelect",custId);
@@ -37,5 +41,9 @@ public class CustLoginHistDaoImpl implements CustLoginHistDao{
     public int FailCountUpdate(LoginHistoryDTO loginHistoryDTO) throws Exception {
         return session.update(namespace+"resetFailCountUpdate",loginHistoryDTO);
     }
+    public List<LoginHistoryDTO> selectPage(Map map) throws Exception {
+        return session.selectList(namespace+"selectPage",map);
+    }
+
 
 }

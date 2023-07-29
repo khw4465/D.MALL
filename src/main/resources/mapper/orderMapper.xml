@@ -9,17 +9,26 @@
         WHERE ord_cd = #{ordCd}
         AND cust_id = #{custId}
     </select>
+    <select id="lastOrder" parameterType="string" resultType="OrderDto">
+        SELECT *
+        FROM ord
+        WHERE cust_id = #{custId}
+        ORDER BY ord_dttm desc
+        LIMIT 1;
+    </select>
     <select id="selectAllByMonth" parameterType="map" resultType="OrderDto">
         SELECT *
         FROM ord
         WHERE cust_id=#{custId}
         AND ord_dttm >= DATE_SUB(NOW(), INTERVAL #{i} MONTH)
+        ORDER BY ord_dttm desc
     </select>
     <select id="selectAllByDate" parameterType="map" resultType="OrderDto">
         SELECT *
         FROM ord
         WHERE cust_id=#{custId}
         AND ord_dttm BETWEEN #{startDate} AND #{endDate}
+        ORDER BY ord_dttm desc
     </select>
     <select id="count" parameterType="string" resultType="int">
         SELECT count(*)

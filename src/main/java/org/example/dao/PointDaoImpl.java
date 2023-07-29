@@ -50,5 +50,10 @@ public class PointDaoImpl implements PointDao{
         return session.selectOne(namespace+"count",id);
     }
 
+    @Override
+    public pointDto selectOne(String id) throws Exception {
+        return session.selectOne(namespace+"selectOne",id);
+    }
+
 
 }

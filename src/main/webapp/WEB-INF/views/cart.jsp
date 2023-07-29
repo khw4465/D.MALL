@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false"%>
-<html>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page session="false"%><html>
 <c:set var="loginId" value="${pageContext.request.getSession(false)==null || pageContext.request.session.getAttribute('id')=='' ? '' : pageContext.request.session.getAttribute('id')}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
 <c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
@@ -103,7 +103,7 @@
                                             </button>
                                             </div>
                                         </td>
-                                        <td><span><strong><input class="${opt.prodCd}_${opt.optCd}_totPrice" value="${opt.totOptPrice}" style="width: 70px; text-align: right; border: none">원</strong></span></td>
+                                        <td><span><strong><input class="${opt.prodCd}_${opt.optCd}_totPrice" value="<fmt:formatNumber value="${opt.totOptPrice}" type="number" pattern="#,###"/>" style="width: 70px; text-align: right; border: none">원</strong></span></td>
                                         <td rowspan="1" class="">
                                             <span>-</span>
                                             <div id="" class="displaynone"><strong>-<span id="product_discount_price_front0">0</span>원</strong><p class="displaynone"></p></div>
@@ -122,7 +122,7 @@
                             </tr>
                         </c:forEach>
                         <tr class="right">
-                            <td colspan="10"  style="background-color: #F0F0F0"><div style="text-align: center">총 상품 금액 : <em class="totPrc${cart.prodCd}">${cart.totProdPrice}</em>원</div>
+                            <td colspan="10"  style="background-color: #F0F0F0"><div style="text-align: center">총 상품 금액 : <em class="totPrc${cart.prodCd}"><fmt:formatNumber value="${cart.totProdPrice}" type="number" pattern="#,###"/></em>원</div>
                                 <div style="text-align: center">적립 포인트 : <em class="totPnt${cart.prodCd}">${Math.round(cart.totProdPrice/100)}</em>p</div></td>
                         </tr>
                         </tbody>
@@ -169,23 +169,23 @@
         </thead>
         <tbody class="center">
         <tr>
-            <td><div class="box txt16"><strong><span class="txt23"><span class="total_product_price_display_front"><c:out value="${ord.totPrc}"/></span></span>원</strong> <span class="txt14 displaynone"><span class="total_product_price_display_back"></span></span></div></td>
+            <td><div class="box txt16"><strong><span class="txt23"><span class="total_product_price_display_front"><fmt:formatNumber value="${ord.totPrc}" type="number" pattern="#,###"/></span></span>원</strong> <span class="txt14 displaynone"><span class="total_product_price_display_back"></span></span></div></td>
             <td class="displaynone"><div class="box txt16"><strong><span class="txt23"><span class="total_product_vat_price_front">0</span></span>원</strong> <span class="txt14 displaynone"><span class="total_product_vat_price_back"></span></span></div></td>
             <td>
                 <div class="box shipping txt16">
                     <strong class="txt23">+ </strong>
-                    <strong><span id="total_delv_price_front" class="txt23"><span class="total_delv_price_front"><c:out value="${ord.dlvPrc}"/></span></span>원</strong>
+                    <strong><span id="total_delv_price_front" class="txt23"><span class="total_delv_price_front"><fmt:formatNumber value="${ord.dlvPrc}" type="number" pattern="#,###"/></span></span>원</strong>
                     <span class="txt14 displaynone"><span class="total_delv_price_back"></span></span>
                 </div>
             </td>
             <td id="total_benefit_price_area" class="displaynone">
                 <div class="box txt16">
-                    <strong class="txt23">- </strong><strong><span id="total_product_discount_price_front" class="txt23"><c:out value="${ord.totDcPrc}" /></span>원</strong> <span class="txt14 displaynone"><span id="total_product_discount_price_back"></span></span>
+                    <strong class="txt23">- </strong><strong><span id="total_product_discount_price_front" class="txt23"><fmt:formatNumber value="${ord.totDcPrc}" type="number" pattern="#,###"/></span>원</strong> <span class="txt14 displaynone"><span id="total_product_discount_price_back"></span></span>
                 </div>
             </td>
             <td>
                 <div class="box txtEm txt16">
-                    <strong class="txt23">= </strong><strong><span id="total_order_price_front" class="txt23"><c:out value="${ord.finPrc}" /></span>원</strong> <span class="txt14 displaynone"><span id="total_order_price_back"></span></span>
+                    <strong class="txt23">= </strong><strong><span id="total_order_price_front" class="txt23"><fmt:formatNumber value="${ord.finPrc}" type="number" pattern="#,###"/></span>원</strong> <span class="txt14 displaynone"><span id="total_order_price_back"></span></span>
                 </div>
             </td>
             <td class="total_mileage_price_area ">
@@ -201,7 +201,7 @@
     <div class="xans-element- xans-order xans-order-totalorder ec-base-button justify">
         <a href="/" onclick="Basket.orderSelectBasket(this)" link-order="/order/orderform.html?basket_type=all_buy" link-login="/member/login.html" class="btn2 sizeM ">쇼핑계속하기</a>
         <a href="<c:url value='/order/order'/>" onclick="Basket.orderAll(this)" link-order="/order/orderform.html?basket_type=all_buy" link-login="/member/login.html" class="btn1 sizeM  ">상품주문하기</a>
-        <span class=품"gRight"></span>
+        <span class="gRight"></span>
         <!--상품상세페이지에 추가되는 앱 관련 결제버튼 div-->
         <div id="appPaymentButtonBox"></div>
     </div>

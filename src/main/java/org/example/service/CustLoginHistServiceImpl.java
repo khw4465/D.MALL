@@ -3,6 +3,7 @@ package org.example.service;
 import org.example.dao.CustLoginHistDao;
 import org.example.domain.CustStatsDto;
 import org.example.domain.LoginHistoryDTO;
+import org.example.domain.pointDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +49,16 @@ public class CustLoginHistServiceImpl implements CustLoginHistService{
         //custLoginHistDao.FailCountSelect(loginHistoryDTO.getCustId());
         return custLoginHistDao.FailCountUpdate(loginHistoryDTO);
     } //수정해야함
+
+    @Override
+    public List<LoginHistoryDTO> selectLoginHistPage(Map map) throws Exception {
+        return custLoginHistDao.selectPage(map);
+    }
+
+    @Override
+    public int countAllHist() throws Exception {
+        return custLoginHistDao.countAll();
+    }
 
 
 }

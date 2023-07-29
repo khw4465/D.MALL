@@ -521,7 +521,7 @@ body .titleArea h2 {
 }
 
 .ec-base-button.justify [class^='btn'] + [class^='btn'] {
-    margin: 0 10 0 0px;
+    margin: 0 0 0 10px;
 }
 
 .xans-order-dcinfo {

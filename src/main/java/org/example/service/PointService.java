@@ -11,6 +11,6 @@ public interface PointService {
     int updatePoint(pointDto pointDto) throws Exception;
     List<pointDto> selectAllPoint() throws Exception;
     int countPoint(String id) throws Exception;
-
     List<pointDto> selectPointPage(Map map)throws Exception;
+    pointDto selectPointOne(String id) throws Exception;
 }

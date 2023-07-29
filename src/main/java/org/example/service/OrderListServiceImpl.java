@@ -2,7 +2,6 @@ package org.example.service;
 
 import org.example.dao.CartDao;
 import org.example.dao.OrderListDao;
-import org.example.domain.DlvAddrDto;
 import org.example.domain.OrderDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +23,11 @@ public class OrderListServiceImpl implements OrderListService {
         map.put("ordCd", ordCd);
         map.put("custId", custId);
         return orderListDao.select(map);
+    }
+
+    @Override
+    public OrderDto getLastOrd(String custId) throws Exception {
+        return orderListDao.getLastOrd(custId);
     }
 
     @Override

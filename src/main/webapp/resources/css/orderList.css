@@ -7,6 +7,8 @@
 
 .right-content {
     margin: auto;
+    min-height: 700px;
+    width: 800px;
 }
 
 .order-list-head {

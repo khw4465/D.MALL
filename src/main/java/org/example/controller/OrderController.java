@@ -4,6 +4,7 @@ import org.example.domain.*;
 import org.example.service.CartService;
 import org.example.service.OrderListService;
 import org.example.service.OrderService;
+import org.example.service.PointService;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ import java.net.URL;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -28,12 +30,16 @@ public class OrderController {
     OrderService orderService;
     OrderListService orderListService;
     CartService cartService;
+    PointService pointService;
 
-    public OrderController( OrderService orderService, OrderListService orderListService, CartService cartService) {
+    public OrderController( OrderService orderService, OrderListService orderListService, CartService cartService,
+                            PointService pointService) {
         this.orderService = orderService;
         this.orderListService = orderListService;
         this.cartService = cartService;
+        this.pointService = pointService;
     }
+    //0729 mhs 생성자 추가
 
     @GetMapping("/order")
     public String order(Model m, HttpServletRequest request) {
@@ -63,6 +69,18 @@ public class OrderController {
             OrderDto priceInfo = cartService.getOrdHist(custId);
             m.addAttribute("prcInfo", priceInfo);                 // 최종금액을 합산한 것을 모델에 넣어줌
 
+            //0729 mhs 포인트보여주기 추가
+            List<pointDto> pointList = pointService.selectPoint(custId);
+            int pointLast=0; //포인트 담을 변수
+            for (pointDto point : pointList) {
+                pointLast = point.getPoint(); // 마지막꺼를 가지고오기
+                // 일부러 더하지 않고 마지막꺼만 저장 이유는 매퍼에 select 쿼리 재사용위해서
+                // 나중에 포인트상세에서 써먹으려고
+            }
+            m.addAttribute("pointResult",pointLast);
+
+
+
             return "order";
         } catch (Exception e) {
             return "error";
@@ -80,6 +98,9 @@ public class OrderController {
             System.out.println("qty = " + dto.getTotQty());
             System.out.println("prc = " + dto.getFinPrc());
 
+            // 구매시 포인트 적립을 위한 메서드 07.29 mhs
+            pointDto pointDto = settingPointDto(custId, dto);
+
             URL url = new URL("https://kapi.kakao.com/v1/payment/ready");       // 결제 주소
             HttpURLConnection conn = (HttpURLConnection)  url.openConnection();      // 클라이언트와 서버를 연결해주는 역할 (형변환 필요)
             conn.setRequestMethod("POST");                                           // 전송 방식
@@ -93,9 +114,9 @@ public class OrderController {
                            "&quantity=" + dto.getTotQty() +
                            "&total_amount=" + dto.getFinPrc() +
                            "&tax_free_amount=0" +
-                           "&approval_url=http://localhost:8080/order/list" +       // 주문승인 시 이동 주소
-                           "&cancel_url=http://localhost:8080/order/order?" +       // 주문취소 시 이동 주소
-                           "&fail_url=http://localhost:8080/order/order";           // 주문실패 시 이동 주소
+                           "&approval_url=http://localhost:8080/order/complete" +       // 주문승인 시 이동 주소
+                           "&cancel_url=http://localhost:8080/order/cancle" +       // 주문취소 시 이동 주소
+                           "&fail_url=http://localhost:8080/order/fail";           // 주문실패 시 이동 주소
             OutputStream output = conn.getOutputStream();  // 서버에 주는 애
             DataOutputStream data = new DataOutputStream(output); // 무엇을 줄지 결정
             data.writeBytes(param);     // 매개변수를 byte타입으로 변환
@@ -106,12 +127,17 @@ public class OrderController {
             InputStream input;      // 데이터를 받는 애
             if(result == 200){      // 200번대 => 성공적이면
                 input = conn.getInputStream();  // 데이터를 받아옴
+
+                pointService.insertPoint(pointDto); //포인트 insert
+
             } else{                             // 실패하면
                 input = conn.getErrorStream();  // 에러를 받아옴
             }
 
             InputStreamReader read = new InputStreamReader(input); // 받은 데이터를 읽음
             BufferedReader bufferedReader = new BufferedReader(read); // 받은 데이터를 형변환
+
+
 
             return bufferedReader.readLine();   // 형변환을 한 후 찍어냄
         } catch (Exception e) {
@@ -120,41 +146,104 @@ public class OrderController {
         return "(\"result\" : \"NO\")";
     }
 
+    // 구매시 포인트 적립을 위한 메서드 07.29 mhs
+    private pointDto settingPointDto(String custId, OrderDto dto) throws Exception { // 07.29 mhs
+        pointDto pointDto = pointService.selectPointOne(custId); // id 주면 최신포인트이력 한줄 가져온다.
+        pointDto newPointDto = new pointDto();
+        // 최신이력 1줄을 받아와 수정해서 새로 저장 시작
+        newPointDto.setPntId(pointDto.getPntId()+1); // 포인트
+        newPointDto.setCustId(pointDto.getCustId()); // 회원아이디
+        newPointDto.setStus("적립"); //상태
+        newPointDto.setChngPnt((dto.getTotPrc()/100)); //변화포인트
+        newPointDto.setPoint(pointDto.getPoint()+(dto.getTotPrc()/100)); // 최신이력 + 총금액/100 저장 나머지 절삭
+        newPointDto.setDttm(LocalDateTime.now()); // 현재날짜시간 //만료기간은 저장하지않음
+        newPointDto.setChgCn("구매"); //사유
+        newPointDto.setRemark("구매 적립"); //비고
+        newPointDto.setPntCd("0"); // 코드
+        return pointDto;
+    }
+
     @GetMapping("/list")
     public String orderList(Model m, HttpServletRequest request){
-        if(!loginCheck(request))
-            return "redirect:/login/login?toURL="+request.getRequestURL();      // 로그인을 안했으면 로그인 화면으로 이동
-
         try {
-            HttpSession session = request.getSession();                         // 로그인 한 아이디 가져오기
-            String custId = (String)session.getAttribute("id");
+            if(!loginCheck(request)) {
+                return "redirect:/login/login?toURL="+request.getRequestURL();      // 로그인을 안했으면 로그인 화면으로 이동
+            }
 
-            List<OrderDto> list = orderListService.getOrdMonth(custId,3);    // 3달 이내의 주문목록 보여주기
-            m.addAttribute("list", list);
+            HttpSession session = request.getSession();
+            String custId = (String) session.getAttribute("id");         // 로그인 한 아이디 가져오기
+
+            List<OrderDto> ordList = orderListService.getOrdMonth(custId,1);
+            m.addAttribute("list", ordList);
 
             return "orderList";
         } catch (Exception e) {
             return "error";
         }
+
+    }
+
+    @GetMapping("/cnclRtn")
+    public String cnclRtn(HttpServletRequest request) {
+        if(!loginCheck(request))
+            return "redirect:/login/login?toURL="+request.getRequestURL();      // 로그인을 안했으면 로그인 화면으로 이동
+
+            HttpSession session = request.getSession();                         // 로그인 한 아이디 가져오기
+            String custId = (String)session.getAttribute("id");
+
+        return "cnclRtn";
     }
 
     @PostMapping("/list")
     @ResponseBody
     @Transactional(rollbackFor = Exception.class)
-    public ResponseEntity<OrderDto> orderList(@RequestBody OrderDto orderDto, HttpSession session) {
+    public ResponseEntity<OrderDto> ordComplete(@RequestBody OrderDto orderDto, Model m, HttpSession session) {
         try {
             String ordCd = orderDto.getOrdCd();                           // ord.jsp에서 tid를 주문코드로 얻어옴
             String dlvMsg = orderDto.getDlvMsg();                         // ord.jsp에서 dlvMsg를 배송메시지로 얻어옴
             String custId = (String)session.getAttribute("id");     // 세션으로 회원아이디 가져오기
+
 //            orderService.getOneAddr(custId, 1);                         // 회원의 배송지목록 1번의 dto 가져오기
-            System.out.println("dlvMsg = " + orderDto.getDlvMsg());
+
             orderListService.addOrder(ordCd,custId,1,dlvMsg);    // 주문내역 추가
+
+            OrderDto ordDto1 = orderListService.getLastOrd(custId);       // 세션에 최근 주문내역 저장
+            session.setAttribute("lastOrder", ordDto1);
+
             cartService.removeAll(custId);                                // 주문을 했으니 장바구니 목록 삭제
 
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+    }
+
+   @GetMapping("/complete")
+   public String ordComplete(Model m, HttpSession session) {
+       try {
+           OrderDto ordDto2 = (OrderDto) session.getAttribute("lastOrder");    // 세션으로 주문한 건의 내역 가져오기
+           m.addAttribute("ordInfo", ordDto2);
+
+           return "ordComplete";
+       } catch (Exception e) {
+           System.out.println("Error in ordComplete: " + e.getMessage()); // 로그 추가: 에러 메시지 출력
+           return "error";
+       }
+
+   }
+
+    @GetMapping("/cancle")
+    public String ordCancle(HttpSession session) {
+        String custId = (String)session.getAttribute("id");     // 세션으로 회원아이디 가져오기
+
+        return "ordCancle";
+    }
+
+    @GetMapping("/fail")
+    public String ordFail(HttpSession session) {
+        String custId = (String)session.getAttribute("id");     // 세션으로 회원아이디 가져오기
+
+        return "ordFail";
     }
 
     private boolean loginCheck(HttpServletRequest request) {
