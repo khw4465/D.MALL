@@ -159,7 +159,7 @@
                                     </span>
                             </div>
                         </div><!--// input-group-wrap -->
-                        <p class="point-guide">사용 가능 포인트 <em class="text-num-bold">0</em>P</p>
+                        <p class="point-guide">사용 가능 포인트 <em class="text-num-bold">${pointResult} </em>P</p>     <!-- 07/ 29 mhs 포인트 추가 -->
                     </div><!--// order-point -->
                 </td>
             </tr>

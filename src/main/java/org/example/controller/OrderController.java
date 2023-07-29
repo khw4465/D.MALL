@@ -4,6 +4,7 @@ import org.example.domain.*;
 import org.example.service.CartService;
 import org.example.service.OrderListService;
 import org.example.service.OrderService;
+import org.example.service.PointService;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,12 +29,16 @@ public class OrderController {
     OrderService orderService;
     OrderListService orderListService;
     CartService cartService;
+    PointService pointService;
 
-    public OrderController( OrderService orderService, OrderListService orderListService, CartService cartService) {
+    public OrderController( OrderService orderService, OrderListService orderListService, CartService cartService,
+                            PointService pointService) {
         this.orderService = orderService;
         this.orderListService = orderListService;
         this.cartService = cartService;
+        this.pointService = pointService;
     }
+    //0729 mhs 생성자 추가
 
     @GetMapping("/order")
     public String order(Model m, HttpServletRequest request) {
@@ -62,6 +67,18 @@ public class OrderController {
 
             OrderDto priceInfo = cartService.getOrdHist(custId);
             m.addAttribute("prcInfo", priceInfo);                 // 최종금액을 합산한 것을 모델에 넣어줌
+
+            //0729 mhs 포인트보여주기 추가
+            List<pointDto> pointList = pointService.selectPoint(custId);
+            int pointLast=0; //포인트 담을 변수
+            for (pointDto point : pointList) {
+                pointLast = point.getPoint(); //마지막꺼를 가지고오기
+                // 일부러 더하지 않고 마지막꺼만 저장 이유는 매퍼에 select 쿼리 재사용위해서
+                // 나중에 포인트상세에서 써먹으려고
+            }
+            m.addAttribute("pointResult",pointLast);
+
+
 
             return "order";
         } catch (Exception e) {
