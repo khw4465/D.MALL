@@ -28,10 +28,9 @@
                     <th class="">로그인국가</th>
                     <th class="">로그인기기</th>
                     <th class="">실패횟수</th>
-
                 </tr>
-
-                <c:forEach var="LoginHistoryDTO" items="${loginlist}">
+                <c:forEach var="LoginHistoryDTO" items="${LoginHistoryList}">
+                <div class="">
                     <tr>
                         <th class="">${LoginHistoryDTO.custId}</th>
                         <th class="">${LoginHistoryDTO.dttm}</th>
@@ -42,19 +41,29 @@
                         <th class="">${LoginHistoryDTO.mhrLS}</th>
                         <th class="">${LoginHistoryDTO.failCnt}</th>
                     </tr>
+                </div>
                 </c:forEach>
 
             </table>
             <br>
             <div class="paging-container">
-                <div class="paging">
-                    <!-- add/remove these links manually -->
-                    <a class="page" href="/board/list?page=1">&lt;</a>
-                    <a class="page" href="/board/list?page=2">2</a>
-                    <a class="page" href="/board/list?page=3">3</a>
-                    <!-- ... more links ... -->
-                    <a class="page" href="/board/list?page=4">&gt;</a>
-                </div>
+                <c:if test="${hist_totalCnt==null || hist_totalCnt==0}">
+                    <div> 로그인 이력이 없습니다.</div>
+                </c:if>
+                <c:if test="${hist_totalCnt!=null && hist_totalCnt!=0}">
+                    <c:if test="${hist_ph.showPrev}">
+                        <a class="spacing"
+                           href="<c:url value='/loginHist?page=${hist_ph.beginPage-1}&pageSize=${hist_ph.pageSize}'/>">&lt;</a>
+                    </c:if>
+                    <c:forEach var="i" begin="${hist_ph.beginPage}" end="${hist_ph.endPage}">
+                        <a class="spacing"
+                           href="<c:url value='/loginHist?page=${i}&pageSize=${hist_ph.pageSize}'/>">${i}</a>
+                    </c:forEach>
+                    <c:if test="${hist_ph.showNext}">
+                        <a class="spacing"
+                           href="<c:url value='/loginHist?page=${hist_ph.endPage+1}&pageSize=${hist_ph.pageSize}'/>">&gt;</a>
+                    </c:if>
+                </c:if>
             </div>
         </div>
     </div>

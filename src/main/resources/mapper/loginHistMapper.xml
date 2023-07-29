@@ -11,6 +11,14 @@
         WHERE cust_id = #{custId}
     </select>
 
+    <!-- 특정 회원의 로그인 이력을 페이지 별로 조회 -->
+    <select id="selectPage" parameterType="map" resultType="LoginHistoryDTO">
+        SELECT *
+        FROM cust_lgin_hist
+        ORDER BY dttm DESC
+            LIMIT #{offset}, #{pageSize}
+    </select>
+
     <!-- 새로운 로그인 이력을 저장 -->
     <insert id="insert" parameterType="LoginHistoryDTO">
         INSERT INTO cust_lgin_hist
@@ -30,6 +38,11 @@
         SELECT COUNT(*)
         FROM cust_lgin_hist
         WHERE cust_id = #{custId}
+    </select>
+    <!-- 모든 회원의 로그인 횟수를 조회 -->
+    <select id="countAll" resultType="int" parameterType="String">
+        SELECT COUNT(*)
+        FROM cust_lgin_hist
     </select>
 
     <!-- 특정 회원의 가장 최근 로그인 이력을 조회 -->
