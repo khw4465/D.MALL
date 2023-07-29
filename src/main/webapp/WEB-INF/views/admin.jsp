@@ -86,7 +86,7 @@
 
     <div id="sidebar2" class="dashboard2">
         <p>helklo</p>
-        <jsp:include page="stats.jsp"/>
+<%--        <jsp:include page="stats.jsp"/>--%>
     </div>
 </div>
 

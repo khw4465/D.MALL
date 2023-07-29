@@ -103,7 +103,6 @@
                 </div>
             </div>
         </div>
-        <div id="header_warp" style="height: 248px;"></div>
         <script>
                 function showDropdown() {
                 const dropdown = document.querySelector('.dropdown');
@@ -132,7 +131,6 @@
                 // 마우스가 드롭다운 영역에서 벗어날 때 숨기기
                 document.querySelector('.dropdown').addEventListener('mouseleave', hideDropdown);
                 document.querySelector('.inner-dropdown-content').addEventListener('mouseleave', hideDropdown);
-
         </script>
     </nav>
 </header>

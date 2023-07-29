@@ -13,8 +13,8 @@
     <title>HOME</title>
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/main1.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/main2.css'/>">
-<%--    <link rel="stylesheet" type="text/css" href="<c:url value='/css/main3.css'/>">--%>
-<%--    <link rel="stylesheet" type="text/css" href="<c:url value='/css/main4.css'/>">--%>
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/main3.css'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/main4.css'/>">
 </head>
 <body>
 
@@ -36,22 +36,6 @@
                             <div class="slick-track"
                                  style="opacity: 1; width: 40000px; transform: translate3d(-7010px, 0px, 0px);"
                                  role="listbox">
-                                <div class="visual_cut slick-slide slick-cloned" data-slick-index="-2"
-                                     aria-hidden="true" tabindex="-1">
-                                    <div class="visual_content">
-                                        <a href="/product/project.html?cate_no=87" tabindex="-1"><img
-                                                src="KakaoTalk_20230518_100604224.jpg"
-                                                alt="사료" title="8"></a>
-                                    </div>
-                                </div>
-                                <div class="visual_cut slick-slide slick-cloned" data-slick-index="-1"
-                                     aria-hidden="true" tabindex="-1">
-                                    <div class="visual_content">
-                                        <a href="https://moguchonmall.com/member/login.html" tabindex="-1"><img
-                                                src="/design/kr/442215cac4abfe8f3c69b057deef3d70_34105.jpg"
-                                                alt="신규가입" title="9"></a>
-                                    </div>
-                                </div>
                                 <div class="visual_cut slick-slide" data-slick-index="0" aria-hidden="true"
                                      tabindex="-1" role="option" aria-describedby="slick-slide00">
                                     <div class="visual_content">
@@ -77,14 +61,6 @@
                                                 alt="삼계탕" title="4"></a>
                                     </div>
                                 </div>
-                                <div class="visual_cut slick-slide" data-slick-index="3" aria-hidden="true"
-                                     tabindex="-1" role="option" aria-describedby="slick-slide03">
-                                    <div class="visual_content">
-                                        <a href="/product/list.html?cate_no=62" tabindex="-1"><img
-                                                src="KakaoTalk_20230503_160929446.jpg"
-                                                alt="녹용홍삼" title="5"></a>
-                                    </div>
-                                </div>
                                 <div class="visual_cut slick-slide" data-slick-index="4" aria-hidden="true"
                                      tabindex="-1" role="option" aria-describedby="slick-slide04">
                                     <div class="visual_content">
@@ -100,45 +76,10 @@
                                                 src="EC8898ECA095EBB6842028329.jpg"
                                                 alt="신제품" title="7"></a>
                                     </div>
-
-                                </div>
-                                <div class="visual_cut slick-slide" data-slick-index="6" aria-hidden="true"
-                                     tabindex="-1" role="option" aria-describedby="slick-slide06">
-                                    <div class="visual_content">
-                                        <a href="/product/project.html?cate_no=87" tabindex="-1"><img
-                                                src="KakaoTalk_20230518_100604224.jpg"
-                                                alt="사료" title="8"></a>
-                                    </div>
-                                </div>
-                                <!-- <div class="visual_cut slick-slide" data-slick-index="7" aria-hidden="true"
-                                    tabindex="-1" role="option" aria-describedby="slick-slide07">
-                                    <div class="visual_content">
-                                        <a href="https://moguchonmall.com/member/login.html" tabindex="-1"><img
-                                                src="/design/kr/442215cac4abfe8f3c69b057deef3d70_34105.jpg"
-                                                alt="신규가입" title="9"></a>
-                                    </div>
-                                </div> -->
-                                <div class="visual_cut slick-slide slick-cloned" data-slick-index="8"
-                                     aria-hidden="true" tabindex="-1">
-                                    <div class="visual_content">
-                                        <a href="/product/project.html?cate_no=187" tabindex="-1"><img
-                                                src="KakaoTalk_20230705_132523577_01.jpg"
-                                                alt="둘리" title="2"></a>
-                                    </div>
-                                </div>
-                                <div class="visual_cut slick-slide slick-cloned" data-slick-index="9"
-                                     aria-hidden="true" tabindex="-1">
-                                    <div class="visual_content">
-                                        <a href="/product/project.html?cate_no=169" tabindex="-1"><img
-                                                src="copy-1684309802-Artboard2011000.jpg"
-                                                alt="맛있닭" title="2"></a>
-                                    </div>
                                 </div>
                             </div>
                             <!-- 슬라이드 -->
                         </div>
-
-
                         <button type="button" data-role="none" class="slick-next slick-arrow" aria-label="Next"
                                 role="button" style="display: block;">Next</button>
                         <ul class="slick-dots" style="display: block;" role="tablist">
@@ -2596,20 +2537,17 @@
     var EC_APPSCRIPT_SDK_DATA = CAFE24.getDeprecatedNamespace('EC_APPSCRIPT_SDK_DATA');
 
 </script>
-<iframe
-        src="/exec/front/eclog/main/?&amp;rloc=https%3A//www.moguchonmall.com/&amp;rref=https%3A//www.gdweb.co.kr/&amp;udim=2294*960&amp;rserv=elg-db-svcm-083.cafe24.com&amp;cid=CIDa0b8b9d32fd26970f8c251da1117db0e&amp;role_path=MAIN&amp;stype=e&amp;shop_no=1&amp;lang=ko_KR&amp;ver=2"
-        id="log_realtime" style="display: none;"></iframe>
-<div id="modalBackpanel"></div>
-<div id="modalContainer">
-    <iframe id="modalContent" scroll="0" scrolling="no" frameborder="0"></iframe>
-</div>
-<script
-        src="https://app4you.cafe24.com/SmartPopup/tunnel/scriptTags?vs=20221102122023.1&amp;client_id=AyPifbe9TEq8i4fmvfUgaZ"
-        integrity="sha384-j+WLOriOo0/sb+Ho5fn6lGPknv0cW+wMxOLlx8qpy01ShkkynynGNJQ53niqAdze"
-        crossorigin="anonymous"></script>
-<script
-        src="https://instagram-widget.wehost24.com/scripttag/instagram-widget.js?vs=20221107163302.1&amp;client_id=pOawpY4gJZ0oBnihDmiReG"></script>
-<script type="text/javascript" src="https://instagram-widget.wehost24.com/js/instagram-widget.js"></script>
+<%--<iframe--%>
+<%--        src="/exec/front/eclog/main/?&amp;rloc=https%3A//www.moguchonmall.com/&amp;rref=https%3A//www.gdweb.co.kr/&amp;udim=2294*960&amp;rserv=elg-db-svcm-083.cafe24.com&amp;cid=CIDa0b8b9d32fd26970f8c251da1117db0e&amp;role_path=MAIN&amp;stype=e&amp;shop_no=1&amp;lang=ko_KR&amp;ver=2"--%>
+<%--        id="log_realtime" style="display: none;"></iframe>--%>
+<%--<div id="modalBackpanel"></div>--%>
+<%--<div id="modalContainer">--%>
+<%--    <iframe id="modalContent" scroll="0" scrolling="no" frameborder="0"></iframe>--%>
+<%--</div>--%>
+<%--<script--%>
+<%--        src="https://app4you.cafe24.com/SmartPopup/tunnel/scriptTags?vs=20221102122023.1&amp;client_id=AyPifbe9TEq8i4fmvfUgaZ"--%>
+<%--        integrity="sha384-j+WLOriOo0/sb+Ho5fn6lGPknv0cW+wMxOLlx8qpy01ShkkynynGNJQ53niqAdze"--%>
+<%--        crossorigin="anonymous"></script>--%>
 
 </body>
 

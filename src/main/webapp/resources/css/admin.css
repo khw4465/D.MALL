@@ -81,3 +81,7 @@ li {
     margin-right: 0;
 }
 /* 헤더 간격 넓히기  */
+
+div#container{
+    height: 100%;
+}

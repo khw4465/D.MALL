@@ -11,11 +11,9 @@
                     <li><a href="/member/privacy.html"><strong>개인정보처리방침</strong></a></li>
                     <li><a href="/shopinfo/guide.html">이용안내</a></li>
                 </ul>
-
             </div>
         </div>
         <div class="ft_info w_custom clearfix">
-
             <div class="ft_txt" style="text-align: center">
                 <p>
                     상호 : (주)드가닭<span class="bar"></span>주소 : <!--05398--> 서울특별시 종로2가9
