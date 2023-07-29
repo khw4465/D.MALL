@@ -315,8 +315,9 @@ body {
     position: absolute;
     top: 22px;
     right: 0;
-    border: none;
-    border-radius: 0;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 5px;
 }
 
 .order-info .list-head-sub .btn-basic-sm2 span + i {
@@ -506,9 +507,11 @@ button{background:none;font-family:'Pretendard', sans-serif; cursor:pointer; out
     margin-bottom: 5px;
 }
 
-.inner-div .request-detail .epx-m-chk-con .custom-radio.s-li > p .epx-txt {
+.inner-div .request-detail .epx-m-chk-con .custom-radio.s-li > p .epx-txt ,
+.inner-div .request-detail .epx-m-chk-con > select {
     width: 100%;
-    border-radius: 4px
+    border-radius: 4px;
+    margin-top: 10px;
 }
 
 .inner-div .request-detail .epx-m-chk-con .custom-radio.s-li > p .notice {

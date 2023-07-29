@@ -52,9 +52,9 @@
 
                     <div class="list-head-sub">
                         <h3 class="title-list">배송지 정보</h3>
-                        <a href="javascript:void(0);" class="btn-basic-sm2 btn-default">
+                        <button class="btn-basic-sm2 btn-default">
                             <span>배송지변경</span><i class="ico-arr-right"></i>
-                        </a>
+                        </button>
                     </div>
 
                     <div class="lineless-table type1">
@@ -86,7 +86,6 @@
                     <div class="list-head">
                         <h3 class="title-list">주문 상품</h3>
                     </div>
-                    <div class="delivery-guide type02" id="delivery-guide-1600"><div class="type02-inner"><p class="txt"></p></div></div>
                     <ul class="cart-list">
                         <c:forEach var="cart" items="${cartList}">
                             <li>
@@ -126,8 +125,17 @@
                 <div class="inner-div">
                     <div class="request-detail">
                         <div class="epx-m-chk-con">
-                            <div class="custom-radio s-li s-li1">
-                                <h4 for="epx-m-chk1" class="custom-label">배송요청사항</h4>
+                            <h4 for="epx-m-chk1" class="custom-label">배송요청사항</h4>
+                            <select id="deliveryRequest">
+                                <option value="option1">-- 메시지 선택 (선택사항) --</option>
+                                <option value="option2">배송 전에 미리 연락바랍니다.</option>
+                                <option value="option3">부재 시 경비실에 맡겨주세요.</option>
+                                <option value="option4">부재 시 문 앞에 놓아주세요.</option>
+                                <option value="option5">빠른 배송 부탁드립니다.</option>
+                                <option value="option6">택배함에 보관해 주세요.</option>
+                                <option value="custom">직접 입력</option>
+                            </select>
+                            <div id="customRequest" class="custom-radio s-li s-li1" style="display: none">
                                 <p id="express-memo-p" style=""><input type="text" name="expressMemo01" id="dlvMsg" class="input-text epx-txt" placeholder="예) 문 앞에 두고 벨 눌러주세요." maxlength="300"><span class="notice">· 요청사항을 입력해주세요.</span></p>
                             </div>
                         </div>
@@ -275,6 +283,14 @@
         let childElement = document.getElementsByClassName("side-fix-area")[0];
         childElement.style.top = window.scrollY + "px";
     }
+
+    document.getElementById('deliveryRequest').addEventListener('change', function() {
+        if (this.value === 'custom') {
+            document.getElementById('customRequest').style.display = 'block';
+        } else {
+            document.getElementById('customRequest').style.display = 'none';
+        }
+    });
 
         $('#kakaoPay').click(function(){
             let dlvMsg = $('#dlvMsg'.valueOf())
