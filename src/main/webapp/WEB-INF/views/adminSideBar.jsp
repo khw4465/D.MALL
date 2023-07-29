@@ -55,7 +55,7 @@
                                         게시판
                                     </a>
                                     <ul class="submenu" style="display: none;">
-                                        <li><a href="#">공지사항관리</a></li>
+                                        <li><a href="notc/adminlist">공지사항관리</a></li>
                                         <li><a href="#">리뷰관리</a></li>
                                         <li><a href="#">하위메뉴</a></li>
                                     </ul>

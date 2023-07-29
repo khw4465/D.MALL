@@ -11,74 +11,52 @@
 <html>
 <head>
     <title>공지사항 작성</title>
-    <link rel="stylesheet" href="<c:url value='/css/adminnotc.css'/>">
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <link rel="stylesheet" href="<c:url value='/css/adminnotc.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/adminnotc.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/loginlist.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/adminHeader.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/admin.css'/>">
+
 </head>
-
 <body>
-<h1><a>드가자몰</a></h1>
-<!-- 관리자 홈으로 바꿀 생각 -->
+<jsp:include page="adminHeader.jsp"/>
 
+<div id="container">
 
-<!-- 왼쪽 사이드에 붙어있는 각 페이지로 들어가게 하는 메뉴bar-->
-<div class="content">
-    <div class="left-list">
-        <h2>관리자 매뉴얼</h2>
-        <button class="list">상품관리</button>
-        <div class="panel">
-            <li><a href="/prod/register">상품등록 |</a></li>
-            <li></li>
+    <jsp:include page="adminSideBar.jsp"/>
+<div class="write-list">
+    <div id="use-guide">
+        <h3>공지사항 작성</h3>
 
-        </div>
+        <form action="" id="form">
+            <div>
+                <select name="category">
+                    <option value="업데이트">업데이트</option>
+                    <option value="안내">안내</option>
+                    <option value="점검">점검</option>
+                    <option value="이벤트">이벤트</option>
+                </select>
+            </div>
 
-        <button class="list">주문관리</button>
-        <div class="panel">
-            <li>hello</li>
-        </div>
-        <button class="list">회원관리</button>
-        <div class="panel">
-            <li><a href="<c:url value='/custselect'/>">회원리스트</a></li>
-        </div>
-        <button class="list">게시판관리</button>
-        <div class="panel">
-            <li><a href="<c:url value="/notc/adminlist"/>"> 공지사항 관리 </a></li>
-        </div>
-    </div>
+            <div>
+                <input type="text" id="ttl" name="ttl" value="${NotcDto.ttl}" placeholder="제목을 입력하세요.">
+            </div>
+            <div>
+                <textarea id="cn" name="cn" cols="30" rows="10" placeholder="내용을 입력하세요.">${NotcDto.cn}</textarea>
+            </div>
 
-
-</div>
-<div class="clear"></div>
-
-<div id = "main_1">
-    <h3>공지사항 작성</h3>
-
-    <form action="" id="form">
-    <div>
-        <select name="category">
-            <option value="업데이트">업데이트</option>
-            <option value="안내">안내</option>
-            <option value="점검">점검</option>
-            <option value="이벤트">이벤트</option>
-        </select>
-    </div>
-
-        <div>
-            <input type="text" id="ttl" name="ttl" value="${NotcDto.ttl}" placeholder="제목을 입력하세요.">
-        </div>
-        <div>
-            <textarea id="cn" name="cn" cols="30" rows="10" placeholder="내용을 입력하세요.">${NotcDto.cn}</textarea>
-        </div>
-
-        <div>
-        <button type="button" id="writeBtn" class="btn">등록</button>
-        <button type="button" id="listBtn" class="btn">취소</button>
-        </div>
-    </form>
+            <div>
+                <button type="button" id="WBtn" class="CSbtn">등록</button>
+                <button type="button" id="listBtn" class="CSbtn">취소</button>
+            </div>
+        </form>
 
 
 </div>
+        </div> <!-- end of right-list -->
 
-
+</div> <!-- end of container -->
 <script>
     $(document).ready(function (){
         $('#listBtn').on("click",function (){
@@ -92,7 +70,7 @@
         <%--    form.submit();--%>
         <%--});--%>
 
-        $('#writeBtn').on("click",function (){
+        $('#WBtn').on("click",function (){
             // 기존 폼 제출 코드를 sendData 호출로 변경
             sendData();
         });
