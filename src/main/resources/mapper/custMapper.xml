@@ -11,6 +11,13 @@
         where cust_id = #{custId}
     </select>
 
+    <!-- 회원리스트 페이지별로-->
+    <select id="selectPage" parameterType="map" resultType="CustDto">
+        SELECT CUST_ID,NAME,MPNO,CUST_TP,GRADE,STUS,BIRTH,EMAIL,AcnO,Gender
+        FROM cust
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
     <!-- 회원 이름, 이메일, 휴대폰 번호로 아이디를 찾습니다. -->
     <select id="findid" resultType="String" parameterType="CustDto">
         select CUST_ID

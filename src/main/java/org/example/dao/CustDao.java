@@ -3,6 +3,7 @@ package org.example.dao;
 import org.example.domain.*;
 
 import java.util.List;
+import java.util.Map;
 
 public interface CustDao {
     CustDto selectUser(String id) throws Exception;
@@ -28,4 +29,7 @@ public interface CustDao {
     int temporaryPwdReturn(CustDto dto)throws Exception;
     //
     int custSms(CustDto dto)throws Exception;
+
+    // 관리자에서 회원리스트 페이지별 조회 기능
+    List<CustDto> selectAllCustPage(Map map) throws Exception;
 }
