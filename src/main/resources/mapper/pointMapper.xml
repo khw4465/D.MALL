@@ -10,6 +10,7 @@
         FROM pnt_mst
         WHERE CUST_ID = #{custId}
         ORDER BY dttm DESC
+        LIMIT 1;
     </select>
 
     <!--   특정 포인트아이디가 가지고있는 모든정보 -->
