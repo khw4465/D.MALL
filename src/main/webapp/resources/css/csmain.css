@@ -1819,3 +1819,7 @@ li a img {
     object-fit: cover; /* 이미지 자연스럽게 보이도록 */
     align-content: center;
 }
+
+.padding{
+    padding: 10px;
+}
