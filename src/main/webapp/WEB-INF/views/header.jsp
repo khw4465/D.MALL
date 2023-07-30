@@ -4,7 +4,7 @@
 <c:set var="loginId" value="${pageContext.request.getSession(false)==null || pageContext.request.session.getAttribute('id')=='' ? '' : pageContext.request.session.getAttribute('id')}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
 <c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
-<c:set var="addAndModify" value="${loginId=='' ? '/register/add' : 'custModify'}"/>
+<c:set var="addAndModify" value="${loginId=='' ? '/register/add' : '/custModify'}"/>
 <c:set var="register" value="${loginId=='' ? '회원가입' : '정보수정'}"/>
 <c:set var="logo" value="${loginId=='' ? '/' : '/login/logoClick'}"/>
 <c:set var="cartCnt" value="${cartList.size()}"/>
@@ -103,7 +103,7 @@
                 </div>
             </div>
         </div>
-<%--        <div id="header_warp" style="height: 200px;"></div>--%>
+
         <script>
                 function showDropdown() {
                 const dropdown = document.querySelector('.dropdown');
@@ -130,9 +130,8 @@
                 }
 
                 // 마우스가 드롭다운 영역에서 벗어날 때 숨기기
-                document.querySelector('.dropdown').addEventListener('mouseleave', hideDropdown);
-                document.querySelector('.inner-dropdown-content').addEventListener('mouseleave', hideDropdown);
-
+                // document.querySelector('.dropdown').addEventListener('mouseleave', hideDropdown);
+                // document.querySelector('.inner-dropdown-content').addEventListener('mouseleave', hideDropdown);
         </script>
     </nav>
 </header>

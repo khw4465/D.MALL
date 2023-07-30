@@ -3,6 +3,7 @@ package org.example.service;
 import org.example.domain.CustDto;
 
 import java.util.List;
+import java.util.Map;
 
 public interface CustService {
     List<CustDto> getCustList() throws Exception;
@@ -21,5 +22,5 @@ public interface CustService {
     //임시 비밀번호 발급시 db에 업데이트 쳐주는거
     int custSms(CustDto custDto)throws Exception;
 
-
+    List<CustDto> CustPage(Map map) throws Exception;
 }

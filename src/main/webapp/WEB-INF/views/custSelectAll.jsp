@@ -33,7 +33,7 @@
                     <th class="">성별</th>
                 </tr>
 
-                <c:forEach var="custDto" items="${list}">
+                <c:forEach var="custDto" items="${CustListPage}">
                     <tr>
                         <th class="">${custDto.custId}</th>
                         <th class="">${custDto.name}</th>
@@ -51,14 +51,23 @@
             </table>
             <br>
             <div class="paging-container">
-                <div class="paging">
-                    <!-- add/remove these links manually -->
-                    <a class="page" href="/board/list?page=1">&lt;</a>
-                    <a class="page" href="/board/list?page=2">2</a>
-                    <a class="page" href="/board/list?page=3">3</a>
-                    <!-- ... more links ... -->
-                    <a class="page" href="/board/list?page=4">&gt;</a>
-                </div>
+                <c:if test="${cust_totalCnt==null || cust_totalCnt==0}">
+                    <div> 회원이 없습니다.</div>
+                </c:if>
+                <c:if test="${cust_totalCnt!=null && cust_totalCnt!=0}">
+                    <c:if test="${cust_ph.showPrev}">
+                        <a class="spacing"
+                           href="<c:url value='/custSelectAll?page=${cust_ph.beginPage-1}&pageSize=${cust_ph.pageSize}'/>">&lt;</a>
+                    </c:if>
+                    <c:forEach var="i" begin="${cust_ph.beginPage}" end="${cust_ph.endPage}">
+                        <a class="spacing"
+                           href="<c:url value='/custSelectAll?page=${i}&pageSize=${cust_ph.pageSize}'/>">${i}</a>
+                    </c:forEach>
+                    <c:if test="${cust_ph.showNext}">
+                        <a class="spacing"
+                           href="<c:url value='/custSelectAll?page=${cust_ph.endPage+1}&pageSize=${cust_ph.pageSize}'/>">&gt;</a>
+                    </c:if>
+                </c:if>
             </div>
         </div>
     </div>

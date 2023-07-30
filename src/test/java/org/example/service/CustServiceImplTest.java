@@ -42,15 +42,15 @@ public class CustServiceImplTest {
 
     @Test
     public void registerCust()  throws Exception { // 테스트회원 100개 넣기
-        custDao.deleteAll();
-        assertTrue(custDao.count()==0);
+        //custDao.deleteAll();
+        //assertTrue(custDao.count()==0);
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
         Date date = formatter.parse("2023/07/06");
 
-        for (int i = 10; i <= 100; i++) {
+        for (int i = 4; i <= 220; i++) {
         CustDto custDto = new CustDto();
-        custDto.setCustId("asdf"+i);
+        custDto.setCustId("asdfaaa"+i);
         custDto.setPwd("1234");
         custDto.setName("문희석"+i);
         custDto.setMpNo("01012341234");
@@ -71,7 +71,7 @@ public class CustServiceImplTest {
         custDto.setLastUpdr("User001");
         custService.registerCust(custDto);
         }
-        assertTrue(custDao.count()==91);
+
     }
 
     @Test

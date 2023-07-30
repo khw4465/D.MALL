@@ -47,10 +47,10 @@
                                     회원
                                 </a>
                                 <ul class="submenu" style="display: none;">
-                                    <li><a href="<c:url value='/custselect'/>">회원리스트</a></li>
+                                    <li><a href="<c:url value='/custSelectAll'/>">회원리스트</a></li>
                                     <li><a href="<c:url value='/loginHist'/>">회원로그인이력</a></li>
                                     <li><a href="<c:url value='/stats'/>">회원로그인통계</a></li>
-                                    <li><a href="<c:url value='/point/custSelectAll'/>">회원포인트조회</a></li>
+<%--                                    <li><a href="<c:url value='/point/custSelectAll'/>">회원포인트조회</a></li>--%>
                                     <c:if test="">
                                         <li><a href="/admin">관리자홈</a></li>
                                     </c:if>
@@ -86,7 +86,7 @@
 
     <div id="sidebar2" class="dashboard2">
         <p>helklo</p>
-        <jsp:include page="stats.jsp"/>
+<%--        <jsp:include page="stats.jsp"/>--%>
     </div>
 </div>
 
