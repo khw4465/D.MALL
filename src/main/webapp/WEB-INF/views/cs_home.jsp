@@ -201,32 +201,32 @@
                                         <tbody>
                                         <tr>
                                             <td class="text-left">
-                                                <a href="/service/notice/view?noticeId=20230524000000000160" class="text-elps">공지사항 1번</a>
+                                                <a href="http://localhost:8082/notc/read?bbsoNo=67&page=1&pageSize=10" class="text-elps">드가자몰 여름 휴가 안내</a>
                                             </td>
-                                            <td class="text-center"><span class="text-guide-sm">공지사항 1번 날자</span></td>
+                                            <td class="text-center"><span class="text-guide-sm">2023-07-29</span></td>
                                         </tr>
                                         <tr>
                                             <td class="text-left">
-                                                <a href="/service/notice/view?noticeId=20230426000000000157" class="text-elps">공지사항 2번</a>
+                                                <a href="http://localhost:8082/notc/read?bbsoNo=66&page=1&pageSize=10" class="text-elps">중복맞이 드가자몰 세일 안내</a>
                                             </td>
-                                            <td class="text-center"><span class="text-guide-sm">공지사항 2번 날자</span></td>
+                                            <td class="text-center"><span class="text-guide-sm">2023-07-18</span></td>
                                         </tr>
                                         <tr>
                                             <td class="text-left">
-                                                <a href="/service/notice/view?noticeId=20230619000000000163" class="text-elps">공지사항 3번</a>
+                                                <a href="http://localhost:8082/notc/read?bbsoNo=65&page=1&pageSize=10" class="text-elps">초복맞이 드가자몰 세일 안내 </a>
                                             </td>
-                                            <td class="text-center"><span class="text-guide-sm">공지사항 3번 날자</span></td>
+                                            <td class="text-center"><span class="text-guide-sm">2023-07-07</span></td>
                                         </tr>
                                         <tr>
                                             <td class="text-left">
-                                                <a href="/service/notice/view?noticeId=20230605000000000162" class="text-elps">공지사항 4번</a>
-                                            <td class="text-center"><span class="text-guide-sm">공지사항 4번 날자</span></td>
+                                                <a href="http://localhost:8082/notc/read?bbsoNo=64&page=1&pageSize=10" class="text-elps">드가자몰 1차 리뷰하는 날입니다</a>
+                                            <td class="text-center"><span class="text-guide-sm">2023-07-06</span></td>
                                         </tr>
                                         <tr>
                                             <td class="text-left">
-                                                <a href="/service/notice/view?noticeId=20230531000000000161" class="text-elps">공지사항 5번</a>
+                                                <a href="http://localhost:8082/notc/read?bbsoNo=63&page=1&pageSize=10" class="text-elps">드가자몰 서비스 시작</a>
                                             </td>
-                                            <td class="text-center"><span class="text-guide-sm">공지사항 5번 날자</span></td>
+                                            <td class="text-center"><span class="text-guide-sm">2023-06-24</span></td>
                                         </tr>
                                         </tbody>
                                     </table>
