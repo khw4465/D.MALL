@@ -5,10 +5,8 @@
 <head>
     <title>메인</title>
   <link rel="stylesheet" href="<c:url value='/css/newmaintest.css'/>">
-<%--  <link rel="stylesheet" type="text/css" href="<c:url value='/css/main1.css'/>">--%>
-  <link rel="stylesheet" type="text/css" href="<c:url value='/css/main2.css'/>">
-<%--  <link rel="stylesheet" type="text/css" href="<c:url value='/css/main3.css'/>">--%>
-<%--  <link rel="stylesheet" type="text/css" href="<c:url value='/css/main4.css'/>">--%>
+  <link rel="stylesheet" href="<c:url value='/css/footer.css'/>">
+  <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
 </head>
 <body>
 <jsp:include page="header.jsp"/>
