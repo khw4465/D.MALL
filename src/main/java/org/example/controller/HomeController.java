@@ -27,7 +27,7 @@ public class HomeController {
             List<CateMainDto> cateMain = cateMainDao.selectAll();
             m.addAttribute("cateMain", cateMain);
 
-            return "index";
+            return "newmaintest";
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
