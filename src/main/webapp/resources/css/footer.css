@@ -12,11 +12,11 @@
 }
 
 #footer .ft_gnb .ft_gnb_menu {
-    float: left;
+    /*float: left;*/
     padding: 20px 0 19px;
     vertical-align: top;
     font-size: 0;
-    text-align: left;
+    /*text-align: left;*/
 }
 
 #footer .ft_gnb .ft_gnb_menu li {

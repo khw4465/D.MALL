@@ -11,7 +11,8 @@
     <title>Title</title>
     <link rel="stylesheet" href="<c:url value='/css/register.css'/>">
 <%--    <link rel="stylesheet" href="<c:url value='/css/footer.css'/>">--%>
-    <link rel="stylesheet" href="<c:url value='/css/main2.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/footer.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
 
 </head>
 <body>

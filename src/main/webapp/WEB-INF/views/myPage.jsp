@@ -10,7 +10,8 @@
     <title>마이페이지</title>
     <link rel="stylesheet" href="<c:url value='/css/myPage.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/myPageSideBar.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/main2.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/footer.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
 </head>
 <body>
 <!-- 전체 div -->

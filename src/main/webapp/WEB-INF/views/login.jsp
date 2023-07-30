@@ -11,7 +11,8 @@
 <head>
     <title>로그인</title>
     <link rel="stylesheet" href="<c:url value='/css/login.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/main2.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/footer.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
