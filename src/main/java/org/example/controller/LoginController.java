@@ -196,7 +196,7 @@ public class LoginController {
             // 아이디 비번이 어드민이 맞는지 확인
             if (adminCHeck(id)) { // 어드민일경우
                 m.addAttribute("loginAdminTrue", true);
-                return "index";
+                return "newmaintest";
             }
             loginHistoryDTO.setScssYn("Y"); // 로그인 성공시 db에 성공여부 Y로 나옴
             return "redirect:" + toURL;

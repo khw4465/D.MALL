@@ -134,7 +134,8 @@ h3 {
 }
 
 div.image-container {
-    border: 1px solid #ccc;
+    /*border: 1px solid #ccc;*/
+
     padding: 10px;
     margin-bottom: 20px;
     grid-template-columns: repeat(4, 1fr); /* 각 줄에 4개의 이미지를 표시 */
@@ -151,4 +152,12 @@ padding-bottom: 100px;
 .fourPictures{
     /*max-width: 1000px;*/
     padding-bottom: 100px;
+}
+
+.responsive {
+    display: none;
+}
+
+.responsive.active {
+    display: block;
 }
