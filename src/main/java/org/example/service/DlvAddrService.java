@@ -5,12 +5,14 @@ import org.example.domain.DlvAddrDto;
 
 import java.util.List;
 
-public interface OrderService {
+public interface DlvAddrService {
     CustDto getCust(String custId) throws Exception;
 
     DlvAddrDto getOneAddr(String custId, int addrNo) throws Exception;
 
     List<DlvAddrDto> getDlvAddr(String custId) throws Exception;
+
+    int getDlvCnt(String custId) throws Exception;
 
     int addDlvAddr(DlvAddrDto dto) throws Exception;
 

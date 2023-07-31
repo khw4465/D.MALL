@@ -17,7 +17,7 @@
 
         <div id="header" class="fix" style="transform: translateY(0px);">
             <div class="hd_blet">
-                <a href="http://pf.kakao.com/_CsnXj" target="_blank"><img src="/design/kr/bc3650847f8ae1e9a4d8f16c8011255e_52236.jpg" alt="드가자몰입니다."></a>
+                <a href="http://pf.kakao.com/_CsnXj" target="_blank"><img src="" alt="드가자몰입니다."></a>
                 <span class="btn_closed">닫기</span>
             </div>
             <div class="hd_box">
@@ -26,7 +26,7 @@
                     </div>
                     <div class="hd_box_table">
                         <h1 class="xans-element- xans-layout xans-layout-logotop ">
-                            <a href="/"><img src="/design/kr/156005c5baf40ff51a327f1c34f2975b_53977.jpg" alt="logo"><!--moguchonmall.com--></a>
+                            <a href="/"><img src="" alt="logo"></a>
                         </h1>
                         <div class="hd_search">
                             <form id="searchBarForm" name="" action="/prod/search" method="get" target="_self" enctype="multipart/form-data">

@@ -21,9 +21,9 @@
     </select>
     <insert id="insert" parameterType="DlvAddrDto">
         INSERT INTO dlv_addr
-            (cust_id, rcpr, addr_no, dlv_addr,dtl_addr,dlvpn,mpno)
+            (cust_id, rcpr, addr_no, zpcd, dlv_addr,dtl_addr,dlvpn,mpNo,basic_yn,create_date)
         VALUES
-            (#{custId}, #{rcpr}, #{addrNo}, #{dlvAddr}, #{dtlAddr}, #{dlvpn}, #{mpno})
+            (#{custId}, #{rcpr}, #{addrNo}, #{zpcd}, #{dlvAddr}, #{dtlAddr}, #{dlvpn}, #{mpNo}, #{basicYn}, now())
     </insert>
     <update id="update" parameterType="DlvAddrDto">
         UPDATE dlv_addr

@@ -3,9 +3,8 @@ package org.example.controller;
 import org.example.domain.*;
 import org.example.service.CartService;
 import org.example.service.OrderListService;
-import org.example.service.OrderService;
+import org.example.service.DlvAddrService;
 import org.example.service.PointService;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,26 +14,24 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/order")
 public class OrderController {
-    OrderService orderService;
+    DlvAddrService dlvAddrService;
     OrderListService orderListService;
     CartService cartService;
     PointService pointService;
 
-    public OrderController( OrderService orderService, OrderListService orderListService, CartService cartService,
-                            PointService pointService) {
-        this.orderService = orderService;
+    public OrderController(DlvAddrService dlvAddrService, OrderListService orderListService, CartService cartService,
+                           PointService pointService) {
+        this.dlvAddrService = dlvAddrService;
         this.orderListService = orderListService;
         this.cartService = cartService;
         this.pointService = pointService;
@@ -54,11 +51,11 @@ public class OrderController {
             HttpSession session = request.getSession();
             String custId = (String)session.getAttribute("id");     // 세션으로 회원아이디 가져오기
 
-            CustDto custInfo = orderService.getCust(custId);
+            CustDto custInfo = dlvAddrService.getCust(custId);
             m.addAttribute("custInfo", custInfo);             //  회원정보를 가져와 모델에 넣어줌
 
-            List<DlvAddrDto> dlvList = orderService.getDlvAddr(custId);
-            m.addAttribute("dlvList", dlvList.get(0));        // 배송지 정보를 가져와 모델에 넣어줌 (배송지가 여러개면 일단 첫번째것만)
+            List<DlvAddrDto> dlvList = dlvAddrService.getDlvAddr(custId);
+            m.addAttribute("dlvList", dlvList);               // 배송지 정보를 가져와 모델에 넣어줌
 
             List<CartDto> cartList = cartService.getCartList(custId);
             m.addAttribute("cartList", cartList);             // 장바구니에 담긴 상품의 정보를 모델에 넣어줌
@@ -238,6 +235,43 @@ public class OrderController {
         String custId = (String)session.getAttribute("id");     // 세션으로 회원아이디 가져오기
 
         return "ordFail";
+    }
+
+    @PostMapping("/addDlvAddr")
+    @ResponseBody
+    public ResponseEntity<DlvAddrDto> addDlv(@RequestBody DlvAddrDto dlvAddrDto, HttpSession session) {
+    try{
+        String custId = (String)session.getAttribute("id");     // 세션으로 회원아이디 가져오기
+        dlvAddrDto.setCustId(custId);                                 // dto에 회원아이디 값 넣어주기
+
+        int addrNo = dlvAddrService.getDlvCnt(custId);                // dto에 배송지 고유번호 넣어주기
+        dlvAddrDto.setAddrNo(addrNo + 1);                             // 고유번호 == 기존 배송지 개수 + 1
+
+        System.out.println("dlvAddrDto = " + dlvAddrDto);
+        dlvAddrService.addDlvAddr(dlvAddrDto);
+
+
+        return new ResponseEntity<>(dlvAddrDto, HttpStatus.OK);
+    } catch (Exception e) {
+        e.printStackTrace();
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+    }
+
+    @PatchMapping("/modifyDlvAddr")
+    @ResponseBody
+    public ResponseEntity<DlvAddrDto> modifyDlv(@RequestBody DlvAddrDto dlvAddrDto, HttpSession session) {
+        try{
+            String custId = (String)session.getAttribute("id");     // 세션으로 회원아이디 가져오기
+
+            DlvAddrDto dto = dlvAddrService.getOneAddr(custId, dlvAddrDto.getAddrNo());        // 회원의 배송지 번호로 데이터 가져오기
+
+            System.out.println("dto = " + dto);
+            return new ResponseEntity<>(dto, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     private boolean loginCheck(HttpServletRequest request) {

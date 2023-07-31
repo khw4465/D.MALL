@@ -13,7 +13,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
-    <link rel="stylesheet" href="<c:url value='/css/main2.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/footer.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/cart.css'/>">
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <script src="https://kit.fontawesome.com/dfc70c918b.js" crossorigin="anonymous"></script>
@@ -29,9 +30,9 @@
             <h1>장바구니</h1>
             <ul style="float: right">
                 <li class="this" title="현재페이지"><strong>01</strong> 장바구니</li>
-                &nbsp<strong> > </strong>&nbsp
+                <li><strong> > </strong></li>
                 <li><strong>02</strong> 주문서작성/결제</li>
-                &nbsp<strong> > </strong>&nbsp
+                <li><strong> > </strong></li>
                 <li class="end"><strong>03</strong> 주문완료</li>
             </ul>
         </div>
