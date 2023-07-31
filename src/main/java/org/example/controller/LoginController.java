@@ -152,11 +152,34 @@ public class LoginController {
     public String login(Model m, String id, String pwd, String toURL, boolean rememberId,
                         HttpServletRequest request, HttpServletResponse response) throws Exception {
         LoginHistoryDTO loginHistoryDTO = new LoginHistoryDTO();
+        // 로그인이력에 국가 넣을떄
+        //        ko,en-US;q=0.9,en;q=0.8,ko-KR;q=0.7
+        // 이렇게 긴 코드가 들어가는데, 맨 앞자리 2개만 추출해서 저장하는 코드
+        String acceptLanguage = request.getHeader("Accept-Language");
+        if (acceptLanguage != null && !acceptLanguage.isEmpty()) {
+            String[] languages = acceptLanguage.split(",");
+            if (languages.length > 0) {
+                String firstLanguage = languages[0];
+                if (firstLanguage.length() >= 2) {
+                    String firstTwoChars = firstLanguage.substring(0, 2);
+                    loginHistoryDTO.setNatn(firstTwoChars);
+                }
+            }
+        }
+        //------------------------------------------- 사용자기기 추출
+        String device = request.getHeader("User-Agent");
+        if (device != null && !device.isEmpty()) {
+            int startIndex = device.indexOf('(');
+            int endIndex = device.indexOf(')');
+            if (startIndex != -1 && endIndex != -1 && startIndex < endIndex) {
+                String userDevice = device.substring(startIndex + 1, endIndex);
+                loginHistoryDTO.setMhrLS(userDevice); // 기기(기계) 추론
+            }
+        }
         loginHistoryDTO.setCustId(id); // 아이디
         loginHistoryDTO.setDttm(LocalDateTime.now()); // 발생시간
         loginHistoryDTO.setIp(request.getRemoteAddr()); //IP 로컬일때는 0 0 0 0 임
-        loginHistoryDTO.setNatn(request.getHeader("Accept-Language"));  // 국가 추론
-        loginHistoryDTO.setMhrLS(request.getHeader("User-Agent")); // 기기(기계) 추론
+
 
         // 이거 지우면 안됌
 //        if (custLoginHistService.HistCountSelect(id).getFailCnt()>=3){
@@ -196,7 +219,7 @@ public class LoginController {
             // 아이디 비번이 어드민이 맞는지 확인
             if (adminCHeck(id)) { // 어드민일경우
                 m.addAttribute("loginAdminTrue", true);
-                return "index";
+                return "newmaintest";
             }
             loginHistoryDTO.setScssYn("Y"); // 로그인 성공시 db에 성공여부 Y로 나옴
             return "redirect:" + toURL;
