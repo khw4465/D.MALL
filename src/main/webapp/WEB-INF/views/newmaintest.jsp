@@ -48,7 +48,7 @@
             <div class="responsive ">
                 <div class="gallery">
                     <a target="_blank" href="">
-                        <img src='${ProdAll.prodImg}' alt="Cinque Terre" width="600" height="400">
+                        <img src='${ProdAll.prodImg}.png' alt="Cinque Terre" width="600" height="400">
                     </a>
                 </div>
             </div>
@@ -65,38 +65,27 @@
         <h3 id="nature">샐러드</h3>
         <h3 id="food">도시락,볶음밥</h3>
         <h3 id="pro">음료.프로틴</h3>
-        <h3 id="pack">식단.패키지</h3>
     </div>
 
     <div id="animal-images" class="image-container" style="display: none;">
-        <img src="img/P010203.png" alt="Animal Image" width="250" height="250">
-        <img src="img/P010203.png" alt="Animal Image" width="250" height="250">
-        <img src="img/P010203.png" alt="Animal Image" width="250" height="250">
-        <img src="img/P010203.png" alt="Animal Image" width="250" height="250">
+        <c:forEach var="prodOne" items="${cateOne}">
+            <img src="${prodOne.prodImg}.png" alt="Animal Image" width="250" height="250">
+        </c:forEach>
     </div>
     <div id="nature-images" class="image-container" style="display: none;">
-        <img src="img/P010302.png" alt="nature Image" width="250" height="250">
-        <img src="img/P010302.png" alt="nature Image" width="250" height="250">
-        <img src="img/P010302.png" alt="nature Image" width="250" height="250">
-        <img src="img/P010302.png" alt="nature Image" width="250" height="250">
+        <c:forEach var="prodTwo" items="${cateTwo}">
+            <img src="${prodTwo.prodImg}.png" alt="nature Image" width="250" height="250">
+        </c:forEach>
     </div>
     <div id="food-images" class="image-container" style="display: none;">
-        <img src="img/P010501.png" alt="food Image" width="250" height="250">
-        <img src="img/P010501.png" alt="food Image" width="250" height="250">
-        <img src="img/P010501.png" alt="food Image" width="250" height="250">
-        <img src="img/P010501.png" alt="food Image" width="250" height="250">
+        <c:forEach var="prodThree" items="${cateThree}">
+            <img src="${prodThree.prodImg}.png" alt="food Image" width="250" height="250">
+        </c:forEach>
     </div>
     <div id="pro-images" class="image-container" style="display: none;">
-        <img src="img/P040102.png" alt="pro Image" width="250" height="250">
-        <img src="img/P040102.png" alt="pro Image" width="250" height="250">
-        <img src="img/P040102.png" alt="pro Image" width="250" height="250">
-        <img src="img/P040102.png" alt="pro Image" width="250" height="250">
-    </div>
-    <div id="pack-images" class="image-container" style="display: none;">
-        <img src="img/P040103.png" alt="pack Image" width="250" height="250">
-        <img src="img/P040103.png" alt="pack Image" width="250" height="250">
-        <img src="img/P040103.png" alt="pack Image" width="250" height="250">
-        <img src="img/P040103.png" alt="pack Image" width="250" height="250">
+        <c:forEach var="prodFour" items="${cateFour}">
+            <img src="${prodFour.prodImg}.png" alt="pro Image" width="250" height="250">
+        </c:forEach>
     </div>
 
 </div>
@@ -179,7 +168,6 @@
         nature: document.getElementById('nature'),
         food: document.getElementById('food'),
         pro: document.getElementById('pro'),
-        pack: document.getElementById('pack')
     };
 
     var images = {
@@ -187,7 +175,6 @@
         nature: document.getElementById('nature-images'),
         food: document.getElementById('food-images'),
         pro: document.getElementById('pro-images'),
-        pack: document.getElementById('pack-images')
     };
 
     // 처음 로드 될 때 모든 이미지를 숨깁니다.

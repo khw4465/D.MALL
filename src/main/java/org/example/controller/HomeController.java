@@ -33,17 +33,34 @@ public class HomeController {
             List<CateMainDto> cateMain = cateMainDao.selectAll();
             m.addAttribute("cateMain", cateMain);
 
-            List<String> Img = new ArrayList<>();
-
             List<ProdDto> prodDto = prodDao.selectAll();
+            m.addAttribute("prodDtoAll",prodDto); // 모든상품 리스트 담기
 
-            m.addAttribute("prodDtoAll",prodDto); // 모든상품 리스트
-            prodDto.get(1).getProdImg();
-//            for (ProdDto dto : prodDto) {
-//                Img.add(dto.getProdImg()); // 이미지만 출력
-//            }
-//            m.addAttribute("prodImg",Img); // 이미지만 담음
-            m.addAttribute("prodDtoAllSize",prodDto.size()); // 위에거사이즈
+            List<ProdDto> prodcateOne = new ArrayList<>(); // 닭가슴살 카테고리
+            List<ProdDto> prodcateTwo = new ArrayList<>(); // 샐러드 카테고리
+            List<ProdDto> prodcateThree = new ArrayList<>(); // 도시락.볶음밥
+            List<ProdDto> prodcateFour = new ArrayList<>(); // 음료.단백질
+
+
+            // 상품에서 4가지 카테고리에 대해서 이터레이터 돌면서 저장
+            for (ProdDto dto : prodDto) {
+                if(dto.getCateCd()>=100 && dto.getCateCd()<=199){
+                    prodcateOne.add(dto);
+                }
+                if(dto.getCateCd()>=200 && dto.getCateCd()<=299){
+                    prodcateTwo.add(dto);
+                }
+                if(dto.getCateCd()>=300 && dto.getCateCd()<=399){
+                    prodcateThree.add(dto);
+                }
+                if(dto.getCateCd()>=400 && dto.getCateCd()<=499){
+                    prodcateFour.add(dto);
+                }
+            }
+            m.addAttribute("cateOne",prodcateOne);
+            m.addAttribute("cateTwo",prodcateTwo);
+            m.addAttribute("cateThree",prodcateThree);
+            m.addAttribute("cateFour",prodcateFour);
 
             return "newmaintest";
         } catch (Exception e) {

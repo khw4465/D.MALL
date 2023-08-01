@@ -125,7 +125,7 @@ public class ProdController {
     }
     @RequestMapping("/download")
     public void download(@RequestParam("imageFileName") String imageFileName,
-                         HttpServletResponse response)throws Exception {
+                         HttpServletResponse response) throws Exception {
         OutputStream out = response.getOutputStream();
         String downFile = CURR_IMAGE_REPO_PATH + "\\" + imageFileName;
         File file = new File(downFile);
