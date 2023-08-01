@@ -29,16 +29,13 @@
                     <div class="hd_box_table">
                         <h1 class="xans-element- xans-layout xans-layout-logotop ">
                             <a href="/"><img src="/design/kr/156005c5baf40ff51a327f1c34f2975b_53977.jpg" alt="logo">
-                                <!--moguchonmall.com--></a>
+                       </a>
                         </h1>
                         <div class="hd_search">
                             <form id="searchBarForm" name="" action="/prod/search" method="get" target="_self"
                                   enctype="multipart/form-data">
                                 <input id="banner_action" name="banner_action" value="" type="hidden">
-                                <div class="xans-element- xans-layout xans-layout-searchheader "><!--
-                                    $product_page=/product/detail.html
-                                    $category_page=/product/list.html
-                                -->
+                                <div class="xans-element- xans-layout xans-layout-searchheader ">
                                     <fieldset>
                                         <legend>검색</legend>
                                         <select class="search-option" name="option" hidden="">
@@ -80,9 +77,9 @@
                                 <li class="hdWish"><a href="<c:url value='/custMyPage'/>">마이페이지</a></li>
                                 <li class="xans-element- xans-layout xans-layout-statelogon hdBasket ">
                                     <a href="<c:url value='/cart/list'/>">
-                                        <i class="fa-solid fa-cart-shopping fa-2xl" >
+                                        <i class="fa-solid fa-cart-shopping fa-2xl">
                                             ㅁㅁㅁㅁㅁㅁ
-<%--                                            여기에 장바구니 추가--%>
+                                            <%--                                            여기에 장바구니 추가--%>
                                         </i>
                                         <span class="count EC-Layout_Basket-count-display">
                                             <span class="EC-Layout-Basket-count">${cartCnt}</span>
