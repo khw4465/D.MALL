@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/footer.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/order.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/dlvAddr.css'/>">
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 </head>
@@ -95,6 +94,7 @@
                                                                     <p class="tel">${dlv.mpNo}</p>
                                                                     <div class="btn-area">
                                                                         <button type="button" class="btn-option btn-default"><span>수정</span></button>
+                                                                        <button type="button" class="btn-option btn-default"><span>삭제</span></button>
                                                                     </div>
                                                                 </div><!--// bottom-line -->
                                                             </li>
@@ -623,6 +623,7 @@
                             <p class="tel">${response.mpNo}</p>
                             <div class="btn-area">
                               <button type="button" class="btn-option btn-default"><span>수정</span></button>
+                              <button type="button" class="btn-option btn-default"><span>삭제</span></button>
                             </div>
                           </div>
                         `;

@@ -482,7 +482,7 @@
 }
 
 .handle_usg {
-    position: relative;
-    top: 50px;
-    left: 300px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
 }
