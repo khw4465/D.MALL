@@ -41,100 +41,29 @@
     <span class="dot" onclick="currentSlide(3)"></span>
     <br>
     <br>
-    <h1>추천 식단</h1><br>
+    <h1>추천 상품</h1><br>
     <div class="fourPictures">
 
-        <%--        <div class="mySlides fade">--%>
-        <%--            <div class="numbertext"></div>--%>
-        <%--            <img src="https://www.w3schools.com/howto/img_nature_wide.jpg" style="width:100%">--%>
-        <%--            <div class="text"></div>--%>
-        <%--        </div>--%>
-
-        <div class="responsive 1">
-            <div class="gallery">
-                <a target="_blank" href="">
-                    <img src="img/P010203.png" alt="Cinque Terre" width="600" height="400">
-                </a>
-                <%--    <div class="desc">Add a description of the image here</div>--%>
+        <c:forEach var="ProdAll" items="${prodDtoAll}">
+            <div class="responsive ">
+                <div class="gallery">
+                    <a target="_blank" href="">
+                        <img src='${ProdAll.prodImg}' alt="Cinque Terre" width="600" height="400">
+                    </a>
+                </div>
             </div>
-        </div>
-
-
-        <div class="responsive 2">
-            <div class="gallery">
-                <a target="_blank" href="">
-                    <img src="img/P020203.png" alt="Forest" width="600" height="400">
-                </a>
-                <%--    <div class="desc">Add a description of the image here</div>--%>
-            </div>
-        </div>
-
-        <div class="responsive 3">
-            <div class="gallery">
-                <a target="_blank" href="">
-                    <img src="img/P030301.png" alt="Northern Lights" width="600" height="400">
-                </a>
-                <%--    <div class="desc">Add a description of the image here</div>--%>
-            </div>
-        </div>
-
-        <div class="responsive 4">
-            <div class="gallery">
-                <a target="_blank" href="img_mountains.jpg">
-                    <img src="img/P030402.png" alt="Mountains" width="600" height="400">
-                </a>
-                <%--    <div class="desc">Add a description of the image here</div>--%>
-            </div>
-        </div>
-        <%--        1세트--%>
-        <br>
-        <div class="responsive 5">
-            <div class="gallery">
-                <a target="_blank" href="">
-                    <img src="img/P040302.png" alt="Cinque Terre" width="600" height="400">
-                </a>
-                <%--    <div class="desc">Add a description of the image here</div>--%>
-            </div>
-        </div>
-
-
-        <div class="responsive 6">
-            <div class="gallery">
-                <a target="_blank" href="">
-                    <img src="img/P040303.png" alt="Forest" width="600" height="400">
-                </a>
-                <%--    <div class="desc">Add a description of the image here</div>--%>
-            </div>
-        </div>
-
-        <div class="responsive 7">
-            <div class="gallery">
-                <a target="_blank" href="">
-                    <img src="img/P040401.png" alt="Northern Lights" width="600" height="400">
-                </a>
-                <%--    <div class="desc">Add a description of the image here</div>--%>
-            </div>
-        </div>
-
-        <div class="responsive 8">
-            <div class="gallery">
-                <a target="_blank" href="img_mountains.jpg">
-                    <img src="img/P040402.png" alt="Mountains" width="600" height="400">
-                </a>
-                <%--    <div class="desc">Add a description of the image here</div>--%>
-            </div>
-        </div>
-        <%--        2세트 --%>
+        </c:forEach>
 
         <div class="clearfix"></div>
     </div>
+<%--    추천상품 끝 --%>
 
-    <h1> 추천 패키지</h1><br>
+    <h1>카테고리별 상품</h1><br>
 
     <div class="category">
         <h3 id="animal">닭가슴살</h3>
-        <h3 id="nature">도시락.볶음밥</h3>
-        <h3 id="food">샐러드.과일</h3>
+        <h3 id="nature">샐러드</h3>
+        <h3 id="food">도시락,볶음밥</h3>
         <h3 id="pro">음료.프로틴</h3>
         <h3 id="pack">식단.패키지</h3>
     </div>
@@ -187,14 +116,6 @@
         for (j = 0; j < slidesAll.length; j++) {
             slidesAll[j].style.display = "none";
         }
-        // slideIndexItem++;
-        // if (slideIndexItem > slidesAll.length) {
-        //     slideIndexItem = 1
-        // }
-        //
-        // slidesAll[slideIndexItem - 1].style.display = "block";
-        // setTimeout(showItemList, 2000);
-        // Show 4 slides at a time
         for (let i = 0; i < 4; i++) {
             // If slideIndexItem is beyond the last index, reset it to 0
             if (slideIndexItem >= slidesAll.length) {
@@ -205,9 +126,9 @@
             slidesAll[slideIndexItem].style.display = "block";
             slideIndexItem++;
         }
-
         setTimeout(showItemList, 2000);
     }
+
     // 메인 슬라이드
     function showSlides() {
         let i;
