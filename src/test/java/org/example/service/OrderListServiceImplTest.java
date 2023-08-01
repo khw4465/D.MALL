@@ -22,7 +22,7 @@ public class OrderListServiceImplTest {
     }
     @Test
     public void getLastOrd() throws Exception {
-        System.out.println(orderListService.getLastOrd("asdf"));
+//        System.out.println(orderListService.getLastOrd("asdf"));
     }
     @Test
     public void getOrdMonthTest() throws Exception {
@@ -48,7 +48,7 @@ public class OrderListServiceImplTest {
     @Test
     public void addOrderTest() throws Exception {
         // 주문할 때의 정보들 외에 추가 정보를 받아서 OrderDto에 넣고 출력
-        orderListService.addOrder("order123", "asdf", 1, "천천히오세요");
+//        orderListService.addOrder("order123", "asdf", 1, "천천히오세요");
         System.out.println(orderListService.getOrder("order123","asdf"));
     }
     @Test

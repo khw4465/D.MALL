@@ -50,9 +50,9 @@ public class OrderListServiceImpl implements OrderListService {
         return orderListDao.count(custId);
     }
     @Override
-    public int addOrder(String ordCd, String custId, int dlvAddrId, String dlvMsg) throws Exception {
+    public int addOrder(String ordCd, String custId, int totDcPrc, int dlvAddrId, String dlvMsg) throws Exception {
         OrderDto dto = cartDao.ordHist(custId);
-        OrderDto dto1 = new OrderDto(ordCd, dto.getCustId(), dto.getMainProdCd(), dto.getProdName(), dto.getTotProdCnt(), dto.getTotPrc(), dto.getTotQty(), dto.getTotDcPrc(), dlvAddrId, dto.getDlvPrc(), dlvMsg, dto.getFinPrc());
+        OrderDto dto1 = new OrderDto(ordCd, dto.getCustId(), dto.getMainProdCd(), dto.getProdName(), dto.getTotProdCnt(), dto.getTotPrc(), dto.getTotQty(), totDcPrc, dlvAddrId, dto.getDlvPrc(), dlvMsg, dto.getFinPrc()-totDcPrc);
         return orderListDao.insert(dto1);
     }
     @Override

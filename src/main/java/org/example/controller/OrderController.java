@@ -171,10 +171,11 @@ public class OrderController {
             String ordCd = orderDto.getOrdCd();                           // ord.jsp에서 tid를 주문코드로 얻어옴
             String dlvMsg = orderDto.getDlvMsg();                         // ord.jsp에서 dlvMsg를 배송메시지로 얻어옴
             String custId = (String)session.getAttribute("id");     // 세션으로 회원아이디 가져오기
+            int totDcPrc = orderDto.getTotDcPrc();
 
 //            orderService.getOneAddr(custId, 1);                         // 회원의 배송지목록 1번의 dto 가져오기
 
-            orderListService.addOrder(ordCd,custId,1,dlvMsg);    // 주문내역 추가
+            orderListService.addOrder(ordCd,custId,totDcPrc,1,dlvMsg);    // 주문내역 추가
 
             OrderDto ordDto1 = orderListService.getLastOrd(custId);       // 세션에 최근 주문내역 저장
             session.setAttribute("lastOrder", ordDto1);

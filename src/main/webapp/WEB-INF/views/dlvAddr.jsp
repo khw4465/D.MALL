@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="<c:url value='/css/myPageSideBar.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/dlvAddr.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/footer.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/orderList.css'/>">
 </head>
 <body>
 <jsp:include page="header.jsp"/>

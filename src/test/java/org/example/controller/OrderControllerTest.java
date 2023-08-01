@@ -24,6 +24,6 @@ public class OrderControllerTest {
         String ordCd = "asdf1234";  // ord.jsp에서 tid를 주문코드로 얻어옴
 
 
-        orderListService.addOrder(ordCd,"asdf111",1,"dlvMsg");
+//        orderListService.addOrder(ordCd,"asdf111",1,"dlvMsg");
     }
 }

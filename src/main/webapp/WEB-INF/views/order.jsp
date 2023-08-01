@@ -326,10 +326,10 @@
                         <div class="input-group-wrap box-type">
                             <div class="input-group">
                                 <!-- 현재 보유 포인트 -->
-                                <input type="text" title="" class="input-text ui-point-input" id="textUsePoint" name="textUsePoint" placeholder="2,000P부터 사용가능" onkeydown="return numberOnly(event)" onkeyup="removeChar(event)" onblur="fnUsePoint()">
+                                <input type="text" title="" class="input-text ui-point-input" id="textUsePoint" name="tex용tUsePoint" placeholder="2,000P부터 사용가능">
                                 <span class="input-group-btn">
                                         <button type="button" class="btn-x-xs btn-input-del" title=""><i class="ico-x-normal"></i><span class="blind">삭제</span></button>
-                                        <button type="button" class="btn-ex-grey" onclick="fnUsePoint('all')"><span>전액사용</span></button>
+                                        <button type="button" id="pntBtn" class="btn-ex-grey"><span>적용</span></button>
                                     </span>
                             </div>
                         </div><!--// input-group-wrap -->
@@ -533,10 +533,23 @@
         }
     }
 
+    document.getElementById('pntBtn').addEventListener('click', function() {
+        let usePnt = document.getElementById('textUsePoint').value;
+        let dcPrc = ${prc.totDcPrc} + usePnt;
+        let totPrc = ${prc.totPrc} - dcPrc + ${prc.dlvPrc};
+        document.querySelector('#totalDiscountPrice').innerHTML = parseInt(dcPrc).toLocaleString();
+        document.querySelector('#txt_tot_pg_price').innerHTML = parseInt(totPrc).toLocaleString();
+        document.querySelector('#txt_btn_payment').innerHTML = parseInt(totPrc).toLocaleString();
+    });
+
+
 
 
         $('#kakaoPay').click(function(){
             let dlvMsg = $('#dlvMsg'.valueOf())
+            let usePnt = document.getElementById('textUsePoint').value;
+            let totDcPrc = ${prc.totDcPrc} + usePnt;
+
             $.ajax({
                 url: '/order/kakao',  // 요청 URI
                 dataType : 'json', // 전송받을 데이터의 타입
@@ -550,13 +563,12 @@
                         method: 'POST',     // post를 안적었더니 에러남..  URL이 order/complete?ordCd=~~~&dlvMsg=~~~ 형식이라 그런듯
                         headers: {"content-type": "application/json"}, // 요청 헤더
                         dataType: 'text', // 전송받을 데이터의 타입
-                        data: JSON.stringify({ordCd: tid, dlvMsg: dlvMsg.val()}),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
+                        data: JSON.stringify({ordCd: tid, totDcPrc: totDcPrc, dlvMsg: dlvMsg.val()}),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
                         success: function(response){
                             alert('주문이 완료되었습니다.')
                         },
                         error: function(error) {
                             alert('주문 중 오류가 발생하였습니다.');
-                            console.log(error);
                         }
                     });
 
