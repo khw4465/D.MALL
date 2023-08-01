@@ -53,4 +53,18 @@
         WHERE ord_cd = #{ordCd}
         AND cust_id = #{custId}
     </update>
+
+    <select id="selectAllPage" resultType="OrderDto">
+        SELECT *
+        FROM ord
+        ORDER BY ord_dttm desc
+    </select>
+
+    <select id="selectPage" parameterType="map" resultType="OrderDto">
+        SELECT *
+        FROM ord
+        WHERE cust_id = #{custId}
+        ORDER BY ord_dttm desc
+        LIMIT #{offset}, #{pageSize}
+    </select>
 </mapper>

@@ -61,7 +61,7 @@
 
     <div class="order-list-area">
         <ul class="order-list-inner">
-            <c:forEach var="ord" items="${list}">
+            <c:forEach var="ord" items="${list1}">
                 <li id="list${ord.ordCd}" class="${ord.ordCd}">
                     <div class="order-list-head">
                         <strong class="date"> <fmt:formatDate value="${ord.ordDttm}" pattern="yyyy.MM.dd"/></strong>
@@ -75,14 +75,14 @@
                             <li class="order-div-item">
                                 <div class="prd-info-area">
                                     <div class="inner">
-                                        <div class="column img"><a href="javascript:void(0);" onclick="onClickMyPageOrderListOrderCd(this); return false;" ordercd="${ord.ordCd}"><img src="/img/${ord.mainProdCd}.png" alt="상품이미지" style="width: 50px; height: 50px"></a></div>
+                                        <div class="column img"><a href="javascript:void(0);" ordercd="${ord.ordCd}"><img src="/img/${ord.mainProdCd}.png" alt="상품이미지" style="width: 50px; height: 50px"></a></div>
                                         <div class="column tit">
                                             <div class="prd-state-row">
                                                 <strong class="prd-state-head">${ord.ordStus}</strong>
                                                 <span class="prd-state-date"><fmt:formatDate value="${ord.stusChgDttm}" pattern="MM월 dd일"/> ${ord.ordStus}</span>
                                             </div>
                                             <!-- [Dev] 20220420 추가 : 당일/새벽배송 아이콘 추가 -->
-                                            <p class="tit"><a href="javascript:void(0);" onclick="onClickMyPageOrderListOrderCd(this); return false;" ordercd="${ord.ordCd}">${ord.prodName}</a></p>
+                                            <p class="tit"><a href="javascript:void(0);" ordercd="${ord.ordCd}">${ord.prodName}</a></p>
                                         </div><!--// column  -->
                                         <div class="price-item">
                                             <div class="dlv-nmr">
@@ -112,6 +112,22 @@
             </c:forEach>
         </ul>
     </div>
+    <div class="handle_usg">
+        <c:if test="${totalCnt==null || totalCnt==0}">
+            <div> 게시물이 없습니다.</div>
+        </c:if>
+        <c:if test="${totalCnt!=null && totalCnt!=0}">
+            <c:if test="${pagehandler.showPrev}">
+                <a class="page" href="<c:url value="/order/list${pagehandler.beginPage-1}"/> ">&lt;</a>
+            </c:if>
+            <c:forEach var="i" begin="${pagehandler.beginPage}" end="${pagehandler.endPage}">
+                <a class="page ${i==pagehandler.page? "paging-active" : ""}" href="<c:url value="/order/list?page=${i}"/>">${i}</a>
+            </c:forEach>
+            <c:if test="${pagehandler.showNext}">
+                <a class="page" href="<c:url value="/order/list?page=${pagehandler.endPage+1}"/> ">&gt</a>
+            </c:if>
+        </c:if>
+    </div><!-- 핸들러 -->
 </div>
 </div>
 

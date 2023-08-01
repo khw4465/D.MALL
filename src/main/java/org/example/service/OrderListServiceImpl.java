@@ -59,4 +59,10 @@ public class OrderListServiceImpl implements OrderListService {
     public int modifyStatus(OrderDto dto) throws Exception {
         return orderListDao.updOrdStatus(dto);
     }
+
+
+    @Override
+    public List<OrderDto> getPage(Map map) throws Exception{
+        return orderListDao.selectPage(map);
+    }
 }
