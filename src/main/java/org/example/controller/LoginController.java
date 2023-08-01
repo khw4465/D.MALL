@@ -58,8 +58,7 @@ public class LoginController {
 
         if (!(email.equals(custService.loginCust(resultid).getEmail())))
             return "redirect:login/findid"; //리다이렉트로 바꿈
-        //만약 입력한 이메일과 현재 로그인한 아이디의 이메일과 일치하지 않으면 다시 아이디찾기화면으로 돌아간다.
-
+        // 만약 입력한 이메일과 현재 로그인한 아이디의 이메일과 일치하지 않으면 다시 아이디찾기화면으로 돌아간다.
         // 그 아이디의 이메일과 입력된 이메일을 비교해서 맞으면
         SecureRandom random = new SecureRandom();
         String sms = new BigInteger(70, random).toString(32);
