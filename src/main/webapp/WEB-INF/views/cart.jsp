@@ -51,8 +51,8 @@
         </div>
         <div style="display: ${prodCnt == 0 ? "none" : "block"}">
             <div class="xans-element- xans-order xans-order-selectorder ec-base-button">
-                <span class="gLeft"><button id="removeCheck" class="btn-option btn-default" onclick="Basket.deleteBasket()">선택삭제</button></span>
-                <span class="gRight"><button id="removeAll" class="btn-option btn-default" onclick="Basket.emptyBasket()">장바구니비우기</button></span>
+                <span class="gLeft"><button id="removeCheck" class="btn-option btn-default">선택삭제</button></span>
+                <span class="gRight"><button id="removeAll" class="btn-option btn-default">장바구니비우기</button></span>
             </div>
             <div class="orderListArea ec-base-table typeList gBorder ecBase">
                 <table border="" summary="" id="cart"
@@ -155,13 +155,13 @@
                 </table>
             </div>
         </div>
-        <div style="margin: 50px">
-            <h3 style="text-align: center; display: ${prodCnt == 0 ? "block" : "none"}">장바구니가 비어있습니다.</h3>
+        <div id="showEmpty" style="margin: 50px; display: ${prodCnt == 0 ? "block" : "none"}">
+            <h3 style="text-align: center">장바구니가 비어있습니다.</h3>
         </div>
     </div>
 
 
-    <div class="xans-element- xans-order xans-order-basketpriceinfoguide  " style="display: ${prodCnt == 0 ? "none" : "block"}; margin: 30px 0; ">
+    <div id="Info" class="xans-element- xans-order xans-order-basketpriceinfoguide  " style="display: ${prodCnt == 0 ? "none" : "block"}; margin: 30px 0; ">
         <p class="info ">할인 적용 금액은 주문서작성의 결제예정금액에서 확인 가능합니다.</p>
         <p class="info displaynone">주문서 작성 시 배송비를 확인할 수 있습니다.</p>
         <p class="info displaynone">추가증정 이벤트 상품의 옵션 및 수량 변경은 상품상세에서 가능합니다.</p>
@@ -169,7 +169,7 @@
     </div>
 
     <!-- 총 주문금액 : 국내배송상품 -->
-    <div class="xans-element- xans-order xans-order-totalsummary ec-base-table typeList gBorder ecBase total" style="display: ${prodCnt == 0 ? "none" : "block"}">
+    <div id="prcData" class="xans-element- xans-order xans-order-totalsummary ec-base-table typeList gBorder ecBase total" style="display: ${prodCnt == 0 ? "none" : "block"}">
         <table border="1" summary="">
             <caption>총 주문금액</caption>
             <colgroup>
@@ -292,14 +292,12 @@
 <script>
     const allCBox = document.getElementById('checkAll');    // 전체 체크박스
     const eachCBox = Array.from(document.getElementsByName('eachcheck'));   // 상품별 체크박스
-    let selText = document.querySelector('label[for="checkAll"]');  // 전체선택/전체해제
 
     // 전체 체크박스가 (true/false)면 개별 체크박스도 (true/false) && (전체해제/전체선택)
 
     allCBox.addEventListener("change", () => {
         const allChecked = allCBox.checked;
         eachCBox.forEach(tag => tag.checked = allChecked);
-        selText.textContent = allChecked ? '전체해제' : '전체선택';
     });
 
     // 개별 체크박스가 다 true면 전체 체크박스도 true,  하나라도 false면 전체 체크박스도 false && (전체해제/전체선택)
@@ -308,36 +306,28 @@
         tag.addEventListener('change', () => {
             const allChecked = eachCBox.every(tag => tag.checked);
             allCBox.checked = allChecked;
-            selText.textContent = allChecked ? "전체해제" : "전체선택";
         });
     });
 
-    //삭제 버튼 구현
-
-    const allDelBtn = document.getElementById('deleteAll');          // 전체삭제 버튼
-    const selectDelBtn = document.getElementById('deleteCheck');     // 선택삭제 버튼
-
-    const cart = document.getElementById("cart");
-    const cartOpt = document.getElementById("cart-option");
-    // const listhead = document.getElementById("list-head");
-    const priceInfo = document.getElementById('priceInfo');
-    const ordBtn = document.getElementById('totalOrderPrice');
-
     // 장바구니가 비었는지 확인하는 함수
-    // function isCartEmpty() {
-    //     const items = cart.getElementsByTagName("li");
-    //     return items.length === 0;
-    // }
-    //
-    // function emptyCartMsg() {
-    //     if (isCartEmpty()) {
-    //         cart.innerHTML = "<h1 style='text-align:center'>장바구니가 비어있습니다.</h1>"; // 장바구니가 비었을 때 나타내는 메시지
-    //         cartOpt.style.display = 'none';
-    //         priceInfo.style.display = 'none';
-    //         ordBtn.style.display = 'none';
-    //     }
-    // }
+    let isCartEmpty = function() {
+        const cart = document.getElementById("cart");
+        const items = cart.querySelectorAll("tbody tr");
+        return items.length === 0;
+    }
 
+    // 장바구니가 비었을 때 나타내는 메시지
+    function emptyCartMsg() {
+        if (isCartEmpty()) {
+            cart.innerHTML = "<h1 style='text-align:center'>장바구니가 비어있습니다.</h1>";
+            $('#cart').hide()
+            $('#Info').hide();
+            $('#prcData').hide();
+            $('#showEmpty').show();
+        }
+    }
+
+    // 주문버튼을 누를 때 호출되는 메서드
     function checkProdCount(prodCnt) {
         if (prodCnt > 0) {
             window.location.href = '<c:url value="/order/order"/>';
@@ -346,7 +336,8 @@
         }
     }
 
-    const throttle = (callback, delay) => {     // 수량체크할 때 사용할 스로틀 함수
+    // 수량체크할 때 사용할 스로틀 함수
+    const throttle = (callback, delay) => {
         let timerId;
         return (...args) => {
             if (timerId) return;
@@ -360,7 +351,72 @@
     // AJAX
     $(document).ready(function () {
 
-        // emptyCartMsg();
+        // 전체 delete
+        $("#removeAll").click(function () {
+            if(confirm('전체 상품을 삭제하시겠습니까?')) {
+                $.ajax({
+                    type: 'DELETE',       // 요청 메서드
+                    url: '/cart/removeAll',  // 요청 URI
+                    headers: {"content-type": "application/json"}, // 요청 헤더
+                    dataType: 'text', // 전송받을 데이터의 타입
+                    success: function (result) {  // 서버로부터 응답이 도착하면 호출될 함수
+                        $('#cart > tbody').remove()
+                        emptyCartMsg();
+                    },
+                    error: function () {
+                        alert("error")
+                    } // 에러가 발생했을 때, 호출될 함수
+                }); // $.ajax()
+            }
+        });
+
+
+        // 선택 delete
+        $("#removeCheck").click(function () {
+            const selectedProdCds = [];
+            let totProdPrc = 0;
+            const checkboxes = document.querySelectorAll('[type="checkbox"][class^="CBox"]:checked')    // 체크된 체크박스 선택
+            checkboxes.forEach(function (checkbox) {                                                    // 하나씩 뽑아서 상품코드 추출
+                const prodCd = checkbox.classList[0].substring(4);
+                selectedProdCds.push(prodCd);
+
+                const optPrices = checkbox.querySelectorAll('.totPrc' + prodCd);
+                optPrices.forEach(function (optPriceElem) {
+                    totProdPrc += parseInt(optPriceElem.innerHTML);
+                });
+            });
+            const jsonData = JSON.stringify({prodCds: selectedProdCds});
+            $.ajax({
+                type: 'DELETE',       // 요청 메서드
+                url: '/cart/removeChecks',  // 요청 URI
+                headers: {"content-type": "application/json"}, // 요청 헤더
+                dataType: 'json', // 전송받을 데이터의 타입
+                data: jsonData,  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
+                success: function (result) {  // 서버로부터 응답이 도착하면 호출될 함수
+                    console.log('성공')
+                    // for (let i = 0; i < selectedProdCds.length; i++) {
+                    //     // console.log(selectedProdCds[i])
+                    //     document.querySelector("#list" + selectedProdCds[i]).remove();
+                    // }
+                    // emptyCartMsg();
+                    //
+                    // totPrc -= totProdPrc
+                    // dlvPrc = totPrc > 30000 ? 0 : 3000;
+                    // finPrc = totPrc - totDcPrc + dlvPrc;
+                    //
+                    // $('.totPrc').html(totPrc);              // 총 상품금액 업데이트
+                    // $('.totDcPrc').html(totDcPrc);          // 총 할인금액 업데이트
+                    // $('.dlvPrc').html(dlvPrc);              // 배송비 업데이트
+                    // $('.finPrc').html(finPrc);              // 최종금액 업데이트
+                    // $('.totalOrderPrice').html(finPrc + '원 주문하기');
+                },
+                error: function () {
+                    alert("error");
+                } // 에러가 발생했을 때, 호출될 함수
+            }); // $.ajax()
+        });
+
+
 
         let totPrc = parseInt(document.getElementsByClassName('totPrc')[0].innerText);       // 모든 상품의 가격을 합한 금액
         let totDcPrc = parseInt(document.getElementsByClassName('totDcPrc')[0].innerText);      // 각각의 할인 금액을 모두 더한 금액
@@ -563,64 +619,6 @@
 
             });
 
-            // 전체 delete
-            $("#removeAll").click(function () {
-                $.ajax({
-                    type: 'DELETE',       // 요청 메서드
-                    url: '/cart/removeAll',  // 요청 URI
-                    headers: {"content-type": "application/json"}, // 요청 헤더
-                    dataType: 'text', // 전송받을 데이터의 타입
-                    success: function (result) {  // 서버로부터 응답이 도착하면 호출될 함수
-                        $('#cart').children()[0].remove()
-                        emptyCartMsg();
-                    },
-                    error: function () {
-                        alert("error")
-                    } // 에러가 발생했을 때, 호출될 함수
-                }); // $.ajax()
-            });
-            // 선택 delete
-            $("#removeCheck").click(function () {
-                const selectedProdCds = [];
-                totProdPrc = 0;
-                const checkboxes = document.querySelectorAll('[type="checkbox"][class^="CBox"]:checked')
-                checkboxes.forEach(function (checkbox) {
-                    const prodCd = checkbox.classList[0].substring(4);
-                    selectedProdCds.push(prodCd);
-                    const optPrices = document.querySelectorAll('.totPrc' + prodCd);
-                    optPrices.forEach(function (optPriceElem) {
-                        totProdPrc += parseInt(optPriceElem.innerHTML);
-                    });
-                    const jsonData = JSON.stringify({prodCds: selectedProdCds})
-                    $.ajax({
-                        type: 'DELETE',       // 요청 메서드
-                        url: '/cart/removeChecks',  // 요청 URI
-                        headers: {"content-type": "application/json"}, // 요청 헤더
-                        dataType: 'json', // 전송받을 데이터의 타입
-                        data: jsonData,  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
-                        success: function (result) {  // 서버로부터 응답이 도착하면 호출될 함수
-                            for (let i = 0; i < selectedProdCds.length; i++) {
-                                // console.log(selectedProdCds[i])
-                                document.querySelector("#list" + selectedProdCds[i]).remove();
-                            }
-                            emptyCartMsg();
-
-                            totPrc -= totProdPrc
-                            dlvPrc = totPrc > 30000 ? 0 : 3000;
-                            finPrc = totPrc - totDcPrc + dlvPrc;
-
-                            $('.totPrc').html(totPrc);              // 총 상품금액 업데이트
-                            $('.totDcPrc').html(totDcPrc);          // 총 할인금액 업데이트
-                            $('.dlvPrc').html(dlvPrc);              // 배송비 업데이트
-                            $('.finPrc').html(finPrc);              // 최종금액 업데이트
-                            $('.totalOrderPrice').html(finPrc + '원 주문하기');
-                        },
-                        error: function () {
-                            alert("error");
-                        } // 에러가 발생했을 때, 호출될 함수
-                    }); // $.ajax()
-                });
-            });
         });
     });
 </script>
