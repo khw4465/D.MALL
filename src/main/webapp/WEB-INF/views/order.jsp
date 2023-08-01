@@ -10,6 +10,10 @@
 <c:set var="logo" value="${loginId=='' ? '/' : '/login/logoClick'}"/>
 <c:set var="cust" value="${custInfo}"/>
 <c:set var="prc" value="${prcInfo}"/>
+<c:set var="dlvCnt" value="${dlvList.size()}"/>
+<c:if test="${dlvCnt >= 1}">
+    <c:set var="dlvOne" value="${dlvList.get(0)}"/>
+</c:if>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,8 +77,9 @@
 
                                         <div id="dlvList" class="layer-content">
                                             <div class="inner">
-                                                <div class="scroll-area ui-custom-scroll mCustomScrollbar _mCS_2 mCS_no_scrollbar"><div id="mCSB_2" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0"><div id="mCSB_2_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
-                                                    <ul class="dlv-addr-list">
+                                                <div class="scroll-area ui-custom-scroll mCustomScrollbar _mCS_2 mCS_no_scrollbar">
+                                                    <div id="mCSB_2" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0"><div id="mCSB_2_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                                    <ul id="dlvAddrList" class="dlv-addr-list">
                                                         <c:forEach var="dlv" items="${dlvList}">
                                                             <li>
                                                                 <div class="custom-radio">
@@ -99,7 +104,9 @@
                                                     <div class="pagination">
                                                     </div>
                                                     <!--// paging -->
-                                                </div><div id="mCSB_2_scrollbar_vertical" class="mCSB_scrollTools mCSB_2_scrollbar mCS-light mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_2_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 0px; height: 0px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 0px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div><!--// scroll-area -->
+                                                </div>
+                                                    </div>
+                                                </div><!--// scroll-area -->
                                             </div>
                                         </div><!--// layer-content -->
 
@@ -207,15 +214,13 @@
                     </div>
 
                     <div class="lineless-table type1">
-                        <c:choose>
-                            <c:when test="${dlvList.size() >= 0}">
-                                <table id="hasAddr" style="display: none">
+                            <div id="addressPresent" style="display: ${dlvCnt >= 1 ? 'block' : 'none'}">
+                                <table id="hasAddr" >
                                     <caption>배송지 정보</caption>
                                     <colgroup>
                                         <col style="width:115px">
                                         <col>
                                     </colgroup>
-                                    <c:set var="dlvOne" value="${dlvList.get(0)}"/>
                                     <tbody>
                                     <tr>
                                         <th scope="row">받는분</th>
@@ -231,13 +236,14 @@
                                     </tr>
                                     </tbody>
                                 </table>
-                            </c:when>
-                            <c:otherwise>
-                                <div id="noAddr" style="display: block; text-align: center">
+                            </div>
+
+
+                            <div id="addressAbsent" style="display: ${dlvCnt >= 1 ? 'none' : 'block'}">
+                                <div id="noAddr" style="text-align: center">
                                     <h4>배송지를 추가해주세요</h4>
                                 </div>
-                            </c:otherwise>
-                        </c:choose>
+                            </div>
                     </div>
                 </div>
 
@@ -528,6 +534,7 @@
     }
 
 
+
         $('#kakaoPay').click(function(){
             let dlvMsg = $('#dlvMsg'.valueOf())
             $.ajax({
@@ -578,10 +585,11 @@
 
             $.ajax({
                 url: '/order/addDlvAddr',
-                method: 'POST',     // post를 안적었더니 에러남..  URL이 order/complete?ordCd=~~~&dlvMsg=~~~ 형식이라 그런듯
+                method: 'POST',
                 headers: {"content-type": "application/json"}, // 요청 헤더
                 data: JSON.stringify(dlvAddrDto),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
                 success: function(response){
+
 
                         let ulElement = document.querySelector('.dlv-addr-list'); // UL 태그 선택
 
@@ -627,55 +635,41 @@
                             document.getElementById('userDeliveryDiv').style.display = 'block';
                         })
 
-                        // 시간이 없어 하드코딩 -> 3차때 고칠 예정
-                        $("#cfmBtn").click(function() {
+                                // 시간이 없어 하드코딩 -> 3차때 고칠 예정
+                                $("#cfmBtn").click(function () {
+                                    modal.style.display = "none";
 
-                            modal.style.display = "none";
-                            let addrNo = parseInt(document.querySelector('.radio:checked').value);
+                                    if ($('#dlvAddrList').childElementCount !== 0) {
+                                        let addrNo = parseInt(document.querySelector('.radio:checked').value);
 
-                            $.ajax({
-                                url: '/order/modifyDlvAddr',
-                                method: 'PATCH',
-                                headers: {"content-type": "application/json"}, // 요청 헤더
-                                data: JSON.stringify({addrNo : addrNo}),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
-                                success: function(result) {
-                                    let name = result.rcpr;
-                                    let zpcd = result.zpcd;
-                                    let dlvAddr = result.dlvAddr;
-                                    let dtlAddr = result.dtlAddr;
-                                    let addr = '(' +zpcd + ')' + dlvAddr + dtlAddr;
-                                    let mpNo = result.mpNo;
+                                        console.log(addrNo)
 
-                                    let hasAddrElement = `
-                                    <table id="hasAddr">
-                                        ...
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">받는분</th>
-                                                <td id="rcpr">${name}</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">주소</th>
-                                                <td id="addr">${addr}&nbsp;<em class="badge-point" style="display: inline-block">기본배송지</em></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">휴대전화</th>
-                                                <td id="phone">${mpNo}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                `   ;
+                                        $.ajax({
+                                            url: '/order/modifyDlvAddr',
+                                            method: 'PATCH',
+                                            headers: {"content-type": "application/json"}, // 요청 헤더
+                                            data: JSON.stringify({addrNo: addrNo}),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
+                                            success: function (result) {
+                                                let name = result.rcpr;
+                                                let zpcd = result.zpcd;
+                                                let dlvAddr = result.dlvAddr;
+                                                let dtlAddr = result.dtlAddr
+                                                let addr = '(' + zpcd + ')' + dlvAddr + dtlAddr;
+                                                let mpNo = result.mpNo;
 
-                                    $('#noAddr').hide();
-                                    $('#hasAddr').after(hasAddrElement);
+                                                $('#rcpr').text(name);
+                                                $('#addr').text(addr);
+                                                $('#phone').text(mpNo);
 
-
-                                },
-                                error: function() {
-                                    alert('등록에 실패했습니다.')
-                                }
-                            });
-                        });
+                                                $('#addressAbsent').hide();
+                                                $('#addressPresent').show();
+                                            },
+                                            error: function () {
+                                                alert('등록에 실패했습니다.')
+                                            }
+                                        });
+                                    }
+                                });
                     });
 
                 },
@@ -685,53 +679,7 @@
             });
         })
 
-
-    // 시간이 없어 하드코딩 -> 3차때 고칠 예정
-    $("#cfmBtn").click(function() {
-        modal.style.display = "none";
-        let addrNo = parseInt(document.querySelector('.radio:checked').value);
-
-        $.ajax({
-            url: '/order/modifyDlvAddr',
-            method: 'PATCH',
-            headers: {"content-type": "application/json"}, // 요청 헤더
-            data: JSON.stringify({addrNo : addrNo}),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
-            success: function(result) {
-                let name = result.rcpr;
-                let zpcd = result.zpcd;
-                let dlvAddr = result.dlvAddr;
-                let dtlAddr = result.dtlAddr
-                let addr = '(' +zpcd + ')' + dlvAddr + dtlAddr;
-                let mpNo = result.mpNo;
-
-                let hasAddrElement = `
-                <table id="hasAddr">
-                    ...
-                    <tbody>
-                        <tr>
-                            <th scope="row">받는분</th>
-                            <td id="rcpr">${name}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">주소</th>
-                            <td id="addr">${addr}&nbsp;<em class="badge-point" style="display: inline-block">기본배송지</em></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">휴대전화</th>
-                            <td id="phone">${mpNo}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            `   ;
-
-                $('#noAddr').hide();
-                $('#hasAddr').after(hasAddrElement);
-            },
-            error: function() {
-                alert('등록에 실패했습니다.')
-            }
-        });
-    });
+    // $("#cfmBtn").click(showDlv());
 </script>
 </body>
 </html>

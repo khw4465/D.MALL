@@ -1,9 +1,9 @@
-html, body, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, fieldset, legend, input, textarea, p, blockquote, th, td, img {
-    margin: 0;
-    /* 2023/07/27 mhs 위에서 form,div 제거 */
-    padding: 0;
-    outline: none;
-}
+/*html, body, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, fieldset, legend, input, textarea, p, blockquote, th, td, img {*/
+/*    margin: 0;*/
+/*    !* 2023/07/27 mhs 위에서 form,div 제거 *!*/
+/*    padding: 0;*/
+/*    outline: none;*/
+/*}*/
 a {
     text-decoration: none;
     color: #717171;
@@ -179,7 +179,6 @@ body, code {
     width: 12px;
     height: 12px;
     transform: translateX(-50%);
-    background: url("/design/kr/bg_layer_arrow.png") no-repeat 50% 50%;
 }
 
 .xans-layout-category.categoryOne .sub-category li {
@@ -241,41 +240,15 @@ body, code {
 }
 
 .xans-layout-category.categoryTwo .position > ul > li:nth-child(1) > a {
-    background-image: url("/design/kr/icon_hd_allmenu00.png");
     background-size: auto 43px;
 }
 
-.xans-layout-category.categoryTwo .position > ul > li:nth-child(2) > a {
-    background-image: url("/design/kr/icon_hd_allmenu01.png");
-}
-
-.xans-layout-category.categoryTwo .position > ul > li:nth-child(3) > a {
-    background-image: url("/design/kr/icon_hd_allmenu02.png");
-}
-
-.xans-layout-category.categoryTwo .position > ul > li:nth-child(4) > a {
-    background-image: url("/design/kr/icon_hd_allmenu03.png");
-}
-
-.xans-layout-category.categoryTwo .position > ul > li:nth-child(5) > a {
-    background-image: url("/design/kr/icon_hd_allmenu04.png");
-}
-
-.xans-layout-category.categoryTwo .position > ul > li:nth-child(6) > a {
-    background-image: url("/design/kr/icon_hd_allmenu05.png");
-}
-
-.xans-layout-category.categoryTwo .position > ul > li:nth-child(7) > a {
-    background-image: url("/design/kr/icon_hd_allmenu06.png");
-}
-
 .xans-layout-category.categoryTwo .position > ul > li:nth-child(8) > a {
-    background-image: url("/design/kr/icon_hd_allmenu07.png");
     background-size: auto 36px;
 }
 
 .xans-layout-category.categoryTwo .position > ul > li:nth-child(9) > a {
-    background-image: url("/design/kr/icon_hd_allmenu08.png");
+
     background-size: auto 38px;
 }
 
