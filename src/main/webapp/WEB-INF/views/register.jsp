@@ -114,7 +114,7 @@
 <script>
     function check(form) {
         var email = form.email.value; //폼의 네임속성이 email인거의 값을 가져온다.
-        var regularEx = /^[a-zA-Z]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
+        var regularEx = /^[a-zA-Z0-9._~!@#$%^&*()-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         //    /^ 정규식의 시작
         // 알파벳+@알파벳+.com
         //  $/ 는 정규식의 끝

@@ -41,7 +41,6 @@ public class HomeController {
             List<ProdDto> prodcateThree = new ArrayList<>(); // 도시락.볶음밥
             List<ProdDto> prodcateFour = new ArrayList<>(); // 음료.단백질
 
-
             // 상품에서 4가지 카테고리에 대해서 이터레이터 돌면서 저장
             for (ProdDto dto : prodDto) {
                 if(dto.getCateCd()>=100 && dto.getCateCd()<=199){
