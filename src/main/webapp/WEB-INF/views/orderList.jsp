@@ -37,14 +37,14 @@
                     <legend>상세 검색</legend>
                     <div class="search-detail-top">
                         <div class="search-detail-date-wrapper">
-                            <input type="text" readonly="" id="searchDateFrom" class="input-text hasDatepicker" value="2023-01-26">
+                            <input type="text" readonly="" id="searchDateFrom" class="input-text hasDatepicker" value="<fmt:formatDate value="${oneMonthAgo}" pattern="yyyy-MM-dd" />">
                             ~
-                            <input type="text" readonly="" id="searchDateTo" class="input-text hasDatepicker" value="2023-07-26">
+                            <input type="text" readonly="" id="searchDateTo" class="input-text hasDatepicker" value="<fmt:formatDate value="${today}" pattern="yyyy-MM-dd" />">
                         </div>
                     </div>
                     <div class="search-detail-filter">
                         <div class="search-detail-filter-btn-group">
-                            <button type="button" class="detail-filter-btn" value="1">1개월</button>
+                            <button type="button" class="detail-filter-btn active" value="1">1개월</button>
                             <button type="button" class="detail-filter-btn" value="3">3개월</button>
                             <button type="button" class="detail-filter-btn" value="6">6개월</button>
                             <button type="button" class="detail-filter-btn" value="12">12개월</button>

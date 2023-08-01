@@ -228,7 +228,7 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">주소</th>
-                                        <td id="addr">(${dlvOne.zpcd}) ${dlvOne.dlvAddr} ${dlvOne.dtlAddr}&nbsp;<em class="badge-point" style="display: inline-block">기본배송지</em></td>
+                                        <td id="addr">(${dlvOne.zpcd})&nbsp;${dlvOne.dlvAddr}&nbsp; ${dlvOne.dtlAddr}&nbsp;<em class="badge-point" style="display: inline-block">기본배송지</em></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">휴대전화</th>
@@ -514,9 +514,9 @@
                 postCd.value = data.zonecode;
 
                 if(data.userSelectedType === 'R') {
-                    mainAddr = data.roadAddress;
+                    mainAddr = data.roadAddress + ' (' + data.buildingName + ')';
                 } else {
-                    mainAddr = data.jibunAddress;
+                    mainAddr = data.jibunAddress + ' (' + data.buildingName + ')';
                 }
 
                 dlvAddr.value = mainAddr;
@@ -667,7 +667,7 @@
                                                 let zpcd = result.zpcd;
                                                 let dlvAddr = result.dlvAddr;
                                                 let dtlAddr = result.dtlAddr
-                                                let addr = '(' + zpcd + ')' + dlvAddr + dtlAddr;
+                                                let addr = '(' + zpcd + ') ' + dlvAddr + ' ' + dtlAddr;
                                                 let mpNo = result.mpNo;
 
                                                 $('#rcpr').text(name);

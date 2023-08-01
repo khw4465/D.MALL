@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
 import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -149,12 +150,15 @@ public class OrderController {
             }
 
             HttpSession session = request.getSession();
-            String custId = (String) session.getAttribute("id");         // 로그인 한 아이디 가져오기
+            String custId = (String) session.getAttribute("id");              // 로그인 한 아이디 가져오기
+
+            Calendar calendar = Calendar.getInstance();                             // 오늘 날짜 구하기 (조회용)
+            request.setAttribute("today", calendar.getTime());
+            calendar.add(Calendar.MONTH, -1);                                // 한달 전 날짜
+            request.setAttribute("oneMonthAgo", calendar.getTime());
 
             List<OrderDto> ordList = orderListService.getOrdMonth(custId,1);
             m.addAttribute("list", ordList);
-
-
 
 
 //           // orderList 페이지 핸들러 코드 추가
@@ -194,8 +198,13 @@ public class OrderController {
         if(!loginCheck(request))
             return "redirect:/login/login?toURL="+request.getRequestURL();      // 로그인을 안했으면 로그인 화면으로 이동
 
-            HttpSession session = request.getSession();                         // 로그인 한 아이디 가져오기
-            String custId = (String)session.getAttribute("id");
+        HttpSession session = request.getSession();                             // 로그인 한 아이디 가져오기
+        String custId = (String)session.getAttribute("id");
+
+        Calendar calendar = Calendar.getInstance();                             // 오늘 날짜 구하기 (조회용)
+        request.setAttribute("today", calendar.getTime());
+        calendar.add(Calendar.MONTH, -1);                                // 한달 전 날짜
+        request.setAttribute("oneMonthAgo", calendar.getTime());
 
         return "cnclRtn";
     }

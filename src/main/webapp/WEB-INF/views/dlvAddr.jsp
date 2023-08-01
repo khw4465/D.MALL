@@ -157,9 +157,9 @@
                 postCd.value = data.zonecode;
 
                 if (data.userSelectedType === 'R') {
-                    mainAddr = data.roadAddress;
+                    mainAddr = data.roadAddress + ' (' + data.buildingName + ')';
                 } else {
-                    mainAddr = data.jibunAddress;
+                    mainAddr = data.jibunAddress + ' (' + data.buildingName + ')';
                 }
 
                 dlvAddr.value = mainAddr;
