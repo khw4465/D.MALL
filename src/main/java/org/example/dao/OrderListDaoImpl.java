@@ -1,6 +1,7 @@
 package org.example.dao;
 
 import org.apache.ibatis.session.SqlSession;
+import org.aspectj.weaver.ast.Or;
 import org.example.domain.OrderDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -42,4 +43,13 @@ public class OrderListDaoImpl implements OrderListDao {
         return session.update(namespace + "update", dto);
     }
 
+//    @Override
+//    public List<OrderDto> selectAllPage() throws Exception {
+//        return session.selectList(namespace + "selectAll");
+//    }
+//
+    @Override
+    public List<OrderDto> selectPage(Map map) throws Exception {
+        return session.selectList(namespace + "selectPage", map);
+    }
 }

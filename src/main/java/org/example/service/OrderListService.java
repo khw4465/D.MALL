@@ -4,6 +4,7 @@ import org.example.domain.OrderDto;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 public interface OrderListService {
     OrderDto getOrder(String ordCd, String custId) throws Exception;
@@ -19,4 +20,10 @@ public interface OrderListService {
     int addOrder(String ordCd, String custId, int totDcPrc, int dlvAddrId, String dlvMsg) throws Exception;
 
     int modifyStatus(OrderDto dto) throws Exception;
+//
+    List<OrderDto> getPage(Map map) throws Exception;
+//
+//    List<OrderDto> getList() throws Exception;
+
+
 }
