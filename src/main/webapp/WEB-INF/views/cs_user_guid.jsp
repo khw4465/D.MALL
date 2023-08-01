@@ -20,8 +20,8 @@
     <meta charset="UTF-8">
     <title>이용안내</title>
     <link rel="stylesheet" href="<c:url value='/css/csmain.css'/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/main1.css'/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/main2.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/footer.css'/>">
 </head>
 
 <body>

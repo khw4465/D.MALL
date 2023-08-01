@@ -19,4 +19,7 @@ public interface OrderListDao {
     int insert(OrderDto dto) throws Exception;
 
     int updOrdStatus(OrderDto dto) throws Exception;
+
+//    List<OrderDto> selectAllPage() throws Exception;
+    List<OrderDto> selectPage(Map map) throws Exception;
 }

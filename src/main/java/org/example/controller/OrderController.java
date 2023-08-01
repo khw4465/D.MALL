@@ -21,8 +21,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.example.domain.OrderListPageHandler;
 
 @Controller
 @RequestMapping("/order")
@@ -136,7 +138,12 @@ public class OrderController {
     }
     
     @GetMapping("/list")
-    public String orderList(Model m, HttpServletRequest request){
+    public String orderList(Model m, HttpServletRequest request,
+                            @RequestParam(defaultValue = "1") Integer page,
+                            @RequestParam(defaultValue = "5") Integer pageSize){
+//        if(page == null) page = 1;
+//        if(pageSize == null) pageSize = 5;
+
         try {
             if(!loginCheck(request)) {
                 return "redirect:/login/login?toURL="+request.getRequestURL();      // 로그인을 안했으면 로그인 화면으로 이동
@@ -147,6 +154,34 @@ public class OrderController {
 
             List<OrderDto> ordList = orderListService.getOrdMonth(custId,1);
             m.addAttribute("list", ordList);
+
+
+
+
+//           // orderList 페이지 핸들러 코드 추가
+            int totalCnt = orderListService.getOrdMonth(custId,1).size();
+            m.addAttribute("totalCnt", totalCnt);
+
+
+            OrderListPageHandler orderListPageHandler = new OrderListPageHandler(totalCnt, page, pageSize);
+
+            Map map = new HashMap();
+            map.put("custId", custId);
+            map.put("offset", (page - 1) * pageSize);
+            map.put("pageSize", pageSize);
+            List<OrderDto> ordList1 = orderListService.getPage(map); // test
+            m.addAttribute("list1",ordList1);
+
+            List<OrderDto> list = orderListService.getOrdMonth(custId,1);
+
+            System.out.println("list = " + list);
+            System.out.println("page = " + page);
+            System.out.println("pageSize = " + pageSize);
+            System.out.println("totalCnt = " + totalCnt);
+
+
+            m.addAttribute("handlelist", list);
+            m.addAttribute("pagehandler", orderListPageHandler);
 
             return "orderList";
         } catch (Exception e) {

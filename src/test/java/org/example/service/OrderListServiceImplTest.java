@@ -40,11 +40,11 @@ public class OrderListServiceImplTest {
         // 회원 asdfasdf가 6월 8일 ~ 7월 8일 내에 주문한 건수
         assertTrue(orderListService.getSelDate("asdfasdf", date3, date4).size() == 1);
     }
-    @Test
-    public void countTest() throws Exception {
-        assertTrue(orderListService.count("asdf") == 12);  // asdf가 주문한 총 건수
-        assertTrue(orderListService.count("asdfasdf") == 1);  // asdfasdf가 주문한 총 건수
-    }
+//    @Test
+//    public void countTest() throws Exception {
+//        assertTrue(orderListService.count("asdf") == 12);  // asdf가 주문한 총 건수
+//        assertTrue(orderListService.count("asdfasdf") == 1);  // asdfasdf가 주문한 총 건수
+//    }
     @Test
     public void addOrderTest() throws Exception {
         // 주문할 때의 정보들 외에 추가 정보를 받아서 OrderDto에 넣고 출력

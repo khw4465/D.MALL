@@ -20,8 +20,9 @@
     <meta charset="UTF-8">
     <title>D.gaja</title>
     <link rel="stylesheet" href="<c:url value='/css/prodsearch.css'/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/main1.css'/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/main2.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/footer.css'/>">
+
 </head>
 <body>
 <jsp:include page="header.jsp"/>

@@ -480,3 +480,9 @@
     font-size: 12px;
     font-weight: 400;
 }
+
+.handle_usg {
+    position: relative;
+    top: 50px;
+    left: 300px;
+}
