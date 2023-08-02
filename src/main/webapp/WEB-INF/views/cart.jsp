@@ -88,7 +88,7 @@
                     </tr>
                     </thead>
                     <c:forEach var="cart" items="${cartList}">
-                        <tbody class="xans-element- xans-order xans-order-list center">
+                        <tbody id="list${cart.prodCd}" class="xans-element- xans-order xans-order-list center">
                         <c:set var="optCount" value="${optLists.get(cartList.indexOf(cart)).size()}"/>
                         <c:forEach var="opt" items="${optLists.get(cartList.indexOf(cart))}" varStatus="i">
                             <tr class="xans-record-">
@@ -197,7 +197,7 @@
             <tbody class="center">
             <tr>
                 <td>
-                    <div class="box txt16"><strong><span class="txt23"><span
+                    <div class="box txt16"><strong><span class="txt23"><span id="totPrc"
                             class="total_product_price_display_front"><fmt:formatNumber value="${ord.totPrc}"
                                                                                         type="number"
                                                                                         pattern="#,###"/></span></span>원</strong>
@@ -205,14 +205,14 @@
                     </div>
                 </td>
                 <td class="displaynone">
-                    <div class="box txt16"><strong><span class="txt23"><span
+                    <div class="box txt16"><strong><span class="txt23"><span id="totDcPrc"
                             class="total_product_vat_price_front">0</span></span>원</strong> <span
                             class="txt14 displaynone"><span class="total_product_vat_price_back"></span></span></div>
                 </td>
                 <td>
                     <div class="box shipping txt16">
                         <strong class="txt23">+ </strong>
-                        <strong><span id="total_delv_price_front" class="txt23"><span
+                        <strong><span id="total_delv_price_front" class="txt23"><span id="dlvPrc"
                                 class="total_delv_price_front"><fmt:formatNumber value="${ord.dlvPrc}" type="number"
                                                                                  pattern="#,###"/></span></span>원</strong>
                         <span class="txt14 displaynone"><span class="total_delv_price_back"></span></span>
@@ -228,7 +228,7 @@
                 </td>
                 <td>
                     <div class="box txtEm txt16">
-                        <strong class="txt23">= </strong><strong><span id="total_order_price_front"
+                        <strong class="txt23">= </strong><strong><span id="finPrc"
                                                                        class="txt23"><fmt:formatNumber
                             value="${ord.finPrc}" type="number" pattern="#,###"/></span>원</strong> <span
                             class="txt14 displaynone"><span id="total_order_price_back"></span></span>
@@ -236,7 +236,7 @@
                 </td>
                 <td class="total_mileage_price_area ">
                     <div class="box txt16">
-                        <strong><span id="mTotalMileagePrice" class="txt23"><c:out
+                        <strong><span id="point" class="txt23"><c:out
                                 value="${Math.round(ord.finPrc/100)}"/></span>P</strong>
                     </div>
                 </td>
@@ -279,10 +279,10 @@
 
     <form action="/order/order">
         <div class="btn-bottom-area">
-            <input type="hidden" id="totPrc" name="totPrc" value="<c:out value="${ord.totPrc}" />">
-            <input type="hidden" id="totDcPrc" name="totDcPrc" value="<c:out value="${ord.totDcPrc}" />">
-            <input type="hidden" id="dlvPrc" name="dlvPrc" value="<c:out value="${ord.dlvPrc}" />">
-            <input type="hidden" id="finPrc" name="finPrc" value="<c:out value="${ord.finPrc}" />">
+            <input type="hidden" class="totPrc" name="totPrc" value="<c:out value="${ord.totPrc}" />">
+            <input type="hidden" class="totDcPrc" name="totDcPrc" value="<c:out value="${ord.totDcPrc}" />">
+            <input type="hidden" class="dlvPrc" name="dlvPrc" value="<c:out value="${ord.dlvPrc}" />">
+            <input type="hidden" class="finPrc" name="finPrc" value="<c:out value="${ord.finPrc}" />">
         </div>
     </form>
 </div>
@@ -351,6 +351,12 @@
     // AJAX
     $(document).ready(function () {
 
+        let totPrc = parseInt($('#totPrc').text().replace(/,/g, ''));       // 모든 상품의 가격을 합한 금액
+        let totDcPrc = parseInt($('#totDcPrc').text().replace(/,/g, ''));      // 각각의 할인 금액을 모두 더한 금액
+        let dlvPrc = parseInt($('#dlvPrc').text().replace(/,/g, ''));         // 배송비
+        let finPrc = parseInt($('#finPrc').text().replace(/,/g, ''));   // 위의 3개의 가격을 계산한 최종 금액
+        let point = parseInt($('#point').text())
+
         // 전체 delete
         $("#removeAll").click(function () {
             if(confirm('전체 상품을 삭제하시겠습니까?')) {
@@ -370,21 +376,25 @@
             }
         });
 
-
         // 선택 delete
         $("#removeCheck").click(function () {
             const selectedProdCds = [];
-            let totProdPrc = 0;
+            let selectedProdPrc = 0;
+
             const checkboxes = document.querySelectorAll('[type="checkbox"][class^="CBox"]:checked')    // 체크된 체크박스 선택
             checkboxes.forEach(function (checkbox) {                                                    // 하나씩 뽑아서 상품코드 추출
                 const prodCd = checkbox.classList[0].substring(4);
                 selectedProdCds.push(prodCd);
 
-                const optPrices = checkbox.querySelectorAll('.totPrc' + prodCd);
+                const optPrices = document.querySelectorAll('.totPrc' + prodCd);
                 optPrices.forEach(function (optPriceElem) {
-                    totProdPrc += parseInt(optPriceElem.innerHTML);
+                    selectedProdPrc += parseInt(optPriceElem.innerHTML.replace(/,/g, ''));
                 });
             });
+            totPrc -= selectedProdPrc
+            dlvPrc = totPrc > 30000 ? 0 : 3000;
+            finPrc = totPrc - totDcPrc + dlvPrc;
+            point = Math.round(finPrc/100);
             const jsonData = JSON.stringify({prodCds: selectedProdCds});
             $.ajax({
                 type: 'DELETE',       // 요청 메서드
@@ -393,22 +403,17 @@
                 dataType: 'json', // 전송받을 데이터의 타입
                 data: jsonData,  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
                 success: function (result) {  // 서버로부터 응답이 도착하면 호출될 함수
-                    console.log('성공')
-                    // for (let i = 0; i < selectedProdCds.length; i++) {
-                    //     // console.log(selectedProdCds[i])
-                    //     document.querySelector("#list" + selectedProdCds[i]).remove();
-                    // }
-                    // emptyCartMsg();
-                    //
-                    // totPrc -= totProdPrc
-                    // dlvPrc = totPrc > 30000 ? 0 : 3000;
-                    // finPrc = totPrc - totDcPrc + dlvPrc;
-                    //
-                    // $('.totPrc').html(totPrc);              // 총 상품금액 업데이트
-                    // $('.totDcPrc').html(totDcPrc);          // 총 할인금액 업데이트
-                    // $('.dlvPrc').html(dlvPrc);              // 배송비 업데이트
-                    // $('.finPrc').html(finPrc);              // 최종금액 업데이트
-                    // $('.totalOrderPrice').html(finPrc + '원 주문하기');
+                    for (let i = 0; i < selectedProdCds.length; i++) {
+                        $( "#list" + selectedProdCds[i]).remove();
+                    }
+
+                    $('#totPrc').html(totPrc);              // 총 상품금액 업데이트
+                    $('#totDcPrc').html(totDcPrc);          // 총 할인금액 업데이트
+                    $('#dlvPrc').html(dlvPrc);              // 배송비 업데이트
+                    $('#finPrc').html(finPrc);              // 최종금액 업데이트
+                    $('#point').html(point);
+                    emptyCartMsg();
+
                 },
                 error: function () {
                     alert("error");
@@ -416,12 +421,6 @@
             }); // $.ajax()
         });
 
-
-
-        let totPrc = parseInt(document.getElementsByClassName('totPrc')[0].innerText);       // 모든 상품의 가격을 합한 금액
-        let totDcPrc = parseInt(document.getElementsByClassName('totDcPrc')[0].innerText);      // 각각의 할인 금액을 모두 더한 금액
-        let dlvPrc = parseInt(document.getElementsByClassName('dlvPrc')[0].innerText);         // 배송비
-        let finPrc = parseInt(document.getElementsByClassName('finPrc')[0].innerText);   // 위의 3개의 가격을 계산한 최종 금액
 
         let prodlist = Array.from(document.getElementById("cart").children);       // 장바구니 목록의 자식(개별상품 목록)을 배열화
 

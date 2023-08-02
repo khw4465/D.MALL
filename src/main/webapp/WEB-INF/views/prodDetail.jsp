@@ -117,7 +117,7 @@
     <div>
         <h1>상품 상세 </h1>
     </div>
-    <img class="mainImg" src="<c:out value="${imgList.get(0).imgPath}"/><c:out value="${imgList.get(0).prodCd}"/>.<c:out value="${imgList.get(0).imgExtns}"/>" alt="">
+    <img class="mainImg" src="/img/<c:out value="${imgList.get(0).prodCd}"/>.<c:out value="${imgList.get(0).imgExtns}"/>" alt="">
         <div class="content">
             <div class="prodDesc">
             <h2><c:out value="${prodDto.prodName}"/></h2>
@@ -168,7 +168,7 @@
             <div class="slider">
                 <c:forEach var="img" items="${imgList}">
                     <div>
-                        <img class="prodImg${img.imgCd}" src="${img.imgPath}${img.prodCd}_${img.imgCd}.${img.imgExtns}" alt="">
+                        <img class="prodImg${img.imgCd}" src="/img/${img.prodCd}_${img.imgCd}.${img.imgExtns}" alt="">
                     </div>
                 </c:forEach>
             </div>

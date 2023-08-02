@@ -257,6 +257,7 @@ public class OrderController {
     }
 
    @GetMapping("/complete")
+   @Transactional(rollbackFor = Exception.class)
    public String ordComplete(Model m, HttpSession session) {
        try {
            System.out.println("\"hi\" = " + "hi");
