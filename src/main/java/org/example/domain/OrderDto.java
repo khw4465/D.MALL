@@ -3,8 +3,10 @@ import java.util.Date;
 import java.util.Objects;
 
 public class OrderDto {
+    private int seq;
     private String ordCd;   // 주문코드
     private String custId;  // 회원아이디
+    private String custName;
     private String mainProdCd; // 대표상품코드
     private String prodName; // 상품명
     private int totProdCnt;  // 상품개수
@@ -35,9 +37,10 @@ public class OrderDto {
         this.totPrc = totPrc;
         this.totQty = totQty;
     }
-    public OrderDto(String ordCd, String custId, String mainProdCd, String prodName, int totProdCnt, int totPrc, int totQty, int totDcPrc, int dlvAddrId, int dlvPrc, String dlvMsg, int finPrc) {
+    public OrderDto(String ordCd, String custId, String custName, String mainProdCd, String prodName, int totProdCnt, int totPrc, int totQty, int totDcPrc, int dlvAddrId, int dlvPrc, String dlvMsg, int finPrc) {
         this.ordCd = ordCd;
         this.custId = custId;
+        this.custName = custName;
         this.mainProdCd = mainProdCd;
         this.prodName = prodName;
         this.totProdCnt = totProdCnt;
@@ -66,9 +69,11 @@ public class OrderDto {
         this.totQty = totQty;
     }
 
-    public OrderDto(String ordCd, String custId, String mainProdCd, String prodName, int totProdCnt, int totPrc, int totQty, int totDcPrc, String ordStus, Date stusChgDttm, String cfmYn, Date ordDttm, int dlvAddrId, int dlvPrc, String dlvMsg, int finPrc, String remark, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
+    public OrderDto(int seq, String ordCd, String custId, String custName, String mainProdCd, String prodName, int totProdCnt, int totPrc, int totQty, int totDcPrc, String ordStus, Date stusChgDttm, String cfmYn, Date ordDttm, int dlvAddrId, int dlvPrc, String dlvMsg, int finPrc, String remark, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
+        this.seq = seq;
         this.ordCd = ordCd;
         this.custId = custId;
+        this.custName = custName;
         this.mainProdCd = mainProdCd;
         this.prodName = prodName;
         this.totProdCnt = totProdCnt;
@@ -90,6 +95,10 @@ public class OrderDto {
         this.lastUpdr = lastUpdr;
     }
 
+    public int getSeq() { return seq; }
+
+    public void setSeq(int seq) { this.seq = seq; }
+
     public String getOrdCd() {
         return ordCd;
     }
@@ -105,6 +114,10 @@ public class OrderDto {
     public void setCustId(String custId) {
         this.custId = custId;
     }
+
+    public String getCustName() { return custName; }
+
+    public void setCustName(String custName) { this.custName = custName; }
 
     public String getMainProdCd() { return mainProdCd; }
 
@@ -261,6 +274,7 @@ public class OrderDto {
 
         OrderDto orderDto = (OrderDto) o;
 
+        if (seq != orderDto.seq) return false;
         if (totProdCnt != orderDto.totProdCnt) return false;
         if (totPrc != orderDto.totPrc) return false;
         if (totQty != orderDto.totQty) return false;
@@ -270,6 +284,7 @@ public class OrderDto {
         if (finPrc != orderDto.finPrc) return false;
         if (!Objects.equals(ordCd, orderDto.ordCd)) return false;
         if (!Objects.equals(custId, orderDto.custId)) return false;
+        if (!Objects.equals(custName, orderDto.custName)) return false;
         if (!Objects.equals(mainProdCd, orderDto.mainProdCd)) return false;
         if (!Objects.equals(prodName, orderDto.prodName)) return false;
         if (!Objects.equals(ordStus, orderDto.ordStus)) return false;
@@ -287,8 +302,10 @@ public class OrderDto {
 
     @Override
     public int hashCode() {
-        int result = ordCd != null ? ordCd.hashCode() : 0;
+        int result = seq;
+        result = 31 * result + (ordCd != null ? ordCd.hashCode() : 0);
         result = 31 * result + (custId != null ? custId.hashCode() : 0);
+        result = 31 * result + (custName != null ? custName.hashCode() : 0);
         result = 31 * result + (mainProdCd != null ? mainProdCd.hashCode() : 0);
         result = 31 * result + (prodName != null ? prodName.hashCode() : 0);
         result = 31 * result + totProdCnt;
@@ -314,8 +331,10 @@ public class OrderDto {
     @Override
     public String toString() {
         return "OrderDto{" +
-                "ordCd='" + ordCd + '\'' +
+                "seq=" + seq +
+                ", ordCd='" + ordCd + '\'' +
                 ", custId='" + custId + '\'' +
+                ", custName='" + custName + '\'' +
                 ", mainProdCd='" + mainProdCd + '\'' +
                 ", prodName='" + prodName + '\'' +
                 ", totProdCnt=" + totProdCnt +

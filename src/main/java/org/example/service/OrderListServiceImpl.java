@@ -45,14 +45,19 @@ public class OrderListServiceImpl implements OrderListService {
         map.put("endDate", endDate);
         return orderListDao.selectByDate(map);
     }
+
     @Override
-    public int count(String custId) throws Exception {
-        return orderListDao.count(custId);
+    public List<OrderDto> getAllOrder(Map map) throws Exception {
+        return orderListDao.getAllOrd(map);
     }
     @Override
-    public int addOrder(String ordCd, String custId, int totDcPrc, int dlvAddrId, String dlvMsg) throws Exception {
+    public int count() throws Exception {
+        return orderListDao.count();
+    }
+    @Override
+    public int addOrder(String ordCd, String custId, String custName, int totDcPrc, int dlvAddrId, String dlvMsg) throws Exception {
         OrderDto dto = cartDao.ordHist(custId);
-        OrderDto dto1 = new OrderDto(ordCd, dto.getCustId(), dto.getMainProdCd(), dto.getProdName(), dto.getTotProdCnt(), dto.getTotPrc(), dto.getTotQty(), totDcPrc, dlvAddrId, dto.getDlvPrc(), dlvMsg, dto.getFinPrc()-totDcPrc);
+        OrderDto dto1 = new OrderDto(ordCd, dto.getCustId(), custName, dto.getMainProdCd(), dto.getProdName(), dto.getTotProdCnt(), dto.getTotPrc(), dto.getTotQty(), totDcPrc, dlvAddrId, dto.getDlvPrc(), dlvMsg, dto.getFinPrc()-totDcPrc);
         return orderListDao.insert(dto1);
     }
     @Override

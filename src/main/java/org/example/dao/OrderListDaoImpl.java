@@ -1,7 +1,6 @@
 package org.example.dao;
 
 import org.apache.ibatis.session.SqlSession;
-import org.aspectj.weaver.ast.Or;
 import org.example.domain.OrderDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -31,8 +30,12 @@ public class OrderListDaoImpl implements OrderListDao {
         return session.selectList(namespace + "selectAllByDate", map);
     }
     @Override
-    public int count(String custId) throws Exception {
-        return session.selectOne(namespace + "count", custId);
+    public List<OrderDto> getAllOrd(Map map) throws Exception {
+        return session.selectList(namespace + "getAllOrd", map);
+    }
+    @Override
+    public int count() throws Exception {
+        return session.selectOne(namespace + "count");
     }
     @Override
     public int insert(OrderDto dto) throws Exception {

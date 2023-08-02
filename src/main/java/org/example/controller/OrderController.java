@@ -1,10 +1,7 @@
 package org.example.controller;
 
 import org.example.domain.*;
-import org.example.service.CartService;
-import org.example.service.OrderListService;
-import org.example.service.DlvAddrService;
-import org.example.service.PointService;
+import org.example.service.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -33,6 +30,7 @@ public class OrderController {
     OrderListService orderListService;
     CartService cartService;
     PointService pointService;
+    CustService custService;
 
     public OrderController(DlvAddrService dlvAddrService, OrderListService orderListService, CartService cartService,
                            PointService pointService) {
@@ -218,10 +216,10 @@ public class OrderController {
             String dlvMsg = orderDto.getDlvMsg();                         // ord.jsp에서 dlvMsg를 배송메시지로 얻어옴
             String custId = (String)session.getAttribute("id");     // 세션으로 회원아이디 가져오기
             int totDcPrc = orderDto.getTotDcPrc();
+            DlvAddrDto getDlv = dlvAddrService.getOneAddr(custId, 1);                         // 회원의 배송지목록 1번의 dto 가져오기
+            CustDto getCustInfo = custService.loginCust(custId);
 
-//            orderService.getOneAddr(custId, 1);                         // 회원의 배송지목록 1번의 dto 가져오기
-
-            orderListService.addOrder(ordCd,custId,totDcPrc,1,dlvMsg);    // 주문내역 추가
+            orderListService.addOrder(ordCd,custId,getCustInfo.getName(),totDcPrc,getDlv.getAddrNo(),dlvMsg);    // 주문내역 추가
 
             OrderDto ordDto1 = orderListService.getLastOrd(custId);       // 세션에 최근 주문내역 저장
             session.setAttribute("lastOrder", ordDto1);
@@ -346,6 +344,31 @@ public class OrderController {
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/adminOrdHist")
+    public String adminOrd(Model m,
+                           @RequestParam(defaultValue = "1") Integer page,
+                           @RequestParam(defaultValue = "10") Integer pageSize) {
+        try {
+            int totalCnt = orderListService.count();
+            m.addAttribute("totalCnt",totalCnt);
+
+            CustPageHandler handler = new CustPageHandler(totalCnt,page,pageSize);
+            m.addAttribute("ph",handler);
+
+            // map에 offset,pageSize,회원아이디 입력
+            Map map = new HashMap();
+            map.put("offset", (page-1)*pageSize);
+            map.put("pageSize",pageSize);
+
+            List<OrderDto> list = orderListService.getAllOrder(map);
+            m.addAttribute("list", list);
+
+            return "adminOrdHist";
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 

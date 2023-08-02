@@ -14,7 +14,9 @@ public interface OrderListDao {
 
     List<OrderDto> selectByDate(Map map) throws Exception;
 
-    int count(String custId) throws Exception;
+    List<OrderDto> getAllOrd(Map map) throws Exception;
+
+    int count() throws Exception;
 
     int insert(OrderDto dto) throws Exception;
 

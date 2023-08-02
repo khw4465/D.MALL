@@ -30,16 +30,21 @@
         AND ord_dttm BETWEEN #{startDate} AND #{endDate}
         ORDER BY ord_dttm desc
     </select>
-    <select id="count" parameterType="string" resultType="int">
+    <select id="count" resultType="int">
         SELECT count(*)
         FROM ord
-        WHERE cust_id = #{custId}
+    </select>
+    <select id="getAllOrd" parameterType="map" resultType="OrderDto">
+        SELECT *
+        FROM ord
+        ORDER BY seq desc
+        LIMIT #{offset}, #{pageSize}
     </select>
     <insert id="insert" parameterType="OrderDto">
         INSERT INTO ord
-            (ord_cd, cust_id, main_prodCd, prod_name, tot_prod_Cnt, tot_prc, tot_qty, tot_dc_prc, dlv_addr_id, dlv_prc, dlv_msg, fin_prc)
+            (ord_cd, cust_id, cust_name, main_prodCd, prod_name, tot_prod_Cnt, tot_prc, tot_qty, tot_dc_prc, dlv_addr_id, dlv_prc, dlv_msg, fin_prc)
         VALUES
-            (#{ordCd}, #{custId}, #{mainProdCd}, #{prodName}, #{totProdCnt}, #{totPrc}, #{totQty}, #{totDcPrc}, #{dlvAddrId}, #{dlvPrc}, #{dlvMsg}, #{finPrc})
+            (#{ordCd}, #{custId}, #{custName}, #{mainProdCd}, #{prodName}, #{totProdCnt}, #{totPrc}, #{totQty}, #{totDcPrc}, #{dlvAddrId}, #{dlvPrc}, #{dlvMsg}, #{finPrc})
     </insert>
     <update id="update" parameterType="OrderDto">
         UPDATE ord

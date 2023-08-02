@@ -15,9 +15,11 @@ public interface OrderListService {
 
     List<OrderDto> getSelDate(String custId, LocalDate startDate, LocalDate endDate) throws Exception;
 
-    int count(String custId) throws Exception;
+    List<OrderDto> getAllOrder(Map map) throws Exception;
 
-    int addOrder(String ordCd, String custId, int totDcPrc, int dlvAddrId, String dlvMsg) throws Exception;
+    int count() throws Exception;
+
+    int addOrder(String ordCd, String custId, String custName, int totDcPrc, int dlvAddrId, String dlvMsg) throws Exception;
 
     int modifyStatus(OrderDto dto) throws Exception;
 //

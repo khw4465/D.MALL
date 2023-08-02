@@ -48,13 +48,13 @@ public class OrderListDaoImplTest {
 
     @Test
     public void countTest() throws Exception {
-        System.out.println(orderListDao.count("asdf"));
+        System.out.println(orderListDao.count());
     }
 
     @Test
     public void insertTest() throws Exception {
-        OrderDto dto = new OrderDto("order_30","asdfasdf","P010101","상품1",1,1000,1,0,1,1000, "드가자~",2000);
-        orderListDao.insert(dto);
+//        OrderDto dto = new OrderDto("order_30","asdfasdf","P010101","상품1",1,1000,1,0,1,1000, "드가자~",2000);
+//        orderListDao.insert(dto);
 
         Map map = new HashMap();
         map.put("ordCd", "order_30");

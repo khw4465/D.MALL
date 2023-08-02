@@ -30,7 +30,7 @@
                                         주문
                                     </a>
                                     <ul class="submenu" style="display: none;">
-                                        <li><a href="#">주문 관리</a></li>
+                                        <li><a href="<c:url value='order/adminOrdHist'/>">주문 관리</a></li>
                                         <li><a href="#">회원 배송지 관리</a></li>
                                         <li><a href="#">주문 이력</a></li>
                                         <li><a href="#">주문 통계</a></li>
