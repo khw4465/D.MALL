@@ -5,6 +5,7 @@
 <head>
     <title>상품상세</title>
     <link rel="stylesheet" href="<c:url value='/css/prodDetailtest.css'/>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 <body>
 <div id="wrap">
@@ -44,11 +45,10 @@
                                 <div class="sale displaynone">
                                     <div class="price"><strong class="sale"><span id="span_product_price_text"
                                                                                   class="ProductPrice">19,900원 <span
-                                            style="font-size:12px;color:#555555;">( 19,900원
-                                                        할인)</span></span></strong></div>
+                                            style="font-size:12px;color:#555555;"></span></span></strong></div>
                                 </div>
                                 <div class="discount_rate" data-custom="25,960원" data-price="19900" data-sale="">
-                                    <span>23%</span>
+                                    <span>23%할인</span>
                                 </div>
                             </div>
                         </div>
@@ -96,20 +96,15 @@
                             </tr>
                             </tbody>
                         </table>
-                        <dl class="xans-element- xans-product xans-product-quantity ec-base-desc quantity xans-record-">
+                        <dl
+                                class="xans-element- xans-product xans-product-quantity ec-base-desc quantity xans-record-">
                             <dt>수량</dt>
                             <dd>
                                 <div class="ec-base-qty">
-                                    <input id="quantity" name="quantity[]" style="" option-sequence="1"
-                                           class="single-quantity-input ec-debug" product-no="485" value="1"
-                                           type="text"> <a href="javascript:;" class="qtyUp eClearUp"><img
-                                        src="//img.echosting.cafe24.com/skin/base/common/btn_quantity_up.gif"
-                                        id="quantity_up_id" alt="증가"
-                                        class="up quantity-handle-F quantity-handle option-sequence-1 product-no-485 ec-debug up"></a>
-                                    <a href="javascript:;" class="qtyDown eClearDown"><img
-                                            src="//img.echosting.cafe24.com/skin/base/common/btn_quantity_down.gif"
-                                            id="quantity_down_id" alt="감소"
-                                            class="down quantity-handle-F quantity-handle option-sequence-1 product-no-485 ec-debug down"></a>
+                                    <input id="quantity" name="quantity[]" type="number"
+                                           class="single-quantity-input" product-no="485" value="1" min="1">
+                                    <button id="increaseQuantity" type="button"><i class="fas fa-arrow-up"></i></button>
+                                    <button id="decreaseQuantity" type="button"><i class="fas fa-arrow-down"></i></button>
                                 </div>
                             </dd>
                         </dl>
@@ -156,5 +151,19 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('increaseQuantity').addEventListener('click', function () {
+        var input = document.getElementById('quantity');
+        input.value = parseInt(input.value) + 1;
+    });
+
+    document.getElementById('decreaseQuantity').addEventListener('click', function () {
+        var input = document.getElementById('quantity');
+        var currentValue = parseInt(input.value);
+        if (currentValue > 1) { // 최소값 1을 유지
+            input.value = currentValue - 1;
+        }
+    });
+</script>
 </body>
 </html>

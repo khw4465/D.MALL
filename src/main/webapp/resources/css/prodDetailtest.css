@@ -2243,3 +2243,7 @@ li {
 h1,h3 {
     margin: 0;
 }
+#increaseQuantity i,
+#decreaseQuantity i {
+    color: blue; /* 또는 #0000FF와 같은 HEX 값 */
+}
