@@ -47,7 +47,7 @@
         <c:forEach var="ProdAll" items="${prodDtoAll}">
             <div class="responsive ">
                 <div class="gallery">
-                    <a target="_blank" href="">
+                    <a target="_blank" href="<c:url value='/prod/detail/${ProdAll.prodCd}'/>">
                         <img src='${ProdAll.prodImg}.png' alt="Cinque Terre" width="600" height="400">
                     </a>
                 </div>
