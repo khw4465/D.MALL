@@ -87,6 +87,9 @@ table {
 }
 
 tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+tr:nth-child(odd) {
     background-color: #f0f0f070;
 }
 
@@ -190,4 +193,9 @@ td.title:hover {
 
 .btn-write:hover {
     text-decoration: underline;
+}
+.cust-container{
+    margin-top: 100px;
+    margin-left: 10%;
+    margin-right: 10%;
 }
