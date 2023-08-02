@@ -48,6 +48,9 @@ body, html {
     color: #adb5bd;
     padding: 5px 10px;
 }
+.submenu {
+    display: none;
+}
 
 .dashboard1 ul.menu li ul.submenu li a:hover,
 .dashboard1 ul.menu li ul.submenu li a:focus,
