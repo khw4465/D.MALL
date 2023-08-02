@@ -19,7 +19,6 @@ import java.util.Map;
 public class CustHistController { // 이력통계작업 여기서가자
     CustLoginHistService custLoginHistService; //
     CustLoginHistDao custLoginHistDao; // 임시 테스트용
-
     @Autowired
     CustStatsService custStatsService;
 
@@ -69,6 +68,6 @@ public class CustHistController { // 이력통계작업 여기서가자
         m.addAttribute("loginstats",loginstats);
         // 모델에 담는다.
 
-        return "stats"; //나중에 관리자페이지에서 바꿔야함.
+        return "stats"; // 나중에 관리자페이지에서 바꿔야함.
     }
 }

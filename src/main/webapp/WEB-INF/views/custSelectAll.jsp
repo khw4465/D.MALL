@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원리스트</title>
     <link rel="stylesheet" href="<c:url value='/css/custSelectAll.css'/>">
-    .
     <link rel="stylesheet" href="<c:url value='/css/adminHeader.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/admin.css'/>">
 </head>
@@ -35,7 +34,7 @@
 
                 <c:forEach var="custDto" items="${CustListPage}">
                     <tr>
-<%--                        여기에 1~10까지 숫자 필요--%>
+                            <%--                        여기에 1~10까지 숫자 필요--%>
                         <th class="">${custDto.custId}</th>
                         <th class="">${custDto.name}</th>
                         <th class="">${custDto.mpNo}</th>
@@ -48,7 +47,6 @@
                         <th class="">${custDto.gender}</th>
                     </tr>
                 </c:forEach>
-
             </table>
             <br>
             <div class="paging-container">
