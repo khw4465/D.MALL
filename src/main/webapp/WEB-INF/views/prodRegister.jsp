@@ -432,29 +432,6 @@
             }
         });
     });
-    // window.onload = function () {
-    //     var manufacture_date = document.getElementById("manufacture_date");
-    //     var expiry_date = document.getElementById("expiry_date");
-    //     var start_date = document.getElementById("start_date");
-    //     var end_date = document.getElementById("end_date");
-    //
-    //     manufacture_date.addEventListener("change", function () {
-    //         var date = new Date(manufacture_date.value);
-    //         date.setDate(date.getDate() + 100);
-    //         expiry_date.value = date.toISOString().split('T')[0];
-    //     });
-    //
-    //     start_date.addEventListener("change", function () {
-    //         end_date.min = start_date.value;
-    //     });
-    //
-    //     end_date.addEventListener("change", function () {
-    //         if (end_date.value <= start_date.value) {
-    //             alert("판매 종료일시는 판매 시작일시 이후의 날짜로 설정해주세요.");
-    //             end_date.value = "";
-    //         }
-    //     });
-    // };
 
     //상품 할인
     $('input[name="dcCd"]').change(function () {
