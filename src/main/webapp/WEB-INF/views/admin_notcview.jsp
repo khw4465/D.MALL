@@ -30,6 +30,7 @@
 </script>
     <div class="right-list">
         <h3 class="viewtitle">공지사항${mode=="new" ? "쓰기" : ""}</h3>
+
         <div class="use-guide">
             <form action="" id="form">
                 <input type="hidden" name="bbsoNo" value="${NotcDto.bbsoNo}" readonly="readonly">
