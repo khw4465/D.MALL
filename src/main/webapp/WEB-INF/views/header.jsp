@@ -28,7 +28,7 @@
                     </div>
                     <div class="hd_box_table">
                         <h1 class="xans-element- xans-layout xans-layout-logotop ">
-                            <a href="/"><img src="/design/kr/156005c5baf40ff51a327f1c34f2975b_53977.jpg" alt="logo">
+                            <a href="/"><img src="/img/LOGO.png" alt="logo" width="150px" height="60px">
                        </a>
                         </h1>
                         <div class="hd_search">

@@ -111,6 +111,7 @@ html.layer-on,body.layer-on {
 
 .frame-cnt-inner {
     width: 820px;
+    padding-left: 50px;
 }
 
 .frame-cnt-inner-guid{
@@ -1355,6 +1356,7 @@ body.layer-dim .layer-wrap.layer-index:before{content:none}
     outline: none;
     transition: 0.4s;
     font-weight: bold;
+    font-size: 16px;
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
@@ -1370,7 +1372,7 @@ body.layer-dim .layer-wrap.layer-index:before{content:none}
     overflow: hidden;
     transition: max-height 0.2s ease-out;
     position: relative;
-
+    font-size: 17px;
 }
 
 .accordion:after{
