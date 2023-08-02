@@ -84,6 +84,7 @@ public class CustController {
             return "login";
         }
         // 마이페이지 진입시 포인트 보여야함 ( 접속한 회원의 id 꺼)
+        // 포인트 없으면 에러난다. 0으로 라도 세팅해줘야함 -> 회원가입시 세팅 해줘야할듯.
         pointDto pointList = pointService.selectPointOne(custId);
         m.addAttribute("pointResult",pointList.getPoint());
 

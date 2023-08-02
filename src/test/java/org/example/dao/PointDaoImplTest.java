@@ -26,10 +26,24 @@ public class PointDaoImplTest {
     @Test
     public void insert() throws Exception{
 
+//        pointDto point = new pointDto();
+//        for (int i = 13; i <219 ; i++) {
+//            point.setPntId(i);
+//            point.setCustId("asdf");
+//            point.setStus("적립");
+//            point.setChngPnt(100);
+//            point.setPoint(pointDao.selectPointId(String.valueOf((i-1)))+100);
+//            point.setDttm(LocalDateTime.now());
+//            point.setExpiDttm(LocalDateTime.now().plusDays(5));
+//            point.setChgCn("로그인 축하");
+//            point.setPntCd("1"); //포인트 사유코드
+//            pointDao.insert(point);
+//        }
+        System.out.println("\"hello\" = " + "hello");
         pointDto point = new pointDto();
-        for (int i = 13; i <219 ; i++) {
+        for (int i = 234; i <235 ; i++) {
             point.setPntId(i);
-            point.setCustId("asdf");
+            point.setCustId("admin");
             point.setStus("적립");
             point.setChngPnt(100);
             point.setPoint(pointDao.selectPointId(String.valueOf((i-1)))+100);
@@ -39,7 +53,6 @@ public class PointDaoImplTest {
             point.setPntCd("1"); //포인트 사유코드
             pointDao.insert(point);
         }
-        System.out.println("\"hello\" = " + "hello");
 
     }
 

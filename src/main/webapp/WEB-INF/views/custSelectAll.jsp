@@ -35,6 +35,7 @@
 
                 <c:forEach var="custDto" items="${CustListPage}">
                     <tr>
+<%--                        여기에 1~10까지 숫자 필요--%>
                         <th class="">${custDto.custId}</th>
                         <th class="">${custDto.name}</th>
                         <th class="">${custDto.mpNo}</th>

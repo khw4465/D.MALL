@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%--T 제거하는 라이브러리--%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +35,8 @@
                 <div class="">
                     <tr>
                         <th class="">${LoginHistoryDTO.custId}</th>
-                        <th class="">${LoginHistoryDTO.dttm}</th>
+                        <th class="">${fn:replace(LoginHistoryDTO.dttm, 'T', ' ')}</th>
+<%--                        <th class="">${LoginHistoryDTO.dttm}</th>--%>
                         <th class="">${LoginHistoryDTO.scssYn}</th>
                         <th class="">${LoginHistoryDTO.ip}</th>
                         <th class="">${LoginHistoryDTO.failCaus}</th>
