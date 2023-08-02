@@ -161,3 +161,17 @@ padding-bottom: 100px;
 .responsive.active {
     display: block;
 }
+
+.images-name{
+    width: 300px;
+    height: 30px;
+    font-size: 15px;
+}
+
+.images-price{
+    width: 270px;
+    height: 30px;
+    font-family: bold;
+    font-size: 17px;
+    text-align: right;
+}
