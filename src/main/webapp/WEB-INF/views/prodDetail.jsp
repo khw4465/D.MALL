@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/footer.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/prodDetailtest.css'/>">
+    <script src="https://kit.fontawesome.com/dfc70c918b.js" crossorigin="anonymous"></script>
     <style>
         <c:forEach var="img" items="${imgList}">
         .prodImg${img.imgCd}{
@@ -51,10 +52,10 @@
                             <th>원산지</th>
                             <td><c:out value="${prodDto.prodSmrvDesc}"/></td>
                         </tr>
-                        <tr>
-                            <th>주의사항</th>
-                            <td><c:out value="${prodDto.prodDtlDesc}"/></td>
-                        </tr>
+<%--                        <tr>--%>
+<%--                            <th>주의사항</th>--%>
+<%--                            <td><c:out value="${prodDto.prodDtlDesc}"/></td>--%>
+<%--                        </tr>--%>
                         <tr>
                             <th>상품 옵션</th>
                             <td>
@@ -70,14 +71,41 @@
                     </table>
                     </div>
                 <ul id="selectedOptionsList" class="selectedOptionsList">
-
+                    <c:forEach var="opt" items="${optList}">
+                        <li id="${opt.prodCd}_${opt.optCd}" class="option-box" data-prodCd="${opt.prodCd}" data-name="${opt.optName}">
+                            <input type="hidden" name="optionPrice" value="${opt.salePrc}">
+                            <input type="hidden" name="optionPoint" value="${Math.round(opt.salePrc/100)}">
+                            <input type="hidden" name="optionPointRate" value="${opt.optQty}">
+                            <div class="inner">
+                                <p class="goods-name">${opt.optName}</p>
+                                <div class="qty-group type-sm">
+                                    <button type="button" class="btn-qty btnOptQtyMinus">
+                                        <i class="ico-minus"></i><span class="blind">빼기</span>
+                                    </button>
+                                    <input type="text" class="input-qty" name="qty" value="1" min="1" max="999999" readonly="">
+                                    <input type="hidden" class="input-qty" name="optionStock" value="999999">
+                                    <button type="button" class="btn-qty btnOptQtyPlus">
+                                        <i class="ico-plus"></i><span class="blind">더하기</span>
+                                    </button>
+                                </div>
+                                <div class="price">
+                                    <p><span class="optPrice">${opt.salePrc}</span>원</p>
+                                </div>
+                                <button type="button" class="btn-x-sm3 btnOptSelRemove" title="">
+                                    <i class="ico-x-black"></i><span class="blind">삭제</span>
+                                </button>
+                            </div>
+                        </li>
+                    </c:forEach>
                 </ul>
-                    <div id="totalPrice">0원</div>
+                    <div id="totalPrice" class="totalPrice">
+                        <span class="totPrice" style="font-size: 2.3em">${mainOpt.salePrc}</span>원
+                    </div>
             </div>
             <div class="moveBtn">
-                <input class="cartBtn" type="button" value="장바구니">
+                <a href="<c:url value="/cart/list"/>"><input id="cartBtn" class="cartBtn" type="button" value="장바구니"></a>
                 &nbsp &nbsp &nbsp
-                <input class="ordBtn" type="button" value="바로구매">
+                <a href="#"><input class="ordBtn" type="button" value="바로구매"></a>
             </div>
         </div>
     <div class="xans-element- xans-product xans-product-additional">
@@ -233,6 +261,13 @@
         const totalPriceElement = document.getElementById('totalPrice');
         totalPriceElement.textContent = `${totalPrice}원`;
     }
+
+    $('#cartBtn').click(function () {
+
+
+
+
+    })
 </script>
 </body>
 </html>
