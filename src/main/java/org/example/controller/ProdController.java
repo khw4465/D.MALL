@@ -156,6 +156,14 @@ public class ProdController {
 
             List<ProdOptDto> optList = prodOptService.getOptList(prodCd);   // 한 상품에 대한 옵션dto 리스트
             m.addAttribute("optList", optList);
+
+            List<Integer> optListValue = new ArrayList<Integer>();
+            for (ProdOptDto prodOptDto : optList) {
+                optListValue.add(prodOptDto.getSalePrc());
+            }
+            m.addAttribute("optListValue",optListValue);
+            System.out.println("optListValue = " + optListValue);
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

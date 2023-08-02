@@ -1,6 +1,8 @@
+<%@ page import="com.google.gson.Gson" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
+<%@ page import="com.fasterxml.jackson.databind.ObjectMapper" %>
 <html>
 <c:set var="loginId"
        value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
@@ -124,7 +126,7 @@
 <div class="includeItem">
     <jsp:include page="footer.jsp"/>
 </div>
-<script>
+<script type="text/javascript">
     $(document).ready(function () {
         $('.toggle').click(function () {
             $('.imgAll').toggleClass('opened');         // 상품 이미지에 달린 토글버튼을 누르면 'opened'
@@ -136,18 +138,26 @@
     var addedOptions = 0;
 
     //옵션 백틱에서 분리한 코드
-     var optionPrice = selectedData.salePrc;
-    var optionPoint = Math.round(selectedData.salePrc / 100);
-    var optionPointRate = selectedData.optQty;
-    var goodsName = selectedData.optName;
-    var optPrice = selectedData.salePrc;
+    //var optionPrice = selectedData.salePrc;
+    //var optionPoint = Math.round(selectedData.salePrc / 100);
+    //var optionPointRate = selectedData.optQty;
+    //var goodsName = selectedData.optName;
+
+    <%--var optPrice = "${optListValue}"--%>
+    <%--console.log(optPrice);--%>
+
+
+<%--    <c:forEach var="price" items="${optListValue}">--%>
+<%--    optPrice=${price};--%>
+<%--    </c:forEach>--%>
+
 
     const selectedOption = document.getElementById('prodOpt');
     const selectedOptName = selectedOption.options[selectedOption.selectedIndex].getAttribute('data-name'); // 옵션 하나의 이름
     const selectedProdCd = selectedOption.options[selectedOption.selectedIndex].getAttribute('data-prodCd'); // 상품코드
     const selectedOptCd = selectedOption.options[selectedOption.selectedIndex].getAttribute('data-optCd'); // 옵션 코드
     const selectedOptionsList = document.getElementById('selectedOptionsList');     // 옵션 리스트
-    const selectedOptValue = parseInt(selectedOption.value);                // 옵션 하나의 가격
+    const selectedOptValue =    parseInt(selectedOption.value);                // 옵션 하나의 가격
 
 
     function optionChange() {
