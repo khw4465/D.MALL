@@ -250,7 +250,6 @@ public class OrderController {
    @GetMapping("/complete")
    public String ordComplete(Model m, HttpSession session) {
        try {
-           System.out.println("\"hi\" = " + "hi");
            OrderDto ordDto2 = (OrderDto) session.getAttribute("lastOrder");    // 세션으로 주문한 건의 내역 가져오기
            m.addAttribute("ordInfo", ordDto2);
 

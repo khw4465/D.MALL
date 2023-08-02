@@ -33,4 +33,10 @@ public class adminController {
         //마이페이지를 불러온다.
     }
 
+    @RequestMapping("/prodDetails")
+    public String prodDetails() {
+        return "prodDetailtest";
+        //마이페이지를 불러온다.
+    }
+
 }
