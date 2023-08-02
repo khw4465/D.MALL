@@ -225,7 +225,7 @@
                 success: function (result) {
                     $('#cust-name').val(result.name);
                     $('#cust-mpno').val(result.mpno);
-                    $('#cust-email').val(result.email);
+                    $('#cust-email').val(<result className="email"></result>);
                     $('#cust-acno').val(result.acno);
                     alert("회원 정보가 업데이트되었습니다.");
                     window.location.href = "/custModify";

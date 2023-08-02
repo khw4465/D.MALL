@@ -19,7 +19,7 @@
     <div id="sidebar1" class="dashboard1">
         <div class="logo">
             <h1>
-                <a href="">
+                <a href="/admin">
                     <p>드가닭</p>
                 </a>
             </h1>
@@ -85,7 +85,7 @@
     </div>
 
     <div id="sidebar2" class="dashboard2">
-        <p>helklo</p>
+        <p>hello</p>
 <%--        <jsp:include page="stats.jsp"/>--%>
     </div>
 </div>
