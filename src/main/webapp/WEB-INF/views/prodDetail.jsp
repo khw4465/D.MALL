@@ -9,152 +9,66 @@
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/footer.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/prodDetailtest.css'/>">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: white;
-            flex-direction: column;
-            align-items: center;
-        }
-        .mainImg {
-            display: inline-block;
-            width: 480px;
-            height: 480px;
-            vertical-align: top;
-            margin: 60px;
-            border-radius: 20px;
-        }
-        .prodDesc{
-            display: inline-block;
-        }
-        .content{
-            display: inline-block;
-            vertical-align: top;
-            width: 45%;
-        }
-        table.box {
-            border-collapse: collapse;
-        }
-        table.box th,
-        table.box td {
-            padding: 12px;
-            text-align: left;
-        }
-        table.box th {
-            width: 100px;
-            font-weight: bold;
-        }
         <c:forEach var="img" items="${imgList}">
         .prodImg${img.imgCd}{
             width: ${img.imgWidth}px;
             height: ${img.imgHeight}px;
         }
         </c:forEach>
-        .imgAll{
-            text-align: center;
-        }
-        .imgAll .slider {
-            overflow: hidden;
-            max-height: 600px;
-            transition: max-height 3s ease;
-        }
-        .imgAll.opened .slider{
-            max-height: none;
-        }
-        .imgAll button {
-            width: 500px;
-            height: 45px;
-            color: gray;
-            background-color: white;
-            font-size: medium;
-            text-align: center;
-            border: 1px solid gray;
-            border-radius: 5px;
-            display: inline-block;
-
-        }
-        .imgAll.opened button {
-            display: none;
-        }
-        .prodOpt {
-            width: 300px;
-            height: 30px;
-            color: black;
-            background-color: white;
-            border: 1px solid gray;
-            border-radius: 5px;
-            display: inline-block;
-        }
-        .moveBtn {
-            text-align: center;
-        }
-        .cartBtn,
-        .ordBtn {
-            width: 150px;
-            height: 40px;
-            font-size: medium;
-
-            border-radius: 3px;
-        }
-        .cartBtn{
-            color: black;
-            background-color: white;
-            border: 1px solid darkgray;
-        }
-        .ordBtn{
-            color: white;
-            background-color: #ff7146;
-            border: 0px;
-        }
-        .selectedOptionsList {
-            list-style-type: none;
-        }
     </style>
 </head>
 <body>
 <jsp:include page="header.jsp"/>
-<div>
-    <div>
-        <h1>상품 상세 </h1>
-    </div>
-    <img class="mainImg" src="/img/<c:out value="${imgList.get(0).prodCd}"/>.<c:out value="${imgList.get(0).imgExtns}"/>" alt="">
+<div id="wrap">
+    <div id="container">
+        <div>
+        <img class="mainImg" src="/img/<c:out value="${imgList.get(0).prodCd}"/>.<c:out value="${imgList.get(0).imgExtns}"/>" alt="">
         <div class="content">
             <div class="prodDesc">
-            <h2><c:out value="${prodDto.prodName}"/></h2>
-            <div> 별점 : <c:out value="${prodDto.ascr}"/></div>
-            <table class="box">
-                <tbody>
-                <tr>
-                    <th>판매자</th>
-                    <td><c:out value="${prodDto.fstRegr}" /></td>
-                </tr>
-                <tr>
-                    <th>적립혜택</th>
-                    <td>1% 적립</td>
-                </tr>
-                <tr>
-                    <th>원산지</th>
-                    <td><c:out value="${prodDto.prodSmrvDesc}"/></td>
-                </tr>
-                <tr>
-                    <th>주의사항</th>
-                    <td><c:out value="${prodDto.prodDtlDesc}"/></td>
-                </tr>
-                <tr>
-                    <th>상품 옵션</th>
-                    <td>
-                        <select class="prodOpt" id="prodOpt" onchange="optionChange()">
-                            <option style="color: gray">옵션을 선택해주세요.</option>
-                            <c:forEach var="opt" items="${optList}">
-                                <option id="option${opt.optCd}" value="${opt.salePrc}" data-name="${opt.optName}">${opt.optName} (${opt.salePrc}원)</option>
-                            </c:forEach>
-                        </select>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+                <div class="prodDesc-head">
+                    <h2><c:out value="${prodDto.prodName}"/></h2>
+                    <div> 별점 : <c:out value="${prodDto.ascr}"/></div>
+                    <c:set var="mainOpt" value="${optList.get(0)}"/>
+                    <div class="cost">
+                        <div style="font-weight: bolder"><span style="font-size: 2.3em"><strong><c:out value="${mainOpt.salePrc}"/></strong></span>원</div>
+                        <div>(1팩당 : <span><c:out value="${Math.round(mainOpt.salePrc / 10)}"/></span>원)</div>
+                    </div>
+                </div>
+                <div class="prodDesc-body">
+                    <table class="box">
+                        <tbody>
+                        <tr>
+                            <th>판매자</th>
+                            <td><c:out value="${prodDto.fstRegr}" /></td>
+                        </tr>
+                        <tr>
+                            <th>적립혜택</th>
+                            <td>1% 적립</td>
+                        </tr>
+                        <tr>
+                            <th>원산지</th>
+                            <td><c:out value="${prodDto.prodSmrvDesc}"/></td>
+                        </tr>
+                        <tr>
+                            <th>주의사항</th>
+                            <td><c:out value="${prodDto.prodDtlDesc}"/></td>
+                        </tr>
+                        <tr>
+                            <th>상품 옵션</th>
+                            <td>
+                                <select class="prodOpt" id="prodOpt" onchange="optionChange()">
+                                    <option style="color: gray">옵션을 선택해주세요.</option>
+                                    <c:forEach var="opt" items="${optList}">
+                                        <option id="option${opt.optCd}" value="${opt.salePrc}" data-name="${opt.optName}" data-prodCd="${opt.prodCd}" data-optCd="${opt.optCd}">${opt.optName} (${opt.salePrc}원)</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
                 <ul id="selectedOptionsList" class="selectedOptionsList">
 
                 </ul>
@@ -166,17 +80,29 @@
                 <input class="ordBtn" type="button" value="바로구매">
             </div>
         </div>
-        <div class="imgAll">
-            <div class="slider">
-                <c:forEach var="img" items="${imgList}">
-                    <div>
-                        <img class="prodImg${img.imgCd}" src="/img/${img.prodCd}_${img.imgCd}.${img.imgExtns}" alt="">
-                    </div>
-                </c:forEach>
+    <div class="xans-element- xans-product xans-product-additional">
+        <div id="prdDetail" class="tab ">
+            <ul class="addTab clearfix">
+                <li class="selected"><a href="#prdDetail">상품상세정보</a></li>
+                <li><a href="#prdInfo">배송안내</a></li>
+                <li><a href="#prdInfoTwo">교환 및 반품 안내</a></li>
+            </ul>
+            <div class="imgAll">
+                <div class="slider">
+                    <c:forEach var="img" items="${imgList}">
+                        <div>
+                            <img class="prodImg${img.imgCd}" src="/img/${img.prodCd}_${img.imgCd}.${img.imgExtns}" alt="">
+                        </div>
+                    </c:forEach>
+                </div>
+                <button class="toggle">상품설명 펼쳐보기 v</button>
             </div>
-            <button class="toggle">상품설명 펼쳐보기 v</button>
+
         </div>
     </div>
+        </div>
+    </div>
+</div>
 <div class="includeItem"><jsp:include page="footer.jsp" /></div>
 <script>
     $(document).ready(function() {
@@ -185,50 +111,82 @@
         });
 
     });
-    let prcText;
+    // let prcText;
     function optionChange() {
         const selectedOption = document.getElementById('prodOpt');
         const selectedOptName = selectedOption.options[selectedOption.selectedIndex].getAttribute('data-name'); // 옵션 하나의 이름
+        const selectedProdCd = selectedOption.options[selectedOption.selectedIndex].getAttribute('data-prodCd'); // 상품코드
+        const selectedOptCd = selectedOption.options[selectedOption.selectedIndex].getAttribute('data-optCd'); // 옵션 코드
         const selectedOptionsList = document.getElementById('selectedOptionsList');     // 옵션 리스트
         const selectedOptValue = parseInt(selectedOption.value);                // 옵션 하나의 가격
 
-
-        // 중복된 옵션인지 확인
-        const isDuplicate = Array.from(selectedOptionsList.children).some(option => option.textContent === selectedOptName);
-        if (!isDuplicate) {
-            const li = document.createElement('li');
-            const div = document.createElement('div');
-            const minusBtn = document.createElement('button');
-            const qtyText = document.createElement('input');
-            const plusBtn = document.createElement('button');
-            prcText = document.createElement('span');
-            li.textContent = selectedOptName;
-            minusBtn.textContent = '-';
-            qtyText.value = 1;
-            plusBtn.textContent = '+';
-            prcText.textContent = selectedOptValue+'원';
-
-            minusBtn.addEventListener('click', decreaseQty);
-            plusBtn.addEventListener('click', increaseQty);
-
-            li.append(div);
-            div.appendChild(minusBtn);
-            div.appendChild(qtyText);
-            div.appendChild(plusBtn);
-            div.appendChild(prcText);
-
-
-            // 오름차순으로 위치를 찾아서 삽입
-            let insertIndex = Array.from(selectedOptionsList.children)
-                .findIndex(option => option.textContent > selectedOptName);
-            if (insertIndex === -1) {
-                selectedOptionsList.appendChild(li); // 모든 값보다 큰 경우 맨 뒤에 삽입
-            } else {
-                selectedOptionsList.insertBefore(li, selectedOptionsList.children[insertIndex]);
+        // 옵션 중복체크
+        let alreadyAdded = false;
+        Array.from(selectedOptionsList.children).forEach(li => {
+            if (li.querySelector('button').id === `minus${selectedProdCd}_${selectedOptCd}`) {
+                alreadyAdded = true;
             }
-            calculateTotalPrice();
-        }
+        });
+
+        if (alreadyAdded) return; // if option is already added, stop execution.
+
+        let str = `<div class="qtyTag" style="display: flex;">
+                        <button type="button" title="-" id="minus${selectedProdCd}_${selectedOptCd}">
+                            <i class="fa-solid fa-minus"></i><input type="hidden" value=-1>
+                        </button>
+                        <input type="text" class="${selectedProdCd}_${selectedOptCd}_qty" name="prod-qty"
+                               value="1" style="border: none" readonly="readonly">
+                        <button type="button" title="+" id="plus${selectedProdCd}_${selectedOptCd}">
+                            <i class="fa-solid fa-plus"></i><input type="hidden" value=1>
+                        </button>
+                    </div>`;
+
+        const li = document.createElement('li');
+        li.innerHTML = str;
+        selectedOptionsList.appendChild(li);
+
+        // 옵션 정렬
+        Array.from(selectedOptionsList.children)
+            .sort((a, b) => parseInt(a.querySelector('button').id.match(/\d+$/)) - parseInt(b.querySelector('button').id.match(/\d+$/)))
+            .forEach(li => selectedOptionsList.appendChild(li));
     }
+
+    //     // 중복된 옵션인지 확인
+    //     const isDuplicate = Array.from(selectedOptionsList.children).some(option => option.textContent === selectedOptName);
+    //     if (!isDuplicate) {
+    //         const li = document.createElement('li');
+    //         const div = document.createElement('div');
+    //         const minusBtn = document.createElement('button');
+    //         const qtyText = document.createElement('input');
+    //         const plusBtn = document.createElement('button');
+    //         prcText = document.createElement('span');
+    //         li.textContent = selectedOptName;
+    //         minusBtn.textContent = '-';
+    //         qtyText.value = 1;
+    //         plusBtn.textContent = '+';
+    //         prcText.textContent = selectedOptValue+'원';
+    //
+    //         minusBtn.addEventListener('click', decreaseQty);
+    //         plusBtn.addEventListener('click', increaseQty);
+    //
+    //         li.append(div);
+    //         div.appendChild(minusBtn);
+    //         div.appendChild(qtyText);
+    //         div.appendChild(plusBtn);
+    //         div.appendChild(prcText);
+    //
+    //
+    //         // 오름차순으로 위치를 찾아서 삽입
+    //         let insertIndex = Array.from(selectedOptionsList.children)
+    //             .findIndex(option => option.textContent > selectedOptName);
+    //         if (insertIndex === -1) {
+    //             selectedOptionsList.appendChild(li); // 모든 값보다 큰 경우 맨 뒤에 삽입
+    //         } else {
+    //             selectedOptionsList.insertBefore(li, selectedOptionsList.children[insertIndex]);
+    //         }
+    //         calculateTotalPrice();
+    //     }
+    // }
     function decreaseQty(e) {
         const quantityInput = e.target.nextElementSibling;
         const priceInput = quantityInput.nextElementSibling.nextElementSibling;

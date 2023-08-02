@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false"%><html>
+<%@ page session="false"%>
 <html>
 <head>
     <title>상품상세</title>
@@ -131,21 +131,17 @@
                         <li><a href="#prdInfo">배송안내</a></li>
                         <li><a href="#prdInfoTwo">교환 및 반품 안내</a></li>
                     </ul>
-                    <div class="cont">
+                    <div class="imgAll">
+                        <div class="slider">
+                            <c:forEach var="img" items="${imgList}">
+                                <div>
+                                    <img class="prodImg${img.imgCd}" src="/img/${img.prodCd}_${img.imgCd}.${img.imgExtns}" alt="">
+                                </div>
+                            </c:forEach>
+                        </div>
+                        <button class="toggle">상품설명 펼쳐보기 v</button>
                     </div>
 
-                </div>
-                <div id="prdInfo" class="">
-                    <ul class="addTab clearfix">
-                        <li><a href="#prdDetail">상품상세정보</a></li>
-                        <li class="selected"><a href="">배송안내</a></li>
-                        <li><a href="">교환 및 반품 안내</a></li>
-                    </ul>
-                    <div class="cont">
-                        <div class="detailInfo">
-                            <h3>배송안내</h3>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

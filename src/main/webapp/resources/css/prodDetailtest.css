@@ -1,3 +1,112 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    flex-direction: column;
+    align-items: center;
+}
+.mainImg {
+    display: inline-block;
+    width: 480px;
+    height: 480px;
+    vertical-align: top;
+    margin: 60px;
+    border-radius: 20px;
+}
+.prodDesc{
+    margin-top: 60px;
+    display: inline-block;
+    height: 700px;
+}
+.content{
+    display: inline-block;
+    vertical-align: top;
+    width: 45%;
+}
+table.box {
+    border-collapse: collapse;
+}
+table.box th,
+table.box td {
+    padding: 12px;
+    text-align: left;
+}
+table.box th {
+    width: 100px;
+    font-weight: bold;
+}
+  .imgAll{
+      text-align: center;
+  }
+.imgAll .slider {
+    overflow: hidden;
+    max-height: 600px;
+    transition: max-height 3s ease;
+}
+.imgAll.opened .slider{
+    max-height: none;
+}
+.imgAll button {
+    width: 500px;
+    height: 45px;
+    color: gray;
+    background-color: white;
+    font-size: medium;
+    text-align: center;
+    border: 1px solid gray;
+    border-radius: 5px;
+    display: inline-block;
+
+}
+.imgAll.opened button {
+    display: none;
+}
+.prodOpt {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 12px 40px 9px 15px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    color: #666;
+    box-sizing: border-box;
+    background: #fff;
+    line-height: 24px;
+    border-radius: 4px;
+}
+.moveBtn {
+    text-align: center;
+}
+.cartBtn,
+.ordBtn {
+    width: 220px;
+    height: 50px;
+    font-size: medium;
+    border-radius: 5px;
+}
+.cartBtn{
+    margin: 0 0 0 10px;
+    border: 1px solid #fd7118;
+    color: #fd7118;
+    background: #fff;
+}
+.ordBtn{
+    margin: 0 0 0 10px;
+    border: 1px solid #fd7118;
+    color: #fff;
+    background: #fd7118;
+}
+.selectedOptionsList {
+    list-style-type: none;
+}
+.prodDesc-head {
+    color: black;
+}
+.content .prodDesc .prodDesc-head .cost {
+    margin: 30px 0;
+}
 .xans-product-detail .imgArea .listImg .slider-wrap .slick-slide {
     margin-right: 20px;
 }
@@ -2246,4 +2355,7 @@ h1,h3 {
 #increaseQuantity i,
 #decreaseQuantity i {
     color: blue; /* 또는 #0000FF와 같은 HEX 값 */
+}
+.prodDesc-body {
+    margin-top: 35px;
 }
