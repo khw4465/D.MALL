@@ -28,7 +28,7 @@
         <jsp:include page="myPageSideBar.jsp"/>
     </div>
     <div class="dashboard2">
-<%--        가운데정렬 modifyinfo.css에있음--%>
+        <%--        가운데정렬 modifyinfo.css에있음--%>
         <!-- 아이디,비번입력,비번확인 시작 -->
         <div class="cust-id">
             <div class="input-field">
@@ -117,7 +117,7 @@
         <!-- 생일 시작 -->
         <div class="birthdate">
             <div class="input-field">
-                <label for="cust-birthdate" class="label">생년월일 ${modydto.birth}</label>
+                <label for="cust-birthdate" class="label">생년월일</label>
                 <select id="year"></select>
                 <select id="month"></select>
                 <select id="day"></select>
@@ -130,10 +130,10 @@
             <div class="input-field">
                 <label for="grade-name" class="label">등급</label>
                 <div class="input-wrap">
-                    <input type="text" id="gradeName" name="gradeName" class="input-field"
-                           value="${modydto.grade}">
+                    <input type="text" id="gradeName" name="gradeName" class="input-field" value="${modydto.grade}"
+                           readonly>
                 </div>
-                <p>다음 등급까지 남은금액 5000원</p>
+                <%--                <p>다음 등급까지 남은금액 5000원</p>--%>
             </div>
         </div>
         <!-- 등급 종료-->
@@ -153,6 +153,11 @@
 </footer>
 </body>
 <script>
+    // 모델에서 저장한 값을 JavaScript 변수에 할당
+    var selectedYear = ${birthYear};
+    var selectedMonth = "${birthMonth}"; // 문자열로 저장했으므로 따옴표 사용
+    var selectedDay = "${birthDay}";
+
     window.addEventListener('load', function () {
         var yearSelect = document.getElementById('year');
         var monthSelect = document.getElementById('month');
@@ -163,6 +168,7 @@
             var option = document.createElement('option');
             option.text = option.value = i;
             yearSelect.add(option);
+            if (i == selectedYear) option.selected = true; // 선택된 년도 설정
         }
 
         // 월 추가
@@ -170,6 +176,7 @@
             var option = document.createElement('option');
             option.text = option.value = i;
             monthSelect.add(option);
+            if (i == selectedMonth) option.selected = true; // 선택된 월 설정
         }
 
         // 일 추가
@@ -177,6 +184,7 @@
             var option = document.createElement('option');
             option.text = option.value = i;
             daySelect.add(option);
+            if (i == selectedDay) option.selected = true; // 선택된 일 설정
         }
     });
 
@@ -210,6 +218,11 @@
             let modydto_email = $('#cust-email').val();
             let modydto_acno = $('#cust-acno').val();
 
+            // 생년월일 값 가져오기
+            let modydto_year = $('#year').val();
+            let modydto_month = $('#month').val();
+            let modydto_day = $('#day').val();
+
             $.ajax({
                 type: 'POST',
                 url: '/custModify',
@@ -220,7 +233,12 @@
                     "cust-name": modydto_name,
                     "cust-mpno": modydto_phone,
                     "cust-email": modydto_email,
-                    "cust-acno": modydto_acno
+                    "cust-acno": modydto_acno,
+                    "birthdate": {
+                        "year": modydto_year,
+                        "month": modydto_month,
+                        "day": modydto_day
+                    } // 생년월일 객체 추가
                 }),
                 success: function (result) {
                     $('#cust-name').val(result.name);

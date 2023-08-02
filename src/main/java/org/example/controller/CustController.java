@@ -17,9 +17,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Controller
 public class CustController {
@@ -97,28 +96,54 @@ public class CustController {
     @GetMapping("custModify")
     public String custModify(CustDto custDto, Model m, HttpServletRequest request) throws Exception {
         HttpSession session = request.getSession(); // 세션을 받아온다.
-        if(session.getAttribute("id") == null){
+        String custId= (String) session.getAttribute("id");
+        if (custId == null) {
             return "login";
         }
 
-         CustDto dto = custService.modifyselect((String) session.getAttribute("id"));
-        m.addAttribute("custId",session.getAttribute("id"));
-        dto.setCustId((String) session.getAttribute("id"));
-        m.addAttribute("modydto",dto);
+        CustDto dto = custService.modifyselect((String) session.getAttribute("id"));
+        m.addAttribute("custId", custId);
+        dto.setCustId(custId);
+        m.addAttribute("modydto", dto);
+
+        // 생년월일을 년, 월, 일로 분리
+        Date birth = dto.getBirth();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(birth);
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH) + 1; // 월은 0부터 시작하므로 +1
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        System.out.println("year = " + year);
+        System.out.println("month = " + month);
+        System.out.println("day = " + day);
+        // 년, 월, 일을 모델에 추가
+        m.addAttribute("birthYear", year);
+        m.addAttribute("birthMonth", String.format("%02d", month)); // 월은 두 자리로 출력
+        m.addAttribute("birthDay", String.format("%02d", day));
 
         return "modifyInfo";
-        //return "error";
     }
     @PostMapping("/custModify")
     @ResponseBody
-    public ResponseEntity<?> modifyCustomer(@RequestBody Map<String, String> payload, HttpServletRequest request) throws Exception {
+    public ResponseEntity<?> modifyCustomer(@RequestBody Map<String, Object> payload, HttpServletRequest request) throws Exception {
         try {
             HttpSession session = request.getSession();
 
-            String custName = payload.get("cust-name");
-            String custMpNo = payload.get("cust-mpno");
-            String custEmail = payload.get("cust-email");
-            String custAcno = payload.get("cust-acno");
+            String custName = (String) payload.get("cust-name");
+            String custMpNo = (String) payload.get("cust-mpno");
+            String custEmail = (String) payload.get("cust-email");
+            String custAcno = (String) payload.get("cust-acno");
+
+            Map<String, String> birthdate = (Map<String, String>) payload.get("birthdate");
+            String birthYear = birthdate.get("year");
+            String birthMonth = birthdate.get("month");
+            String birthDay = birthdate.get("day");
+            String birthString = birthYear + "-" + birthMonth + "-" + birthDay; // 생년월일을 문자열 형태로 조합합니다.
+
+            // 문자열을 Date 객체로 변환합니다.
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date birth = sdf.parse(birthString);
 
             CustDto dto = custDao.selectUser((String) session.getAttribute("id"));
 
@@ -126,11 +151,9 @@ public class CustController {
             dto.setMpNo(custMpNo);
             dto.setEmail(custEmail);
             dto.setAcno(custAcno);
-
+            dto.setBirth(birth); // dto에 생년월일을 설정합니다.
             custDao.updateUser(dto);
-            System.out.println("Updated Customer Info = " + dto.toString());
 
-            // Now we return the updated customer as the response body
             return ResponseEntity.ok(dto);
         } catch (Exception e) {
             e.printStackTrace();

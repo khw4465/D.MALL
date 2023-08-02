@@ -36,7 +36,6 @@
                     <tr>
                         <th class="">${LoginHistoryDTO.custId}</th>
                         <th class="">${fn:replace(LoginHistoryDTO.dttm, 'T', ' ')}</th>
-<%--                        <th class="">${LoginHistoryDTO.dttm}</th>--%>
                         <th class="">${LoginHistoryDTO.scssYn}</th>
                         <th class="">${LoginHistoryDTO.ip}</th>
                         <th class="">${LoginHistoryDTO.failCaus}</th>
