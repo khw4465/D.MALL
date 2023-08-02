@@ -20,8 +20,6 @@
     <meta charset="UTF-8">
     <title>CS_Home</title>
     <link rel="stylesheet" href="<c:url value='/css/csmain.css'/>">
-<%--    <link rel="stylesheet" type="text/css" href="<c:url value='/css/main1.css'/>">--%>
-<%--    <link rel="stylesheet" type="text/css" href="<c:url value='/css/main2.css'/>">--%>
     <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
 </head>
 
