@@ -131,7 +131,7 @@ public class LoginController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "index";
+        return "newmaintest"; // 0802 수정완료
     }
 
 
@@ -218,14 +218,19 @@ public class LoginController {
             // 아이디 비번이 어드민이 맞는지 확인
             if (adminCHeck(id)) { // 어드민일경우
                 m.addAttribute("loginAdminTrue", true);
-                return "newmaintest";
+                loginHistoryDTO.setScssYn("Y"); // 로그인 성공시 db에 성공여부 Y로 나옴
+                 return "newmaintest";
+                //어드민일경우 바로 리턴하면 이력에 Y가 쌓이지 않아서 그냥 return 주석처리 했으나
+                // 그럴경우 관리자페이지가 등장하지 않는 에러 있음
+                //홈페이지 새로고침할때마다 관리자 체크해주는 기능 필요
             }
             loginHistoryDTO.setScssYn("Y"); // 로그인 성공시 db에 성공여부 Y로 나옴
+
             return "redirect:" + toURL;
         } catch (Exception e) {
             loginHistoryDTO.setScssYn("N"); // 로그인 실패로 N으로 나옴
             loginHistoryDTO.setFailCaus(e.getMessage()); // 메세지저장
-            loginHistoryDTO.setFailCnt(custLoginHistService.HistCountSelect(id).getFailCnt()+1); //실패카운트 +1
+            loginHistoryDTO.setFailCnt(custLoginHistService.HistCountSelect(id).getFailCnt()+1); // 실패카운트 +1
             e.printStackTrace();
             System.out.println("e.getMessage() = " + e.getMessage());
             return "error";

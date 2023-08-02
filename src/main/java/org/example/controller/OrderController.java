@@ -220,7 +220,7 @@ public class OrderController {
             // 구매시 포인트 적립을 위한 메서드 07.29 mhs
             OrderDto dto = cartService.getOrdHist(custId);
             pointDto pointDto = settingPointDto(custId, dto);
-            pointService.insertPoint(pointDto);                           //포인트 insert
+            pointService.insertPoint(pointDto);                           // 포인트 insert
 
             cartService.removeAll(custId);                                // 주문을 했으니 장바구니 목록 삭제
 
@@ -250,8 +250,30 @@ public class OrderController {
    @GetMapping("/complete")
    public String ordComplete(Model m, HttpSession session) {
        try {
+           System.out.println("\"hi\" = " + "hi");
            OrderDto ordDto2 = (OrderDto) session.getAttribute("lastOrder");    // 세션으로 주문한 건의 내역 가져오기
            m.addAttribute("ordInfo", ordDto2);
+
+           // 일단 여기다가 구매로인한 포인트차감 추가합니다 나중에 다른쪽으로 옮겨주세요
+            //--------------------------------------------------------------------------------
+           pointDto point = pointService.selectPointOne((String) session.getAttribute("id"));
+           // id 주면 최신포인트이력 한줄 가져온다.
+           pointDto newPointDto = new pointDto();
+           // 최신이력 1줄을 받아와 수정해서 새로 저장 시작
+           newPointDto.setPntId(point.getPntId()+1); // 포인트
+           newPointDto.setCustId(point.getCustId()); // 회원아이디
+           newPointDto.setStus("사용"); //상태
+           newPointDto.setChngPnt(ordDto2.getFinPrc()/100); //변화포인트 (사용금액)
+           newPointDto.setPoint(point.getPoint()-(ordDto2.getFinPrc()/100)); //사용(차감)금액
+           newPointDto.setDttm(LocalDateTime.now()); // 현재날짜시간 //만료기간은 저장하지않음
+           newPointDto.setChgCn("포인트사용"); //사유
+           newPointDto.setRemark("구매시 포인트 사용"); //비고
+           newPointDto.setPntCd("1"); // 코드   //0은 구매시적립 1은 구매시 사용
+           //2는 로그인,3은 회원가입시,4는 리뷰시 포인트
+           System.out.println("newPointDto = " + newPointDto);
+           // 그러나 포인트가 0이거나 그 이하일때도 고려되어야한다 일단 진행
+           //--------------------------------------------------------------------------------
+           //성공하면 제가 메서드로 추출해서 아래로 배치하겠습니다.
 
            return "ordComplete";
        } catch (Exception e) {

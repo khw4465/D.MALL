@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%--T 제거하는 라이브러리--%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,8 +56,8 @@
                         <th class="">${pointDto.stus}</th>
                         <th class="">${pointDto.chngPnt}</th>
                         <th class="">${pointDto.point}</th>
-                        <th class="">${pointDto.dttm}</th>
-                        <th class="">${pointDto.expiDttm}</th>
+                        <th class="">${fn:replace(pointDto.dttm, 'T', ' ')}</th>
+                        <th class="">${fn:replace(pointDto.expiDttm, 'T', ' ')}</th>
                         <th class="">${pointDto.chgCn}</th>
                     </tr>
                 </div>
