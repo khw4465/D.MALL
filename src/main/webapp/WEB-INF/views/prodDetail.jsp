@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order</title>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/footer.css'/>">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -113,6 +115,7 @@
     </style>
 </head>
 <body>
+<jsp:include page="header.jsp"/>
 <div>
     <div>
         <h1>상품 상세 </h1>
@@ -175,6 +178,7 @@
             <button class="toggle">상품설명 펼쳐보기 v</button>
         </div>
     </div>
+<div class="includeItem"><jsp:include page="footer.jsp" /></div>
 <script>
     $(document).ready(function() {
         $('.toggle').click(function() {

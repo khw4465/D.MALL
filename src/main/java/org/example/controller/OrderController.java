@@ -264,26 +264,8 @@ public class OrderController {
            OrderDto ordDto2 = (OrderDto) session.getAttribute("lastOrder");    // 세션으로 주문한 건의 내역 가져오기
            m.addAttribute("ordInfo", ordDto2);
 
-           // 일단 여기다가 구매로인한 포인트차감 추가합니다 나중에 다른쪽으로 옮겨주세요
-            //--------------------------------------------------------------------------------
-           pointDto point = pointService.selectPointOne((String) session.getAttribute("id"));
-           // id 주면 최신포인트이력 한줄 가져온다.
-           pointDto newPointDto = new pointDto();
-           // 최신이력 1줄을 받아와 수정해서 새로 저장 시작
-           newPointDto.setPntId(point.getPntId()+1); // 포인트
-           newPointDto.setCustId(point.getCustId()); // 회원아이디
-           newPointDto.setStus("사용"); //상태
-           newPointDto.setChngPnt(ordDto2.getFinPrc()/100); //변화포인트 (사용금액)
-           newPointDto.setPoint(point.getPoint()-(ordDto2.getFinPrc()/100)); //사용(차감)금액
-           newPointDto.setDttm(LocalDateTime.now()); // 현재날짜시간 //만료기간은 저장하지않음
-           newPointDto.setChgCn("포인트사용"); //사유
-           newPointDto.setRemark("구매시 포인트 사용"); //비고
-           newPointDto.setPntCd("1"); // 코드   //0은 구매시적립 1은 구매시 사용
-           //2는 로그인,3은 회원가입시,4는 리뷰시 포인트
-           System.out.println("newPointDto = " + newPointDto);
-           // 그러나 포인트가 0이거나 그 이하일때도 고려되어야한다 일단 진행
-           //--------------------------------------------------------------------------------
-           //성공하면 제가 메서드로 추출해서 아래로 배치하겠습니다.
+           // 08/02 mhs 포인트차감로직 추가
+           minusPoint(session, ordDto2); // 주문시 할인금액을 가져와서 포인트에서 차감시켜주는 메서드
 
            return "ordComplete";
        } catch (Exception e) {
@@ -292,6 +274,29 @@ public class OrderController {
        }
 
    }
+
+    private void minusPoint(HttpSession session, OrderDto ordDto2) throws Exception {
+        pointDto point = pointService.selectPointOne((String) session.getAttribute("id"));
+        // 불러올때 아이디의 최신이력 한줄도 가져와야하지만 전체이력에서 시퀀스를 가져와야 에러가 안뜸.
+        System.out.println("point = " + point);
+        // id 주면 "회원의" 최신포인트이력 한줄 가져온다.
+        // 근데 여기다 원래 set pntId = 전체이력 select 해서 시퀀스 가져와서 세팅해줘야 함.
+        pointDto newPointDto = new pointDto();
+        // 최신이력 1줄을 받아와 수정해서 새로 저장 시작
+        newPointDto.setPntId(point.getPntId()+1); // 포인트
+        newPointDto.setCustId(point.getCustId()); // 회원아이디
+        newPointDto.setStus("사용"); //상태
+        newPointDto.setChngPnt(ordDto2.getTotDcPrc()); //변화포인트 (사용금액)
+        newPointDto.setPoint(point.getPoint()-(ordDto2.getTotDcPrc())); //사용(차감)금액
+        newPointDto.setDttm(LocalDateTime.now()); // 현재날짜시간 //만료기간은 저장하지않음
+        newPointDto.setChgCn("포인트사용"); //사유
+        newPointDto.setRemark("구매시 포인트 사용"); //비고
+        newPointDto.setPntCd("1"); // 코드   //0은 구매시적립 1은 구매시 사용
+        //2는 로그인,3은 회원가입시,4는 리뷰시 포인트
+        System.out.println("newPointDto = " + newPointDto);
+        pointService.insertPoint(newPointDto);                           // 포인트 insert
+        // 그러나 포인트가 0이거나 그 이하일때도 고려되어야한다 일단 진행
+    }
 
     @GetMapping("/cancle")
     public String ordCancle(HttpSession session) {
