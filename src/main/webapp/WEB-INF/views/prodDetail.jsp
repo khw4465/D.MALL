@@ -15,7 +15,6 @@
             margin: 0;
             padding: 0;
             background-color: white;
-            display: flex;
             flex-direction: column;
             align-items: center;
         }
