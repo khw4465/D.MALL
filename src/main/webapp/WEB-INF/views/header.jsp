@@ -78,7 +78,7 @@
                                 <li class="xans-element- xans-layout xans-layout-statelogon hdBasket ">
                                     <a href="<c:url value='/cart/list'/>">
                                         <i class="fa-solid fa-cart-shopping fa-2xl">
-                                            ㅁㅁㅁㅁㅁㅁ
+<%--                                            ㅁㅁㅁㅁㅁㅁ--%>
                                             <%--                                            여기에 장바구니 추가--%>
                                         </i>
                                         <span class="count EC-Layout_Basket-count-display">
