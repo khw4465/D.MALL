@@ -50,13 +50,14 @@ public class CartController {
 
     @PostMapping("/list")
     @ResponseBody
-    public ResponseEntity<CartDto> addCart(@RequestBody CartOptDto cartOptDto, HttpServletRequest request) {
+    public ResponseEntity<CartDto> addCart(@RequestBody List<CartOptDto> list, HttpServletRequest request) {
         try {
             HttpSession session = request.getSession();
-            String custId = (String)session.getAttribute("id");
+            String custId = " ";
 
-            cartOptDto.setCustId(custId);
-            
+            custId = (String)session.getAttribute("id");
+
+            cartService.addCart(custId, list);
 
             return new ResponseEntity<>(HttpStatus.OK);
     } catch (Exception e) {

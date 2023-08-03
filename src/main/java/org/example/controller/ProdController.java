@@ -162,7 +162,7 @@ public class ProdController {
                 optListValue.add(prodOptDto.getSalePrc());
             }
             m.addAttribute("optListValue",optListValue);
-            System.out.println("optListValue = " + optListValue);
+
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -181,7 +181,6 @@ public class ProdController {
             m.addAttribute("list",list);
         m.addAttribute("PageHandler",PageHandler);
 
-            System.out.println("list = " + list);
         } catch (Exception e){
             e.printStackTrace();
             m.addAttribute("msg","SEARRCH_ERR");

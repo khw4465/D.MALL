@@ -52,14 +52,10 @@
                                 <th>원산지</th>
                                 <td><c:out value="${prodDto.prodSmrvDesc}"/></td>
                             </tr>
-                            <%--                        <tr>--%>
-                            <%--                            <th>주의사항</th>--%>
-                            <%--                            <td><c:out value="${prodDto.prodDtlDesc}"/></td>--%>
-                            <%--                        </tr>--%>
                             <tr>
                                 <th>상품 옵션</th>
                                 <td>
-                                    <select class="prodOpt" id="prodOpt" onchange="optionChange()">
+                                    <select class="prodOpt" id="prodOpt">
                                         <option style="color: gray">옵션을 선택해주세요.</option>
                                         <c:forEach var="opt" items="${optList}">
                                             <option id="option${opt.optCd}" value="${opt.salePrc}" data-name="${opt.optName}" data-prodCd="${opt.prodCd}" data-optCd="${opt.optCd}">${opt.optName} (${opt.salePrc}원)</option>
@@ -72,10 +68,13 @@
                     </div>
                     <ul id="selectedOptionsList" class="selectedOptionsList">
                         <c:forEach var="opt" items="${optList}">
-                            <li id="${opt.prodCd}_${opt.optCd}" class="option-box" data-prodCd="${opt.prodCd}" data-name="${opt.optName}">
-                                <input type="hidden" name="optionPrice" value="${opt.salePrc}">
-                                <input type="hidden" name="optionPoint" value="${Math.round(opt.salePrc/100)}">
-                                <input type="hidden" name="optionPointRate" value="${opt.optQty}">
+                            <li id="${opt.prodCd}_${opt.optCd}" class="option-box" style="display: none">
+                                <input type="hidden" class="prodCd" value="${opt.prodCd}">
+                                <input type="hidden" class="optCd" value="${opt.optCd}">
+                                <input type="hidden" class="optName" value="${opt.optName}">
+                                <input type="hidden" class="optQty" value="${opt.optQty}">
+                                <input type="hidden" class="optPrice" value="${opt.salePrc}">
+                                <input type="hidden" class="optPoint" value="${Math.round(opt.salePrc/100)}">
                                 <div class="inner">
                                     <p class="goods-name">${opt.optName}</p>
                                     <div class="qty-group type-sm">
@@ -104,7 +103,7 @@
                     </div>
                 </div>
                 <div class="moveBtn">
-                    <a href="<c:url value="/cart/list"/>"><input id="cartBtn" class="cartBtn" type="button" value="장바구니"></a>
+                    <a href="#"><input id="cartBtn" class="cartBtn" type="button" value="장바구니"></a>
                     &nbsp &nbsp &nbsp
                     <a href="#"><input class="ordBtn" type="button" value="바로구매"></a>
                 </div>
@@ -138,77 +137,84 @@
         $('.toggle').click(function() {
             $('.imgAll').toggleClass('opened');         // 상품 이미지에 달린 토글버튼을 누르면 'opened'
         });
-
     });
-    // let prcText;
-    function optionChange() {
-        const selectedOption = document.getElementById('prodOpt');
-        const selectedOptName = selectedOption.options[selectedOption.selectedIndex].getAttribute('data-name'); // 옵션 하나의 이름
-        const selectedProdCd = selectedOption.options[selectedOption.selectedIndex].getAttribute('data-prodCd'); // 상품코드
-        const selectedOptCd = selectedOption.options[selectedOption.selectedIndex].getAttribute('data-optCd'); // 옵션 코드
-        const selectedOptionsList = document.getElementById('selectedOptionsList');     // 옵션 리스트
-        const selectedOptValue = parseInt(selectedOption.value);                // 옵션 하나의 가격
 
-        // 옵션 중복체크
-        let alreadyAdded = false;
-        Array.from(selectedOptionsList.children).forEach(li => {
-            if (li.querySelector('button').id === `minus${selectedProdCd}_${selectedOptCd}`) {
-                alreadyAdded = true;
-            }
-        });
+    function calPrice() {
+        // display = 'block' 인 옵션만 추출
+        let optList = Array.from(document.querySelectorAll('.option-box'))
+            .filter(item => window.getComputedStyle(item).display === 'block');
 
-        if (alreadyAdded) return; // if option is already added, stop execution.
-
-        let str = `<div class="qtyTag" style="display: flex;">
-                        <button type="button" title="-" id="minus${selectedProdCd}_${selectedOptCd}">
-                            <i class="fa-solid fa-minus"></i><input type="hidden" value=-1>
-                        </button>
-                        <input type="text" class="${selectedProdCd}_${selectedOptCd}_qty" name="prod-qty"
-                               value="1" style="border: none" readonly="readonly">
-                        <button type="button" title="+" id="plus${selectedProdCd}_${selectedOptCd}">
-                            <i class="fa-solid fa-plus"></i><input type="hidden" value=1>
-                        </button>
-                    </div>`;
-
-        const li = document.createElement('li');
-        li.innerHTML = str;
-        selectedOptionsList.appendChild(li);
-
-        // 옵션 정렬
-        Array.from(selectedOptionsList.children)
-            .sort((a, b) => parseInt(a.querySelector('button').id.match(/\d+$/)) - parseInt(b.querySelector('button').id.match(/\d+$/)))
-            .forEach(li => selectedOptionsList.appendChild(li));
+        // block인 요소의 금액을 합산
+        let totalPrice = 0;
+        optList.forEach(item => {
+            let price = parseInt(item.querySelector('.optPrice').value);
+            totalPrice += price
+        })
+        return totalPrice
     }
+
+    // 옵션을 선택하면 보여주기
+    document.getElementById('prodOpt').addEventListener('change', function() {
+        // 선택된 옵션의 옵션코드 보여주기
+        const selectedOptCd = this.options[this.selectedIndex].getAttribute('data-optCd');
+        const optionLi = document.getElementById(`<c:out value="${prodDto.prodCd}"/>_`+selectedOptCd);
+        optionLi.style.display = 'block';
+
+        // 총금액 합산
+        let totProdPrice = calPrice();
+        $('.totPrice').html(totProdPrice)
+
+        // 옵션의 삭제버튼 구현
+        let removeButton = optionLi.querySelector('.btnOptSelRemove');
+        removeButton.addEventListener('click', function () {
+            optionLi.style.display = 'none';
+
+            // 삭제 후 금액 재계산
+            totProdPrice = calPrice();
+            $('.totPrice').html(totProdPrice)
+        });
+    })
+
 
     $('#cartBtn').click(function () {
         let prodCd = '';                        //상품코드
         let prodName = '';                      //상품명
         let optCd = '';                         //옵션코드
         let optName = '';                       //옵션이름
-        let prodQty = 0;                        //옵션수량
-        let totProdPrice = 0;                   //옵션금액
+        let optQty = 0;                         //옵션수량
+        let optPrice = 0;                       //옵션금액
 
-        let optList = Array.from(document.querySelectorAll('.option-box'));
 
-        cartO
+        let CartOptList = [];
+
+        // display = 'block' 인 옵션만 추출
+        let optList = Array.from(document.querySelectorAll('.option-box'))
+            .filter(item => window.getComputedStyle(item).display === 'block');
 
         optList.forEach(item => {
             prodCd = item.querySelector('.prodCd').value;
-            prodName = item.querySelector('.prodName').value;
-            prodQty += parseInt(item.querySelector('.optQty').value);
-            totProdPrice += parseInt(item.querySelector('.optPrice').value);
+            prodName = `<c:out value="${prodDto.prodName}"/>`;
+            optCd = item.querySelector('.optCd').value;
+            optName = item.querySelector('.optName').value;
+            optQty = parseInt(item.querySelector('.optQty').value);
+            optPrice = parseInt(item.querySelector('.optPrice').value);
+            let totOptPrice = optQty * optPrice;
 
-            let CartOptDto = {prodCd: prodCd, prodName: prodName, optCd: , optName: , prodQty: prodQty, totProdPrice: totProdPrice}
-
+            let CartOptDto = {prodCd: prodCd, prodName: prodName, optCd: optCd, optName: optName, optQty: optQty, optPrice: optPrice, totOptPrice: totOptPrice}
+            CartOptList.push(CartOptDto)
         })
+        console.log(CartOptList)
+
         $.ajax({
             type: 'POST',       // 요청 메서드
             url: '/cart/list',  // 요청 URI
             headers: {"content-type": "application/json"}, // 요청 헤더
             dataType: 'text', // 전송받을 데이터의 타입
-            data: JSON.stringify(CartOptDto),
+            data: JSON.stringify(CartOptList),
             success: function (result) {  // 서버로부터 응답이 도착하면 호출될 함수
-
+                if(confirm('장바구니로 이동하시겠습니까?')){
+                    window.location.href = "/cart/list";
+                }
             },
             error: function () {
                 alert("error")
@@ -298,8 +304,6 @@
     //   const totalPriceElement = document.getElementById('totalPrice');
     //   totalPriceElement.textContent = `원`;
     // }
-
-
 </script>
 </body>
 </html>

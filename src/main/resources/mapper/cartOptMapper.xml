@@ -38,7 +38,7 @@
         INSERT INTO cart_opt
             (cust_id, prod_cd, prod_name, opt_cd, opt_name, opt_qty, opt_price, tot_opt_price)
         values
-            (#{custId}, #{prodCd}, #{prodName}, #{optCd}, #{optName}, #{optQty}, #{optPrice}, #{optQty}*#{optPrice})
+            (#{custId}, #{prodCd}, #{prodName}, #{optCd}, #{optName}, #{optQty}, #{optPrice}, #{totOptPrice})
     </insert>
     <delete id="delete" parameterType="map">
         DELETE

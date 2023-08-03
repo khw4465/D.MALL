@@ -27,7 +27,14 @@ public class CartDto {
 
     //
 
-
+    public CartDto(String prodCd, String prodName, int prodQty, int totSetlPrice) {
+        this.prodCd = prodCd;
+        this.prodName = prodName;
+        this.prodQty = prodQty;
+        this.totSetlPrice = totSetlPrice;
+        this.totProdPrice = prodQty * totSetlPrice;
+        this.paymtPnt = totSetlPrice/100;
+    }
     public CartDto(String custId, String prodCd, String prodName, int prodQty, int totSetlPrice) {
         this.custId = custId;
         this.prodCd = prodCd;

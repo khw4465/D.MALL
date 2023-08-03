@@ -31,6 +31,17 @@ public class CartOptDto {
         this.optPrice = optPrice;
     }
 
+    public CartOptDto(String custId, String prodCd, String prodName, String optCd, String optName, int optQty, int optPrice, int totOptPrice) {
+        this.custId = custId;
+        this.prodCd = prodCd;
+        this.prodName = prodName;
+        this.optCd = optCd;
+        this.optName = optName;
+        this.optQty = optQty;
+        this.optPrice = optPrice;
+        this.totOptPrice = totOptPrice;
+    }
+
     public CartOptDto(int seq, String custId, String prodCd, String prodName, String optCd, String optName, int optQty, int optPrice, int totOptPrice, String remark, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
         this.seq = seq;
         this.custId = custId;

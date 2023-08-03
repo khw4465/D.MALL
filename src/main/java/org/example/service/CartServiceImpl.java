@@ -55,6 +55,7 @@ public class CartServiceImpl implements CartService {
     public int addCart(String custId, List<CartOptDto> list) throws Exception {
 
         for(CartOptDto cartOptDto : list) {         // 상품 상세에서 리스트에 옵션별로 담은 뒤
+            cartOptDto.setCustId(custId);           // dto에 아이디 담아주기
             cartOptDao.insert(cartOptDto);          // 반복문을 통해 cartOpt 테이블에 넣어줌
         }
 
