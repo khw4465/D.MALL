@@ -17,6 +17,7 @@
 
 <div id="container">
     <jsp:include page="adminSideBar.jsp"/>
+
     <div id="sidebar2" class="dashboard2">
         <p>hello</p>
 <%--        <jsp:include page="stats.jsp"/>--%>
