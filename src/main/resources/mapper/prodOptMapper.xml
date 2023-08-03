@@ -55,7 +55,7 @@
     </delete>
 
     <select id="selectOpt" parameterType="string" resultType="ProdOptDto">
-        SELECT opt_cd, prod_cd, opt_name, sale_prc FROM prod_opt
+        SELECT opt_cd, prod_cd, opt_qty, opt_name, sale_prc FROM prod_opt
         WHERE prod_cd = #{prodCd}
     </select>
 </mapper>

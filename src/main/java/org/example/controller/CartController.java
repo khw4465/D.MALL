@@ -48,10 +48,21 @@ public class CartController {
         }
     }
 
-//    @PostMapping("/list")
-//    public String addCart() {
-//        return "";
-//    }
+    @PostMapping("/list")
+    @ResponseBody
+    public ResponseEntity<CartDto> addCart(@RequestBody CartOptDto cartOptDto, HttpServletRequest request) {
+        try {
+            HttpSession session = request.getSession();
+            String custId = (String)session.getAttribute("id");
+
+            cartOptDto.setCustId(custId);
+            
+
+            return new ResponseEntity<>(HttpStatus.OK);
+    } catch (Exception e) {
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+    }
 
     @PatchMapping("/modify")
     @ResponseBody

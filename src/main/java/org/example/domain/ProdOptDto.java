@@ -20,6 +20,14 @@ public class ProdOptDto {
 
     public ProdOptDto() {}
 
+    public ProdOptDto(String optCd, String prodCd, String optName, Integer optQty, Integer salePrc) {
+        this.optCd = optCd;
+        this.prodCd = prodCd;
+        this.optName = optName;
+        this.optQty = optQty;
+        this.salePrc = salePrc;
+    }
+
     public ProdOptDto(String optCd, String prodCd, String optName, Integer optQty, String optType, Integer salePrc, String useYn, String delYn, String remark, Date fstReg, String fstRegr, Date lastUpd, String lastUpdr) {
         this.optCd = optCd;
         this.prodCd = prodCd;
