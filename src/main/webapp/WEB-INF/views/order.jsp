@@ -328,7 +328,7 @@
                         <div class="input-group-wrap box-type">
                             <div class="input-group">
                                 <!-- 현재 보유 포인트 -->
-                                <input type="text" title="" class="input-text ui-point-input" id="textUsePoint" name="tex용tUsePoint" placeholder="2,000P부터 사용가능">
+                                <input type="text" title="" class="input-text ui-point-input" id="textUsePoint" name="tex용tUsePoint" placeholder="3,000P부터 사용가능">
                                 <span class="input-group-btn">
                                         <button type="button" class="btn-x-xs btn-input-del" title=""><i class="ico-x-normal"></i><span class="blind">삭제</span></button>
                                         <button type="button" id="pntBtn" class="btn-ex-grey"><span>적용</span></button>
@@ -701,6 +701,22 @@
         })
 
     // $("#cfmBtn").click(showDlv());
+
+    // 0804 mhs 포인트사용시 프론트단에서 검증로직 추가
+    document.getElementById('pntBtn').addEventListener('click', function() {
+        var inputElement = document.getElementById('textUsePoint'); // input 태그를 가져옵니다.
+        var pointResult = inputElement.value; // 포인트 값을 가져옵니다.
+        pointResult = parseFloat(pointResult.replace(/[^0-9]/g, '')); // 콤마 등을 제거하고 숫자로 변환합니다.
+
+        if (pointResult <= 0) { // 포인트 값이 0 이하인 경우
+            alert('포인트를 적용할 수 없습니다.'); // 경고 메시지를 표시합니다.
+            inputElement.value = ''; // input 태그의 값을 지웁니다.
+        } else if (pointResult < 3000) { // 포인트 값이 3000 미만인 경우
+            alert('3000포인트 이상만 사용할 수 있습니다'); // 경고 메시지를 표시합니다.
+            inputElement.value = ''; // input 태그의 값을 지웁니다.
+        }
+    });
+
 </script>
 </body>
 </html>

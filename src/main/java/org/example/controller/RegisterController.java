@@ -98,7 +98,7 @@ public class RegisterController {
 
     private void RegisterSettingPoint(CustDto custDto) throws Exception {
         pointDto point = new pointDto();
-        pointService.selectLatestPointHist(); //가져옴
+        // pointService.selectLatestPointHist(); //가져옴 0804 주석처리
         point.setPntId(pointService.selectLatestPointHist().getPntId()+1); //기본값 세팅
         point.setCustId(custDto.getCustId());
         point.setStus("초기상태");
