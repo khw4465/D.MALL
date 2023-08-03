@@ -55,5 +55,10 @@ public class PointDaoImpl implements PointDao{
         return session.selectOne(namespace+"selectOne",id);
     }
 
+    @Override
+    public pointDto selectLatestHist() throws Exception {
+        return session.selectOne(namespace+"selectLatestPointHist");
+    }
+
 
 }

@@ -53,4 +53,9 @@ public class PointServiceImpl implements PointService{
         return pointDao.selectOne(id);
     }
 
+    @Override
+    public pointDto selectLatestPointHist() throws Exception {
+        return pointDao.selectLatestHist();
+    }
+
 }

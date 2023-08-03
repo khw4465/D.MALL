@@ -30,11 +30,19 @@
             LIMIT #{offset}, #{pageSize}
     </select>
 
-    <!--   최신 포인트 한줄 가져오기 -->
+    <!--   회원의 최신 포인트 한줄 가져오기 -->
     <select id="selectOne" resultType="pointDto" parameterType="String">
         SELECT *
         FROM pnt_mst
         WHERE CUST_ID = #{custId}
+        ORDER BY dttm DESC
+        LIMIT 1
+    </select>
+
+    <!--   최신 포인트 한줄 가져오기 -->
+    <select id="selectLatestPointHist" resultType="pointDto">
+        SELECT *
+        FROM pnt_mst
         ORDER BY dttm DESC
         LIMIT 1
     </select>

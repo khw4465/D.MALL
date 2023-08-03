@@ -4,9 +4,11 @@ import org.example.dao.CustDao;
 import org.example.domain.CustDto;
 import org.example.domain.LoginHistoryDTO;
 import org.example.domain.custValidator;
+import org.example.domain.pointDto;
 import org.example.service.CustLoginHistService;
 import org.example.service.CustService;
 import org.example.service.CustServiceImpl;
+import org.example.service.PointService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -30,13 +32,17 @@ import java.util.List;
 @Controller
 @RequestMapping("/register")
 public class RegisterController {
-    @Autowired
     CustDao custDao;
-    @Autowired
     CustLoginHistService custLoginHistService;
-
-    @Autowired
     CustService custService;
+    PointService pointService;
+    public RegisterController(CustDao custDao, CustLoginHistService custLoginHistService, CustService custService, PointService pointService) {
+        this.custDao = custDao;
+        this.custLoginHistService = custLoginHistService;
+        this.custService = custService;
+        this.pointService = pointService;
+    }
+    // 생성자 주입
 
     // 회원가입화면 보여준다.
     @GetMapping("/add")
@@ -46,7 +52,8 @@ public class RegisterController {
 
     // 회원가입 로직
     @PostMapping("/add")
-    public String addPost(HttpServletRequest request,String toURL, HttpSession session, Model model, @Valid CustDto custDto, BindingResult result, String pwd, String pwd2) throws Exception {
+    public String addPost(HttpServletRequest request,String toURL, HttpSession session, Model model,
+                          @Valid CustDto custDto, BindingResult result, String pwd, String pwd2) throws Exception {
 
         // 회원가입시 로그인상태가 되는데 로그인이력 남기기 위한 코드
         LoginHistoryDTO loginHistoryDTO = new LoginHistoryDTO();
@@ -77,13 +84,29 @@ public class RegisterController {
 //            custDao.insertUser(custDto); // 회원가입
             custService.registerCust(custDto); // 회원가입
 
+
             toURL = toURL == null || toURL.equals("") ? "/" : toURL;
             return "redirect:" + toURL;
         } catch (Exception e) {
             throw new RuntimeException(e); //e. 찍으면 return 써줘야하네
         } finally {
             custLoginHistService.LoginHistInsert(loginHistoryDTO);
+            //최신이력 한줄 가져와서 포인트 초기화
+            RegisterSettingPoint(custDto); // 포인트 초기화 메서드
         }
+    }
+
+    private void RegisterSettingPoint(CustDto custDto) throws Exception {
+        pointDto point = new pointDto();
+        pointService.selectLatestPointHist(); //가져옴
+        point.setPntId(pointService.selectLatestPointHist().getPntId()+1); //기본값 세팅
+        point.setCustId(custDto.getCustId());
+        point.setStus("초기상태");
+        point.setChngPnt(0);
+        point.setPoint(0);
+        point.setDttm(LocalDateTime.now());
+        point.setChgCn("회원가입");
+        pointService.insertPoint(point);
     }
 
     @InitBinder
