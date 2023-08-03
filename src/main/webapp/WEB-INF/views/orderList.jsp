@@ -105,7 +105,9 @@
                             </li><!--// order-div-item || 상품별 list 1 -->
                         </ul><!--// order-div-list -->
                         <div class="addr-info-line">
-                            <p><i class="ico-bl-home2"></i> [01234]&nbsp;종로2가9 YMCA 517호</p>
+                            <c:set var="dlv" value="${dlvList.get(0)}">
+                                <p><i class="ico-bl-home2"></i> [${dlv.zpcd}]&nbsp;${dlv.dlvAddr}&nbsp;${dlv.dtlAddr}</p>
+                            </c:set>
                         </div><!--// addr-info-line -->
                     </div>
                 </li>

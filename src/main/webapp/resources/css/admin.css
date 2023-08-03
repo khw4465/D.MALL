@@ -88,3 +88,9 @@ li {
 div#container{
     height: 100%;
 }
+
+/* 주문 통계 */
+#linechart_material {
+    display: inline-block;
+    margin: 100 50px;
+}

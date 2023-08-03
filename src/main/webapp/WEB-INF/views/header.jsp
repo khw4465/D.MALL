@@ -9,6 +9,7 @@
 <c:set var="register" value="${loginId=='' ? '회원가입' : '정보수정'}"/>
 <c:set var="logo" value="${loginId=='' ? '/' : '/login/logoClick'}"/>
 <c:set var="cartCnt" value="${cartList.size()}"/>
+<script src="https://kit.fontawesome.com/dfc70c918b.js" crossorigin="anonymous"></script>
 <header>
     <nav>
         <div id="skipNavigation">
@@ -44,10 +45,8 @@
                                         </select>
                                         <input id="keyword" name="keyword" fw-filter="" fw-label="검색어" fw-msg=""
                                                class="inputTypeText" placeholder=""
-                                               onmousedown="SEARCH_BANNER.clickSearchForm(this)"
                                                value="${PageHandler.psc.keyword}" type="text">
                                         <button type="submit" src=alt="검색"
-                                                onclick="SEARCH_BANNER.submitSearchBanner(this); return false;"
                                                 style="background-color: #f5f5f5">
                                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"
                                                  style="text-align: center">
@@ -73,17 +72,22 @@
                                 </c:if>
                             </ul>
                             <ul class="hd_icons clearfix">
-                                <li class="hdMyshop"><a href="/myshop/index.html">마이쇼핑</a></li>
-                                <li class="hdWish"><a href="<c:url value='/custMyPage'/>">마이페이지</a></li>
+                                <li class="hdMyshop">
+                                    <a href="/myshop/index.html">
+                                        <i class="fa-solid fa-ticket"></i>
+                                    </a>
+                                </li>
+                                <li class="hdWish">
+                                    <a href="<c:url value='/custMyPage'/>">
+                                        <i class="fa-regular fa-user"></i>
+                                    </a>
+                                </li>
                                 <li class="xans-element- xans-layout xans-layout-statelogon hdBasket ">
                                     <a href="<c:url value='/cart/list'/>">
-                                        <i class="fa-solid fa-cart-shopping fa-2xl">
-<%--                                            ㅁㅁㅁㅁㅁㅁ--%>
-                                            <%--                                            여기에 장바구니 추가--%>
-                                        </i>
+                                        <i class="fa-solid fa-cart-shopping fa-2xl"></i>
                                         <span class="count EC-Layout_Basket-count-display">
                                             <span class="EC-Layout-Basket-count">${cartCnt}</span>
-                                    </span>
+                                        </span>
                                     </a>
                                 </li>
                             </ul>
@@ -95,7 +99,7 @@
                 <div id="category" class="xans-element- xans-layout xans-layout-category categoryOne">
                     <div class="position">
                         <ul class="clearfix">
-                            <li class="xans-record-" onmouseover="showDropdown()"><a href="/category/카테고리/48/">카테고리</a>
+                            <li class="xans-record-" onmouseover="showDropdown()"><a href="/prod/search">카테고리</a>
                             </li>
                             <li class="xans-record-"><a href="/category/베스트/48/">베스트</a></li>
                             <li class="xans-record-"><a href="/category/깜짝특가/56/">깜짝특가</a></li>

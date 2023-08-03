@@ -98,7 +98,7 @@
                             </li>
                         </c:forEach>
                     </ul>
-                    <div id="totalPrice" class="totalPrice">
+                    <div id="totalPrice" class="totalPrice" style="display: none">
                         <span class="totPrice" style="font-size: 2.3em">${mainOpt.salePrc}</span>원
                     </div>
                 </div>
@@ -159,6 +159,7 @@
         const selectedOptCd = this.options[this.selectedIndex].getAttribute('data-optCd');
         const optionLi = document.getElementById(`<c:out value="${prodDto.prodCd}"/>_`+selectedOptCd);
         optionLi.style.display = 'block';
+        $('#totalPrice').show();
 
         // 총금액 합산
         let totProdPrice = calPrice();
@@ -171,7 +172,11 @@
 
             // 삭제 후 금액 재계산
             totProdPrice = calPrice();
+            if(totProdPrice === 0)
+                $('#totalPrice').hide();
+
             $('.totPrice').html(totProdPrice)
+
         });
     })
 

@@ -2427,12 +2427,20 @@ input[readonly] {
 .qty-group .btn-qty:last-child {
     right: 0;
 }
-.ico-plus {
+.ico-plus{
     position: relative;
     width: 11px;
     height: 11px;
     display: inline-block;
 }
+
+.ico-minus {
+    position: relative;
+    width: 11px;
+    height: 11px;
+    display: inline-block;
+}
+
 .layer-pop.option-popup .option-select-area .btn-qty i::after, .btn-qty i::before {
     background-color: #999;
 }
@@ -2446,6 +2454,17 @@ input[readonly] {
     height: 1px;
     background: #333;
 }
+.ico-minus:before {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #333;
+}
+
 .layer-pop.option-popup .option-select-area .btn-qty i::before, .btn-qty i::after {
     background-color: #999;
 }

@@ -477,7 +477,7 @@ body, code {
     color: #000;
     text-indent: 1px;
     text-align: center;
-    background: #a8ce0e;
+    background: #FF6001;
 }
 
 .hd_box_table .hd_state .hd_icons li.hdMyshop a {
@@ -822,4 +822,18 @@ body, code {
 
 div.ec-base-help .inner {
     padding: 0 9px 12px;
+}
+.hd_icons i {
+    font-weight: 900;
+    font-family: "Font Awesome 6 Free";
+    font-size: 2em;
+    line-height: .03125em;
+    vertical-align: -0.1875em;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-rendering: auto;
 }

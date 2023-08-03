@@ -474,7 +474,7 @@ body {
     width: 100%
 }
 
-.btn-primary{background:#52e359c4; color:#fff; border:1px solid #52e359c4;}
+.btn-primary{background:#FF6001; color:#fff; border:1px solid #FF6001;}
 .btn-basic-xlg{min-width:215px; height:60px; padding:12px 25px}
 [class*="btn-basic-"],[class*="btn-option"]{border-radius:6px;}
 button{background:none;font-family:'Pretendard', sans-serif; cursor:pointer; outline:none; border:0; margin:0; padding:0;}

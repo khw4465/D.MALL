@@ -27,7 +27,8 @@ public class CartController {
     @GetMapping("/list")
     public String getCart(Model m, HttpSession session) {
         try {
-            String custId = (String)session.getAttribute("id");     // 로그인 한 아이디 가져오기
+            String custId = null;
+            custId = (String)session.getAttribute("id");     // 로그인 한 아이디 가져오기
 
             List<CartDto> cartList = cartService.getCartList(custId);         // 로그인한 아이디에 담긴 장바구니 목록을 리스트로 담는다
             m.addAttribute("cartList", cartList);                 // list를 모델에 담는다.

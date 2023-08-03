@@ -85,7 +85,9 @@
                                                                     <input type="radio" id="dlvNo${dlv.addrNo}" class="radio" name="vDeliveryid" value="${dlv.addrNo}" checked="checked">
                                                                     <label for="dlvNo${dlv.addrNo}">
                                                                         <span class="name">${dlv.rcpr}</span>
+                                                                        <c:if test="${dlv.basicYn == 'T'}">
                                                                         <em class="badge-sm-navy">기본배송지</em><em class="imgbadge-dlv-exp"></em>
+                                                                        </c:if>
                                                                         <span class="addr-txt">${dlv.dlvAddr} ${dlv.dtlAddr}</span>
                                                                         <span class="phoneNumber" style="display: none">${dlv.mpNo}</span>
                                                                     </label>
@@ -619,8 +621,9 @@
                             <input type="radio" id="dlvNo" class="radio" name="vDeliveryid" value="20220424000000916645">
                             <label for="dlvNo">
                               <span class="name">${response.rcpr}</span>
-                              <em class="badge-sm-navy">기본배송지</em><em class="imgbadge-dlv-exp">
-                            </em>
+                              <c:if test="${dlv.basicYn == 'T'}">
+                              <em class="badge-sm-navy">기본배송지</em><em class="imgbadge-dlv-exp"></em>
+                              </c:if>
                               <span class="addr-txt">${response.dlvAddr} ${response.dtlAddr}</span>
                             </label>
                           </div>

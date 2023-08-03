@@ -3,7 +3,6 @@
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
 <c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
 <%@ page buffer="none" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +10,7 @@
     <title>Admin Page</title>
     <link rel="stylesheet" href="<c:url value='/css/admin.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/adminHeader.css'/>">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
 <jsp:include page="adminHeader.jsp"/>
@@ -19,7 +19,7 @@
     <jsp:include page="adminSideBar.jsp"/>
 
     <div id="sidebar2" class="dashboard2">
-        <p>hello</p>
+        <div id="linechart_material" style="width: 900px; height: 500px"></div>
 <%--        <jsp:include page="stats.jsp"/>--%>
     </div>
 </div>
@@ -48,6 +48,63 @@
     fetch('adminheader.html')
         .then(response => response.text())
         .then(html => document.getElementById('sideMultiShop').innerHTML = html);
+
+    // 구글차트
+    google.charts.load('current', {'packages':['line']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Day');
+        data.addColumn('number', 'Sales');
+
+        data.addRows([
+            [new Date(2023, 8, 1),  1000],
+            [new Date(2023, 8, 2),  1170],
+            [new Date(2023, 8, 3),  660],
+            [new Date(2023, 8, 4),  1030]
+        ]);
+
+        var options = {
+            chart: {
+                title: 'Sales Performance',
+                subtitle: 'Sales amount in dollars'
+            },
+            width: 450,
+            height: 300,
+            colors: ['#FF6001'],
+            legend: { position: 'bottom' },
+            hAxis: {
+                gridlines: {
+                    color: '#f3f3f3',
+                    count: 5
+                },
+                minorGridlines: {
+                    color: '#f3f3f3',
+                    count: 2
+                },
+                textStyle : {
+                    fontSize: 12
+                }
+            },
+            vAxis: {
+                gridlines: {
+                    color: 'none',
+                },
+                minorGridlines: {
+                    color: 'none',
+                },
+                textStyle : {
+                    fontSize: 12
+                }
+            },
+            backgroundColor: '#FAFAFA'
+        };
+
+        var chart = new google.charts.Line(document.getElementById('linechart_material'));
+
+        chart.draw(data, google.charts.Line.convertOptions(options));
+    }
 </script>
 </body>
 

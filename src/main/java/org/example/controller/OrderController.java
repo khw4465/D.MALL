@@ -159,6 +159,8 @@ public class OrderController {
             List<OrderDto> ordList = orderListService.getOrdMonth(custId,1);
             m.addAttribute("list", ordList);
 
+            List<DlvAddrDto> dlvList = dlvAddrService.getDlvAddr(custId);
+            m.addAttribute("dlvList", dlvList);               // 배송지 정보를 가져와 모델에 넣어줌
 
 //           // orderList 페이지 핸들러 코드 추가
             int totalCnt = orderListService.getOrdMonth(custId,1).size();
@@ -213,20 +215,20 @@ public class OrderController {
     @Transactional(rollbackFor = Exception.class)
     public ResponseEntity<OrderDto> ordComplete(@RequestBody OrderDto orderDto, Model m, HttpSession session) {
         try {
-            String ordCd = orderDto.getOrdCd();                           // ord.jsp에서 tid를 주문코드로 얻어옴
+            String ordCd = orderDto.getOrdCd();                               // ord.jsp에서 tid를 주문코드로 얻어옴
             System.out.println("ordCd = " + ordCd);
-            String dlvMsg = orderDto.getDlvMsg();                         // ord.jsp에서 dlvMsg를 배송메시지로 얻어옴
+            String dlvMsg = orderDto.getDlvMsg();                             // ord.jsp에서 dlvMsg를 배송메시지로 얻어옴
             System.out.println("dlvMsg = " + dlvMsg);
-            String custId = (String)session.getAttribute("id");     // 세션으로 회원아이디 가져오기
+            String custId = (String)session.getAttribute("id");         // 세션으로 회원아이디 가져오기
             System.out.println("custId = " + custId);
             int totDcPrc = orderDto.getTotDcPrc();
             System.out.println("totDcPrc = " + totDcPrc);
-//            DlvAddrDto getDlv = dlvAddrService.getOneAddr(custId, 1);                         // 회원의 배송지목록 1번의 dto 가져오기
+            DlvAddrDto getDlv = dlvAddrService.getOneAddr(custId, 1);  // 회원의 배송지목록 1번의 dto 가져오기
             CustDto getCustInfo = custService.loginCust(custId);
 
             System.out.println("getCustInfo.getName() = " + getCustInfo.getName());
 
-            orderListService.addOrder(ordCd,custId,getCustInfo.getName(),totDcPrc,1,dlvMsg);    // 주문내역 추가
+            orderListService.addOrder(ordCd,custId,getCustInfo.getName(),totDcPrc,getDlv.getAddrNo(),dlvMsg);    // 주문내역 추가
 
             OrderDto ordDto1 = orderListService.getLastOrd(custId);       // 세션에 최근 주문내역 저장
             session.setAttribute("lastOrder", ordDto1);
