@@ -20,7 +20,11 @@
 
     <div id="sidebar2" class="dashboard2">
         <div id="linechart_material" style="width: 900px; height: 500px"></div>
-<%--        <jsp:include page="stats.jsp"/>--%>
+
+        <div id="linechart_stats" class="linechart_stats" style="width: 900px; height: 500px">
+            <jsp:include page="stats.jsp"/>
+        </div>
+
     </div>
 </div>
 

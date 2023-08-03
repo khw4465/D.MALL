@@ -94,3 +94,7 @@ div#container{
     display: inline-block;
     margin: 100 50px;
 }
+.linechart_stats{
+    display: inline-block;
+    margin: 300 50px;
+}
