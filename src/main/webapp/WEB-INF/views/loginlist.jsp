@@ -20,6 +20,17 @@
         <jsp:include page="adminSideBar.jsp"/>
     <div id="sidebar2" class="dashboard2">
         <div class="cust-container">
+            <h1>회원 로그인이력</h1>
+            <div class="notcsearch">
+                <form id="cs_search" action="" class="search-form-cust" method="get">
+                    <select class="search-option" name="option" hidden="hidden">
+                        <option value="T" ${pagehandler.sc.option=='T' ? "selected" : ""} hidden="hidden">제목만</option>
+                    </select>
+                    <input type="text" name="keyword" class="cust-search-input" type="text"
+                           value="${pagehandler.sc.keyword}" placeholder="회원아이디 입력">
+                    <input type="submit" class="cust-search-button move-right" value="검색">
+                </form>
+            </div>
             <table>
                 <tr>
                     <th class="">회원아이디</th>
