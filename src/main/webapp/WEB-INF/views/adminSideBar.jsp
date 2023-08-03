@@ -12,7 +12,6 @@
 </head>
 <body>
 <div id="wrap" class="beta">
-
     <div id="sidebar1" class="dashboard1">
         <div class="logo">
             <h1>
@@ -73,6 +72,12 @@
                                 </ul>
                             </li>
                         </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 <script>
