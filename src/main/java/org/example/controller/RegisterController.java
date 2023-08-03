@@ -101,11 +101,11 @@ public class RegisterController {
         // pointService.selectLatestPointHist(); //가져옴 0804 주석처리
         point.setPntId(pointService.selectLatestPointHist().getPntId()+1); //기본값 세팅
         point.setCustId(custDto.getCustId());
-        point.setStus("초기상태");
-        point.setChngPnt(0);
-        point.setPoint(0);
+        point.setStus("가입축하");
+        point.setChngPnt(3000);
+        point.setPoint(3000);
         point.setDttm(LocalDateTime.now());
-        point.setChgCn("회원가입");
+        point.setChgCn("가입축하 포인트");
         pointService.insertPoint(point);
     }
 
