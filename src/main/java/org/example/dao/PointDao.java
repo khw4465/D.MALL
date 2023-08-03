@@ -16,11 +16,13 @@ public interface PointDao {
 
     int count(String id) throws Exception;
 
-    List<pointDto> selectPage(Map map)throws Exception;
+    List<pointDto> selectPage(Map map) throws Exception;
 
-    int selectPointId(String id)throws Exception;
+    int selectPointId(String id) throws Exception;
 
     pointDto selectOne(String id) throws Exception;
+
+    pointDto selectLatestHist() throws Exception;
 
 
 }
