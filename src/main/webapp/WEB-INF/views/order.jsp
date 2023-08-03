@@ -504,9 +504,12 @@
     const postCd = document.getElementById('vPostcd');
     const dlvAddr = document.getElementById('vAddr');
 
+    // 배송지 변경하기
     findPostNo.addEventListener('click', () => {
         document.getElementById('userDeliveryDiv').style.display = 'none';
         document.getElementById('userPostNo').style.display = 'block';
+
+        // 우편번호 api
         new daum.Postcode({
             oncomplete: function(data) {
                 let mainAddr = '';
@@ -537,9 +540,11 @@
         let usePnt = document.getElementById('textUsePoint').value;
         let dcPrc = ${prc.totDcPrc} + usePnt;
         let totPrc = ${prc.totPrc} - dcPrc + ${prc.dlvPrc};
+        let totPnt = Math.floor(totPrc / 100);
         document.querySelector('#totalDiscountPrice').innerHTML = parseInt(dcPrc).toLocaleString();
         document.querySelector('#txt_tot_pg_price').innerHTML = parseInt(totPrc).toLocaleString();
         document.querySelector('#txt_btn_payment').innerHTML = parseInt(totPrc).toLocaleString();
+        document.querySelector('#totalSavePointTot').innerHTML = parseInt(totPnt).toLocaleString();
     });
 
 

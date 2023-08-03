@@ -33,11 +33,12 @@ public class OrderController {
     CustService custService;
 
     public OrderController(DlvAddrService dlvAddrService, OrderListService orderListService, CartService cartService,
-                           PointService pointService) {
+                           PointService pointService, CustService custService) {
         this.dlvAddrService = dlvAddrService;
         this.orderListService = orderListService;
         this.cartService = cartService;
         this.pointService = pointService;
+        this.custService = custService;
     }
     //0729 mhs 생성자 추가
 
@@ -213,23 +214,31 @@ public class OrderController {
     public ResponseEntity<OrderDto> ordComplete(@RequestBody OrderDto orderDto, Model m, HttpSession session) {
         try {
             String ordCd = orderDto.getOrdCd();                           // ord.jsp에서 tid를 주문코드로 얻어옴
+            System.out.println("ordCd = " + ordCd);
             String dlvMsg = orderDto.getDlvMsg();                         // ord.jsp에서 dlvMsg를 배송메시지로 얻어옴
+            System.out.println("dlvMsg = " + dlvMsg);
             String custId = (String)session.getAttribute("id");     // 세션으로 회원아이디 가져오기
+            System.out.println("custId = " + custId);
             int totDcPrc = orderDto.getTotDcPrc();
-            DlvAddrDto getDlv = dlvAddrService.getOneAddr(custId, 1);                         // 회원의 배송지목록 1번의 dto 가져오기
+            System.out.println("totDcPrc = " + totDcPrc);
+//            DlvAddrDto getDlv = dlvAddrService.getOneAddr(custId, 1);                         // 회원의 배송지목록 1번의 dto 가져오기
             CustDto getCustInfo = custService.loginCust(custId);
 
-            orderListService.addOrder(ordCd,custId,getCustInfo.getName(),totDcPrc,getDlv.getAddrNo(),dlvMsg);    // 주문내역 추가
+            System.out.println("getCustInfo.getName() = " + getCustInfo.getName());
+
+            orderListService.addOrder(ordCd,custId,getCustInfo.getName(),totDcPrc,1,dlvMsg);    // 주문내역 추가
 
             OrderDto ordDto1 = orderListService.getLastOrd(custId);       // 세션에 최근 주문내역 저장
             session.setAttribute("lastOrder", ordDto1);
 
-            // 구매시 포인트 적립을 위한 메서드 07.29 mhs
+            cartService.removeAll(custId);                                // 주문을 했으니 장바구니 목록 삭제
+
+//            // 구매시 포인트 적립을 위한 메서드 07.29 mhs
             OrderDto dto = cartService.getOrdHist(custId);
             pointDto pointDto = settingPointDto(custId, dto);
             pointService.insertPoint(pointDto);                           // 포인트 insert
 
-            cartService.removeAll(custId);                                // 주문을 했으니 장바구니 목록 삭제
+
 
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {

@@ -107,6 +107,7 @@ body {
 
 .cart-list .prd-info-area:not(.option-line) {
     padding: 0 25px;
+    min-height: 150px;
 }
 
 .cart-list .prd-info-area.option-line {

@@ -37,7 +37,9 @@ public class CustServiceImplTest {
 
     @Test
     public void loginCust() throws Exception {
-        //버려질것같다 이코드
+        CustDto getCustInfo = custService.loginCust("asdf");
+
+        System.out.println("getCustInfo.getName() = " + getCustInfo.getName());
     }
 
     @Test
