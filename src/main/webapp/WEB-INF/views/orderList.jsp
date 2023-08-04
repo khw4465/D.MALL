@@ -105,9 +105,8 @@
                             </li><!--// order-div-item || 상품별 list 1 -->
                         </ul><!--// order-div-list -->
                         <div class="addr-info-line">
-                            <c:set var="dlv" value="${dlvList.get(0)}">
+                            <c:set var="dlv" value="${dlv}"/>
                                 <p><i class="ico-bl-home2"></i> [${dlv.zpcd}]&nbsp;${dlv.dlvAddr}&nbsp;${dlv.dtlAddr}</p>
-                            </c:set>
                         </div><!--// addr-info-line -->
                     </div>
                 </li>

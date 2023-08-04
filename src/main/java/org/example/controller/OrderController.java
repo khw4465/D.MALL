@@ -159,8 +159,8 @@ public class OrderController {
             List<OrderDto> ordList = orderListService.getOrdMonth(custId,1);
             m.addAttribute("list", ordList);
 
-            List<DlvAddrDto> dlvList = dlvAddrService.getDlvAddr(custId);
-            m.addAttribute("dlvList", dlvList);               // 배송지 정보를 가져와 모델에 넣어줌
+            DlvAddrDto getDlv = dlvAddrService.getOneAddr(custId, 1);         // TODO jsp에서 인덱스 가져오기 필요
+            m.addAttribute("dlv", getDlv);                               // 배송지를 가져와 모델에 넣어줌
 
 //           // orderList 페이지 핸들러 코드 추가
             int totalCnt = orderListService.getOrdMonth(custId,1).size();
