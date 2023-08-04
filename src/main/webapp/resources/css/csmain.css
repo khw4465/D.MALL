@@ -1542,15 +1542,15 @@ body {
 }
 
 .notc-button{
-    background-color: #007bff;
-    color: white;
+    background-color: #ea8117;
+    color: #ffffff;
     border: none;
     border-radius: 4px;
     padding: 4px 8px;
     cursor: pointer;
 }
 .notc-button:hover{
-    background-color: #0056b3;
+    background-color: #c76b02;
 }
 .headermenu {
     display: flex;
@@ -1788,7 +1788,7 @@ tr:hover{
 }
 
 #form button[type="button"] {
-    background-color: #007bff;
+    background-color: #ea8117;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -1801,7 +1801,7 @@ tr:hover{
 
 /* 저장 버튼 호버 효과 */
 #form button[type="button"]:hover {
-    background-color: #0056b3;
+    background-color: #c76b02;
 }
 
 li a img {

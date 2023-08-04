@@ -15,7 +15,7 @@
     <div id="sidebar1" class="dashboard1">
         <div class="logo">
             <h1>
-                <a href="">
+                <a href="/admin">
                     <p>드가닭</p>
                 </a>
             </h1>
@@ -30,7 +30,7 @@
                                     주문
                                 </a>
                                 <ul class="submenu" style="display: none;">
-                                    <li><a href="<c:url value='order/adminOrdHist'/>">주문 관리</a></li>
+                                    <li><a href="<c:url value='/order/adminOrdHist'/>">주문 관리</a></li>
                                     <li><a href="#">회원 배송지 관리</a></li>
                                     <li><a href="#">주문 이력</a></li>
                                     <li><a href="#">주문 통계</a></li>

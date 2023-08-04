@@ -40,14 +40,14 @@
 
         <div>
             <ul id="refsearch">
-                <li id="refline"><b>추천검색어</b></li>
+                <li class="refline"><b>추천검색어</b></li>
                 <!-- 밑에는 예시로 키워드처럼 누르면 해당하는 상품들이 보여지게끔 하는 역할 -->
-                <li id="refline"><a href="<c:url value="/prod/search?option=T&keyword=닭가슴살"/>">닭가슴살</a></li>
-                <li id="refline"><a href="<c:url value="/prod/search?option=T&keyword=샐러드"/>">샐러드</a></li>
-                <li id="refline"><a href="<c:url value="/prod/search?option=T&keyword=도시락"/>">도시락</a></li>
-                <li id="refline"><a href="<c:url value="/prod/search?option=T&keyword=제로"/>">제로</a></li>
-                <li id="refline"><a href="<c:url value="/prod/search?option=T&keyword=쉐이크"/>">쉐이크</a></li>
-                <li id="refline"><a href="<c:url value="/prod/search?option=T&keyword=단백질"/>">단백질</a></li>
+                <li class="refline"><a href="<c:url value="/prod/search?option=T&keyword=닭가슴살"/>">닭가슴살</a></li>
+                <li class="refline"><a href="<c:url value="/prod/search?option=T&keyword=샐러드"/>">샐러드</a></li>
+                <li class="refline"><a href="<c:url value="/prod/search?option=T&keyword=도시락"/>">도시락</a></li>
+                <li class="refline"><a href="<c:url value="/prod/search?option=T&keyword=제로"/>">제로</a></li>
+                <li class="refline"><a href="<c:url value="/prod/search?option=T&keyword=쉐이크"/>">쉐이크</a></li>
+                <li class="refline"><a href="<c:url value="/prod/search?option=T&keyword=단백질"/>">단백질</a></li>
                 <!-- 예시로 키워드처럼 누르면 해당하는 상품들이 보여지게끔 하는 역할 -->
             </ul>
         </div>
