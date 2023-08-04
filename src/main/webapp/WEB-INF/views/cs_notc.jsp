@@ -62,6 +62,7 @@
           </div><!--// aside-guide-box -->
         </div><!--// aside-menu-wrap -->
       </div><!--// frame-left -->
+
       <div class="frame-right">
         <div class="frame-cnt-inner">
 

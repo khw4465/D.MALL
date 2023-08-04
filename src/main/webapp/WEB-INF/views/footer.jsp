@@ -15,7 +15,7 @@
                     <li><a href="">회사소개</a></li>
                     <li><a href="">이용약관</a></li>
                     <li><a href=""><strong>개인정보처리방침</strong></a></li>
-                    <li><a href="">이용안내</a></li>
+                    <li><a href="/user/list">이용안내</a></li>
                 </ul>
             </div>
         </div>
