@@ -73,9 +73,9 @@
                     <div class="use-guide">
                         <form action="" id="form">
                             <input type="hidden" name="bbsoNo" value="${NotcDto.bbsoNo}" readonly="readonly">
-                            <h3>제목</h3>
+                            <h2>제목</h2>
                             <input type="text" name="ttl" value="${NotcDto.ttl}" placeholder="제목을 입력하세요."${mode=="new" ? '' : 'readonly="readonly"'}>
-                            <h3>내용</h3>
+                            <h2>내용</h2>
                             <textarea name="cn" cols="30" rows="10" placeholder="내용을 입력하세요." ${mode=="new" ? '' : 'readonly="readonly"'} >${NotcDto.cn}</textarea>
                             <button type="button" id="listBtn" class="btn">목록</button>
                         </form>

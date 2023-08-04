@@ -177,7 +177,7 @@ input[readonly]{
 
 .cs-search-input{
   position: relative;
-  left: 930px;
+  left: 910px;
   bottom: 30px;
   width :20%;
   height: 30px;
@@ -200,7 +200,7 @@ input[readonly]{
 
 .cs-search-button.move-right{
   position: relative;
-  left: 930px;
+  left: 910px;
   bottom : 30px;
 }
 
@@ -282,9 +282,7 @@ tr :hover{
   text-align: left;
 }
 
-.td-weak{
-  color: #686868;
-}
+
 
 #form{
   width: 70%;
@@ -303,8 +301,9 @@ tr :hover{
 }
 .viewtitle{
   position: absolute;
-  top: 14%;
-  left: 18%;
+  top: 12%;
+  left: 17%;
+  font-weight: 550;
 }
 
 
@@ -349,4 +348,21 @@ tr :hover{
 #handle a:hover {
   background-color: #337ab7;
   color: #ffffff;
+}
+
+.td-num{
+  width: 20px;
+}
+
+.td-cate{
+  width: 20px;
+}
+
+.td-weak{
+  color: #686868;
+  width: 80px;
+}
+
+.notc-table{
+  width: 90%;
 }

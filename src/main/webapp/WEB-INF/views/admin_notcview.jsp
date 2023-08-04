@@ -10,7 +10,6 @@
     <title>Admin Notc</title>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <link rel="stylesheet" href="<c:url value='/css/adminnotc.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/adminnotc.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/loginlist.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/adminHeader.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/admin.css'/>">
@@ -28,6 +27,7 @@
     if(msg=="WRT_ERR") alert("공지사항 등록에 실패했습니다");
     if(msg=="MOD_READY") alert("수정하실 수 있습니다.")
 </script>
+
     <div class="right-list">
         <h3 class="viewtitle">공지사항${mode=="new" ? "쓰기" : ""}</h3>
 
@@ -39,9 +39,7 @@
                 <input type="text" name="ttl" value="${NotcDto.ttl}" placeholder="제목을 입력하세요."${mode=="new" ? '' : 'readonly="readonly"'}>
                 <h3>내용</h3>
                 <textarea name="cn" cols="30" rows="10" placeholder="내용을 입력하세요." ${mode=="new" ? '' : 'readonly="readonly"'} >${NotcDto.cn}</textarea>
-<%--        <button type="button" id="writeBtn" class="btn">등록</button>--%>
-<%--        --%>
-<%--        --%>
+
     <br>
                 <div class="btnlist">
                     <button type="button" id="modifyBtn" class="CSBtn">수정</button>

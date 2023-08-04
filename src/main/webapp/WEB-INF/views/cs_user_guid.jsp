@@ -62,7 +62,7 @@
                 </div><!--// aside-menu-wrap -->
             </div><!--// frame-left -->
             <div class="frame-right">
-                <div class="frame-cnt-inner">
+                <div class="frame-use-inner">
 
                     <div class="list-title-area">
                         <h3 class="title-list-type2">이용안내</h3>
@@ -100,8 +100,9 @@
                 </div>
             </div>
         </div><!--frame-wrap-->
+        <div class="includeItem"><jsp:include page="footer.jsp" /></div>
     </div><!--// content-wrap -->
-                    <div class="includeItem"><jsp:include page="footer.jsp" /></div>
+
 </section>
 <script>
     let acc = document.getElementsByClassName("accordion");
