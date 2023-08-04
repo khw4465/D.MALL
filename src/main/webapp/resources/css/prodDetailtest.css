@@ -17,6 +17,7 @@ body {
 .prodDesc{
     margin-top: 60px;
     display: inline-block;
+    width: 500px;
 }
 .content{
     display: inline-block;

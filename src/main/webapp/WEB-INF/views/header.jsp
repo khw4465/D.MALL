@@ -86,7 +86,12 @@
                                     <a href="<c:url value='/cart/list'/>">
                                         <i class="fa-solid fa-cart-shopping fa-2xl"></i>
                                         <span class="count EC-Layout_Basket-count-display">
-                                            <span class="EC-Layout-Basket-count">${cartCnt}</span>
+                                            <span class="EC-Layout-Basket-count">
+                                                <c:choose>
+                                                <c:when test="${cartCnt != null}">${cartCnt}</c:when>
+                                                <c:otherwise>0</c:otherwise>
+                                                </c:choose>
+                                            </span>
                                         </span>
                                     </a>
                                 </li>

@@ -73,7 +73,8 @@
                     <thead>
                     <tr>
                         <th scope="col">
-                            <div class="custom-checkbox"><input type="checkbox" id="checkAll" class="checkbox checkboxGroup"
+                            <div class="custom-checkbox"><input type="checkbox" id="checkAll"
+                                                                class="checkbox checkboxGroup"
                                                                 checked=""></div>
                         </th>
                         <th scope="col">이미지</th>
@@ -96,13 +97,15 @@
                                     <td rowspan="${optCount}"><input type="checkbox" class="CBox${cart.prodCd}"
                                                                      name="eachcheck" checked=""></td>
                                     <td rowspan="${optCount}" class="thumb gClearLine"><a
-                                            href="/product/detail.html?product_no=981&amp;cate_no=68"><img
+                                            href="<c:url value="/prod/${cart.prodCd}"/>"><img
                                             src="/img/${cart.prodCd}.png" style="width: 100px; height: 100px;"></a></td>
-                                    <td rowspan="${optCount}" class="left gClearLine"><strong class="name"><a href=""
-                                                                                                              class="prod${cart.prodCd}">${cart.prodName}</a></strong>
+                                    <td rowspan="${optCount}" class="left gClearLine"><strong class="name"><a
+                                            href="<c:url value="/prod/${cart.prodCd}"/>"
+                                            class="prod${cart.prodCd}">${cart.prodName}</a></strong>
                                     </td>
                                 </c:if>
-                                <td><strong class="name"><a href="" class="prod${opt.prodCd}_${opt.optCd}">${opt.optName}</a></strong>
+                                <td><strong class="name"><a href="<c:url value="/prod/${cart.prodCd}"/>"
+                                                            class="prod${opt.prodCd}_${opt.optCd}">${opt.optName}</a></strong>
                                 </td>
                                 <td>
                                     <div class="qtyTag" style="display: flex;">
@@ -129,11 +132,13 @@
                                 <td class="right">
                                     <div class="txtInfo">기본배송<br></div>
                                 </td>
-                                <td rowspan="1" class=""><p class="displaynone">0원<span class="displaynone"><br></span><br>
+                                <td rowspan="1" class=""><p class="displaynone">0원<span
+                                        class="displaynone"><br></span><br>
                                 </p>무료
                                 </td>
                                 <td class="button">
-                                    <button type="button" title="x" id="delete${opt.prodCd}_${opt.optCd}" class="deleteOne"
+                                    <button type="button" title="x" id="delete${opt.prodCd}_${opt.optCd}"
+                                            class="deleteOne"
                                             style="text-align: right">
                                         <i class="fa-solid fa-xmark"></i>
                                     </button>
@@ -142,7 +147,8 @@
                         </c:forEach>
                         <tr class="right">
                             <td colspan="10" style="background-color: #F0F0F0">
-                                <div style="text-align: center">총 상품 금액 : <em class="totPrc${cart.prodCd}"><fmt:formatNumber
+                                <div style="text-align: center">총 상품 금액 : <em
+                                        class="totPrc${cart.prodCd}"><fmt:formatNumber
                                         value="${cart.totProdPrice}" type="number" pattern="#,###"/></em>원
                                 </div>
                                 <div style="text-align: center">적립 포인트 : <em
@@ -161,7 +167,8 @@
     </div>
 
 
-    <div id="Info" class="xans-element- xans-order xans-order-basketpriceinfoguide  " style="display: ${prodCnt == 0 ? "none" : "block"}; margin: 30px 0; ">
+    <div id="Info" class="xans-element- xans-order xans-order-basketpriceinfoguide  "
+         style="display: ${prodCnt == 0 ? "none" : "block"}; margin: 30px 0; ">
         <p class="info ">할인 적용 금액은 주문서작성의 결제예정금액에서 확인 가능합니다.</p>
         <p class="info displaynone">주문서 작성 시 배송비를 확인할 수 있습니다.</p>
         <p class="info displaynone">추가증정 이벤트 상품의 옵션 및 수량 변경은 상품상세에서 가능합니다.</p>
@@ -169,7 +176,9 @@
     </div>
 
     <!-- 총 주문금액 : 국내배송상품 -->
-    <div id="prcData" class="xans-element- xans-order xans-order-totalsummary ec-base-table typeList gBorder ecBase total" style="display: ${prodCnt == 0 ? "none" : "block"}">
+    <div id="prcData"
+         class="xans-element- xans-order xans-order-totalsummary ec-base-table typeList gBorder ecBase total"
+         style="display: ${prodCnt == 0 ? "none" : "block"}">
         <table border="1" summary="">
             <caption>총 주문금액</caption>
             <colgroup>
@@ -198,23 +207,27 @@
             <tr>
                 <td>
                     <div class="box txt16"><strong><span class="txt23"><span id="totPrc"
-                            class="total_product_price_display_front"><fmt:formatNumber value="${ord.totPrc}"
-                                                                                        type="number"
-                                                                                        pattern="#,###"/></span></span>원</strong>
+                                                                             class="total_product_price_display_front"><fmt:formatNumber
+                            value="${ord.totPrc}"
+                            type="number"
+                            pattern="#,###"/></span></span>원</strong>
                         <span class="txt14 displaynone"><span class="total_product_price_display_back"></span></span>
                     </div>
                 </td>
                 <td class="displaynone">
                     <div class="box txt16"><strong><span class="txt23"><span id="totDcPrc"
-                            class="total_product_vat_price_front">0</span></span>원</strong> <span
-                            class="txt14 displaynone"><span class="total_product_vat_price_back"></span></span></div>
+                                                                             class="total_product_vat_price_front">0</span></span>원</strong>
+                        <span
+                                class="txt14 displaynone"><span class="total_product_vat_price_back"></span></span>
+                    </div>
                 </td>
                 <td>
                     <div class="box shipping txt16">
                         <strong class="txt23">+ </strong>
                         <strong><span id="total_delv_price_front" class="txt23"><span id="dlvPrc"
-                                class="total_delv_price_front"><fmt:formatNumber value="${ord.dlvPrc}" type="number"
-                                                                                 pattern="#,###"/></span></span>원</strong>
+                                                                                      class="total_delv_price_front"><fmt:formatNumber
+                                value="${ord.dlvPrc}" type="number"
+                                pattern="#,###"/></span></span>원</strong>
                         <span class="txt14 displaynone"><span class="total_delv_price_back"></span></span>
                     </div>
                 </td>
@@ -310,7 +323,7 @@
     });
 
     // 장바구니가 비었는지 확인하는 함수
-    let isCartEmpty = function() {
+    let isCartEmpty = function () {
         const cart = document.getElementById("cart");
         const items = cart.querySelectorAll("tbody tr");
         return items.length === 0;
@@ -359,7 +372,7 @@
 
         // 전체 delete
         $("#removeAll").click(function () {
-            if(confirm('전체 상품을 삭제하시겠습니까?')) {
+            if (confirm('전체 상품을 삭제하시겠습니까?')) {
                 $.ajax({
                     type: 'DELETE',       // 요청 메서드
                     url: '/cart/removeAll',  // 요청 URI
@@ -394,7 +407,7 @@
             totPrc -= selectedProdPrc
             dlvPrc = totPrc > 30000 ? 0 : 3000;
             finPrc = totPrc - totDcPrc + dlvPrc;
-            point = Math.round(finPrc/100);
+            point = Math.round(finPrc / 100);
             const jsonData = JSON.stringify({prodCds: selectedProdCds});
             $.ajax({
                 type: 'DELETE',       // 요청 메서드
@@ -404,7 +417,7 @@
                 data: jsonData,  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
                 success: function (result) {  // 서버로부터 응답이 도착하면 호출될 함수
                     for (let i = 0; i < selectedProdCds.length; i++) {
-                        $( "#list" + selectedProdCds[i]).remove();
+                        $("#list" + selectedProdCds[i]).remove();
                     }
 
                     $('#totPrc').html(totPrc);              // 총 상품금액 업데이트

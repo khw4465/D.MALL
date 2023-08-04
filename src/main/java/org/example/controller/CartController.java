@@ -25,13 +25,17 @@ public class CartController {
 
 
     @GetMapping("/list")
-    public String getCart(Model m, HttpSession session) {
+    public String getCart(Model m, HttpServletRequest request) {
         try {
-            String custId = null;
-            custId = (String)session.getAttribute("id");     // 로그인 한 아이디 가져오기
+            if(!loginCheck(request)) {
+                return "redirect:/login/login?toURL="+request.getRequestURL();      // 로그인을 안했으면 로그인 화면으로 이동
+            }
 
-            List<CartDto> cartList = cartService.getCartList(custId);         // 로그인한 아이디에 담긴 장바구니 목록을 리스트로 담는다
-            m.addAttribute("cartList", cartList);                 // list를 모델에 담는다.
+            HttpSession session = request.getSession();
+            String custId = (String)session.getAttribute("id");          // 로그인 한 아이디 가져오기
+
+            List<CartDto> cartList = cartService.getCartList(custId);          // 로그인한 아이디에 담긴 장바구니 목록을 리스트로 담는다
+            m.addAttribute("cartList", cartList);                  // list를 모델에 담는다.
 
             List<List<CartOptDto>> optLists = cartService.getAllOptList(custId);
 
@@ -43,7 +47,7 @@ public class CartController {
             OrderDto orddto = cartService.getOrdHist(custId);             // 장바구니 내용을 하나로 합쳐서 주문에 넣기 위해 OrderDto 형식으로 요약해놓은것
             m.addAttribute("ord",orddto);                     // orddto를 모델에 담는다.
 
-            // session.invalidate(); //비로그인 장바구니 진입시 로그아웃으로 뜨는 에러 해결책 1번
+//             session.invalidate(); //비로그인 장바구니 진입시 로그아웃으로 뜨는 에러 해결책 1번
             return"cart";
         } catch (Exception e) {
             return"error";
@@ -135,5 +139,11 @@ public class CartController {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+    }
+    private boolean loginCheck(HttpServletRequest request) {
+        // 1. 세션을 얻어서
+        HttpSession session = request.getSession();
+        // 2. 세션에 id가 있는지 확인, 있으면 true를 반환
+        return session.getAttribute("id") != null;
     }
 }
