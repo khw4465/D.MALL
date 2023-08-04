@@ -55,4 +55,9 @@ public class OrderListDaoImpl implements OrderListDao {
     public List<OrderDto> selectPage(Map map) throws Exception {
         return session.selectList(namespace + "selectPage", map);
     }
+
+    @Override
+    public List<Map> getStat() throws Exception {
+        return session.selectList(namespace + "getStat");
+    }
 }

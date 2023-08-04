@@ -24,6 +24,8 @@ public interface OrderListService {
     int modifyStatus(OrderDto dto) throws Exception;
 //
     List<OrderDto> getPage(Map map) throws Exception;
+
+    List<Map> getStat() throws Exception;
 //
 //    List<OrderDto> getList() throws Exception;
 

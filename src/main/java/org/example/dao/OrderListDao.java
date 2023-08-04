@@ -24,4 +24,6 @@ public interface OrderListDao {
 
 //    List<OrderDto> selectAllPage() throws Exception;
     List<OrderDto> selectPage(Map map) throws Exception;
+
+    List<Map> getStat() throws Exception;
 }

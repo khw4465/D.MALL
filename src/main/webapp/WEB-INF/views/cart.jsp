@@ -134,7 +134,7 @@
                                 </td>
                                 <td rowspan="1" class=""><p class="displaynone">0원<span
                                         class="displaynone"><br></span><br>
-                                </p>무료
+                                </p>-
                                 </td>
                                 <td class="button">
                                     <button type="button" title="x" id="delete${opt.prodCd}_${opt.optCd}"

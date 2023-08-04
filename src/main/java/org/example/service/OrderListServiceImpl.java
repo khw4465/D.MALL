@@ -70,4 +70,10 @@ public class OrderListServiceImpl implements OrderListService {
     public List<OrderDto> getPage(Map map) throws Exception{
         return orderListDao.selectPage(map);
     }
+
+    // 최근 일주일동안의 일별 판매금액 통계
+    @Override
+    public List<Map> getStat() throws Exception {
+        return orderListDao.getStat();
+    }
 }

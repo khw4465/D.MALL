@@ -19,7 +19,9 @@
     <jsp:include page="adminSideBar.jsp"/>
 
     <div id="sidebar2" class="dashboard2">
-        <div id="linechart_material" style="width: 900px; height: 500px"></div>
+        <div id="linechart_material" style="width: 900px; height: 500px">
+            <jsp:include page="orderStat.jsp"/>
+        </div>
 
         <div id="linechart_stats" class="linechart_stats" style="width: 900px; height: 500px">
             <jsp:include page="stats.jsp"/>
@@ -49,66 +51,66 @@
         }
     }
 
-    fetch('adminheader.html')
-        .then(response => response.text())
-        .then(html => document.getElementById('sideMultiShop').innerHTML = html);
-
-    // 구글차트
-    google.charts.load('current', {'packages':['line']});
-    google.charts.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-        var data = new google.visualization.DataTable();
-        data.addColumn('date', 'Day');
-        data.addColumn('number', 'Sales');
-
-        data.addRows([
-            [new Date(2023, 8, 1),  1000],
-            [new Date(2023, 8, 2),  1170],
-            [new Date(2023, 8, 3),  660],
-            [new Date(2023, 8, 4),  1030]
-        ]);
-
-        var options = {
-            chart: {
-                title: 'Sales Performance',
-                subtitle: 'Sales amount in dollars'
-            },
-            width: 450,
-            height: 300,
-            colors: ['#FF6001'],
-            legend: { position: 'bottom' },
-            hAxis: {
-                gridlines: {
-                    color: '#f3f3f3',
-                    count: 5
-                },
-                minorGridlines: {
-                    color: '#f3f3f3',
-                    count: 2
-                },
-                textStyle : {
-                    fontSize: 12
-                }
-            },
-            vAxis: {
-                gridlines: {
-                    color: 'none',
-                },
-                minorGridlines: {
-                    color: 'none',
-                },
-                textStyle : {
-                    fontSize: 12
-                }
-            },
-            backgroundColor: '#FAFAFA'
-        };
-
-        var chart = new google.charts.Line(document.getElementById('linechart_material'));
-
-        chart.draw(data, google.charts.Line.convertOptions(options));
-    }
+    // fetch('adminheader.html')
+    //     .then(response => response.text())
+    //     .then(html => document.getElementById('sideMultiShop').innerHTML = html);
+    //
+    // // 구글차트
+    // google.charts.load('current', {'packages':['line']});
+    // google.charts.setOnLoadCallback(drawChart);
+    //
+    // function drawChart() {
+    //     var data = new google.visualization.DataTable();
+    //     data.addColumn('date', 'Day');
+    //     data.addColumn('number', 'Sales');
+    //
+    //     data.addRows([
+    //         [new Date(2023, 8, 1),  1000],
+    //         [new Date(2023, 8, 2),  1170],
+    //         [new Date(2023, 8, 3),  660],
+    //         [new Date(2023, 8, 4),  1030]
+    //     ]);
+    //
+    //     var options = {
+    //         chart: {
+    //             title: 'Sales Performance',
+    //             subtitle: 'Sales amount in dollars'
+    //         },
+    //         width: 450,
+    //         height: 300,
+    //         colors: ['#FF6001'],
+    //         legend: { position: 'bottom' },
+    //         hAxis: {
+    //             gridlines: {
+    //                 color: '#f3f3f3',
+    //                 count: 5
+    //             },
+    //             minorGridlines: {
+    //                 color: '#f3f3f3',
+    //                 count: 2
+    //             },
+    //             textStyle : {
+    //                 fontSize: 12
+    //             }
+    //         },
+    //         vAxis: {
+    //             gridlines: {
+    //                 color: 'none',
+    //             },
+    //             minorGridlines: {
+    //                 color: 'none',
+    //             },
+    //             textStyle : {
+    //                 fontSize: 12
+    //             }
+    //         },
+    //         backgroundColor: '#FAFAFA'
+    //     };
+    //
+    //     var chart = new google.charts.Line(document.getElementById('linechart_material'));
+    //
+    //     chart.draw(data, google.charts.Line.convertOptions(options));
+    // }
 </script>
 </body>
 

@@ -555,7 +555,9 @@
         $('#kakaoPay').click(function(){
             let dlvMsg = $('#dlvMsg'.valueOf())
             let usePnt = document.getElementById('textUsePoint').value;
-            let totDcPrc = ${prc.totDcPrc} + usePnt;
+            let totDcPrc = parseInt($('#totalDiscountPrice').text().replace(/,/g, ''));
+
+            let orderDto = JSON.stringify({totDcPrc: totDcPrc});
 
             $.ajax({
                 url: '/order/kakao',  // 요청 URI

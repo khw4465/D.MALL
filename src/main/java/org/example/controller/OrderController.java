@@ -93,6 +93,10 @@ public class OrderController {
             HttpSession session = request.getSession();
             String custId = (String)session.getAttribute("id");     // 세션으로 회원아이디 가져오기
             OrderDto dto = cartService.getOrdHist(custId);
+
+            // TODO 3차 카카오페이 결제내역엔 할인가격이 안나오는것
+//            dto.setTotDcPrc(orderDto.getTotDcPrc());                    // 최종할인금액 설정해주기
+//            System.out.println("orderDto.getTotDcPrc() = " + orderDto.getTotDcPrc());
             System.out.println("qty = " + dto.getTotQty());
             System.out.println("prc = " + dto.getFinPrc());
 
@@ -387,6 +391,31 @@ public class OrderController {
             throw new RuntimeException(e);
         }
     }
+
+    // 관리자 일별매출 통계
+    @GetMapping("/stats")
+    public String selectAllStats(Model m) throws Exception {
+        List<Map> stats = orderListService.getStat();
+
+        StringBuilder times = new StringBuilder();
+        StringBuilder prcs = new StringBuilder();
+        for (int i = 0; i < stats.size(); i++) {
+            times.append(stats.get(i).get("time"));
+            prcs.append(stats.get(i).get("prc"));
+            if (i < stats.size() - 1) {
+                times.append(", ");
+                prcs.append(", ");
+            }
+        }
+        System.out.println("times = " + times.toString());
+        System.out.println("prcs = " + prcs.toString());
+        m.addAttribute("times", times.toString());
+        m.addAttribute("prcs", prcs.toString());
+        // 모델에 담는다.
+
+        return "orderStat";
+    }
+
 
     private boolean loginCheck(HttpServletRequest request) {
         // 1. 세션을 얻어서

@@ -72,4 +72,8 @@ public class OrderListDaoImplTest {
         map.put("custId", "asdfasdf");
         System.out.println(orderListDao.select(map));
     }
+    @Test
+    public void getStat() throws Exception {
+        System.out.println(orderListDao.getStat());
+    }
 }

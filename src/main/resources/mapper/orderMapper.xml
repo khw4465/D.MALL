@@ -72,4 +72,13 @@
         ORDER BY ord_dttm desc
         LIMIT #{offset}, #{pageSize}
     </select>
+
+    <select id="getStat" resultType="map">
+        SELECT DATE(ORD_DTTM) time, SUM(FIN_PRC) prc
+        FROM ord
+        WHERE ORD_DTTM >= CURDATE() - INTERVAL 7 DAY
+        GROUP BY DATE(ORD_DTTM)
+        ORDER BY DATE(ORD_DTTM)
+        LIMIT 7;
+    </select>
 </mapper>
