@@ -32,12 +32,12 @@ input {
     align-items: center;
 }
 
-.search-form {
+.search-form-cust {
     height: 37px;
     display: flex;
 }
 
-.search-option {
+.search-option-cust {
     width: 100px;
     height: 100%;
     outline: none;
@@ -46,11 +46,11 @@ input {
     color: gray;
 }
 
-.search-option>option {
+.search-option-cust>option {
     text-align: center;
 }
 
-.search-input {
+.cust-search-input {
     color: gray;
     background-color: white;
     border: 1px solid #ccc;
@@ -60,7 +60,7 @@ input {
     padding: 5px 7px;
 }
 
-.search-input::placeholder {
+.cust-search-input::placeholder {
     color: gray;
 }
 
@@ -198,4 +198,31 @@ td.title:hover {
     margin-top: 100px;
     margin-left: 10%;
     margin-right: 10%;
+}
+
+.cust-search-input{
+    position: absolute;
+    right: 29%;
+    width :200px;
+    height: 30px;
+    padding: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 4px;
+}
+.cust-search-button{
+    background-color: #343a40;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+.cust-search-button:hover{
+    background-color: #0056b3;
+}
+
+.cust-search-button.move-right{
+    position: absolute;
+    right: 27%;
 }

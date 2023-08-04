@@ -43,6 +43,7 @@ public class CartController {
             OrderDto orddto = cartService.getOrdHist(custId);             // 장바구니 내용을 하나로 합쳐서 주문에 넣기 위해 OrderDto 형식으로 요약해놓은것
             m.addAttribute("ord",orddto);                     // orddto를 모델에 담는다.
 
+            // session.invalidate(); //비로그인 장바구니 진입시 로그아웃으로 뜨는 에러 해결책 1번
             return"cart";
         } catch (Exception e) {
             return"error";

@@ -82,6 +82,8 @@ public class RegisterController {
             model.addAttribute("user", custDto);
 
 //            custDao.insertUser(custDto); // 회원가입
+            Date Date2 = new Date(); // 현재 날짜와 시간을 가져옵니다.
+            custDto.setBirth(Date2); // 기본날짜 설정 땜빵 (널포인터예방)
             custService.registerCust(custDto); // 회원가입
 
 
@@ -98,14 +100,14 @@ public class RegisterController {
 
     private void RegisterSettingPoint(CustDto custDto) throws Exception {
         pointDto point = new pointDto();
-        pointService.selectLatestPointHist(); //가져옴
+        // pointService.selectLatestPointHist(); //가져옴 0804 주석처리
         point.setPntId(pointService.selectLatestPointHist().getPntId()+1); //기본값 세팅
         point.setCustId(custDto.getCustId());
-        point.setStus("초기상태");
-        point.setChngPnt(0);
-        point.setPoint(0);
+        point.setStus("가입축하");
+        point.setChngPnt(3000);
+        point.setPoint(3000);
         point.setDttm(LocalDateTime.now());
-        point.setChgCn("회원가입");
+        point.setChgCn("가입축하 포인트");
         pointService.insertPoint(point);
     }
 

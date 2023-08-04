@@ -78,6 +78,9 @@ public class OrderController {
 
             return "order";
         } catch (Exception e) {
+            //08 04 mhs 에러해결위해 코드추가
+            System.out.println("e.getMessage() = " + e.getMessage());
+            e.printStackTrace();
             return "error";
         }
     }
@@ -249,10 +252,13 @@ public class OrderController {
     }
     // 구매시 포인트 적립을 위한 메서드 07.29 mhs
     private pointDto settingPointDto(String custId, OrderDto dto) throws Exception { // 07.29 mhs
+        //id로 가져오는게 아니라 전체이력 1줄을 가져와야 pk에러가 뜨지않을듯.
+
         pointDto pointDto = pointService.selectPointOne(custId); // id 주면 최신포인트이력 한줄 가져온다.
         pointDto newPointDto = new pointDto();
-        // 최신이력 1줄을 받아와 수정해서 새로 저장 시작
-        newPointDto.setPntId(pointDto.getPntId()+1); // 포인트
+        // 회원의 최신 이력 1줄을 받아와 수정해서 새로 저장 시작
+        newPointDto.setPntId(pointService.selectLatestPointHist().getPntId()+1); // 포인트
+        // 위의 서비스는 회원의 최신이력이 아니라 전체의 최신이력을 하나 가져와서 +1 해준다.
         newPointDto.setCustId(pointDto.getCustId()); // 회원아이디
         newPointDto.setStus("적립"); //상태
         newPointDto.setChngPnt((dto.getTotPrc()/100)); //변화포인트

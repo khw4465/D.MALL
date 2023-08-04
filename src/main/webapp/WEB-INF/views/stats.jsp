@@ -18,17 +18,17 @@
 <head>
     <title>통계</title>
     <link rel="stylesheet" href="<c:url value='/css/stats.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/adminHeader.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/admin.css'/>">
+<%--    <link rel="stylesheet" href="<c:url value='/css/adminHeader.css'/>">--%>
+<%--    <link rel="stylesheet" href="<c:url value='/css/admin.css'/>">--%>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 </head>
 <body>
-<jsp:include page="adminHeader.jsp"/>
+<%--<jsp:include page="adminHeader.jsp"/>--%>
 
 
-<div id="container">
-    <jsp:include page="adminSideBar.jsp"/>
-    <div id="sidebar2" class="dashboard2">
+<%--<div id="container">--%>
+<%--    <jsp:include page="adminSideBar.jsp"/>--%>
+<%--    <div id="sidebar2" class="dashboard2">--%>
 
         <div style="width: 900px; height: 900px;">
             <canvas id="myChart"></canvas>
@@ -93,7 +93,7 @@
             });
 
         </script>
-    </div>
-</div>
+<%--    </div>--%>
+<%--</div>--%>
 </body>
 </html>
