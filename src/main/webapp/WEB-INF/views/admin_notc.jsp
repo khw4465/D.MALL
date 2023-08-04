@@ -15,6 +15,15 @@
     <link rel="stylesheet" href="<c:url value='/css/admin.css'/>">
 
 </head>
+<script>
+    let msg = "${msg}";
+    if (msg == "LIST_ERR") alert("게시물 목록을 가져오는데 실패했습니다. 다시 시도해 주세요.");
+    if (msg == "READ_ERR") alert("삭제되었거나 없는 게시물입니다.");
+    if (msg == "DEL_ERR") alert("삭제되었거나 없는 게시물입니다.");
+    if (msg == "DEL_OK") alert("성공적으로 삭제되었습니다.");
+    if (msg == "WRT_OK") alert("성공적으로 등록되었습니다.");
+    if (msg == "MOD_OK") alert("성공적으로 수정되었습니다.");
+</script>
 <body>
 <jsp:include page="adminHeader.jsp"/>
 
@@ -24,7 +33,7 @@
     <div class="right-list">
 
         <div class="use-guide">
-            <table>
+            <table class="notc-table">
                 <h3><a href="/notc/adminlist">공지사항 관리</a></h3>
                 <!-- 게시물 검색창 -->
                 <div class="notcsearch">
@@ -41,18 +50,18 @@
                 <!-- 게시물 검색창 -->
                 <thead>
                 <tr>
-                    <th>번호</th>
-                    <th>카테고리</th>
-                    <th>제목</th>
-                    <th>등록일</th>
-                    <th>조회수</th>
+                    <th class="td-num">번호</th>
+                    <th class="td-cate">카테고리</th>
+                    <th class="td-title">제목</th>
+                    <th class="td-weak">등록일</th>
+                    <th class="td-weak">조회수</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach var="NotcDto" items="${list}">
                     <tr>
-                        <td>${NotcDto.bbsoNo}</td>
-                        <td>${NotcDto.cate}</td>
+                        <td class="td-num">${NotcDto.bbsoNo}</td>
+                        <td class="td-cate">${NotcDto.cate}</td>
                         <td class="none-center"><a
                                 href="<c:url value='/notc/adminread?bbsoNo=${NotcDto.bbsoNo}&amp;page=${page}&amp;pageSize=${pageSize}' />">${NotcDto.ttl}</a>
                         </td>
@@ -104,13 +113,7 @@
             });
         }
 
-        let msg = "${msg}";
-        if (msg == "LIST_ERR") alert("게시물 목록을 가져오는데 실패했습니다. 다시 시도해 주세요.");
-        if (msg == "READ_ERR") alert("삭제되었거나 없는 게시물입니다.");
-        if (msg == "DEL_ERR") alert("삭제되었거나 없는 게시물입니다.");
-        if (msg == "DEL_OK") alert("성공적으로 삭제되었습니다.");
-        if (msg == "WRT_OK") alert("성공적으로 등록되었습니다.");
-        if (msg == "MOD_OK") alert("성공적으로 수정되었습니다.");
+
     });
 </script>
 
