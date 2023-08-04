@@ -71,44 +71,52 @@
     <div id="animal-images" class="image-container" style="display: none;">
         <c:forEach var="prodOne" items="${cateOne}">
             <div>
+                <a href="<c:url value='/prod/detail/${prodOne.prodCd}'/>">
                 <img src="${prodOne.prodImg}.png" alt="Animal Image" width="250" height="250">
                 <div>
                     <div class="images-name">${prodOne.prodName}</div>
                     <div class="images-price">${prodOne.prodPrice}원</div>
                 </div>
+                </a>
             </div>
         </c:forEach>
     </div>
     <div id="nature-images" class="image-container" style="display: none;">
         <c:forEach var="prodTwo" items="${cateTwo}">
             <div>
+                <a href="<c:url value='/prod/detail/${prodTwo.prodCd}'/>">
                 <img src="${prodTwo.prodImg}.png" alt="nature Image" width="250" height="250">
                 <div>
                     <div class="images-name">${prodTwo.prodName}</div>
                     <div class="images-price">${prodTwo.prodPrice}원</div>
                 </div>
+                </a>
             </div>
         </c:forEach>
     </div>
     <div id="food-images" class="image-container" style="display: none;">
         <c:forEach var="prodThree" items="${cateThree}">
             <div>
+                <a href="<c:url value='/prod/detail/${prodThree.prodCd}'/>">
                 <img src="${prodThree.prodImg}.png" alt="food Image" width="250" height="250">
                 <div>
                     <div class="images-name">${prodThree.prodName}</div>
                     <div class="images-price">${prodThree.prodPrice}원</div>
                 </div>
+                </a>
             </div>
         </c:forEach>
     </div>
     <div id="pro-images" class="image-container" style="display: none;">
         <c:forEach var="prodFour" items="${cateFour}">
             <div>
+                <a href="<c:url value='/prod/detail/${prodFour.prodCd}'/>">
                 <img src="${prodFour.prodImg}.png" alt="pro Image" width="250" height="250">
                 <div>
                     <div class="images-name">${prodFour.prodName}</div>
                     <div class="images-price">${prodFour.prodPrice}원</div>
                 </div>
+                </a>
             </div>
         </c:forEach>
     </div>
