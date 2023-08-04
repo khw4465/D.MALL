@@ -28,9 +28,9 @@
     <!-- 회원 정보를 새로 저장 -->
     <insert id="insert" parameterType="CustDto">
         INSERT INTO cust
-            (cust_id,PWD,NAME,RCMDR,EMAIL,mpno,CUST_TP,GRADE,STUS,REG_DATE,LGIN_DTTM,fst_Reg,fst_Regr,last_Upd,last_Updr)
+            (cust_id,PWD,NAME,birth,RCMDR,EMAIL,mpno,CUST_TP,GRADE,STUS,REG_DATE,LGIN_DTTM,fst_Reg,fst_Regr,last_Upd,last_Updr)
         VALUES
-            (#{custId}, #{pwd}, #{name}, #{rcmdr}, #{email},#{mpNo},#{custTp},#{grade},#{stus},#{regDate},#{lginDttm},#{fstReg},#{fstRegr},#{lastUpd},#{lastUpdr})
+            (#{custId}, #{pwd}, #{name},#{birth}, #{rcmdr}, #{email},#{mpNo},#{custTp},#{grade},#{stus},#{regDate},#{lginDttm},#{fstReg},#{fstRegr},#{lastUpd},#{lastUpdr})
     </insert>
 
     <!-- 특정 회원 아이디로 정보를 삭제 -->

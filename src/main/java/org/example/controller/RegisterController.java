@@ -82,6 +82,8 @@ public class RegisterController {
             model.addAttribute("user", custDto);
 
 //            custDao.insertUser(custDto); // 회원가입
+            Date Date2 = new Date(); // 현재 날짜와 시간을 가져옵니다.
+            custDto.setBirth(Date2); // 기본날짜 설정 땜빵 (널포인터예방)
             custService.registerCust(custDto); // 회원가입
 
 
