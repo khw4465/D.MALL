@@ -112,17 +112,7 @@
 
 </form>
 <script>
-    function check(form) {
-        var email = form.email.value; //폼의 네임속성이 email인거의 값을 가져온다.
-        var regularEx = /^[a-zA-Z0-9._~!@#$%^&*()-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        //    /^ 정규식의 시작
-        // 알파벳+@알파벳+.com
-        //  $/ 는 정규식의 끝
-        if (!(regularEx.test(email))) {
-            alert("이메일 주소를 다시 입력해주세요.");
-            return false; // 폼 제출 못함
-        }
-        return true;
+<%--    자스 파일 분리함--%>
         //레지스터폼에서는 이런방식으로한다.
         <%--function setMessage(msg, element){--%>
         <%--    document.getElementById("msg").innerHTML = `<i class="fa fa-exclamation-circle"> \${msg}</i>`;--%>
@@ -132,10 +122,10 @@
         <%--        element.select();--%>
         <%--    }--%>
         <%--}--%>
-    }
 </script>
 <footer>
     <jsp:include page="footer.jsp"/>
 </footer>
+<script type="text/javascript" src="<c:url value='/js/register.js'/>"></script>
 </body>
 </html>
