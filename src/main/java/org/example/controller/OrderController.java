@@ -395,22 +395,8 @@ public class OrderController {
     // 관리자 일별매출 통계
     @GetMapping("/stats")
     public String selectAllStats(Model m) throws Exception {
-        List<Map> stats = orderListService.getStat();
-
-        StringBuilder times = new StringBuilder();
-        StringBuilder prcs = new StringBuilder();
-        for (int i = 0; i < stats.size(); i++) {
-            times.append(stats.get(i).get("time"));
-            prcs.append(stats.get(i).get("prc"));
-            if (i < stats.size() - 1) {
-                times.append(", ");
-                prcs.append(", ");
-            }
-        }
-        System.out.println("times = " + times.toString());
-        System.out.println("prcs = " + prcs.toString());
-        m.addAttribute("times", times.toString());
-        m.addAttribute("prcs", prcs.toString());
+        List<Map<String, Object>> stats = orderListService.getStat();
+        m.addAttribute("stat", stats);
         // 모델에 담는다.
 
         return "orderStat";

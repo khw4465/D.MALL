@@ -74,11 +74,19 @@
     </select>
 
     <select id="getStat" resultType="map">
-        SELECT DATE(ORD_DTTM) time, SUM(FIN_PRC) prc
-        FROM ord
-        WHERE ORD_DTTM >= CURDATE() - INTERVAL 7 DAY
-        GROUP BY DATE(ORD_DTTM)
-        ORDER BY DATE(ORD_DTTM)
-        LIMIT 7;
+        SELECT IFNULL(b.prc, 0) AS prc, a.Date AS time
+        FROM (
+            SELECT CURDATE() - INTERVAL (a.a + (10 * b.a)) DAY as Date
+            FROM (SELECT 0 as a UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) as a
+            CROSS JOIN (SELECT 0 as a UNION ALL SELECT 1) as b
+            ) a
+            LEFT JOIN (
+            SELECT DATE(ORD_DTTM) AS time, SUM(FIN_PRC) AS prc
+            FROM ord
+            WHERE ORD_DTTM >= CURDATE() - INTERVAL 6 DAY
+            GROUP BY DATE(ORD_DTTM)
+            ) b ON a.Date = b.time
+        WHERE a.Date >= CURDATE() - INTERVAL 6 DAY
+        ORDER BY a.Date;
     </select>
 </mapper>

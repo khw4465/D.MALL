@@ -221,7 +221,7 @@
                             </tr>
 
                             <tr>
-                                <th scope="row">상품 요약설명</th>
+                                <th scope="row">원산지</th>
                                 <td>
                                     <input type="text" name="prodSmrvDesc" value="">
 

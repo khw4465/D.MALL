@@ -5,8 +5,10 @@ import org.example.domain.OrderDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Repository
 public class OrderListDaoImpl implements OrderListDao {
@@ -57,7 +59,7 @@ public class OrderListDaoImpl implements OrderListDao {
     }
 
     @Override
-    public List<Map> getStat() throws Exception {
+    public List<Map<String, Object>> getStat() throws Exception {
         return session.selectList(namespace + "getStat");
     }
 }

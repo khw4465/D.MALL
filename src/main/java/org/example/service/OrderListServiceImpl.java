@@ -73,7 +73,7 @@ public class OrderListServiceImpl implements OrderListService {
 
     // 최근 일주일동안의 일별 판매금액 통계
     @Override
-    public List<Map> getStat() throws Exception {
+    public List<Map<String, Object>> getStat() throws Exception {
         return orderListDao.getStat();
     }
 }

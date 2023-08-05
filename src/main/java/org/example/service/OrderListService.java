@@ -25,7 +25,7 @@ public interface OrderListService {
 //
     List<OrderDto> getPage(Map map) throws Exception;
 
-    List<Map> getStat() throws Exception;
+    List<Map<String, Object>> getStat() throws Exception;
 //
 //    List<OrderDto> getList() throws Exception;
 
