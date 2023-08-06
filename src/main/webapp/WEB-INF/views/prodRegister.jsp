@@ -270,7 +270,8 @@
                 <input type="button" value="이미지 추가" onclick="fn_addFile()"><br>
                 <div id="d_file"></div>
             </table>
-
+            <input type="hidden" name="loginWin" value="${Windows}">
+            <input type="hidden" name="loginMac" value="${Macintosh}">
             <br>
             <button type="submit" class="btnSubmit">상품등록</button>
         </form>

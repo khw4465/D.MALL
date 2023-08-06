@@ -41,8 +41,21 @@ public class ProdController {
         this.prodOptService = prodOptService;
     }
 
-    private static final String CURR_IMAGE_REPO_PATH = "C:\\Users\\huis9\\D.gaja\\src\\main\\webapp\\resources\\img";
+    //private static final String CURR_IMAGE_REPO_PATH = "C:\\Users\\huis9\\D.gaja\\src\\main\\webapp\\resources\\img";
+    private static String CURR_IMAGE_REPO_PATH = "C:\\Users\\huis9\\D.gaja\\src\\main\\webapp\\resources\\img";
 
+//    static {
+//        if (someCondition()) {
+//            CURR_IMAGE_REPO_PATH = "value1";
+//        } else if (){
+//            CURR_IMAGE_REPO_PATH = "value2";
+//        }
+//    }
+//    @GetMapping("/addPath")
+//    public String prodPATH(Model m) throws Exception{
+//
+//        return "forward:/prod/register"; // 상품등록으로 값 전달
+//    }
     @GetMapping("/register")
     public String prodregisterGET(Model m) throws Exception{
         return "prodRegister";
@@ -51,8 +64,12 @@ public class ProdController {
     @PostMapping("/register")
     public String prodregisterPost(@ModelAttribute ProdDto prodDto, String cateName,
                                    MultipartHttpServletRequest multipartRequest,
-                                   HttpServletResponse response,Model m) throws Exception{
-
+                                   HttpServletResponse response,Model m ,String loginWin, String loginMac ) throws Exception{
+        if(loginMac=="Macintosh"){
+            // CURR_IMAGE_REPO_PATH = "C:\\Users\\huis9\\D.gaja\\src\\main\\webapp\\resources\\img";
+            // 맥 경로 넣기 예시 (위에는 윈도우 예시) 주석 활성화해서 코딩
+            // CURR_IMAGE_REPO_PATH =
+        }
         //파일업로드
         multipartRequest.setCharacterEncoding("utf-8");
         Map map = new HashMap();
