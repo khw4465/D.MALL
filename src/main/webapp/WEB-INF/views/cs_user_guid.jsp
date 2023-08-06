@@ -41,7 +41,6 @@
                             <li><a href="/notc/list" class="menu">공지사항</a></li>
                             <li><a href="/user/list" class="menu">이용안내</a></li>
                             <li><a href="/faq/list" class="menu">자주묻는 FAQ</a></li>
-
                         </ul>
                     </nav><!--// aside-menu -->
 
