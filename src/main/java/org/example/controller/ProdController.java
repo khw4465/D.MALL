@@ -56,7 +56,7 @@ public class ProdController {
         //파일업로드
         multipartRequest.setCharacterEncoding("utf-8");
         Map map = new HashMap();
-        Enumeration enu=multipartRequest.getParameterNames();
+        Enumeration enu = multipartRequest.getParameterNames();
         while(enu.hasMoreElements()){
             String name=(String)enu.nextElement();
             String value=multipartRequest.getParameter(name);
@@ -68,12 +68,16 @@ public class ProdController {
         List fileList = fileProcess((MultipartHttpServletRequest) multipartRequest);
         map.put("fileList", fileList);
         //fileList 첫번째꺼를 prodDto.set대표이미지 해주고
-        prodDto.setProdImgName((String) fileList.get(0)); //githist.png
+        prodDto.setProdImgName((String) fileList.get(0)); // githist.png
          // prod_cd 가져와서 set 대표이미지경로
-        prodDto.setProdImg("/img/"+prodDto.getProdCd()+"_1");
+        prodDto.setProdImg("img/"+prodDto.getProdCd()); // 대표이미지
         ///prodDTO관련
 
-        //확장자 자를 스트링
+        //prod테이블에 insert 로직 작성 0806
+        System.out.println("prodDto = " + prodDto);
+        prodService.productRegister(prodDto);
+
+        // 확장자 자를 스트링
         // 나머지를 img서비스 호출해서 다 하나씩 넣어줄거임.
         for (int i = 1; i < fileList.size(); i++) {
             String filename = (String) fileList.get(i); // 파일이름 스트링 받을 변수
