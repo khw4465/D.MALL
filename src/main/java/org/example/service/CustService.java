@@ -1,6 +1,7 @@
 package org.example.service;
 
 import org.example.domain.CustDto;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,8 @@ public interface CustService {
     String findCustId(CustDto custDto) throws Exception; // 회원아이디 찾아주기
 
     CustDto loginCust(String id) throws Exception;
-    int registerCust(CustDto custDto) throws Exception;
+     int registerCust(CustDto custDto) throws Exception;
+
     CustDto modifyselect(String id) throws Exception;
 
     int withdrawal(String id) throws Exception; // 탈퇴

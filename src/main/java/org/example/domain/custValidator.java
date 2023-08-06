@@ -25,11 +25,11 @@ public class custValidator implements Validator {
 
             if (id == null || id.length() < 4 || id.length() > 20) {
                 errors.rejectValue("custId", "required");
-                System.out.println("id를 다시 입력해주세요");
+                System.out.println("id를 4자에서 20자 사이로 입력해주세요.");
             }
             if (pwd == null || pwd.length() < 8 || pwd.length() > 20) {
                 errors.rejectValue("pwd", "required");
-                System.out.println("pwd를 다시 입력해주세요");
+                System.out.println("비밀번호를 8자에서 20자 사이로 입력해주세요. ");
             }
         } else {
             // CustDto가 아닌 다른 타입의 객체가 전달되면 예외를 발생시키는 등의 대응이 필요
