@@ -10,10 +10,8 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="<c:url value='/css/register.css'/>">
-<%--    <link rel="stylesheet" href="<c:url value='/css/footer.css'/>">--%>
     <link rel="stylesheet" href="<c:url value='/css/footer.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
-
 </head>
 <body>
 <br><br><br><br>
@@ -36,21 +34,21 @@
     <div class="login-input">
         <label for="loginJoinCustPwd1" class="login_input_label">비밀번호 입력</label>
 
-        <input id="loginJoinCustPwd1" name="pwd" placeholder="숫자, 영문, 특수문자 조합 최소 8자리" maxlength="20" type="password" class="">
+        <input id="loginJoinCustPwd1" name="pwd" placeholder="숫자, 영문, 특수문자 조합 최소 8자리" maxlength="20" type="password" class="" onblur="checkPasswordLength(this)">
         <br>
         <p class="login-Space"></p> <!-- 공백 -->
+        <p id="passwordError" style="color:red; display:none;">비밀번호는 최소 8자리 이상이어야 합니다.</p>
     </div>
-    <br>
     <!-- 비밀번호 입력1 종료-->
-
 
     <!-- 비밀번호 입력 2 시작-->
     <div class="login-input">
         <label for="loginJoinCustPwd2" class="login_input_label">비밀번호 확인(재입력)</label>
-
-        <input id="loginJoinCustPwd2" name="pwd2" placeholder="비밀번호 재입력" maxlength="20" type="password" class="">
+        <input id="loginJoinCustPwd2" name="pwd2" placeholder="비밀번호 재입력" maxlength="20" type="password" class="" onblur="validatePassword()">
         <br>
         <p class="login-Space"></p> <!-- 공백 -->
+        <p id="confirmError" style="color:red; display:none;">입력한 비밀번호와 일치하지 않습니다.</p>
+        <p id="confirmSuccess" style="color:green; display:none;">입력한 비밀번호가 일치합니다.</p>
     </div>
     <br>
     <!-- 비밀번호 입력 2 종료-->

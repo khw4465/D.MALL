@@ -10,3 +10,28 @@ function check(form) {
     }
     return true;
 }
+
+function checkPasswordLength(input) {
+    var errorElement = document.getElementById('passwordError');
+
+    if (input.value.length < 8) {
+        errorElement.style.display = 'block';
+    } else {
+        errorElement.style.display = 'none';
+    }
+}
+
+function validatePassword() {
+    var pwd = document.getElementById('loginJoinCustPwd1').value;
+    var pwd2 = document.getElementById('loginJoinCustPwd2').value;
+    var confirmError = document.getElementById('confirmError');
+    var confirmSuccess = document.getElementById('confirmSuccess');
+
+    if (pwd !== pwd2) {
+        confirmError.style.display = 'block';
+        confirmSuccess.style.display = 'none';
+    } else {
+        confirmError.style.display = 'none';
+        confirmSuccess.style.display = 'block';
+    }
+}

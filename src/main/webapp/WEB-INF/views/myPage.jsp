@@ -29,10 +29,10 @@
             <!-- 중간에 다른 박스에 담길 내용들 -->
             <div id="points-container">
                 <ul id="points-info" class="item-list">
-                    <li class="points-item">포인트 : <a href="<c:url value='/point/custSelectAll'/>"><span id="points"
-                                                                                                        class="points-info">${pointResult}</span></a>
+                    <li class="points-item">포인트 : <a href="<c:url value='/point/custSelectAll'/>">
+                        <span id="points" class="points-info">${pointResult}원</span></a>
                     </li>
-                    <li class="points-item">쿠폰 : <a href=""><span id="coupon" class="points-info">1개</span></a></li>
+                    <li class="points-item">쿠폰 : <a href=""><span id="coupon" class="points-info">0개</span></a></li>
                 </ul>
             </div>
         </div>
