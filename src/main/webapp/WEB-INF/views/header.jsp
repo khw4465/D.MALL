@@ -104,7 +104,7 @@
                 <div id="category" class="xans-element- xans-layout xans-layout-category categoryOne">
                     <div class="position">
                         <ul class="clearfix">
-                            <li class="xans-record-" onmouseover="showDropdown()"><a href="/prod/search">카테고리</a>
+                            <li class="xans-record-" onmouseover="showDropdown()"><a href="#cate">카테고리</a>
                             </li>
                             <li class="xans-record-"><a href="/category/베스트/48/">베스트</a></li>
                             <li class="xans-record-"><a href="/category/깜짝특가/56/">깜짝특가</a></li>

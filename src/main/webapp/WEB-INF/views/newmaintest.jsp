@@ -59,7 +59,7 @@
     </div>
     <%--    추천상품 끝 --%>
 
-    <h1>카테고리별 상품</h1><br>
+    <h1 id="cate">카테고리별 상품</h1><br>
 
     <div class="category">
         <h3 id="animal">닭가슴살</h3>
