@@ -74,8 +74,11 @@ public class ProdController {
         ///prodDTO관련
 
         //prod테이블에 insert 로직 작성 0806
-        System.out.println("prodDto = " + prodDto);
         prodService.productRegister(prodDto);
+
+        //prodOpt테이블에 insert 로직 작성 0806
+        //ProdOptDto prodOptDto = new ProdOptDto();
+        //System.out.println(prodOptDto);
 
         // 확장자 자를 스트링
         // 나머지를 img서비스 호출해서 다 하나씩 넣어줄거임.

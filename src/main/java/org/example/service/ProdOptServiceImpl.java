@@ -25,4 +25,9 @@ public class ProdOptServiceImpl implements ProdOptService {
     public List<ProdOptDto> getOptList(String prodCd) throws Exception {
         return prodOptDao.selectOpt(prodCd);
     }
+
+    @Override
+    public int prodOptRegister(ProdOptDto prodOptDto) throws Exception {
+        return prodOptDao.insert(prodOptDto);
+    }
 }

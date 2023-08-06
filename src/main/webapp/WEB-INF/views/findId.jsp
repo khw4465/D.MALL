@@ -33,7 +33,7 @@
                 </div><!--// input-group -->
 
                 <div class="input-section">
-                    <label>이메일 주소</label>
+                    <label>전화번호</label>
                     <input type="text" name="mpNo" class="input-section" placeholder="핸드폰 번호">
                 </div><!--// input-group -->
 
