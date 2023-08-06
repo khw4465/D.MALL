@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session="false"%><html>
 <c:set var="loginId" value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
 <head>
@@ -33,8 +34,8 @@
                         <div> 별점 : <c:out value="${prodDto.ascr}"/></div>
                         <c:set var="mainOpt" value="${optList.get(0)}"/>
                         <div class="cost">
-                            <div style="font-weight: bolder"><span style="font-size: 2.3em"><strong><c:out value="${mainOpt.salePrc}"/></strong></span>원</div>
-                            <div>(1팩당 : <span><c:out value="${Math.round(mainOpt.salePrc / 10)}"/></span>원)</div>
+                            <div style="font-weight: bolder"><span style="font-size: 2.3em"><strong><fmt:formatNumber value="${mainOpt.salePrc}" type="number" pattern="#,###"/></strong></span>원</div>
+                            <div>(1팩당 : <span><fmt:formatNumber value="${Math.round(mainOpt.salePrc / 10)}" type="number" pattern="#,###"/></span>원)</div>
                         </div>
                     </div>
                     <div class="prodDesc-body">
@@ -58,7 +59,7 @@
                                     <select class="prodOpt" id="prodOpt">
                                         <option style="color: gray">옵션을 선택해주세요.</option>
                                         <c:forEach var="opt" items="${optList}">
-                                            <option id="option${opt.optCd}" value="${opt.salePrc}" data-name="${opt.optName}" data-prodCd="${opt.prodCd}" data-optCd="${opt.optCd}">${opt.optName} (${opt.salePrc}원)</option>
+                                            <option id="option${opt.optCd}" value="${opt.salePrc}" data-name="${opt.optName}" data-prodCd="${opt.prodCd}" data-optCd="${opt.optCd}">${opt.optName} (<fmt:formatNumber value="${opt.salePrc}" type="number" pattern="#,###"/>원)</option>
                                         </c:forEach>
                                     </select>
                                 </td>
@@ -88,7 +89,7 @@
                                         </button>
                                     </div>
                                     <div class="price">
-                                        <p><span class="optPrice">${opt.salePrc}</span>원</p>
+                                        <p><span class="optPrice"><fmt:formatNumber value="${opt.salePrc}" type="number" pattern="#,###"/></span>원</p>
                                     </div>
                                     <button type="button" class="btn-x-sm3 btnOptSelRemove" title="">
                                         <i class="ico-x-black"></i><span class="blind">삭제</span>
@@ -99,7 +100,7 @@
                         </c:forEach>
                     </ul>
                     <div id="totalPrice" class="totalPrice" style="display: none">
-                        <span class="totPrice" style="font-size: 2.3em">${mainOpt.salePrc}</span>원
+                        <span class="totPrice" style="font-size: 2.3em"></span>원
                     </div>
                 </div>
                 <div class="moveBtn">
@@ -150,7 +151,9 @@
             let price = parseInt(item.querySelector('.optPrice').value);
             totalPrice += price
         })
-        return totalPrice
+
+        let formatPrice = totalPrice.toLocaleString()
+        return formatPrice
     }
 
     // 옵션을 선택하면 보여주기
