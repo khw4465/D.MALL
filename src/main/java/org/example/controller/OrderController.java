@@ -242,6 +242,9 @@ public class OrderController {
 
             cartService.removeAll(custId);                                // 주문을 했으니 장바구니 목록 삭제
 
+            // 08/02 mhs 포인트차감로직 추가
+            minusPoint(session, ordDto1); // 주문시 할인금액을 가져와서 포인트에서 차감시켜주는 메서드
+
 //            // 구매시 포인트 적립을 위한 메서드 07.29 mhs
             OrderDto dto = cartService.getOrdHist(custId);
             pointDto pointDto = settingPointDto(custId, dto);
@@ -281,9 +284,6 @@ public class OrderController {
        try {
            OrderDto ordDto2 = (OrderDto) session.getAttribute("lastOrder");    // 세션으로 주문한 건의 내역 가져오기
            m.addAttribute("ordInfo", ordDto2);
-
-           // 08/02 mhs 포인트차감로직 추가
-           minusPoint(session, ordDto2); // 주문시 할인금액을 가져와서 포인트에서 차감시켜주는 메서드
 
            return "ordComplete";
        } catch (Exception e) {

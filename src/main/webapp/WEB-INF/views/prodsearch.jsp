@@ -64,7 +64,7 @@
                                                                                              src="/img/<c:out value='${Prod.prodCd}' />.png"/>
                             </div>
                             <div id="prodname">${Prod.prodName}</div>
-                            <div id="prodprice">${Prod.prodPrice}원</div>
+                            <div id="prodprice"><fmt:formatNumber value="${Prod.prodPrice}" type="number" pattern="#,###"/>원</div>
                         </li>
                     </div>
                     <!-- proditem -->

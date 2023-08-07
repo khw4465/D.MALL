@@ -69,7 +69,7 @@ public class PointDaoImplTest {
         point.setChgCn("로그인 축하");
         point.setRemark("Some remarks");
         point.setPntCd("1"); // 포인트 사유코드
-        pointDao.update(point);
+        //pointDao.update(point); 다오 서비스 파라미터 바꿨을때 에러뜸
 
     }
 

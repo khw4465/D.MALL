@@ -556,6 +556,7 @@
             document.querySelector('#txt_tot_pg_price').innerHTML = parseInt(totPrc).toLocaleString();
             document.querySelector('#txt_btn_payment').innerHTML = parseInt(totPrc).toLocaleString();
             document.querySelector('#totalSavePointTot').innerHTML = parseInt(totPnt).toLocaleString();
+            alert('적용되었습니다.')
         }
     });
 

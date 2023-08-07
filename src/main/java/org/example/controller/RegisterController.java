@@ -94,9 +94,10 @@ public class RegisterController {
         } catch (Exception e) {
             throw new RuntimeException(e); //e. 찍으면 return 써줘야하네
         } finally {
+            RegisterSettingPoint(custDto); // 포인트 초기화 메서드
             custLoginHistService.LoginHistInsert(loginHistoryDTO);
             //최신이력 한줄 가져와서 포인트 초기화
-            RegisterSettingPoint(custDto); // 포인트 초기화 메서드
+
         }
     }
 
@@ -110,6 +111,7 @@ public class RegisterController {
         point.setPoint(3000);
         point.setDttm(LocalDateTime.now());
         point.setChgCn("가입축하 포인트");
+//        point.setPntYn("Y"); 0807주석
         pointService.insertPoint(point);
     }
 

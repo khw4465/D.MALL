@@ -23,15 +23,6 @@ input {
     /* border: 1px solid black; */
 }
 
-.search-container {
-    background-color: rgb(253, 253, 250);
-    width: 100%;
-    border: 1px solid #ddd;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .search-form-cust {
     height: 37px;
     display: flex;

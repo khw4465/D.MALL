@@ -228,3 +228,8 @@ function previewAdditionalImages(event) {
         reader.readAsDataURL(f);
     }
 }
+
+    // *상품등록이 잘 되었는지 확인하는 방식 필요*  추후 수정
+document.querySelector('.btnSubmit').addEventListener('click', () => {
+    alert('상품이 등록되었습니다.');
+})

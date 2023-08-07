@@ -26,8 +26,8 @@ public class PointDaoImpl implements PointDao{
     }
 
     @Override
-    public int update(pointDto pointDto) throws Exception {
-        return session.update(namespace+"update",pointDto);
+    public int update(String id) throws Exception {
+        return session.update(namespace+"updatePoints",id);
     }
 
     @Override
