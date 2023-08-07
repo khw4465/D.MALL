@@ -68,7 +68,7 @@ public class ProdController {
         if(loginMac=="Macintosh"){
             // CURR_IMAGE_REPO_PATH = "C:\\Users\\huis9\\D.gaja\\src\\main\\webapp\\resources\\img";
             // 맥 경로 넣기 예시 (위에는 윈도우 예시) 주석 활성화해서 코딩
-            // CURR_IMAGE_REPO_PATH =
+             CURR_IMAGE_REPO_PATH = "/Users/khw4465/myGit/D.gaja/src/main/webapp/resources/img";
         }
         //파일업로드
         multipartRequest.setCharacterEncoding("utf-8");
