@@ -2,6 +2,7 @@
          isELIgnored="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="loginDevice" value="${Macintosh=='Macintosh' ? 'Macintosh' : 'Windows'}"/>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <%
     request.setCharacterEncoding("UTF-8");
@@ -270,7 +271,8 @@
                 <input type="button" value="이미지 추가" onclick="fn_addFile()"><br>
                 <div id="d_file"></div>
             </table>
-
+            <input type="hidden" name="loginWin" value="${loginDevice}">
+            <input type="hidden" name="loginMac" value="${Macintosh}">
             <br>
             <button type="submit" class="btnSubmit">상품등록</button>
         </form>

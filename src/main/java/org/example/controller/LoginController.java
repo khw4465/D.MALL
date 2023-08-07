@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
@@ -149,7 +150,8 @@ public class LoginController {
 
     @PostMapping("/login")
     public String login(Model m, String id, String pwd, String toURL, boolean rememberId,
-                        HttpServletRequest request, HttpServletResponse response) throws Exception {
+                        HttpServletRequest request, HttpServletResponse response,
+                        RedirectAttributes attr) throws Exception {
         LoginHistoryDTO loginHistoryDTO = new LoginHistoryDTO();
         // 로그인이력에 국가 넣을떄
         //        ko,en-US;q=0.9,en;q=0.8,ko-KR;q=0.7
@@ -167,13 +169,21 @@ public class LoginController {
         }
         //------------------------------------------- 사용자기기 추출
         String device = request.getHeader("User-Agent");
+        String userDevice ="";
         if (device != null && !device.isEmpty()) {
             int startIndex = device.indexOf('(');
             int endIndex = device.indexOf(')');
             if (startIndex != -1 && endIndex != -1 && startIndex < endIndex) {
-                String userDevice = device.substring(startIndex + 1, endIndex);
+                userDevice = device.substring(startIndex + 1, endIndex);
                 loginHistoryDTO.setMhrLS(userDevice); // 기기(기계) 추론
             }
+            // 사용자 로그인기기가 윈도우 또는 맥일때 대비해서 모델에 저장
+            if(userDevice.contains("Windows")){
+                m.addAttribute("Windows","Windows");
+            } else if (userDevice.contains("Macintosh")) {
+                m.addAttribute("Macintosh","Macintosh");
+            }
+
         }
         loginHistoryDTO.setCustId(id); // 아이디
         loginHistoryDTO.setDttm(LocalDateTime.now()); // 발생시간
@@ -217,11 +227,15 @@ public class LoginController {
 
             // 아이디 비번이 어드민이 맞는지 확인
             if (adminCHeck(id)) { // 어드민일경우
-                m.addAttribute("loginAdminTrue", true);
+                //m.addAttribute("loginAdminTrue", true);
+                attr.addFlashAttribute("loginAdminTrue", true);
+                //리다이렉트여도 값이 유지된다.
+
                 loginHistoryDTO.setScssYn("Y"); // 로그인 성공시 db에 성공여부 Y로 나옴
-                 return "newmaintest";
+                toURL = "/"; // localhost:8080으로 가기위해 toURL을 "/"로 설정
+                return "redirect:" + toURL;
                 //어드민일경우 바로 리턴하면 이력에 Y가 쌓이지 않아서 그냥 return 주석처리 했으나
-                // 그럴경우 관리자페이지가 등장하지 않는 에러 있음
+                // 그럴경우 관리자페이지가 등장하지 않는 에러 있음 - 0807해결
                 //홈페이지 새로고침할때마다 관리자 체크해주는 기능 필요
             }
             loginHistoryDTO.setScssYn("Y"); // 로그인 성공시 db에 성공여부 Y로 나옴
