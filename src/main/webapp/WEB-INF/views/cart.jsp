@@ -391,47 +391,49 @@
 
         // 선택 delete
         $("#removeCheck").click(function () {
-            const selectedProdCds = [];
-            let selectedProdPrc = 0;
+            if(confirm('선택한 상품을 장바구니에서 삭제하시겠습니까?')) {
+                const selectedProdCds = [];
+                let selectedProdPrc = 0;
 
-            const checkboxes = document.querySelectorAll('[type="checkbox"][class^="CBox"]:checked')    // 체크된 체크박스 선택
-            checkboxes.forEach(function (checkbox) {                                                    // 하나씩 뽑아서 상품코드 추출
-                const prodCd = checkbox.classList[0].substring(4);
-                selectedProdCds.push(prodCd);
+                const checkboxes = document.querySelectorAll('[type="checkbox"][class^="CBox"]:checked')    // 체크된 체크박스 선택
+                checkboxes.forEach(function (checkbox) {                                                    // 하나씩 뽑아서 상품코드 추출
+                    const prodCd = checkbox.classList[0].substring(4);
+                    selectedProdCds.push(prodCd);
 
-                const optPrices = document.querySelectorAll('.totPrc' + prodCd);
-                optPrices.forEach(function (optPriceElem) {
-                    selectedProdPrc += parseInt(optPriceElem.innerHTML.replace(/,/g, ''));
+                    const optPrices = document.querySelectorAll('.totPrc' + prodCd);
+                    optPrices.forEach(function (optPriceElem) {
+                        selectedProdPrc += parseInt(optPriceElem.innerHTML.replace(/,/g, ''));
+                    });
                 });
-            });
-            totPrc -= selectedProdPrc
-            dlvPrc = totPrc > 30000 ? 0 : 3000;
-            finPrc = totPrc - totDcPrc + dlvPrc;
-            point = Math.round(finPrc / 100);
-            const jsonData = JSON.stringify({prodCds: selectedProdCds});
-            $.ajax({
-                type: 'DELETE',       // 요청 메서드
-                url: '/cart/removeChecks',  // 요청 URI
-                headers: {"content-type": "application/json"}, // 요청 헤더
-                dataType: 'json', // 전송받을 데이터의 타입
-                data: jsonData,  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
-                success: function (result) {  // 서버로부터 응답이 도착하면 호출될 함수
-                    for (let i = 0; i < selectedProdCds.length; i++) {
-                        $("#list" + selectedProdCds[i]).remove();
-                    }
+                totPrc -= selectedProdPrc
+                dlvPrc = totPrc > 30000 ? 0 : 3000;
+                finPrc = totPrc - totDcPrc + dlvPrc;
+                point = Math.round(finPrc / 100);
+                const jsonData = JSON.stringify({prodCds: selectedProdCds});
+                $.ajax({
+                    type: 'DELETE',       // 요청 메서드
+                    url: '/cart/removeChecks',  // 요청 URI
+                    headers: {"content-type": "application/json"}, // 요청 헤더
+                    dataType: 'json', // 전송받을 데이터의 타입
+                    data: jsonData,  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
+                    success: function (result) {  // 서버로부터 응답이 도착하면 호출될 함수
+                        for (let i = 0; i < selectedProdCds.length; i++) {
+                            $("#list" + selectedProdCds[i]).remove();
+                        }
 
-                    $('#totPrc').html(totPrc);              // 총 상품금액 업데이트
-                    $('#totDcPrc').html(totDcPrc);          // 총 할인금액 업데이트
-                    $('#dlvPrc').html(dlvPrc);              // 배송비 업데이트
-                    $('#finPrc').html(finPrc);              // 최종금액 업데이트
-                    $('#point').html(point);
-                    emptyCartMsg();
+                        $('#totPrc').html(totPrc);              // 총 상품금액 업데이트
+                        $('#totDcPrc').html(totDcPrc);          // 총 할인금액 업데이트
+                        $('#dlvPrc').html(dlvPrc);              // 배송비 업데이트
+                        $('#finPrc').html(finPrc);              // 최종금액 업데이트
+                        $('#point').html(point);
+                        emptyCartMsg();
 
-                },
-                error: function () {
-                    alert("error");
-                } // 에러가 발생했을 때, 호출될 함수
-            }); // $.ajax()
+                    },
+                    error: function () {
+                        alert("error");
+                    } // 에러가 발생했을 때, 호출될 함수
+                }); // $.ajax()
+            }
         });
 
 

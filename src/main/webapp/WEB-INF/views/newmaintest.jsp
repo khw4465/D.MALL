@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session="false" %>
 <html>
 <head>
@@ -75,7 +76,7 @@
                         <img src="${prodOne.prodImg}.png" alt="Animal Image" width="250" height="250">
                         <div>
                             <div class="images-name">${prodOne.prodName}</div>
-                            <div class="images-price">${prodOne.prodPrice}원</div>
+                            <div class="images-price"><fmt:formatNumber value="${prodOne.prodPrice}" type="number" pattern="#,###"/>원</div>
                         </div>
                     </a>
                 </div>
@@ -88,7 +89,7 @@
                         <img src="${prodTwo.prodImg}.png" alt="nature Image" width="250" height="250">
                         <div>
                             <div class="images-name">${prodTwo.prodName}</div>
-                            <div class="images-price">${prodTwo.prodPrice}원</div>
+                            <div class="images-price"><fmt:formatNumber value="${prodTwo.prodPrice}" type="number" pattern="#,###"/>원</div>
                         </div>
                     </a>
                 </div>
@@ -101,7 +102,7 @@
                         <img src="${prodThree.prodImg}.png" alt="food Image" width="250" height="250">
                         <div>
                             <div class="images-name">${prodThree.prodName}</div>
-                            <div class="images-price">${prodThree.prodPrice}원</div>
+                            <div class="images-price"><fmt:formatNumber value="${prodThree.prodPrice}" type="number" pattern="#,###"/>원</div>
                         </div>
                     </a>
                 </div>
@@ -114,7 +115,7 @@
                         <img src="${prodFour.prodImg}.png" alt="pro Image" width="250" height="250">
                         <div>
                             <div class="images-name">${prodFour.prodName}</div>
-                            <div class="images-price">${prodFour.prodPrice}원</div>
+                            <div class="images-price"><fmt:formatNumber value="${prodFour.prodPrice}" type="number" pattern="#,###"/>원</div>
                         </div>
                     </a>
                 </div>

@@ -8,5 +8,9 @@ function check(form) {
         alert("이메일 주소를 다시 입력해주세요.");
         return false; // 폼 제출 못함
     }
+
+    // TODO 회원가입 시 데이터 넘어가는것 확인하는 로직 필요
+    // 비밀번호 규칙 안지켰더니 alert창은 뜨는데 데이터 안넘어감
+    alert('회원가입이 완료되었습니다.');
     return true;
 }

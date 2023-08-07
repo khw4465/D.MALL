@@ -102,3 +102,14 @@ for (var key in headers) {
         });
     })(key);
 }
+
+// 카테고리 누르면 아래로 스크롤 모션
+$('a[href^="#"]').on('click', function(event) {
+    var target = $(this.getAttribute('href'));
+    if (target.length) {
+        event.preventDefault();
+        $('html, body').stop().animate({
+            scrollTop: target.offset().top
+        }, 500); // 여기서 1000은 애니메이션 지속 시간으로 1초를 의미합니다.
+    }
+});
