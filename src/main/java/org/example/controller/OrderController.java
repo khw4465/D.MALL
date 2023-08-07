@@ -245,9 +245,9 @@ public class OrderController {
             // 08/02 mhs 포인트차감로직 추가
             minusPoint(session, ordDto1); // 주문시 할인금액을 가져와서 포인트에서 차감시켜주는 메서드
 
-//            // 구매시 포인트 적립을 위한 메서드 07.29 mhs
+            // 구매시 포인트 적립을 위한 메서드 07.29 mhs
             OrderDto dto = cartService.getOrdHist(custId);
-            pointDto pointDto = settingPointDto(custId, dto);
+            pointDto pointDto = settingPointDto(custId, dto); // 적립 메서드
             pointService.insertPoint(pointDto);                           // 포인트 insert
 
 
@@ -264,12 +264,13 @@ public class OrderController {
         pointDto pointDto = pointService.selectPointOne(custId); // id 주면 최신포인트이력 한줄 가져온다.
         pointDto newPointDto = new pointDto();
         // 회원의 최신 이력 1줄을 받아와 수정해서 새로 저장 시작
-        newPointDto.setPntId(pointService.selectLatestPointHist().getPntId()+1); // 포인트
+        //newPointDto.setPntId(pointService.selectLatestPointHist().getPntId()+1); // 포인트
+        // mhs 0807 추가
         // 위의 서비스는 회원의 최신이력이 아니라 전체의 최신이력을 하나 가져와서 +1 해준다.
         newPointDto.setCustId(pointDto.getCustId()); // 회원아이디
         newPointDto.setStus("적립"); //상태
-        newPointDto.setChngPnt((dto.getTotPrc()/100)); //변화포인트
-        newPointDto.setPoint(pointDto.getPoint()+(dto.getTotPrc()/100)); // 최신이력 + 총금액/100 저장 나머지 절삭
+        newPointDto.setChngPnt((dto.getFinPrc()/100)); //변화포인트
+        newPointDto.setPoint(pointDto.getPoint()+(dto.getFinPrc()/100)); // 최신이력 + 총금액/100 저장 나머지 절삭
         newPointDto.setDttm(LocalDateTime.now()); // 현재날짜시간 //만료기간은 저장하지않음
         newPointDto.setChgCn("구매"); //사유
         newPointDto.setRemark("구매 적립"); //비고
