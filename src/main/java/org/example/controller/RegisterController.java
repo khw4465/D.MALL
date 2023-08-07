@@ -94,9 +94,10 @@ public class RegisterController {
         } catch (Exception e) {
             throw new RuntimeException(e); //e. 찍으면 return 써줘야하네
         } finally {
+            RegisterSettingPoint(custDto); // 포인트 초기화 메서드
             custLoginHistService.LoginHistInsert(loginHistoryDTO);
             //최신이력 한줄 가져와서 포인트 초기화
-            RegisterSettingPoint(custDto); // 포인트 초기화 메서드
+
         }
     }
 
