@@ -25,9 +25,9 @@
     <select id="selectPage" parameterType="map" resultType="pointDto">
         SELECT *
         FROM pnt_mst
-        WHERE CUST_ID = #{custId}
+        WHERE CUST_ID = #{custId} AND (PNT_YN != 'N' OR PNT_YN IS NULL)
         ORDER BY dttm DESC
-            LIMIT #{offset}, #{pageSize}
+        LIMIT #{offset}, #{pageSize}
     </select>
 
     <!--   회원의 최신 포인트 한줄 가져오기 -->
@@ -56,10 +56,10 @@
     </insert>
 
     <!-- 특정 포인트 정보를 업데이트 -->
-    <update id="update" parameterType="pointDto">
+    <update id="updatePoints" parameterType="String">
         UPDATE pnt_mst
-        SET CUST_ID = #{custId}, STUS = #{stus}, CHNG_PNT = #{chngPnt}, point = #{point}, DTTM = #{dttm}, EXPI_DTTM = #{expiDttm}, CHG_CN = #{chgCn}, REMARK = #{remark}, PNT_CD = #{pntCd}, FST_REG = #{fstReg}, FST_REGR = #{fstRegr}, LAST_UPD = #{lastUpd}, LAST_UPDR = #{lastUpdr}
-        WHERE PNT_ID = #{pntId}
+        SET PNT_YN = 'N'
+        WHERE CUST_ID = #{custId}
     </update>
 
     <!-- 모든 포인트 정보를 조회 -->

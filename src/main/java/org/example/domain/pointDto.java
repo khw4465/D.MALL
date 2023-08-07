@@ -14,13 +14,16 @@ public class pointDto {
     private String chgCn;
     private String remark;
     private String pntCd;
+    private String pntYn;
     private LocalDateTime fstReg;
     private String fstRegr;
     private LocalDateTime lastUpd;
     private String lastUpdr;
 
-    public pointDto(){};
-    public pointDto(int pntId, String custId, String stus, int chngPnt, int point, LocalDateTime dttm, LocalDateTime expiDttm, String chgCn, String remark, String pntCd, LocalDateTime fstReg, String fstRegr, LocalDateTime lastUpd, String lastUpdr) {
+    public pointDto() {
+    }
+
+    public pointDto(int pntId, String custId, String stus, int chngPnt, int point, LocalDateTime dttm, LocalDateTime expiDttm, String chgCn, String remark, String pntCd, String pntYn, LocalDateTime fstReg, String fstRegr, LocalDateTime lastUpd, String lastUpdr) {
         this.pntId = pntId;
         this.custId = custId;
         this.stus = stus;
@@ -31,6 +34,7 @@ public class pointDto {
         this.chgCn = chgCn;
         this.remark = remark;
         this.pntCd = pntCd;
+        this.pntYn = pntYn;
         this.fstReg = fstReg;
         this.fstRegr = fstRegr;
         this.lastUpd = lastUpd;
@@ -50,6 +54,7 @@ public class pointDto {
                 ", chgCn='" + chgCn + '\'' +
                 ", remark='" + remark + '\'' +
                 ", pntCd='" + pntCd + '\'' +
+                ", pntYn='" + pntYn + '\'' +
                 ", fstReg=" + fstReg +
                 ", fstRegr='" + fstRegr + '\'' +
                 ", lastUpd=" + lastUpd +
@@ -62,12 +67,12 @@ public class pointDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         pointDto pointDto = (pointDto) o;
-        return pntId == pointDto.pntId && chngPnt == pointDto.chngPnt && point == pointDto.point && Objects.equals(custId, pointDto.custId) && Objects.equals(stus, pointDto.stus) && Objects.equals(chgCn, pointDto.chgCn) && Objects.equals(remark, pointDto.remark) && Objects.equals(pntCd, pointDto.pntCd) && Objects.equals(fstRegr, pointDto.fstRegr) && Objects.equals(lastUpdr, pointDto.lastUpdr);
+        return pntId == pointDto.pntId && chngPnt == pointDto.chngPnt && point == pointDto.point && Objects.equals(custId, pointDto.custId) && Objects.equals(stus, pointDto.stus) && Objects.equals(chgCn, pointDto.chgCn) && Objects.equals(remark, pointDto.remark) && Objects.equals(pntCd, pointDto.pntCd) && Objects.equals(pntYn, pointDto.pntYn) && Objects.equals(fstRegr, pointDto.fstRegr) && Objects.equals(lastUpdr, pointDto.lastUpdr);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(pntId, custId, stus, chngPnt, point, chgCn, remark, pntCd, fstRegr, lastUpdr);
+        return Objects.hash(pntId, custId, stus, chngPnt, point, chgCn, remark, pntCd, pntYn, fstRegr, lastUpdr);
     }
 
     public int getPntId() {
@@ -148,6 +153,14 @@ public class pointDto {
 
     public void setPntCd(String pntCd) {
         this.pntCd = pntCd;
+    }
+
+    public String getPntYn() {
+        return pntYn;
+    }
+
+    public void setPntYn(String pntYn) {
+        this.pntYn = pntYn;
     }
 
     public LocalDateTime getFstReg() {
