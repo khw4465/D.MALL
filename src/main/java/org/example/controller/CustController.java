@@ -104,7 +104,7 @@ public class CustController {
         CustDto dto = custService.modifyselect((String) session.getAttribute("id"));
         m.addAttribute("custId", custId);
         dto.setCustId(custId);
-        m.addAttribute("modydto", dto);
+        //m.addAttribute("modydto", dto);
 
         // 여기서 널포인터 나는데 dto 가져올때 아무값도 없어서 그런듯. 만들어질때 기본발급 해야할듯.
 
@@ -124,6 +124,7 @@ public class CustController {
         m.addAttribute("birthMonth", String.format("%02d", month)); // 월은 두 자리로 출력
         m.addAttribute("birthDay", String.format("%02d", day));
 
+        m.addAttribute("modydto", dto);
         return "modifyInfo";
     }
     @PostMapping("/custModify")
@@ -166,7 +167,9 @@ public class CustController {
     @GetMapping("deleteCust")
     public String deleteCust(CustDto dto,Model m , HttpServletRequest request) throws Exception {
         HttpSession session = request.getSession(); // 세션을 받아온다.
-        custService.withdrawal((String) session.getAttribute("id"));
+        String custId = (String) session.getAttribute("id");
+        custService.withdrawal(custId);
+        pointService.updatePoint(custId); //포인트이력 N 으로
         session.invalidate();
 
         return "redirect:/";

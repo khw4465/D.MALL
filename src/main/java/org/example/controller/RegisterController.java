@@ -110,6 +110,7 @@ public class RegisterController {
         point.setPoint(3000);
         point.setDttm(LocalDateTime.now());
         point.setChgCn("가입축하 포인트");
+//        point.setPntYn("Y"); 0807주석
         pointService.insertPoint(point);
     }
 

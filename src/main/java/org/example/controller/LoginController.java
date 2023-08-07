@@ -153,38 +153,14 @@ public class LoginController {
                         HttpServletRequest request, HttpServletResponse response,
                         RedirectAttributes attr) throws Exception {
         LoginHistoryDTO loginHistoryDTO = new LoginHistoryDTO();
-        // 로그인이력에 국가 넣을떄
-        //        ko,en-US;q=0.9,en;q=0.8,ko-KR;q=0.7
-        // 이렇게 긴 코드가 들어가는데, 맨 앞자리 2개만 추출해서 저장하는 코드
-        String acceptLanguage = request.getHeader("Accept-Language");
-        if (acceptLanguage != null && !acceptLanguage.isEmpty()) {
-            String[] languages = acceptLanguage.split(",");
-            if (languages.length > 0) {
-                String firstLanguage = languages[0];
-                if (firstLanguage.length() >= 2) {
-                    String firstTwoChars = firstLanguage.substring(0, 2);
-                    loginHistoryDTO.setNatn(firstTwoChars);
-                }
-            }
-        }
-        //------------------------------------------- 사용자기기 추출
-        String device = request.getHeader("User-Agent");
-        String userDevice ="";
-        if (device != null && !device.isEmpty()) {
-            int startIndex = device.indexOf('(');
-            int endIndex = device.indexOf(')');
-            if (startIndex != -1 && endIndex != -1 && startIndex < endIndex) {
-                userDevice = device.substring(startIndex + 1, endIndex);
-                loginHistoryDTO.setMhrLS(userDevice); // 기기(기계) 추론
-            }
-            // 사용자 로그인기기가 윈도우 또는 맥일때 대비해서 모델에 저장
-            if(userDevice.contains("Windows")){
-                m.addAttribute("Windows","Windows");
-            } else if (userDevice.contains("Macintosh")) {
-                m.addAttribute("Macintosh","Macintosh");
-            }
 
-        }
+        // 로그인이력에 국가 넣을떄 ko,en-US;q=0.9,en;q=0.8,ko-KR;q=0.7
+        // 이렇게 긴 코드가 들어가는데, 맨 앞자리 2개만 추출해서 저장하는 코드
+        loginHistNationCodeSetting(request, loginHistoryDTO);
+
+        //사용자기기 추출 메서드
+        deviceExtract(m, request, loginHistoryDTO);
+
         loginHistoryDTO.setCustId(id); // 아이디
         loginHistoryDTO.setDttm(LocalDateTime.now()); // 발생시간
         loginHistoryDTO.setIp(request.getRemoteAddr()); //IP 로컬일때는 0 0 0 0 임
@@ -252,7 +228,46 @@ public class LoginController {
             custLoginHistService.LoginHistInsert(loginHistoryDTO); // 제일마지막에 이력 저장
         }
     }
-        @GetMapping("/logoClick")
+
+    private static void deviceExtract(Model m, HttpServletRequest request, LoginHistoryDTO loginHistoryDTO) {
+        String device = request.getHeader("User-Agent");
+        String userDevice ="";
+        if (device != null && !device.isEmpty()) {
+            int startIndex = device.indexOf('(');
+            int endIndex = device.indexOf(')');
+            if (startIndex != -1 && endIndex != -1 && startIndex < endIndex) {
+                userDevice = device.substring(startIndex + 1, endIndex);
+                loginHistoryDTO.setMhrLS(userDevice); // 기기(기계) 추론
+            }
+            // 사용자 로그인기기가 윈도우 또는 맥일때 대비해서 모델에 저장 메서드
+            deviceCheck(m, userDevice);
+
+        }
+    }
+
+    private static void loginHistNationCodeSetting(HttpServletRequest request, LoginHistoryDTO loginHistoryDTO) {
+        String acceptLanguage = request.getHeader("Accept-Language");
+        if (acceptLanguage != null && !acceptLanguage.isEmpty()) {
+            String[] languages = acceptLanguage.split(",");
+            if (languages.length > 0) {
+                String firstLanguage = languages[0];
+                if (firstLanguage.length() >= 2) {
+                    String firstTwoChars = firstLanguage.substring(0, 2);
+                    loginHistoryDTO.setNatn(firstTwoChars);
+                }
+            }
+        }
+    }
+
+    private static void deviceCheck(Model m, String userDevice) {
+        if(userDevice.contains("Windows")){
+            m.addAttribute("Windows","Windows");
+        } else if (userDevice.contains("Macintosh")) {
+            m.addAttribute("Macintosh","Macintosh");
+        }
+    }
+
+    @GetMapping("/logoClick")
         public String handleLogoClick(Model m,HttpServletRequest request) throws Exception {
         //현재 아이디를 가져와서 서비스로 타입조회 맞을시 모델에 저장 해야함
             HttpSession session = request.getSession();
