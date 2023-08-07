@@ -139,7 +139,7 @@
                                 </td>
                             </tr>
 
-                            <tr>
+                            <tr style="display: none">
                                 <th scope="row">할인상태</th>
                                 <td id="discountTd">
                                     <label><input type="radio" name="dcCd" value="T"> 할인있음</label>

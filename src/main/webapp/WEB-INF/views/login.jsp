@@ -17,6 +17,8 @@
 </head>
 
 <body>
+<jsp:include page="header.jsp"/>
+<br><br><br><br>
 <div id="logindiv" class="themeB">
     <div class="logindiv-con">
         <div id="dgaja_header">

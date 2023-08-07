@@ -421,10 +421,10 @@
                             $("#list" + selectedProdCds[i]).remove();
                         }
 
-                        $('#totPrc').html(totPrc);              // 총 상품금액 업데이트
-                        $('#totDcPrc').html(totDcPrc);          // 총 할인금액 업데이트
-                        $('#dlvPrc').html(dlvPrc);              // 배송비 업데이트
-                        $('#finPrc').html(finPrc);              // 최종금액 업데이트
+                        $('#totPrc').html(totPrc.toLocaleString());              // 총 상품금액 업데이트
+                        $('#totDcPrc').html(totDcPrc.toLocaleString());          // 총 할인금액 업데이트
+                        $('#dlvPrc').html(dlvPrc.toLocaleString());              // 배송비 업데이트
+                        $('#finPrc').html(finPrc.toLocaleString());              // 최종금액 업데이트
                         $('#point').html(point);
                         emptyCartMsg();
 

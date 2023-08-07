@@ -141,7 +141,7 @@ input[readonly]{
   cursor: pointer;
 }
 .cs-search-button:hover{
-  background-color: #0056b3;
+  background-color: #FF6001;
 }
 
 .cs-search-button.move-right{
@@ -161,7 +161,7 @@ input[readonly]{
 }
 
 #writeBtn:hover {
-  background-color: #0056b3; /* Change the background color on hover */
+  background-color: #FF6001; /* Change the background color on hover */
 }
 
 .use-guide {
@@ -260,7 +260,7 @@ tr :hover{
 }
 
 .CSBtn:hover {
-  background-color: #0056b3; /* Change the background color on hover */
+  background-color: #FF6001; /* Change the background color on hover */
 }
 
 .write-list {
