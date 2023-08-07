@@ -1,12 +1,10 @@
 package org.example.controller;
 
 import org.example.dao.CustDao;
-import org.example.domain.CustDto;
-import org.example.domain.CustPageHandler;
-import org.example.domain.LoginHistoryDTO;
-import org.example.domain.pointDto;
+import org.example.domain.*;
 import org.example.service.CustLoginHistService;
 import org.example.service.CustService;
+import org.example.service.OrderListService;
 import org.example.service.PointService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,6 +27,8 @@ public class CustController {
 
     @Autowired
     PointService pointService; // 마이페이지 눌렀을때 포인트 띄워주기 위함.
+    @Autowired
+    OrderListService orderListService;
 
     public CustController(CustService custService, CustDao custDao, CustLoginHistService custLoginHistService) {
         this.custService = custService;
@@ -89,6 +89,9 @@ public class CustController {
 
         //System.out.println("session.getAttribute(\"id\") = " + session.getAttribute("id"));
         //System.out.println("session.getAttribute(\"custId\") = " + session.getAttribute("custId"));
+
+        List<OrderDto> ordList =  orderListService.getOrdMonth(custId, 3);
+        m.addAttribute("ordList", ordList);
         return "myPage";
         //return "error";
     }

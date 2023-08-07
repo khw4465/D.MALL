@@ -66,20 +66,20 @@
             <div class="status-content">
                 <ul class="status-list">
                     <li class="status-item">
-                        <a href="" class="status-link"><span id="prepayment-count">0</span></a>
                         <strong class="status-name">입금전</strong>
+                        <a href="" class="status-link"><span id="prepayment-count">0</span></a>
                     </li>
                     <li class="status-item">
-                        <a href="" class="status-link"><span id="preparing-count">0</span></a>
                         <strong class="status-name">배송준비중</strong>
+                        <a href="" class="status-link"><span id="preparing-count"><c:out value="${ordList.size()}"/> </span></a>
                     </li>
                     <li class="status-item">
-                        <a href="" class="status-link"><span id="shipping-count">0</span></a>
                         <strong class="status-name">배송중</strong>
+                        <a href="" class="status-link"><span id="shipping-count">0</span></a>
                     </li>
                     <li class="status-item">
-                        <a href="" class="status-link"><span id="delivered-count">0</span></a>
                         <strong class="status-name">배송완료</strong>
+                        <a href="" class="status-link"><span id="delivered-count">0</span></a>
                     </li>
                 </ul>
                 <!-- 박스 안의 오른쪽에 붙일 내용 -->
