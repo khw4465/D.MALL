@@ -44,10 +44,10 @@
         </ul>
     </form>
 
-    <div class="input-section">
-        <label>인증번호</label>
-        <input type="text" name="sms" class="input-section" placeholder="인증번호 입력">
-    </div><!--// input-group -->
+<%--    <div class="input-section">--%>
+<%--        <label>인증번호</label>--%>
+<%--        <input type="text" name="sms" class="input-section" placeholder="인증번호 입력">--%>
+<%--    </div><!--// input-group -->--%>
 
 </div>
 </body>

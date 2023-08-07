@@ -97,7 +97,7 @@ public class RegisterController {
             RegisterSettingPoint(custDto); // 포인트 초기화 메서드
             custLoginHistService.LoginHistInsert(loginHistoryDTO);
             //최신이력 한줄 가져와서 포인트 초기화
-
+            session.invalidate(); // 회원가입후 바로 로그아웃시키기
         }
     }
 

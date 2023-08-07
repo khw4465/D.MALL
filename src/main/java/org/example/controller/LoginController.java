@@ -86,7 +86,8 @@ public class LoginController {
     }
 
     @GetMapping("/findPwd")
-    public String findPwd() {
+    public String findPwd(String findid,Model m) {
+        m.addAttribute("findid",findid);
         return "findPwd";
         // 회원의 비밀번호찾기 화면을 보여준다.
     }

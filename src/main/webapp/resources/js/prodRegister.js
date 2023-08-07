@@ -138,7 +138,7 @@ window.addEventListener('load', function() {
 
     manufacture_date.addEventListener("change", function() {
         var date = new Date(manufacture_date.value);
-        date.setDate(date.getDate() + 100);
+        date.setDate(date.getDate() + 30);
         expiry_date.value = date.toISOString().split('T')[0];
     });
 

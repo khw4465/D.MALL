@@ -246,8 +246,7 @@ public class OrderController {
             minusPoint(session, ordDto1); // 주문시 할인금액을 가져와서 포인트에서 차감시켜주는 메서드
 
             // 구매시 포인트 적립을 위한 메서드 07.29 mhs
-
-            addPoint(custId, ordDto1); //구매로인한 포인트적립
+            addPoint(custId, ordDto1); // 구매로인한 포인트적립
 
 
             return new ResponseEntity<>(HttpStatus.OK);

@@ -145,7 +145,8 @@ public class ProdController {
         //prodService.productRegister(prodDto); //prod 테이블에는 들어감
         // 이미지테이블에 들어온 개수만큼 하나씩 쌓아야함.
 
-        return "admin";
+        String toURL = "/admin";
+        return "redirect:" + toURL;
     }
     @RequestMapping("/download")
     public void download(@RequestParam("imageFileName") String imageFileName,

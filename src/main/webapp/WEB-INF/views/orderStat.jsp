@@ -34,8 +34,6 @@
 </head>
 <body>
         <div style="width: 900px; height: 900px;">
-            <p>${dateList}</p>
-            <p>${priceList}</p>
             <canvas id="salesChart"></canvas>
         </div>
 <script>
