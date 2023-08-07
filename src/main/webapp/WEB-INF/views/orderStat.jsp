@@ -33,16 +33,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 </head>
 <body>
-
         <div style="width: 900px; height: 900px;">
             <p>${dateList}</p>
             <p>${priceList}</p>
             <canvas id="salesChart"></canvas>
         </div>
-
 <script>
     let ctx = document.getElementById('salesChart').getContext('2d');
-
     let chart = new Chart(ctx, {
         type: 'line',
         data: {
