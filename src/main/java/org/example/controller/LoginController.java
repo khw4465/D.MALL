@@ -92,7 +92,10 @@ public class LoginController {
     }
 
     @PostMapping("/findPwd")
-    public String findPwdReturn(String custId, String name, String email, String mpNo) throws Exception {
+    public String findPwdReturn(String custId, String name, String email, String mpNo
+                                ) throws Exception {
+        //String toURL 추가
+
         CustDto custDto = new CustDto();
         custDto.setCustId(custId);
         custDto.setName(name);
@@ -132,7 +135,11 @@ public class LoginController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "newmaintest"; // 0802 수정완료
+
+        String toURL = "/"; // localhost:8080으로 가기위해 toURL을 "/"로 설정
+        return "redirect:" + toURL;
+
+       // return "newmaintest"; // 0802 수정완료
     }
 
 
