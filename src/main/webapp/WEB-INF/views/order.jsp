@@ -440,7 +440,6 @@
         </div> <!--// payment-info-box -->
     </div>
 </div>
-</div>
 
 <jsp:include page="footer.jsp"/>
 
@@ -449,7 +448,22 @@
 
     function scrollFunction() {
         let childElement = document.getElementsByClassName("side-fix-area")[0];
-        childElement.style.top = window.scrollY + "px";
+        let containerElement = document.getElementsByClassName("content-wrap")[0];
+
+        let containerTop = containerElement.offsetTop;
+        let containerBottom = containerTop + containerElement.offsetHeight - childElement.offsetHeight;
+
+        // 스크롤 위치 계산
+        let newTop = window.scrollY;
+
+        // 스크롤 위치가 부모 요소의 범위 내에 있는지 확인
+        if (newTop < containerTop) {
+            newTop = containerTop;
+        } else if (newTop > containerBottom) {
+            newTop = containerBottom;
+        }
+
+        childElement.style.top = newTop + "px";
     }
 
     document.getElementById('deliveryRequest').addEventListener('change', function() {

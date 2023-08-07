@@ -9,11 +9,14 @@
 <c:set var="logo" value="${loginId=='' ? '/' : '/login/logoClick'}"/>
 <head>
     <title>Fail</title>
+  <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
+  <link rel="stylesheet" href="<c:url value='/css/footer.css'/>">
   <link rel="stylesheet" href="<c:url value='/css/ordResult.css'/>">
 </head>
 <body>
 <jsp:include page="header.jsp"/>
-<div>
+<br><br><br><br><br><br><br><br>
+<div class="result">
   <h1>주문에 실패하였습니다.</h1>
   <div>
     <a href="/"  class="btn2 sizeM ">쇼핑 계속하기</a>

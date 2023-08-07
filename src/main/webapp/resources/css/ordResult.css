@@ -5,12 +5,12 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    margin: 200px;
+    margin: 0;
     padding: 0;
 }
 
 [class^='btn'].sizeM {
-    padding: 10px 16px;
+    padding: 0 16px;
 }
 
 .btn1,.btn2 {
@@ -55,4 +55,8 @@ body {
 a {
     text-decoration: none;
     font-size: 1.5em;
+}
+
+.result {
+    margin: 200px 0;
 }

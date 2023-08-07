@@ -11,11 +11,14 @@
 <%-- 날짜를 포맷해주는 jstl문--%>
 <head>
     <title>Complete</title>
+    <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/footer.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/ordResult.css'/>">
 </head>
 <body>
 <jsp:include page="header.jsp"/>
-<div>
+<br><br><br><br><br><br><br><br>
+<div class="result">
     <h1>주문이 완료되었습니다.</h1>
     <p>드가자몰을 이용해주셔서 감사합니다.</p>
     <div>
