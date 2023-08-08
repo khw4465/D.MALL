@@ -184,7 +184,7 @@
                             <tr>
                                 <th scope="row">상품명</th>
                                 <td>
-                                    <input type="text" name="prodName" placeholder="예시) 체리맛" value="">
+                                    <input type="text" name="prodName" placeholder="예시) 갈비맛" value="">
                                 </td>
                             </tr>
 
@@ -200,12 +200,12 @@
                                     <input id="prodPrice" type="text" name="prodPrice" value="">
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row">할인된 총 가격</th>
-                                <td>
-                                    <p id="discountedPrice"></p>
-                                </td>
-                            </tr>
+<%--                            <tr>--%>
+<%--                                <th scope="row">할인된 총 가격</th>--%>
+<%--                                <td>--%>
+<%--                                    <p id="discountedPrice"></p>--%>
+<%--                                </td>--%>
+<%--                            </tr>--%>
 
 
                             <tr>
