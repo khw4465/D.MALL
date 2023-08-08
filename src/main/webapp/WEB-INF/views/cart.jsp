@@ -89,15 +89,15 @@
                     </tr>
                     </thead>
                     <c:forEach var="cart" items="${cartList}">
-                        <tbody id="list${cart.prodCd}" class="xans-element- xans-order xans-order-list center">
+                        <tbody id="${cart.prodCd}" class="xans-element- xans-order xans-order-list  center  cartlist">
                         <c:set var="optCount" value="${optLists.get(cartList.indexOf(cart)).size()}"/>
                         <c:forEach var="opt" items="${optLists.get(cartList.indexOf(cart))}" varStatus="i">
-                            <tr class="xans-record-">
+                            <tr id="${opt.optCd}" class="xans-record-">
                                 <c:if test="${i.index == 0}">
                                     <td rowspan="${optCount}"><input type="checkbox" class="CBox${cart.prodCd}"
                                                                      name="eachcheck" checked=""></td>
                                     <td rowspan="${optCount}" class="thumb gClearLine"><a
-                                            href="<c:url value="/prod/${cart.prodCd}"/>"><img
+                                            href="<c:url value="/prod/detail/${cart.prodCd}"/>"><img
                                             src="/img/${cart.prodCd}.png" style="width: 100px; height: 100px;"></a></td>
                                     <td rowspan="${optCount}" class="left gClearLine"><strong class="name"><a
                                             href="<c:url value="/prod/${cart.prodCd}"/>"
@@ -152,7 +152,7 @@
                                         value="${cart.totProdPrice}" type="number" pattern="#,###"/></em>원
                                 </div>
                                 <div style="text-align: center">적립 포인트 : <em
-                                        class="totPnt${cart.prodCd}">${Math.round(cart.totProdPrice/100)}</em>p
+                                        class="totPnt${cart.prodCd}">${Math.round(cart.totProdPrice/100)}</em>
                                 </div>
                             </td>
                         </tr>
@@ -214,13 +214,13 @@
                         <span class="txt14 displaynone"><span class="total_product_price_display_back"></span></span>
                     </div>
                 </td>
-                <td class="displaynone">
-                    <div class="box txt16"><strong><span class="txt23"><span id="totDcPrc"
-                                                                             class="total_product_vat_price_front">0</span></span>원</strong>
-                        <span
-                                class="txt14 displaynone"><span class="total_product_vat_price_back"></span></span>
-                    </div>
-                </td>
+<%--                <td class="displaynone">--%>
+<%--                    <div class="box txt16"><strong><span class="txt23"><span id="totDcPrc"--%>
+<%--                                                                             class="total_product_vat_price_front">0</span></span>원</strong>--%>
+<%--                        <span--%>
+<%--                                class="txt14 displaynone"><span class="total_product_vat_price_back"></span></span>--%>
+<%--                    </div>--%>
+<%--                </td>--%>
                 <td>
                     <div class="box shipping txt16">
                         <strong class="txt23">+ </strong>
@@ -233,7 +233,7 @@
                 </td>
                 <td id="total_benefit_price_area" class="displaynone">
                     <div class="box txt16">
-                        <strong class="txt23">- </strong><strong><span id="total_product_discount_price_front"
+                        <strong class="txt23">- </strong><strong><span id="totDcPrc"
                                                                        class="txt23"><fmt:formatNumber
                             value="${ord.totDcPrc}" type="number" pattern="#,###"/></span>원</strong> <span
                             class="txt14 displaynone"><span id="total_product_discount_price_back"></span></span>
@@ -437,103 +437,32 @@
         });
 
 
-        let prodlist = Array.from(document.getElementById("cart").children);       // 장바구니 목록의 자식(개별상품 목록)을 배열화
+        let prodlist = Array.from(document.querySelectorAll(".cartlist"));        // 장바구니 목록의 자식(개별상품 목록)을 배열화
 
-        let prodCd;                         // 상품코드 출력
-        let prodOpt;                        // 상품의 옵션을 묶어놓은 ul태그
-        let prodQty = 0;                    // 상품 수량
-        let totProdPrc = 0;                 // 상품별 최종가격
+        prodlist.forEach(function (cartList) {                                    // 장바구니에서 상품을 하나씩 뽑아냄
+            let prodCd = cartList.id;
+            let optionlist = cartList.querySelectorAll("tr[id]");
 
-
-        // let optCd;
-        prodlist.forEach(function (cartList) {                               // 장바구니에서 상품을 하나씩 뽑아냄
-            const prodCd = cartList.className;
-            prodOpt = cartList.getElementsByClassName('opt' + prodCd)[0];
-
-            const optlist = Array.from(prodOpt.children);                    // 상품의 옵션을 배열화
-
-            optlist.forEach(function (optList) {                             // 각 상품에서 옵션을 하나씩 뽑아냄
-                const optCd = optList.className;                             // 상품 옵션코드
-                let optVal = 0;
-                let optQty = 0;
-                let totOptPrice = 0;
-                let optPrice = 0;
-
-                // 개별 delete
-                $("#delete" + prodCd + '_' + optCd).click(function () {
-                    optVal = document.querySelector('.' + prodCd + '_' + optCd + '_qty');                                 // 옵션 수량
-                    totProdPrc = parseInt(document.getElementsByClassName('totPrc' + prodCd)[0].innerText);
-                    optQty = parseInt(optVal.value);                                                                      // 옵션 수량
-                    totOptPrice = document.querySelector('.' + prodCd + '_' + optCd + '_totPrice').value;                 // 옵션별 총 금액
-                    optPrice = parseInt(document.getElementsByClassName('onePrc' + prodCd + '_' + optCd) [0].innerText);  // 옵션 개당 금액
-
-                    console.log('hi' + prodCd + '.' + optCd);
-                    let cartOptDto = {
-                        prodCd: prodCd,
-                        optCd: optCd,
-                        optQty: optQty,
-                        optPrice: optPrice,
-                        totOptPrice: totOptPrice
-                    };   // 상품코드 객체에 담기
-                    let ordDto = {totPrc: '', totDcPrc: '', dlvPrc: '', finPrc: ''};
-                    $.ajax({
-                        type: 'DELETE',       // 요청 메서드
-                        url: '/cart/remove',  // 요청 URI
-                        headers: {"content-type": "application/json"}, // 요청 헤더
-                        dataType: 'text', // 전송받을 데이터의 타입
-                        data: JSON.stringify(cartOptDto),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
-                        success: function (result) {  // 서버로부터 응답이 도착하면 호출될 함수
-                            // ordDto = JSON.parse(result);
-
-                            $("#list" + prodCd + '_' + optCd).remove();     // 해당 상품의 <li> 삭제
-                            if ($('.opt' + prodCd).children().length === 0) {
-                                $('#list' + prodCd).remove();           // 해당 상품이 없을 경우 상품 전체 삭제
-                            }
-                            emptyCartMsg();
-
-                            let point = Math.round(totOptPrice / 100);
-
-                            console.log('totPRodPrc = ' + totProdPrc);
-                            console.log('totOptPrc = ' + totOptPrice);
-                            totProdPrc -= totOptPrice;
-                            console.log('totPRodPrc = ' + totProdPrc);
-                            totPrc -= totOptPrice
-                            dlvPrc = totPrc > 30000 ? 0 : 3000;
-                            finPrc = totPrc - totDcPrc + dlvPrc;
-
-                            $('.totPrc' + prodCd).html(totProdPrc);   // 상품별 총 금액 업데이트
-                            $('.totPnt' + prodCd).html(point)       // 상품별 총 포인트
-                            $('.totPrc').html(totPrc);              // 총 상품금액 업데이트
-                            $('.totDcPrc').html(totDcPrc);          // 총 할인금액 업데이트
-                            $('.dlvPrc').html(dlvPrc);              // 배송비 업데이트
-                            $('.finPrc').html(finPrc);              // 최종금액 업데이트
-                            $('.totalOrderPrice').html(finPrc + '원 주문하기');
-                        },
-                        error: function () {
-                            alert("error")
-                        } // 에러가 발생했을 때, 호출될 함수
-                    }); // $.ajax()
-                });
+            optionlist.forEach(function (row) {                                   // 각 상품에서 옵션을 하나씩 뽑아냄
+                const optCd = row.id;                                             // 상품 옵션코드
 
 
                 //  modify --1
                 $("#minus" + prodCd + '_' + optCd).click(function () {
 
-                    optVal = document.querySelector('.' + prodCd + '_' + optCd + '_qty');                               // 옵션 수량
-                    optQty = parseInt(optVal.value);                                                                    // 옵션 수량
-                    totOptPrice = parseInt(document.querySelector('.' + prodCd + '_' + optCd + '_totPrice').value);     // 옵션별 총 금액
-                    totProdPrc = parseInt(document.getElementsByClassName('totPrc' + prodCd)[0].innerText);             // 상품 별 금액
-                    optPrice = parseInt(document.getElementsByClassName('onePrc' + prodCd + '_' + optCd)[0].innerText); // 옵션 개당 금액
-
+                    let optVal = document.querySelector('.' + prodCd + '_' + optCd + '_qty');                               // 옵션 수량
+                    let optQty = parseInt(optVal.value);                                                                    // 옵션 수량
+                    let totalOptionPrice = parseInt(document.querySelector('.' + prodCd + '_' + optCd + '_totPrice').value.replace(/,/g, ''));     // 옵션별 총 금액
+                    let totalProdPrc = parseInt(document.getElementsByClassName('totPrc' + prodCd)[0].innerText.replace(/,/g, ''));             // 상품 별 금액
+                    let optPrice = totalOptionPrice / optQty;                                                                    // 옵션 개당 금액
 
                     if (optQty > 1) {      // 수량이 1 아래로 떨어지지 않게
                         --optQty;
-                        totOptPrice -= optPrice;
-                        totProdPrc -= optPrice;
+                        totalOptionPrice -= optPrice;
+                        totalProdPrc -= optPrice;
                         totPrc -= optPrice
 
-
-                        let cartOptDto = {prodCd: prodCd, optCd: optCd, optQty: optQty, totOptPrice: totOptPrice};
+                        let cartOptDto = {prodCd: prodCd, optCd: optCd, optQty: optQty, totOptPrice: totalOptionPrice};
                         let cartOptDto2 = {};
                         $.ajax({
                             type: 'PATCH',       // 요청 메서드
@@ -553,19 +482,20 @@
                                 // // 할인 금액 업데이트
                                 // $("#dcprc" + prodCd).html(expctDcPrc);
 
-                                let point = Math.round(totProdPrc / 100);
+                                let point = Math.round(totalProdPrc / 100);
                                 dlvPrc = totPrc > 30000 ? 0 : 3000;
                                 finPrc = totPrc - totDcPrc + dlvPrc;
+                                let finPnt = finPrc / 100;
 
                                 optVal.value = qty;
-                                $('.' + prodCd + '_' + optCd + '_totPrice')[0].value = prc;
-                                $('.totPrc' + prodCd).html(totProdPrc);   // 상품별 총 금액 업데이트
+                                $('.' + prodCd + '_' + optCd + '_totPrice')[0].value = prc.toLocaleString();
+                                $('.totPrc' + prodCd).html(totalProdPrc.toLocaleString());   // 상품별 총 금액 업데이트
                                 $('.totPnt' + prodCd).html(point)       // 상품별 총 포인트
-                                $('.totPrc').html(totPrc);              // 총 상품금액 업데이트
-                                $('.totDcPrc').html(totDcPrc);          // 총 할인금액 업데이트
-                                $('.dlvPrc').html(dlvPrc);              // 배송비 업데이트
-                                $('.finPrc').html(finPrc);              // 최종금액 업데이트
-                                $('.totalOrderPrice').html(finPrc + '원 주문하기');
+                                $('#totPrc').html(totPrc.toLocaleString());              // 총 상품금액 업데이트
+                                $('#totDcPrc').html(totDcPrc.toLocaleString());          // 총 할인금액 업데이트
+                                $('#dlvPrc').html(dlvPrc.toLocaleString());              // 배송비 업데이트
+                                $('#finPrc').html(finPrc.toLocaleString());              // 최종금액 업데이트
+                                $('#point').html(finPnt)                                 // 최종 포인트
                             },
                             error: function () {
                                 alert("error")
@@ -578,20 +508,18 @@
                 // modify ++1
                 $("#plus" + prodCd + '_' + optCd).click(function () {
 
-                    optVal = document.querySelector('.' + prodCd + '_' + optCd + '_qty');     // 옵션 수량
-                    optQty = parseInt(optVal.value);                             // 옵션 수량
-                    totOptPrice = parseInt(document.querySelector('.' + prodCd + '_' + optCd + '_totPrice').value);         // 옵션별 총 금액
-                    totProdPrc = parseInt(document.getElementsByClassName('totPrc' + prodCd)[0].innerText);                 // 상품 별 금액
-                    optPrice = parseInt(document.getElementsByClassName('onePrc' + prodCd + '_' + optCd) [0].innerText);    // 옵션 개당 금액
-
+                    let optVal = document.querySelector('.' + prodCd + '_' + optCd + '_qty');                               // 옵션 수량
+                    let optQty = parseInt(optVal.value);                                                                    // 옵션 수량
+                    let totalOptionPrice = parseInt(document.querySelector('.' + prodCd + '_' + optCd + '_totPrice').value.replace(/,/g, ''));     // 옵션별 총 금액
+                    let totalProdPrc = parseInt(document.getElementsByClassName('totPrc' + prodCd)[0].innerText.replace(/,/g, ''));             // 상품 별 금액
+                    let optPrice = totalOptionPrice / optQty;                                                                    // 옵션 개당 금액
 
                     ++optQty;  // 개수 + 1
-                    totOptPrice += optPrice;
-                    totProdPrc += optPrice;
+                    totalOptionPrice += optPrice;
+                    totalProdPrc += optPrice;
                     totPrc += optPrice
 
-
-                    let cartOptDto = {prodCd: prodCd, optCd: optCd, optQty: optQty, totOptPrice: totOptPrice};
+                    let cartOptDto = {prodCd: prodCd, optCd: optCd, optQty: optQty, totOptPrice: totalOptionPrice};
                     let cartOptDto2 = {};
                     $.ajax({
                         type: 'PATCH',       // 요청 메서드
@@ -610,19 +538,20 @@
                             // // 할인 금액 업데이트
                             // $("#dcprc" + prodCd).text(expctDcPrc);
 
-                            let point = Math.round(totProdPrc / 100);
+                            let point = Math.round(totalProdPrc / 100);
                             dlvPrc = totPrc > 30000 ? 0 : 3000;
                             finPrc = totPrc - totDcPrc + dlvPrc;
+                            let finPnt = finPrc / 100;
 
                             optVal.value = qty;
-                            $('.' + prodCd + '_' + optCd + '_totPrice')[0].value = prc;
-                            $('.totPrc' + prodCd).html(totProdPrc);   // 상품별 총 금액 업데이트
+                            $('.' + prodCd + '_' + optCd + '_totPrice')[0].value = prc.toLocaleString();
+                            $('.totPrc' + prodCd).html(totalProdPrc.toLocaleString());   // 상품별 총 금액 업데이트
                             $('.totPnt' + prodCd).html(point)       // 상품별 총 포인트
-                            $('.totPrc').html(totPrc);              // 총 상품금액 업데이트
-                            $('.totDcPrc').html(totDcPrc);          // 총 할인금액 업데이트
-                            $('.dlvPrc').html(dlvPrc);              // 배송비 업데이트
-                            $('.finPrc').html(finPrc);              // 최종금액 업데이트
-                            $('.totalOrderPrice').html(finPrc + '원 주문하기');
+                            $('#totPrc').html(totPrc.toLocaleString());              // 총 상품금액 업데이트
+                            $('#totDcPrc').html(totDcPrc.toLocaleString());          // 총 할인금액 업데이트
+                            $('#dlvPrc').html(dlvPrc.toLocaleString());              // 배송비 업데이트
+                            $('#finPrc').html(finPrc.toLocaleString());              // 최종금액 업데이트
+                            $('#point').html(finPnt)                                 // 최종 포인트
                         },
                         error: function () {
                             alert("error")
@@ -631,8 +560,76 @@
                 });
 
 
-            });
+                // 개별 delete
 
+                // $('.deleteOne').on('click', function() {
+                //     var optRow = $(this).closest('tr'); // 옵션을 포함하는 <tr> 요소 찾기
+                //     var tbody = $(this).closest('tbody'); // 상품을 포함하는 <tbody> 요소 찾기
+                //     optRow.remove(); // 선택한 옵션을 삭제
+                //
+                //     // 해당 상품의 옵션을 모두 삭제했는지 확인
+                //     if (tbody.find('tr.xans-record-').length === 0) {
+                //         tbody.remove(); // 해당 상품을 삭제
+                //     }
+                // });
+
+                $("#delete" + prodCd + '_' + optCd).click(function () {
+                    let optVal = document.querySelector('.' + prodCd + '_' + optCd + '_qty');                               // 옵션 수량
+                    let optQty = parseInt(optVal.value);                                                                    // 옵션 수량
+                    let totalOptionPrice = parseInt(document.querySelector('.' + prodCd + '_' + optCd + '_totPrice').value.replace(/,/g, ''));     // 옵션별 총 금액
+                    let totalProdPrc = parseInt(document.getElementsByClassName('totPrc' + prodCd)[0].innerText.replace(/,/g, ''));             // 상품 별 금액
+                    let optPrice = totalOptionPrice / optQty;                                                                    // 옵션 개당 금액
+
+                    let cartOptDto = {
+                        prodCd: prodCd,
+                        optCd: optCd,
+                        optQty: optQty,
+                        optPrice: optPrice,
+                        totOptPrice: totalOptionPrice
+                    };   // 상품코드 객체에 담기
+                    let ordDto = {totPrc: '', totDcPrc: '', dlvPrc: '', finPrc: ''};
+                    $.ajax({
+                        type: 'DELETE',       // 요청 메서드
+                        url: '/cart/remove',  // 요청 URI
+                        headers: {"content-type": "application/json"}, // 요청 헤더
+                        dataType: 'text', // 전송받을 데이터의 타입
+                        data: JSON.stringify(cartOptDto),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
+                        success: function (result) {  // 서버로부터 응답이 도착하면 호출될 함수
+                            // ordDto = JSON.parse(result);
+
+                            $("#list" + prodCd + '_' + optCd).remove();     // 해당 상품의 <li> 삭제
+                            if ($('.opt' + prodCd).children().length === 0) {
+                                $('#list' + prodCd).remove();           // 해당 상품이 없을 경우 상품 전체 삭제
+                            }
+                            emptyCartMsg();
+
+                            console.log('totPRodPrc = ' + totProdPrc);
+                            console.log('totOptPrc = ' + totOptPrice);
+                            totProdPrc -= totOptPrice;
+                            console.log('totPRodPrc = ' + totProdPrc);
+                            totPrc -= totOptPrice
+
+                            let point = Math.round(totalProdPrc / 100);
+                            dlvPrc = totPrc > 30000 ? 0 : 3000;
+                            finPrc = totPrc - totDcPrc + dlvPrc;
+                            let finPnt = finPrc / 100;
+
+                            optVal.value = qty;
+                            $('.' + prodCd + '_' + optCd + '_totPrice')[0].value = prc.toLocaleString();
+                            $('.totPrc' + prodCd).html(totalProdPrc.toLocaleString());   // 상품별 총 금액 업데이트
+                            $('.totPnt' + prodCd).html(point)       // 상품별 총 포인트
+                            $('#totPrc').html(totPrc.toLocaleString());              // 총 상품금액 업데이트
+                            $('#totDcPrc').html(totDcPrc.toLocaleString());          // 총 할인금액 업데이트
+                            $('#dlvPrc').html(dlvPrc.toLocaleString());              // 배송비 업데이트
+                            $('#finPrc').html(finPrc.toLocaleString());              // 최종금액 업데이트
+                            $('#point').html(finPnt)                                 // 최종 포인트
+                        },
+                        error: function () {
+                            alert("error")
+                        } // 에러가 발생했을 때, 호출될 함수
+                    }); // $.ajax()
+                });
+            });
         });
     });
 </script>
