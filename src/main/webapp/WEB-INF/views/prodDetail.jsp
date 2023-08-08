@@ -31,7 +31,14 @@
                 <div class="prodDesc">
                     <div class="prodDesc-head">
                         <h2><c:out value="${prodDto.prodName}"/></h2>
-                        <div> 별점 : <c:out value="${prodDto.ascr}"/></div>
+                        <div class="rating-div">
+                            <a href="#detail-section02" class="rating-point-md">
+                                <span class="point48"></span>
+                                <span class="blind">별점4.6~4.9</span>
+                                <span class="blind">별점</span>
+                            </a>
+                            <a href="#" class="score"><c:out value="${prodDto.ascr}"/>점</a>
+                        </div>
                         <c:set var="mainOpt" value="${optList.get(0)}"/>
                         <div class="cost">
                             <div style="font-weight: bolder"><span style="font-size: 2.3em"><strong><fmt:formatNumber value="${mainOpt.salePrc}" type="number" pattern="#,###"/></strong></span>원</div>

@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -56,10 +58,17 @@ public class HomeController {
                     prodcateFour.add(dto);
                 }
             }
+            System.out.println("mftDate = " + prodcateOne.get(0).getMftDate());
             m.addAttribute("cateOne",prodcateOne);
             m.addAttribute("cateTwo",prodcateTwo);
             m.addAttribute("cateThree",prodcateThree);
             m.addAttribute("cateFour",prodcateFour);
+
+            LocalDate todayDate = LocalDate.now(); // 오늘의 날짜 가져오기
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String today = todayDate.format(formatter); // 날짜를 yyyy-MM-dd 형식으로 포맷
+            System.out.println("today = " + today);
+            m.addAttribute("today", today);
 
             return "newmaintest";
         } catch (Exception e) {
