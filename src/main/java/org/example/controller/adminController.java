@@ -41,19 +41,6 @@ public class adminController {
         return "admin";
         //관리자페이지를 불러온다.
     }
-
-    @RequestMapping("/modifyInfo")
-    public String modifyInfo() {
-        return "modifyInfo";
-        //정보수정 페이지를 불러온다.
-    }
-
-    @RequestMapping("/myPage")
-    public String myPage() {
-        return "myPage";
-        //마이페이지를 불러온다.
-    }
-
     @RequestMapping("/prodDetails")
     public String prodDetails() {
         return "prodDetailtest";
