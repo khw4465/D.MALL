@@ -61,6 +61,7 @@ body, code {
     /*color: #717171;*/
     /* 2023/07/27 mhs 주석처리  */
     background: #fff;
+    margin: 0;
 }
 #skipNavigation {
     position: absolute;

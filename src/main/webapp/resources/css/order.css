@@ -1395,3 +1395,13 @@ button, [type="button"], [type="reset"], [type="submit"] {
     /*padding: 0;*/
     background-image: none;
 }
+.pnt-table {
+    margin-bottom: 50px;
+}
+#payMethod {
+    padding-top: 30px;
+}
+.kakao-img {
+    margin: 0 285px;
+    height: 24px;
+}

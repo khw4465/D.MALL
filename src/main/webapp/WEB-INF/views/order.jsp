@@ -141,9 +141,9 @@
                                                         </colgroup>
                                                         <tbody>
                                                         <tr>
-                                                            <th scope="row">받는분 <em class="es"><span class="blind">필수입력</span></em></th>
+                                                            <th scope="row">수령인 <em class="es"><span class="blind">필수입력</span></em></th>
                                                             <td>
-                                                                <input type="text" id="vRcpr" name="vDeliveryNm" title="" class="input-text w-full removeEmoji" placeholder="받는분 입력" value="">
+                                                                <input type="text" id="vRcpr" name="vDeliveryNm" title="" class="input-text w-full removeEmoji" placeholder="수령인 입력" value="">
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -225,7 +225,7 @@
                                     </colgroup>
                                     <tbody>
                                     <tr>
-                                        <th scope="row">받는분</th>
+                                        <th scope="row">수령인</th>
                                         <td id="rcpr">${dlvOne.rcpr}</td>
                                     </tr>
                                     <tr>
@@ -314,7 +314,7 @@
 
     <div class="lineless-table type1">
         <h3 class="title-list">포인트 / 쿠폰 사용</h3>
-        <table>
+        <table class="pnt-table">
             <caption>쿠폰/할인 사용</caption>
             <colgroup>
                 <col style="width:190px">
@@ -358,6 +358,12 @@
             </tbody>
         </table>
     </div>
+            <div id="payMethod" class="user-order-list">
+                <div class="list-head">
+                    <h3 style="display: inline" class="title-list">결제방법</h3>
+                    <img class="kakao-img" src="<c:url value="/img/kakao.png"/>" alt="">
+                </div>
+            </div>
 
         </div>
     </div>

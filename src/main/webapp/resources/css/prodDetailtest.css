@@ -1092,3 +1092,24 @@ button .blind {
     font-weight: bolder;
     color: black;
 }
+.rating-point-md {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: 98px;
+    height: 18px;
+    background: url(/img/rating.png) 0 -40px;
+}
+.rating-point-md .point48 {
+    width: 93%;
+}
+.rating-point-md [class*="point"] {
+    display: block;
+    width: 90px;
+    height: 18px;
+    background: url(/img/rating.png) 0 -60px;
+}
+.rating-div .score {
+    font-size: 15px;
+    color: #555;
+}

@@ -30,7 +30,7 @@
     </div>
     <div>
         <a href="/"  class="btn2 sizeM ">쇼핑 계속하기</a>
-        <a href="<c:url value='/order/list'/>" class="btn1 sizeM  ">주문 상세보기</a>
+        <a href="<c:url value='/order/list'/>" class="btn1 sizeM  ">주문 조회</a>
         <span class=품"gRight"></span>
     </div>
 </div>
