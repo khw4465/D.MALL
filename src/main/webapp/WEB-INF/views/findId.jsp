@@ -34,7 +34,7 @@
 
                 <div class="input-section">
                     <label>전화번호</label>
-                    <input type="text" name="mpNo" class="input-section" placeholder="핸드폰 번호">
+                    <input type="text" name="mpNo" class="input-section" placeholder="전화번호">
                 </div><!--// input-group -->
 
                 <div class="input-section">

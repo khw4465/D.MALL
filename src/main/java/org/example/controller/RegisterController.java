@@ -80,7 +80,7 @@ public class RegisterController {
             session.setAttribute("id", custDto.getCustId());
             custDto.setCustTp("1"); // 회원의 상태를 1로한다.
             custDto.setStus("정상"); // 나중에 정상인지 아닌지 판단 필요
-            custDto.setGrade("GR01"); // 나중에 등급분리 필요
+            custDto.setGrade("초심닭"); // 나중에 등급분리 필요
             model.addAttribute("user", custDto);
 
 //            custDao.insertUser(custDto); // 회원가입

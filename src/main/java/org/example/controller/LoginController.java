@@ -120,10 +120,9 @@ public class LoginController {
         custService.temporaryPwdReturn(custDto);// 보내기전에 비밀번호를 업데이트해준다.
         String subject = "비밀번호를 보내드립니다";
 
-        String content = "<img src=\"https://postfiles.pstatic.net/MjAyMzA3MDVfMjc4/MDAxNjg4NTE2ODUwNzI1.tSsVmQZHdFxSpSINcOPi1p4aV8UB-JxoYZCMjghLehQg.mFUzLkRqn9SLC6I73Wv3mmUybQE4nHWQ6SruEou5tTAg.PNG.hsm1020ss/github.png?type=w966\">";
-        content += "비밀번호는 " + password + "입니다. "; //위에 패스워드 흰색떠도 괜찮음 여기서 사용함.
+        String content = "비밀번호는 " + password + "입니다. "; //위에 패스워드 흰색떠도 괜찮음 여기서 사용함.
         String from = "hsm1020ss@naver.com";
-        String to = "hsm1020s@naver.com";
+        String to = " "+email; //실제이메일로 가자
 
         try {
             MimeMessage mail = mailSender.createMimeMessage();
