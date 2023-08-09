@@ -7,7 +7,7 @@
     <script type="text/javascript">
         setTimeout(function() {
             window.location.href = "/";
-        }, 500); // 0.5초 후
+        }, 1500); // 초 후
     </script>
     <link rel="stylesheet" href="<c:url value='/css/findPwdresult.css'/>">
 </head>

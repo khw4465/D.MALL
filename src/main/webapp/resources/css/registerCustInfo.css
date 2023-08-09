@@ -1,45 +1,61 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f5f5f5;
+}
+
 #container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f4f4f4;
-    padding: 40px 0;
-}
-
-#sidebar2 {
-    width: 70%;
-    max-width: 600px;
-    background-color: #ffffff;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    max-width: 800px; /* You can adjust this based on your need */
+    margin: 0 auto;
+    background-color: #fff;
     padding: 20px;
-    box-sizing: border-box;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
 }
 
-.dashboard2 h1 {
+/* Heading */
+h1 {
     text-align: center;
-    margin-bottom: 30px;
-    font-size: 24px;
     color: #333;
-    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 30px;
 }
 
+/* Form Styling */
 .form-group {
-    margin-bottom: 20px;
+    text-align: center; /* center align text */
+    margin-bottom: 3px;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 10px;
-    font-weight: 500;
-    color: #555;
+    margin-bottom: 5px;
+    color: #333;
 }
 
 .form-group span {
-    display: inline-block;
-    background-color: #f4f4f4;
-    padding: 6px 12px;
-    border-radius: 4px;
-    color: #333;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Button Styling */
+button {
+    background-color: #ff6600; /* orange color */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    display: block; /* to make it block level */
+    margin: 20px auto; /* center align button */
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #ff471a; /* slightly darker on hover */
+}
+.cust-container .form-group label,
+.cust-container .form-group span {
+    font-size: 23px;  /* 예: 기본 크기의 1.5배 */
 }
