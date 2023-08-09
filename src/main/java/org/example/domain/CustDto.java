@@ -13,7 +13,7 @@ public class CustDto {
     private String grade; // 회원등급코드6
     private String stus; // 회원상태7
     private String rcmdr; // 추천인아이디8
-    private Date birth; // 생년월일9
+    private Date birth; // 생년월일9 생일
     private String email; // 이메일10
     private LocalDateTime regDate; // 회원가입일시11
     private String acno; // 계좌번호12
