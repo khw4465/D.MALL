@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="java.util.Date"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -11,6 +12,7 @@
     <title>회원리스트</title>
     <link rel="stylesheet" href="<c:url value='/css/footer.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/registerCustInfo.css'/>">
 </head>
 <body>
 <jsp:include page="header.jsp"/>
@@ -19,20 +21,41 @@
     <div id="sidebar2" class="dashboard2">
         <div class="cust-container">
             <h1>회원가입 완료!</h1>
-            <table>
-                <tr>
-                    <th class="">회원아이디 ${custDtoInfo.custId}</th>
-                    <th class="">이름 ${custDtoInfo.name}</th>
-                    <th class="">핸드폰번호 ${custDtoInfo.mpNo}</th>
-                    <th class="">등급 ${custDtoInfo.grade}</th>
-                    <th class="">이메일 ${custDtoInfo.email}</th>
-                    <th class="">가입한 시간 ${custDtoInfo.regDate}</th>
-<%--                    <th class="">지역 ${loginHistoryDTOInfo.natn}</th>--%>
-<%--                    <th class="">최초가입기기 ${loginHistoryDTOInfo.mhrLS}</th>--%>
-<%--                    <th class="">가입축하 포인트 ${pointInfo.chgCn}</th>--%>
-<%--                    <th class="">가입축하 포인트 ${pointInfo.point}</th>--%>
-                </tr>
-            </table>
+            <div class="cust-container">
+                <h1>회원가입 완료!</h1>
+                <div class="form-group">
+                    <label>회원아이디:</label>
+                    <span>${custDtoInfo.custId}</span>
+                </div>
+                <div class="form-group">
+                    <label>이름:</label>
+                    <span>${custDtoInfo.name}</span>
+                </div>
+                <div class="form-group">
+                    <label>핸드폰번호:</label>
+                    <span>${custDtoInfo.mpNo}</span>
+                </div>
+                <div class="form-group">
+                    <label>등급:</label>
+                    <span>${custDtoInfo.grade}</span>
+                </div>
+                <div class="form-group">
+                    <label>이메일:</label>
+                    <span>${custDtoInfo.email}</span>
+                </div>
+                <div class="form-group">
+                    <label>지역:</label>
+                    <span>${nationInfo}</span>
+                </div>
+                <div class="form-group">
+                    <label>최초가입기기:</label>
+                    <span>${deviceInfo}</span>
+                </div>
+                <div class="form-group">
+                    <label>가입축하 포인트:</label>
+                    <span>${pointInfo}</span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
