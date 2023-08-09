@@ -137,7 +137,7 @@ public class NotcController {
 
             NotcPageHandler notcpageHandler = new NotcPageHandler(totalCnt, sc);
             List<NotcDto> list = notcService.getSearchResultPage(sc);
-            System.out.println("Controller = " + list);
+
             m.addAttribute("list",list);
             m.addAttribute("pagehandler",notcpageHandler);
 
@@ -266,7 +266,7 @@ public class NotcController {
 
             NotcPageHandler notcpageHandler = new NotcPageHandler(totalCnt, sc);
             List<NotcDto> list = notcService.getSearchResultPage(sc);
-            System.out.println("Controller = " + list);
+
             m.addAttribute("list",list);
             m.addAttribute("pagehandler",notcpageHandler);
 

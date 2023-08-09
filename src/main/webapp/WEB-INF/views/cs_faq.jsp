@@ -81,7 +81,7 @@
                             </c:if>
                             <c:if test="${totalCnt!=null && totalCnt!=0}">
                                 <c:if test="${pagehandler.showPrev}">
-                                    <a class="page" href="<c:url value="/faq/list${pagehandler.beginPage-1}"/> ">&lt;</a>
+                                    <a class="page" href="<c:url value="/faq/list?page=${pagehandler.beginPage-1}"/> ">&lt;</a>
                                 </c:if>
                                 <c:forEach var="i" begin="${pagehandler.beginPage}" end="${pagehandler.endPage}">
                                     <a class="page ${i==pagehandler.page? "paging-active" : ""}" href="<c:url value="/faq/list?page=${i}"/>">${i}</a>
