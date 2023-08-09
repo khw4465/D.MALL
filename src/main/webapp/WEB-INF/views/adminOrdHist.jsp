@@ -24,30 +24,18 @@
 
         <div class="use-guide">
             <h3><a href="">주문 관리</a></h3>
-            <!-- 게시물 검색창 -->
-            <div class="notcsearch">
-                <form id="cs_search" action="" class="search-form" method="get">
-                    <select class="search-option" name="option" hidden="hidden">
-                        <option value="T" ${pagehandler.sc.option=='T' ? "selected" : ""} hidden="hidden">제목만</option>
-                    </select>
-                    <input type="text" name="keyword" class="cs-search-input" type="text"
-                           value="${pagehandler.sc.keyword}" placeholder="주문번호를 입력해주세요.">
-                    <input type="submit" class="cs-search-button move-right" value="검색">
-                </form>
-            </div>
-            <!-- 게시물 검색창 -->
             <table>
                 <colgroup>
-                    <col style="width:1%">
-                    <col style="width:1%">
+                    <col style="width:5%">
                     <col style="width:5%">
                     <col style="width:8%">
-                    <col style="width:9%">
+                    <col style="width:10%">
+                    <col style="width:13%">
+                    <col style="width:12%">
                     <col style="width:11%">
-                    <col style="width:8%">
-                    <col style="width:7%">
+                    <col style="width:11%">
                     <col style="width:20%">
-                    <col style="width:5%">
+                    <col style="width:6%">
                 </colgroup>
                 <thead>
                 <tr>
@@ -80,9 +68,7 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <div class="writeBtn">
-                <button type="button" class="printBtn">선택건 주문서 출력</button>
-            </div> <!-- writeBtn -->
+
             <br>
 
             <!-- 핸들러 -->
@@ -107,64 +93,51 @@
             </div>
             <!-- 핸들러 -->
 
-<%--            <div class="npay_board_area">--%>
-<%--                <table class="npay_board_table">--%>
-<%--                    <colgroup>--%>
-<%--                        <col class="label_width">--%>
-<%--                        <col>--%>
-<%--                    </colgroup>--%>
-<%--                    <tbody>--%>
-<%--                    <tr>--%>
-<%--                        <th scope="row">주문확인--%>
-<%--                            <div class="_bbDqXY6I5b _1RHctT4n_N"><i--%>
-<%--                                    class="_3X_sdNq6-c _341mNgaIJm _3wYrf841wa"></i><span class="_1heWiz4gj3">도움말</span>--%>
-<%--                            </div>--%>
-<%--                        </th>--%>
-<%--                        <td colspan="1">--%>
-<%--                            <button type="button" class="size_medium type_basic _2b43OrUK4R _2TfRbAqhV3 _3tBIfJyJos">--%>
-<%--                                <span class="">발주확인</span></button>--%>
-<%--                            <button type="button" class="size_medium type_basic _2b43OrUK4R _2TfRbAqhV3 _3tBIfJyJos">--%>
-<%--                                <span class="">발송지연 처리</span></button>--%>
-<%--                            <button type="button" class="size_medium type_basic _2b43OrUK4R _2TfRbAqhV3 _3tBIfJyJos">--%>
-<%--                                <span class="">고객 배송지 정보수정</span></button>--%>
-<%--                            <button type="button" class="size_medium type_basic _2b43OrUK4R _2TfRbAqhV3 _3tBIfJyJos">--%>
-<%--                                <span class="">배송희망일 변경</span></button>--%>
-<%--                        </td>--%>
-<%--                    </tr>--%>
-<%--                    <tr>--%>
-<%--                        <th scope="row">발송처리--%>
-<%--                            <div class="_bbDqXY6I5b _1RHctT4n_N"><i--%>
-<%--                                    class="_3X_sdNq6-c _341mNgaIJm _3wYrf841wa"></i><span class="_1heWiz4gj3">도움말</span>--%>
-<%--                            </div>--%>
-<%--                        </th>--%>
-<%--                        <td colspan="1">--%>
-<%--                            <button type="button" class="size_medium type_basic _2b43OrUK4R _2TfRbAqhV3 _3tBIfJyJos">--%>
-<%--                                <span class="">발송처리</span></button>--%>
-<%--                            <button type="button" class="size_medium type_basic _2b43OrUK4R _2TfRbAqhV3 _3tBIfJyJos">--%>
-<%--                                <span class="">엑셀 일괄 발송처리</span></button>--%>
-<%--                            <button type="button" class="size_medium type_basic _2b43OrUK4R _2TfRbAqhV3 _3tBIfJyJos">--%>
-<%--                                <span class="">합포장 일괄 발송처리</span></button>--%>
-<%--                            <button type="button" class="size_medium type_basic _2b43OrUK4R _2TfRbAqhV3 _3tBIfJyJos">--%>
-<%--                                <span class="">송장수정</span></button>--%>
-<%--                        </td>--%>
-<%--                    </tr>--%>
-<%--                    <tr>--%>
-<%--                        <th scope="row">취소처리--%>
-<%--                            <div class="_bbDqXY6I5b _1RHctT4n_N"><i--%>
-<%--                                    class="_3X_sdNq6-c _341mNgaIJm _3wYrf841wa"></i><span class="_1heWiz4gj3">도움말</span>--%>
-<%--                            </div>--%>
-<%--                        </th>--%>
-<%--                        <td colspan="1">--%>
-<%--                            <button type="button" class="size_medium type_basic _2b43OrUK4R _2TfRbAqhV3 _3tBIfJyJos">--%>
-<%--                                <span class="">판매자 직접취소 처리</span></button>--%>
-<%--                            <button type="button" class="size_medium type_basic _2b43OrUK4R _2TfRbAqhV3 _3tBIfJyJos">--%>
-<%--                                <span class="">취소 승인처리</span></button>--%>
-<%--                        </td>--%>
-<%--                    </tr>--%>
-<%--                    </tbody>--%>
-<%--                </table>--%>
-<%--            </div>--%>
+            <div class="allBtn" style="margin: 40px 0">
+            <div class="writeBtn">
+                <button type="button" class="_2b43OrUK4R _2TfRbAqhV3 _3tBIfJyJos">선택건 주문서 출력</button>
+            </div> <!-- writeBtn -->
+            <div class="npay_board_area">
+                <div>
+                            <div class="_bbDqXY6I5b _1RHctT4n_N"><i
+                                    class="_3X_sdNq6-c _341mNgaIJm _3wYrf841wa"></i>주문확인
+                            </div>
 
+                            <button type="button" class="size_medium type_basic _2b43OrUK4R _2TfRbAqhV3 _3tBIfJyJos">
+                                <span class="">발주확인</span></button>
+                            <button type="button" class="size_medium type_basic _2b43OrUK4R _2TfRbAqhV3 _3tBIfJyJos">
+                                <span class="">발송지연 처리</span></button>
+                            <button type="button" class="size_medium type_basic _2b43OrUK4R _2TfRbAqhV3 _3tBIfJyJos">
+                                <span class="">고객 배송지 정보수정</span></button>
+                            <button type="button" class="size_medium type_basic _2b43OrUK4R _2TfRbAqhV3 _3tBIfJyJos">
+                                <span class="">배송희망일 변경</span></button>
+                </div>
+                <div>
+                            <div class="_bbDqXY6I5b _1RHctT4n_N"><i
+                                    class="_3X_sdNq6-c _341mNgaIJm _3wYrf841wa"></i>발송처리
+                            </div>
+
+                            <button type="button" class="size_medium type_basic _2b43OrUK4R _2TfRbAqhV3 _3tBIfJyJos">
+                                <span class="">발송처리</span></button>
+                            <button type="button" class="size_medium type_basic _2b43OrUK4R _2TfRbAqhV3 _3tBIfJyJos">
+                                <span class="">엑셀 일괄 발송처리</span></button>
+                            <button type="button" class="size_medium type_basic _2b43OrUK4R _2TfRbAqhV3 _3tBIfJyJos">
+                                <span class="">합포장 일괄 발송처리</span></button>
+                            <button type="button" class="size_medium type_basic _2b43OrUK4R _2TfRbAqhV3 _3tBIfJyJos">
+                                <span class="">송장수정</span></button>
+                </div>
+                <div>
+                            <div class="_bbDqXY6I5b _1RHctT4n_N"><i
+                                    class="_3X_sdNq6-c _341mNgaIJm _3wYrf841wa"></i>취소처리
+                            </div>
+
+                            <button type="button" class="size_medium type_basic _2b43OrUK4R _2TfRbAqhV3 _3tBIfJyJos">
+                                <span class="">판매자 직접취소 처리</span></button>
+                            <button type="button" class="size_medium type_basic _2b43OrUK4R _2TfRbAqhV3 _3tBIfJyJos">
+                                <span class="">취소 승인처리</span></button>
+                </div>
+            </div>
+            </div>
 
         </div>  <!-- use-guide -->
     </div> <!-- right-list -->

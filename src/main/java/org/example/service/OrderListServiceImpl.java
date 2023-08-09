@@ -81,7 +81,7 @@ public class OrderListServiceImpl implements OrderListService {
         return orderListDao.getStat();
     }
     @Override
-    public Map<String, Integer> getSumAvg(int i) throws Exception {
+    public Map<String, Double> getSumAvg(int i) throws Exception {
         return orderListDao.getSumAvg(i);
     }
 }

@@ -29,7 +29,7 @@ public interface OrderListService {
 
     List<Map<String, Object>> getStat() throws Exception;
 
-    Map<String, Integer> getSumAvg(int i) throws Exception;
+    Map<String, Double> getSumAvg(int i) throws Exception;
 //
 //    List<OrderDto> getList() throws Exception;
 

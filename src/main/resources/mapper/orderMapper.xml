@@ -98,7 +98,8 @@
         SELECT
             SUM(prc) AS total_sales,        -- 매출 합계
             ROUND(AVG(prc)) AS average_sales, -- 매출 평균 (소수점 제거)
-            COUNT(time) AS cnt -- 결제 건수
+            COUNT(time) AS payment_count, -- 결제 건수
+            ROUND(COUNT(time) / #{i + 1.0}, 1) AS average_payment_count -- 평균 주문 건수
         FROM (
                  SELECT IFNULL(b.prc, 0) AS prc, b.time AS time
                  FROM (

@@ -65,7 +65,7 @@ public class OrderListDaoImpl implements OrderListDao {
         return session.selectList(namespace + "getStat");
     }
     @Override
-    public Map<String, Integer> getSumAvg(int i) throws Exception {
+    public Map<String, Double> getSumAvg(int i) throws Exception {
         return session.selectOne(namespace + "getSumAvg", i);
     }
 }
