@@ -40,6 +40,11 @@
         ORDER BY seq desc
         LIMIT #{offset}, #{pageSize}
     </select>
+    <select id="getAllOrder" resultType="OrderDto">
+        SELECT *
+        FROM ord
+        ORDER BY seq desc
+    </select>
     <insert id="insert" parameterType="OrderDto">
         INSERT INTO ord
             (ord_cd, cust_id, cust_name, main_prodCd, prod_name, tot_prod_Cnt, tot_prc, tot_qty, tot_dc_prc, dlv_addr_id, dlv_prc, dlv_msg, fin_prc)
@@ -88,5 +93,26 @@
             ) b ON a.Date = b.time
         WHERE a.Date >= CURDATE() - INTERVAL 6 DAY
         ORDER BY a.Date;
+    </select>
+    <select id="getSumAvg" parameterType="int" resultType="map">
+        SELECT
+            SUM(prc) AS total_sales,        -- 매출 합계
+            ROUND(AVG(prc)) AS average_sales, -- 매출 평균 (소수점 제거)
+            COUNT(time) AS cnt -- 결제 건수
+        FROM (
+                 SELECT IFNULL(b.prc, 0) AS prc, b.time AS time
+                 FROM (
+                     SELECT CURDATE() - INTERVAL (a.a + (10 * b.a)) DAY as Date
+                     FROM (SELECT 0 as a UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) as a
+                     CROSS JOIN (SELECT 0 as a UNION ALL SELECT 1) as b
+                     ) a
+                     LEFT JOIN (
+                     SELECT DATE(ORD_DTTM) AS time, SUM(FIN_PRC) AS prc
+                     FROM ord
+                     WHERE ORD_DTTM >= CURDATE() - INTERVAL #{i} DAY
+                     GROUP BY DATE(ORD_DTTM)
+                     ) b ON a.Date = b.time
+                 WHERE a.Date >= CURDATE() - INTERVAL #{i} DAY
+             ) AS sales;
     </select>
 </mapper>

@@ -60,6 +60,7 @@ body, html {
 
 .dashboard2 {
     flex: 8.5;
+    background-color: #f1f1f1;
 }
 
 li {
@@ -89,6 +90,10 @@ div#container{
     height: 220%;
 }
 
+.chart-board {
+    background-color: #FFFFFF;
+}
+
 /* 주문 통계 */
 #linechart_material {
     display: inline-block;
@@ -98,4 +103,330 @@ div#container{
 .linechart_stats{
     display: inline-block;
     margin: 300 50px;
+}
+.dashboardArea {
+    margin: 0 10px 16px;
+}
+.mDashboard {
+    position: relative;
+}
+.gTabMerge.ui-tabs .ui-tabs-panel {
+    display: block;
+    margin: -1px 0 0;
+    border-radius: 0 0 4px 4px;
+    background-color: #fff;
+}
+html:lang(ko) .mDashboard .mBoard thead th, html:lang(ko) .mDashboard .mBoard tbody th, html:lang(ko) .mDashboard .mBoard tbody td, html:lang(ko) .mDashboard .mallArea .graph {
+    font-family: "Nanum Gothic","맑은 고딕","malgun gothic","Apple SD Gothic Neo",sans-serif;
+}
+.mallArea .gFlow {
+    width: 460px;
+}
+.dashboardArea .gFlow {
+    float: left;
+    width: 470px;
+    padding: 60px 0;
+    background-color: #FFFFFF;
+}
+.gSingleSide {
+    margin-left: 11px;
+    width: 500px
+}
+.mallArea .gReverse {
+    width: 483px;
+}
+.dashboardArea .gReverse {
+    float: right;
+    width: 478px;
+    margin: 0;
+}
+.mBoard table {
+    border-top: 1px solid #e2e5ea;
+    line-height: 16px;
+    background-color: #fff;
+}
+table {
+    table-layout: fixed;
+    width: 100%;
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+caption {
+    visibility: hidden;
+    position: absolute;
+    left: -1000px;
+    top: -1000px;
+    height: 0;
+    width: 0;
+    display: none;
+}
+user agent stylesheet
+caption {
+    display: table-caption;
+    text-align: -webkit-center;
+}
+colgroup {
+    display: table-column-group;
+}
+col {
+    display: table-column;
+}
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+.mBoard th {
+    border: 1px solid #e2e5ea;
+    font-weight: normal;
+    background-color: #fafafd;
+}
+.mBoard th, .mBoard td {
+    padding: 6px 8px;
+    vertical-align: middle;
+    letter-spacing: 0;
+}
+th, td {
+    border: 0;
+    word-wrap: break-word;
+}
+th {
+    display: table-cell;
+    vertical-align: inherit;
+    font-weight: bold;
+    text-align: -internal-center;
+}
+.mBoard .right {
+    text-align: right;
+}
+user agent stylesheet
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+html:lang(ko) .mDashboard .mBoard tbody th {
+    letter-spacing: -0.5px;
+}
+.mallArea .mBoard tbody th {
+    height: 28px;
+    text-align: center;
+    padding: 6px 8px;
+    background-color: #fff;
+}
+.mallArea .mBoard tbody td {
+    height: 28px;
+}
+.mDashboard .mBoard td {
+    color: #222;
+}
+.mBoard tbody td {
+    border: 1px solid #e2e5ea;
+}
+.mBoard tbody tr.em th, .mBoard tbody tr.em td, .mBoard tbody tr.em td a {
+    color: #3971ff;
+}
+.mallArea .mBoard tbody tr.total th, .mallArea .mBoard tbody tr.total td, .mallArea .mBoard tbody tr.total td a {
+    color: #7956de;
+}
+#salesChart {
+    display: block;
+    width: 500px;
+    height: 250px;
+}
+.mDashboard .title {
+    position: relative;
+    margin: 0 0 8px;
+    line-height: 1;
+}
+.mDashboard .title h2 {
+    float: left;
+    font-size: 16px;
+    color: #1b1e26;
+    line-height: 24px;
+}
+.cTip {
+    display: inline-block;
+}
+.mDashboard .title .mTooltip {
+    margin: -3px 6px 0 4px;
+}
+.mTooltip {
+    position: relative;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    vertical-align: middle;
+}
+.mTooltip .icon {
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    text-indent: 150%;
+    white-space: nowrap;
+    cursor: pointer;
+    background: url(//img.echosting.cafe24.com/ec/v2/sflex_tooltip.png) -486px 0 no-repeat;
+}
+.mTooltip .tooltip {
+    display: none;
+    position: absolute;
+    left: -13px;
+    top: 20px;
+    text-align: left;
+    font-weight: normal;
+    letter-spacing: normal;
+    border: 1px solid #6f94bf;
+    background-color: #fff;
+    border-radius: 3px;
+}
+.mTooltip .content {
+    padding: 10px;
+    line-height: 1.2;
+}
+.mTooltip .close {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    overflow: hidden;
+    width: 12px;
+    height: 11px;
+    text-indent: 150%;
+    white-space: nowrap;
+    background: url(//img.echosting.cafe24.com/ec/v2/sflex_tooltip.png) -438px -100px no-repeat;
+}
+html:lang(ko) input, html:lang(ko) select, html:lang(ko) textarea, html:lang(ko) button {
+    font-size: 13px;
+    letter-spacing: -0.5px;
+}
+button {
+    overflow: visible;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    cursor: pointer;
+}
+.mTooltip .edge {
+    position: absolute;
+    left: 14px;
+    top: -6px;
+    width: 9px;
+    height: 6px;
+    font-size: 0;
+    line-height: 0;
+    background: url(//img.echosting.cafe24.com/ec/v2/sflex_tooltip.png) -391px -200px no-repeat;
+}
+.mDashboard.gTabMerge.ui-tabs .title .gRight {
+    top: 49px;
+    right: 24px;
+    z-index: 1;
+}
+.mDashboard .title .gRight {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.btnNormal, .btnNormal span {
+    height: 28px;
+    margin-top: 12px;
+}
+.btnNormal span {
+    padding: 0 8px;
+    border: 1px solid #aeb4c6;
+    font-size: 12px;
+    line-height: 26px;
+    color: #1b1e26;
+    font-weight: normal;
+    background-color: #fff;
+}
+.btnNormal, .btnNormal span, .btnCtrl, .btnCtrl span, .btnGeneral, .btnGeneral span, .btnStrong, .btnStrong span, .btnBasic, .btnBasic span {
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    border-radius: 4px;
+    vertical-align: middle;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.mDashboard .title:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.mTab.typeNav {
+    position: relative;
+    height: 60px;
+    padding: 0 20px;
+    border: 1px solid #e2e5ea;
+    border-radius: 4px 4px 0 0;
+    background-color: #fff;
+}
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 20px;
+}
+html:lang(ko) .mTab.typeNav > ul > li {
+    font-size: 13px;
+}
+.mTab.typeNav > ul > li:first-child {
+    margin-left: 0;
+}
+.mTab.typeNav > ul > li {
+    position: relative;
+    float: left;
+    margin: 0 0 0 24px;
+    padding: 5px 0 20px;
+    font-size: 12px;
+    line-height: 20px;
+}
+li {
+    list-style: none;
+}
+.gTabMerge.ui-tabs .mTab.typeNav .ui-tabs-nav > li.ui-tabs-selected a, .ui-tabs .ui-tabs-nav li.ui-state-disabled a, .ui-tabs .ui-tabs-nav li.ui-state-processing a {
+    cursor: pointer;
+}
+.gTabMerge.ui-tabs .mTab.typeNav .ui-tabs-nav > li.ui-tabs-selected a {
+    color: #343a40;
+    font-weight: bold;
+}
+.gTabMerge.ui-tabs .mTab.typeNav .ui-tabs-nav > li a, .gTabMerge.ui-tabs.ui-tabs-collapsible .mTab.typeNav .mTab.typeNav.ui-tabs-nav li.ui-tabs-selected a {
+    cursor: pointer;
+}
+.mTab.typeNav > ul > li a {
+    color: #1b1e26;
+    text-decoration: none;
+}
+a {
+    text-decoration: none;
+    color: #1b1e26;
+}
+user agent stylesheet
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.gTabMerge.ui-tabs .mTab.typeNav .ui-tabs-nav > li.ui-tabs-selected:after {
+    height: 2px;
+    background-color: #343a40;
+}
+.mTab.typeNav > ul > li:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background-color: transparent;
 }

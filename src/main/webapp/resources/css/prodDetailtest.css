@@ -665,6 +665,9 @@ table.box th {
     max-width: 70px;
 }
 
+.xans-product-additional {
+    margin-top: 50px;
+}
 .xans-product-additional .addTab {
     position: relative;
     height: 60px;

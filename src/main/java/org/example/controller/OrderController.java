@@ -15,7 +15,9 @@ import java.net.URL;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -392,8 +394,37 @@ public class OrderController {
     // 관리자 일별매출 통계
     @GetMapping("/stats")
     public String selectAllStats(Model m) throws Exception {
+        int totalCnt = orderListService.count();
+        m.addAttribute("totalCnt",totalCnt);
+
+        List<OrderDto> dto = orderListService.getFullOrder();
+        m.addAttribute("allOrder", dto);
+
         List<Map<String, Object>> stats = orderListService.getStat();
         m.addAttribute("stat", stats);
+
+        Map<String, Integer> weekStats = orderListService.getSumAvg(6);
+        Map<String, Integer> monthStats = orderListService.getSumAvg(29);
+        m.addAttribute("weekStat", weekStats);
+        m.addAttribute("monthStat", monthStats);
+
+        LocalDate day1 = LocalDate.now();
+        LocalDate day2 = day1.minusDays(1);
+        LocalDate day3 = day1.minusDays(2);
+        LocalDate day4 = day1.minusDays(3);
+        // 날짜 형식 지정
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM월 dd일");
+
+        // 날짜를 문자열로 변환
+        String today = day1.format(formatter);
+        String oneDay = day2.format(formatter);
+        String twoDay = day3.format(formatter);
+        String threeDay = day4.format(formatter);
+
+        m.addAttribute("today", today);
+        m.addAttribute("oneDay", oneDay);
+        m.addAttribute("twoDay", twoDay);
+        m.addAttribute("threeDay", threeDay);
         // 모델에 담는다.
 
         return "orderStat";

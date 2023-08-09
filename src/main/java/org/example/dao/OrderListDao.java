@@ -16,6 +16,8 @@ public interface OrderListDao {
 
     List<OrderDto> getAllOrd(Map map) throws Exception;
 
+    List<OrderDto> getAllOrder() throws Exception;
+
     int count() throws Exception;
 
     int insert(OrderDto dto) throws Exception;
@@ -26,4 +28,6 @@ public interface OrderListDao {
     List<OrderDto> selectPage(Map map) throws Exception;
 
     List<Map<String,Object>> getStat() throws Exception;
+
+    Map<String, Integer> getSumAvg(int i) throws Exception;
 }
