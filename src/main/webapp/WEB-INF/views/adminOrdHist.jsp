@@ -30,11 +30,11 @@
                     <col style="width:5%">
                     <col style="width:8%">
                     <col style="width:10%">
-                    <col style="width:13%">
+                    <col style="width:15%">
                     <col style="width:12%">
                     <col style="width:11%">
                     <col style="width:11%">
-                    <col style="width:20%">
+                    <col style="width:24%">
                     <col style="width:6%">
                 </colgroup>
                 <thead>
