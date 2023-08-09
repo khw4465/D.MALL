@@ -136,10 +136,10 @@ public class LoginController {
             e.printStackTrace();
         }
 
-        String toURL = "/"; // localhost:8080으로 가기위해 toURL을 "/"로 설정
-        return "redirect:" + toURL;
+//        String toURL = "/"; // localhost:8080으로 가기위해 toURL을 "/"로 설정
+//        return "redirect:" + toURL;
 
-       // return "newmaintest"; // 0802 수정완료
+        return "findPwdresult"; // 0802 수정완료
     }
 
 
