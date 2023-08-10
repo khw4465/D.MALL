@@ -56,73 +56,81 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
 
-                <div class="use-guide">
-                    <table class="notc-table">
-                        <h3><a href="/notc/adminlist">공지사항 관리</a></h3>
-                        <!-- 게시물 검색창 -->
-                        <div class="notcsearch">
-                            <form id="cs_search" action="<c:url value="/notc/adminlist"/>" class="search-form" method="get">
-                                <select class="search-option" name="option" hidden="hidden">
-                                    <option value="T" ${pagehandler.sc.option=='T' ? "selected" : ""} hidden="hidden">제목만
-                                    </option>
-                                </select>
-                                <input type="text" name="keyword" class="cs-search-input" type="text"
-                                       value="${pagehandler.sc.keyword}" placeholder="제목을 검색해주세요">
-                                <input type="submit" class="cs-search-button move-right" value="검색">
-                            </form>
-                        </div>
-                        <!-- 게시물 검색창 -->
-                        <thead>
-                        <tr>
-                            <th class="td-num">번호</th>
-                            <th class="td-cate">카테고리</th>
-                            <th class="td-title">제목</th>
-                            <th class="td-weak">등록일</th>
-                            <th class="td-weak">조회수</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach var="NotcDto" items="${list}">
-                            <tr>
-                                <td class="td-num">${NotcDto.bbsoNo}</td>
-                                <td class="td-cate">${NotcDto.cate}</td>
-                                <td class="none-center"><a
-                                        href="<c:url value='/notc/adminread?bbsoNo=${NotcDto.bbsoNo}&amp;page=${page}&amp;pageSize=${pageSize}' />">${NotcDto.ttl}</a>
-                                </td>
-                                <td class="td-weak">${NotcDto.wrtd}</td>
-                                <td class="td-weak">${NotcDto.notcCnt}</td>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
-                    <div class="writeBtn">
-                        <button type="button" id="writeBtn" onclick="location.href='<c:url value="/notc/adminwrite"/>'">글쓰기
-                        </button>
-                    </div> <!-- writeBtn -->
-                    <br>
+                <h1 class="h3 mb-2 text-gray-800">게시판 관리</h1>
 
-                    <!-- 핸들러 -->
-                    <div id="handle">
-                        <c:if test="${totalCnt==null || totalCnt==0}">
-                            <div> 게시물이 없습니다.</div>
-                        </c:if>
-                        <c:if test="${totalCnt!=null && totalCnt!=0}">
-                            <c:if test="${pagehandler.showPrev}">
-                                <a class="page"
-                                   href="<c:url value="/notc/adminlist${pagehandler.sc.getQueryString(pagehandler.beginPage-1)}"/> ">&lt;</a>
-                            </c:if>
-                            <c:forEach var="i" begin="${pagehandler.beginPage}" end="${pagehandler.endPage}">
-                                <a class="page ${i==pagehandler.sc.page? "paging-active" : ""}"
-                                   href="<c:url value="/notc/adminlist${pagehandler.sc.getQueryString(i)}"/>">${i}</a>
-                            </c:forEach>
-                            <c:if test="${pagehandler.showNext}">
-                                <a class="page"
-                                   href="<c:url value="/notc/adminlist${pagehandler.sc.getQueryString(pagehandler.endPage)}"/> ">&gt;</a>
-                            </c:if>
-                        </c:if>
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">공지사항</h6>
                     </div>
-                    <!-- 핸들러 -->
-                </div>  <!-- use-guide -->
+                    <div class="notcsearch">
+                        <form id="cs_search" action="<c:url value="/notc/adminlist"/>" class="search-form" method="get">
+                            <select class="search-option" name="option" hidden="hidden">
+                                <option value="T" ${pagehandler.sc.option=='T' ? "selected" : ""} hidden="hidden">제목만
+                                </option>
+                            </select>
+                            <input type="text" name="keyword" class="cs-search-input" type="text"
+                                   value="${pagehandler.sc.keyword}" placeholder="제목을 검색해주세요">
+                            <input type="submit" class="cs-search-button move-right" value="검색">
+                        </form>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th class="td-num">번호</th>
+                                    <th class="td-cate">카테고리</th>
+                                    <th class="td-title">제목</th>
+                                    <th class="td-weak">등록일</th>
+                                    <th class="td-weak">조회수</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach var="NotcDto" items="${list}">
+                                    <tr>
+                                        <td class="td-num">${NotcDto.bbsoNo}</td>
+                                        <td class="td-cate">${NotcDto.cate}</td>
+                                        <td class="none-center"><a
+                                                href="<c:url value='/notc/adminread?bbsoNo=${NotcDto.bbsoNo}&amp;page=${page}&amp;pageSize=${pageSize}' />">${NotcDto.ttl}</a>
+                                        </td>
+                                        <td class="td-weak">${NotcDto.wrtd}</td>
+                                        <td class="td-weak">${NotcDto.notcCnt}</td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                            <br>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-5">
+                                <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
+                                    최근 10건의 내역입니다.
+                                </div>
+                            </div>
+                            <!-- 핸들러 -->
+                            <div id="handle">
+                                <c:if test="${totalCnt==null || totalCnt==0}">
+                                    <div> 게시물이 없습니다.</div>
+                                </c:if>
+                                <c:if test="${totalCnt!=null && totalCnt!=0}">
+                                    <c:if test="${pagehandler.showPrev}">
+                                        <a class="page"
+                                           href="<c:url value="/notc/adminlist${pagehandler.sc.getQueryString(pagehandler.beginPage-1)}"/> ">&lt;</a>
+                                    </c:if>
+                                    <c:forEach var="i" begin="${pagehandler.beginPage}" end="${pagehandler.endPage}">
+                                        <a class="page ${i==pagehandler.sc.page? "paging-active" : ""}"
+                                           href="<c:url value="/notc/adminlist${pagehandler.sc.getQueryString(i)}"/>">${i}</a>
+                                    </c:forEach>
+                                    <c:if test="${pagehandler.showNext}">
+                                        <a class="page"
+                                           href="<c:url value="/notc/adminlist${pagehandler.sc.getQueryString(pagehandler.endPage)}"/> ">&gt;</a>
+                                    </c:if>
+                                </c:if>
+                            </div>
+                            <!-- 핸들러 -->
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -164,7 +172,7 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <a class="btn btn-primary" href="<c:url value='${loginOutLink}'/>">Logout</a>
             </div>
         </div>
     </div>

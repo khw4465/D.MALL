@@ -20,7 +20,7 @@
     <link href="<c:url value='/css/sb-admin-2.min.css'/>" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href=<c:url value='/vendor/datatables/dataTables.bootstrap4.min.css'/>"" rel="stylesheet">
+    <link href="<c:url value='/vendor/datatables/dataTables.bootstrap4.min.css'/>" rel="stylesheet">
 </head>
 
 
@@ -91,6 +91,11 @@
                             <br>
                         </div>
                         <div class="row">
+                            <div class="col-sm-12 col-md-5">
+                                <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
+                                    최근 10건의 주문내역입니다.
+                                </div>
+                            </div>
                             <div class="col-sm-12 col-md-7">
                                 <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
                                     <ul class="pagination">
@@ -171,7 +176,7 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <a class="btn btn-primary" href="<c:url value='${loginOutLink}'/>">Logout</a>
             </div>
         </div>
     </div>
@@ -192,7 +197,7 @@
 <script src="<c:url value="vendor/datatables/dataTables.bootstrap4.min.js"/>"></script>
 
 <!-- Page level custom scripts -->
-<script src="<c:url value="js/demo/datatables-demo.js"/>"></script>
+<%--<script src="<c:url value="js/demo/datatables-demo.js"/>"></script>--%>
 
 </body>
 </html>

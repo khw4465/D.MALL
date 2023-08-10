@@ -114,7 +114,7 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <a class="btn btn-primary" href="<c:url value='${loginOutLink}'/>">Logout</a>
             </div>
         </div>
     </div>
@@ -182,3 +182,96 @@
 
 </script>
 </body>
+
+
+
+
+
+<h1 class="h3 mb-2 text-gray-800">회원 관리</h1>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">회원 리스트</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th class="">회원아이디</th>
+                    <th class="">이름</th>
+                    <th class="">핸드폰번호</th>
+                    <th class="">분류</th>
+                    <th class="">등급</th>
+                    <th class="">상태</th>
+                    <th class="">생일</th>
+                    <th class="">이메일</th>
+                    <th class="">계좌번호</th>
+                    <th class="">성별</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="custDto" items="${CustListPage}">
+                    <tr>
+                            <%--                        여기에 1~10까지 숫자 필요--%>
+                        <th class="">${custDto.custId}</th>
+                        <th class="">${custDto.name}</th>
+                        <th class="">${custDto.mpNo}</th>
+                        <th class="">${custDto.custTp}</th>
+                        <th class="">${custDto.grade}</th>
+                        <th class="">${custDto.stus}</th>
+                        <th class="">${custDto.birth}</th>
+                        <th class="">${custDto.email}</th>
+                        <th class="">${custDto.acno}</th>
+                        <th class="">${custDto.gender}</th>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+            <br>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-5">
+                <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
+                    최근 10건의 주문내역입니다.
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-7">
+                <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+                    <ul class="pagination">
+                        <c:if test="${cust_totalCnt==null || cust_totalCnt==0}">
+                            <div> 회원이 없습니다.</div>
+                        </c:if>
+                        <c:if test="${cust_totalCnt!=null && cust_totalCnt!=0}">
+                            <c:if test="${cust_ph.showPrev}">
+                                <li class="paginate_button page-item previous disabled"
+                                    id="dataTable_previous">
+                                    <a href="<c:url value='/custSelectAll?page=${cust_ph.beginPage-1}&pageSize=${cust_ph.pageSize}'/>"
+                                       aria-controls="dataTable" data-dt-idx="0" tabindex="0"
+                                       class="page-link">Previous</a>
+                                </li>
+                            </c:if>
+                            <c:forEach var="i" begin="${cust_ph.beginPage}" end="${cust_ph.endPage}">
+
+                                <li class="paginate_button page-item ">
+                                    <a href="<c:url value='/custSelectAll?page=${i}&pageSize=${cust_ph.pageSize}'/>"
+                                       aria-controls="dataTable" data-dt-idx="1" tabindex="0"
+                                       class="page-link">${i}</a>
+                                </li>
+                            </c:forEach>
+                            <c:if test="${cust_ph.showNext}">
+                                <li class="paginate_button page-item next" id="dataTable_next"><a
+                                        href="<c:url value='/custSelectAll?page=${cust_ph.endPage+1}&pageSize=${cust_ph.pageSize}'/>"
+                                        aria-controls="dataTable"
+                                        data-dt-idx="7"
+                                        tabindex="0"
+                                        class="page-link">Next</a>
+                                </li>
+                            </c:if>
+                        </c:if>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

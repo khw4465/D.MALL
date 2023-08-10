@@ -46,11 +46,11 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
 
-                <div id="linechart_material" style="width: 700px; height: 374px">
+                <div id="linechart_material" style="width: 680px; height: 374px">
                     <jsp:include page="orderStat.jsp"/>
                 </div>
 
-                <div id="linechart_stats" class="linechart_stats" style="width: 500px; height: 270px">
+                <div id="linechart_stats" class="linechart_stats" style="width: 450px; height: 270px">
                     <jsp:include page="stats.jsp"/>
                 </div>
 
@@ -95,7 +95,7 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <a class="btn btn-primary" href="<c:url value='${loginOutLink}'/>">Logout</a>
             </div>
         </div>
     </div>
