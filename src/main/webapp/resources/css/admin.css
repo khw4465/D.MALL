@@ -124,8 +124,8 @@ html:lang(ko) .mDashboard .mBoard thead th, html:lang(ko) .mDashboard .mBoard tb
 }
 .dashboardArea .gFlow {
     float: left;
-    width: 285px;
-    padding: 70px 0;
+    width: 360px;
+    padding: 50px 0;
     background-color: #FFFFFF;
 }
 .gSingleSide {
@@ -137,7 +137,7 @@ html:lang(ko) .mDashboard .mBoard thead th, html:lang(ko) .mDashboard .mBoard tb
 }
 .dashboardArea .gReverse {
     float: right;
-    width: 406px;
+    width: 320px;
     margin: 0;
 }
 .mBoard table {

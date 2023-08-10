@@ -46,7 +46,7 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
 
-                <div id="linechart_material" style="width: 711px; height: 374px">
+                <div id="linechart_material" style="width: 700px; height: 374px">
                     <jsp:include page="orderStat.jsp"/>
                 </div>
 

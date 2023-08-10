@@ -105,14 +105,12 @@
                                     <col style="width:18%;">
                                     <col style="width:18%;">
                                     <col style="width:18%;">
-                                    <col style="width:18%;">
                                 </colgroup>
                                 <thead>
                                 <tr>
                                     <th scope="col">날짜</th>
                                     <th scope="col">주문</th>
                                     <th scope="col">결제</th>
-                                    <th scope="col">환불(취소/반품)</th>
                                 </tr>
                                 </thead>
                                 <tbody class="right">
@@ -120,49 +118,41 @@
                                     <th scope="row" id="dailyCountTitle1">08월 08일</th>
                                     <td id="dailyCountOrderPrice1">0<br>(0건)</td>
                                     <td id="dailyCountPayedPrice1">0 원<br>(0건)</td>
-                                    <td id="dailyCountRefundPrice1">0 원<br>(0건)</td>
                                 </tr>
                                 <tr class="">
                                     <th scope="row" id="dailyCountTitle2">08월 09일</th>
                                     <td id="dailyCountOrderPrice2">0 원<br>(0건)</td>
                                     <td id="dailyCountPayedPrice2">0 원<br>(0건)</td>
-                                    <td id="dailyCountRefundPrice2">0 원<br>(0건)</td>
                                 </tr>
                                 <tr class="">
                                     <th scope="row" id="dailyCountTitle3">08월 10일</th>
                                     <td id="dailyCountOrderPrice3">0 원<br>(0건)</td>
                                     <td id="dailyCountPayedPrice3">0 원<br>(0건)</td>
-                                    <td id="dailyCountRefundPrice3">0 원<br>(0건)</td>
                                 </tr>
                                 <tr class="em">
                                     <th scope="row" id="dailyCountTitleToday">08월 11일 (오늘)</th>
                                     <td id="dailyCountOrderPriceToday">0 원<br>(0건)</td>
                                     <td id="dailyCountPayedPriceToday">0 원<br>(0건)</td>
-                                    <td id="dailyCountRefundPriceToday">0 원<br>(0건)</td>
                                 </tr>
                                 <tr class="total">
                                     <th scope="row" id="weeklyCountOrderAvgTitle">최근 7일 평균</th>
                                     <td id="weeklyCountOrderPriceAvg"><fmt:formatNumber value="${weekSales['average_sales']}" type="number" pattern="#,###" /> 원<br>(<c:out value="${weekSales['average_payment_count']}"/>건)</td>
                                     <td id="weeklyCountPayedPriceAvg"><fmt:formatNumber value="${weekSales['average_sales']}" type="number" pattern="#,###" /> 원<br>(<c:out value="${weekSales['average_payment_count']}"/>건)</td>
-                                    <td id="weeklyCountRefundPriceAvg">0 원<br>(0건)</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" id="weeklyCountOrderTotalTitle">최근 7일 합계</th>
                                     <td id="weeklyCountOrderPriceTotal"><fmt:formatNumber value="${weekSales['total_sales']}" type="number" pattern="#,###" /> 원<br>(<c:out value="${weekSales['payment_count']}"/>건)</td>
                                     <td id="weeklyCountPayedPriceTotal"><fmt:formatNumber value="${weekSales['total_sales']}" type="number" pattern="#,###" /> 원<br>(<c:out value="${weekSales['payment_count']}"/>건)</td>
-                                    <td id="weeklyCountRefundPriceTotal">0 원<br>(0건)</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" id="monthlyCountOrderAvgTitle">최근 30일 평균</th>
                                     <td id="monthlyCountOrderPriceAvg"><fmt:formatNumber value="${monthSales['average_sales']}" type="number" pattern="#,###" /> 원<br>(<c:out value="${monthSales['average_payment_count']}"/>건)</td>
                                     <td id="monthlyCountPayedPriceAvg"><fmt:formatNumber value="${monthSales['average_sales']}" type="number" pattern="#,###" /> 원<br>(<c:out value="${monthSales['average_payment_count']}"/>건)</td>
-                                    <td id="monthlyCountRefundPriceAvg">0 원<br>(0건)</td>
                                 </tr>
                                 <tr class="total">
                                     <th scope="row" id="monthlyCountOrderTotalTitle">최근 30일 합계</th>
                                     <td id="monthlyCountOrderPriceTotal"><fmt:formatNumber value="${monthSales['total_sales']}" type="number" pattern="#,###" /> 원<br>(<c:out value="${monthSales['payment_count']}"/>건)</td>
                                     <td id="monthlyCountPayedPriceTotal"><fmt:formatNumber value="${monthSales['total_sales']}" type="number" pattern="#,###" /> 원<br>(<c:out value="${monthSales['payment_count']}"/>건)</td>
-                                    <td id="monthlyCountRefundPriceTotal">0 원<br>(0건)</td>
                                 </tr>
                                 </tbody>
                             </table>
