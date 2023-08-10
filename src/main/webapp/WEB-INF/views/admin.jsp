@@ -25,7 +25,7 @@
 
     <!-- Custom styles for this template-->
     <link href="<c:url value='/css/sb-admin-2.min.css'/>" rel="stylesheet">
-
+    <link rel="stylesheet" href="<c:url value='/css/admin.css'/>">
 </head>
 
 <body id="page-top">
@@ -46,11 +46,11 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
 
-                <div id="linechart_material" style="width: 968px; height: 600px">
+                <div id="linechart_material" style="width: 711px; height: 374px">
                     <jsp:include page="orderStat.jsp"/>
                 </div>
 
-                <div id="linechart_stats" class="linechart_stats" style="width: 900px; height: 500px">
+                <div id="linechart_stats" class="linechart_stats" style="width: 500px; height: 270px">
                     <jsp:include page="stats.jsp"/>
                 </div>
 

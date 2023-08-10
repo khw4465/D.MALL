@@ -124,32 +124,32 @@ html:lang(ko) .mDashboard .mBoard thead th, html:lang(ko) .mDashboard .mBoard tb
 }
 .dashboardArea .gFlow {
     float: left;
-    width: 470px;
-    padding: 85px 0;
+    width: 285px;
+    padding: 70px 0;
     background-color: #FFFFFF;
 }
 .gSingleSide {
     margin-left: 11px;
-    width: 500px
+    width: 400px
 }
 .mallArea .gReverse {
     width: 483px;
 }
 .dashboardArea .gReverse {
     float: right;
-    width: 478px;
+    width: 406px;
     margin: 0;
 }
 .mBoard table {
     border-top: 1px solid #e2e5ea;
-    line-height: 16px;
+    line-height: 12px;
     background-color: #fff;
 }
 table {
     table-layout: fixed;
     width: 100%;
     border: 0;
-    height: 457px;
+    height: 300px;
     border-spacing: 0;
     border-collapse: collapse;
 }
@@ -335,7 +335,7 @@ button {
 }
 .btnNormal, .btnNormal span {
     height: 28px;
-    margin-top: 12px;
+    margin-top: 5px;
 }
 .btnNormal span {
     padding: 0 8px;
@@ -363,7 +363,7 @@ button {
 .mTab.typeNav {
     position: relative;
     height: 60px;
-    padding: 0 20px;
+    padding: 0 5px;
     border: 1px solid #e2e5ea;
     border-radius: 4px 4px 0 0;
     background-color: #fff;
@@ -388,7 +388,7 @@ html:lang(ko) .mTab.typeNav > ul > li {
     float: left;
     margin: 0 0 0 24px;
     padding: 5px 0 20px;
-    font-size: 12px;
+    font-size: 11px;
     line-height: 20px;
 }
 li {

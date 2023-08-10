@@ -68,6 +68,8 @@ input[type="file"] {
     background-color: #333;
     text-decoration: none;
     text-align: center;
+    width: 700px;
+    margin: 20px 50px;
 }
 
 .btnSubmit:hover {
@@ -101,4 +103,21 @@ li[data-category]:hover {
     /*height: auto;*/
     width: 300px;
     margin: 10px;
+}
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+.btn-icon-split {
+    padding: 0;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: stretch;
+    justify-content: center;
+    margin: 0 50px;
+    width: 700px;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #4e73df;
+    border-color: #4e73df;
 }

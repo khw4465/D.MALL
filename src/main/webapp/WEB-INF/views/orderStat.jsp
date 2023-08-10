@@ -45,7 +45,7 @@
                     <div class="cTip" code="MA.30" data-gtm="DATA_status_tip">
                         <div class="mTooltip ">
                             <button type="button" class="icon eTip" data-gtm="DATA_status_tip">도움말</button>
-                            <div class="tooltip" style="z-index : 1; width: 630px">
+                            <div class="tooltip" style="z-index : 1; width: 500px">
                                 <div class="content"></div>
                                 <button type="button" class="close eClose">닫기</button>
                                 <span class="edge"></span>
@@ -89,7 +89,7 @@
                 <div id="tabMallStatus1" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
                     <div class="mallArea">
                         <div class="gFlow graph">
-                            <canvas id="salesChart" style="width: 465px"></canvas>
+                            <canvas id="salesChart" style="width: 285px"></canvas>
                             <div class="gSingleSide">
                                 <ul class="mList">
                                     <li>최종 업데이트일시 : <span id="eMainSalesDailyChartRefleshTime"><fmt:formatDate value="${today}" pattern="MM월 dd일 HH:mm:ss"/></span>
@@ -102,10 +102,10 @@
                             <table border="1" summary="">
                                 <caption>일별 매출 현황</caption>
                                 <colgroup>
-                                    <col style="width:auto;">
-                                    <col style="width:26%;">
-                                    <col style="width:26%;">
-                                    <col style="width:25%;">
+                                    <col style="width:18%;">
+                                    <col style="width:18%;">
+                                    <col style="width:18%;">
+                                    <col style="width:18%;">
                                 </colgroup>
                                 <thead>
                                 <tr>
