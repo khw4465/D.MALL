@@ -28,12 +28,12 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1"
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages1"
            aria-expanded="true" aria-controls="collapsePages1">
             <i class="fas fa-fw fa-folder"></i>
             <span>주문관리</span>
         </a>
-        <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsePages1" class="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">주문관리</h6>
                 <a class="collapse-item" href="<c:url value='/order/adminOrdHist'/>">주문 통합검색</a>
@@ -49,12 +49,12 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2"
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages2"
            aria-expanded="true" aria-controls="collapsePages2">
             <i class="fas fa-fw fa-folder"></i>
             <span>회원관리</span>
         </a>
-        <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsePages2" class="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">회원관리</h6>
                 <a class="collapse-item" href="<c:url value='/custSelectAll'/>">회원리스트</a>
@@ -66,12 +66,12 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages3"
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages3"
            aria-expanded="true" aria-controls="collapsePages3">
             <i class="fas fa-fw fa-folder"></i>
             <span>상품관리</span>
         </a>
-        <div id="collapsePages3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsePages3" class="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">상품관리</h6>
                 <a class="collapse-item" href="<c:url value='/prod/register'/>">상품 등록</a>
@@ -82,18 +82,16 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages4"
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages4"
            aria-expanded="true" aria-controls="collapsePages4">
             <i class="fas fa-fw fa-folder"></i>
             <span>게시판관리</span>
         </a>
-        <div id="collapsePages4" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsePages4" class="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">게시판관리</h6>
                 <a class="collapse-item" href="<c:url value='/notc/adminlist'/>">공지사항 관리</a>
                 <a class="collapse-item" href="forgot-password.html">리뷰 관리</a>
-                <a class="collapse-item" href="404.html">취소관리</a>
-                <a class="collapse-item" href="blank.html">반품관리</a>
             </div>
         </div>
     </li>
