@@ -20,7 +20,7 @@
     <jsp:include page="adminSideBar.jsp"/>
 
     <div id="sidebar2" class="dashboard2">
-        <div id="linechart_material" style="width: 968px; height: 600px">
+        <div id="linechart_material" style="width: 900px; height: 500px">
             <jsp:include page="orderStat.jsp"/>
         </div>
 
