@@ -10,7 +10,7 @@ public interface PointDao {
 
     int insert(pointDto pointDto) throws Exception;
 
-    int update(pointDto pointDto) throws Exception;
+    int update(String id) throws Exception;
 
     List<pointDto> selectAll() throws Exception;
 

@@ -20,8 +20,11 @@
     </div>
 
     <div class="password">
-        <p >비밀번호가 기억나지 않으세요?
-            <a href="<c:url value="/login/findPwd"/>" class="findpwd-link">비밀번호 찾기</a>
+        <p>비밀번호가 기억나지 않으세요?
+            <a href="<c:url value='/login/findPwd'>
+            <c:param name='findid' value='${findidresult}'/>
+            </c:url>" class="findpwd-link">비밀번호 찾기
+            </a>
         </p>
         <a href="<c:url value="/login/login"/>" class="login-button">로그인</a>
     </div>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session="false" %>
 <html>
 <head>
@@ -59,7 +60,7 @@
     </div>
     <%--    추천상품 끝 --%>
 
-    <h1>카테고리별 상품</h1><br>
+    <h1 id="cate">카테고리별 상품</h1><br>
 
     <div class="category">
         <h3 id="animal">닭가슴살</h3>
@@ -74,8 +75,19 @@
                     <a href="<c:url value='/prod/detail/${prodOne.prodCd}'/>">
                         <img src="${prodOne.prodImg}.png" alt="Animal Image" width="250" height="250">
                         <div>
+                            <div class="top">
+                                <fmt:formatDate var="newProd" value="${prodOne.mftDate}" pattern="yyyy-MM-dd"/>
+                                <c:if test="${newProd == today}">
+                                    <em class="imgbadge-new">
+                                        <span class="blind">NEW</span>
+                                    </em>
+                                </c:if>
+                                <div class="rating-simply">
+                                    <span class="score"><c:out value="${prodOne.ascr}"/></span>
+                                </div>
+                            </div>
                             <div class="images-name">${prodOne.prodName}</div>
-                            <div class="images-price">${prodOne.prodPrice}원</div>
+                            <div class="images-price"><fmt:formatNumber value="${prodOne.prodPrice}" type="number" pattern="#,###"/>원</div>
                         </div>
                     </a>
                 </div>
@@ -87,8 +99,19 @@
                     <a href="<c:url value='/prod/detail/${prodTwo.prodCd}'/>">
                         <img src="${prodTwo.prodImg}.png" alt="nature Image" width="250" height="250">
                         <div>
+                            <div class="top">
+                                <fmt:formatDate var="newProd" value="${prodTwo.mftDate}" pattern="yyyy-MM-dd"/>
+                                <c:if test="${newProd == today}">
+                                    <em class="imgbadge-new">
+                                        <span class="blind">NEW</span>
+                                    </em>
+                                </c:if>
+                                <div class="rating-simply">
+                                    <span class="score"><c:out value="${prodTwo.ascr}"/></span>
+                                </div>
+                            </div>
                             <div class="images-name">${prodTwo.prodName}</div>
-                            <div class="images-price">${prodTwo.prodPrice}원</div>
+                            <div class="images-price"><fmt:formatNumber value="${prodTwo.prodPrice}" type="number" pattern="#,###"/>원</div>
                         </div>
                     </a>
                 </div>
@@ -100,8 +123,19 @@
                     <a href="<c:url value='/prod/detail/${prodThree.prodCd}'/>">
                         <img src="${prodThree.prodImg}.png" alt="food Image" width="250" height="250">
                         <div>
+                            <div class="top">
+                                <fmt:formatDate var="newProd" value="${prodThree.mftDate}" pattern="yyyy-MM-dd"/>
+                                <c:if test="${newProd == today}">
+                                    <em class="imgbadge-new">
+                                        <span class="blind">NEW</span>
+                                    </em>
+                                </c:if>
+                                <div class="rating-simply">
+                                    <span class="score"><c:out value="${prodThree.ascr}"/></span>
+                                </div>
+                            </div>
                             <div class="images-name">${prodThree.prodName}</div>
-                            <div class="images-price">${prodThree.prodPrice}원</div>
+                            <div class="images-price"><fmt:formatNumber value="${prodThree.prodPrice}" type="number" pattern="#,###"/>원</div>
                         </div>
                     </a>
                 </div>
@@ -113,8 +147,19 @@
                     <a href="<c:url value='/prod/detail/${prodFour.prodCd}'/>">
                         <img src="${prodFour.prodImg}.png" alt="pro Image" width="250" height="250">
                         <div>
+                            <div class="top">
+                                <fmt:formatDate var="newProd" value="${prodFour.mftDate}" pattern="yyyy-MM-dd"/>
+                                <c:if test="${newProd == today}">
+                                    <em class="imgbadge-new">
+                                        <span class="blind">NEW</span>
+                                    </em>
+                                </c:if>
+                                <div class="rating-simply">
+                                    <span class="score"><c:out value="${prodFour.ascr}"/></span>
+                                </div>
+                            </div>
                             <div class="images-name">${prodFour.prodName}</div>
-                            <div class="images-price">${prodFour.prodPrice}원</div>
+                            <div class="images-price"><fmt:formatNumber value="${prodFour.prodPrice}" type="number" pattern="#,###"/>원</div>
                         </div>
                     </a>
                 </div>

@@ -17,6 +17,8 @@ public interface OrderListService {
 
     List<OrderDto> getAllOrder(Map map) throws Exception;
 
+    List<OrderDto> getFullOrder() throws Exception;
+
     int count() throws Exception;
 
     int addOrder(String ordCd, String custId, String custName, int totDcPrc, int dlvAddrId, String dlvMsg) throws Exception;
@@ -26,6 +28,8 @@ public interface OrderListService {
     List<OrderDto> getPage(Map map) throws Exception;
 
     List<Map<String, Object>> getStat() throws Exception;
+
+    Map<String, Double> getSumAvg(int i) throws Exception;
 //
 //    List<OrderDto> getList() throws Exception;
 

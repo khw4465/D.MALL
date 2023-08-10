@@ -11,11 +11,15 @@
 <%-- 날짜를 포맷해주는 jstl문--%>
 <head>
     <title>Complete</title>
+    <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/footer.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/ordResult.css'/>">
 </head>
 <body>
-<div>
-    <h1>주문 완료!</h1>
+<jsp:include page="header.jsp"/>
+<br><br><br><br><br><br><br><br>
+<div class="result">
+    <h1>주문이 완료되었습니다.</h1>
     <p>드가자몰을 이용해주셔서 감사합니다.</p>
     <div>
         <p>주문일시 : <fmt:formatDate value="${ordInfo.ordDttm}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
@@ -26,9 +30,10 @@
     </div>
     <div>
         <a href="/"  class="btn2 sizeM ">쇼핑 계속하기</a>
-        <a href="<c:url value='/order/list'/>" class="btn1 sizeM  ">주문 상세보기</a>
+        <a href="<c:url value='/order/list'/>" class="btn1 sizeM  ">주문 조회</a>
         <span class=품"gRight"></span>
     </div>
 </div>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

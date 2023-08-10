@@ -33,8 +33,8 @@
                 </div><!--// input-group -->
 
                 <div class="input-section">
-                    <label>이메일 주소</label>
-                    <input type="text" name="mpNo" class="input-section" placeholder="핸드폰 번호">
+                    <label>전화번호</label>
+                    <input type="text" name="mpNo" class="input-section" placeholder="전화번호">
                 </div><!--// input-group -->
 
                 <div class="input-section">
@@ -44,10 +44,10 @@
         </ul>
     </form>
 
-    <div class="input-section">
-        <label>인증번호</label>
-        <input type="text" name="sms" class="input-section" placeholder="인증번호 입력">
-    </div><!--// input-group -->
+<%--    <div class="input-section">--%>
+<%--        <label>인증번호</label>--%>
+<%--        <input type="text" name="sms" class="input-section" placeholder="인증번호 입력">--%>
+<%--    </div><!--// input-group -->--%>
 
 </div>
 </body>

@@ -53,8 +53,6 @@ public class NotcServiceImpl implements NotcService {
 
     @Override
     public List<NotcDto> getSearchResultPage(NotcSearchCondition sc) throws Exception{
-//        System.out.println("sc = " + sc);
-        System.out.println("NotcService = " + notcDao.searchSelectPage(sc));
         return notcDao.searchSelectPage(sc);
     }
 

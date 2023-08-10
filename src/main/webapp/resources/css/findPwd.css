@@ -54,7 +54,7 @@ ul {
 
 .button-section button {
     padding: 10px;
-    background-color: #007bff;
+    background-color: #FF6001;
     color: white;
     border: none;
     border-radius: 4px;
@@ -68,7 +68,7 @@ ul {
 }
 
 .button-section button:hover:not(:disabled) {
-    background-color: #0056b3;
+    background-color: #FF6001;
 }
 .ul{
     padding: 5px;

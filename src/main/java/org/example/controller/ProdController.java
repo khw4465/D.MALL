@@ -41,8 +41,22 @@ public class ProdController {
         this.prodOptService = prodOptService;
     }
 
-    private static final String CURR_IMAGE_REPO_PATH = "C:\\Users\\huis9\\D.gaja\\src\\main\\webapp\\resources\\img";
+    //private static final String CURR_IMAGE_REPO_PATH = "C:\\Users\\huis9\\D.gaja\\src\\main\\webapp\\resources\\img";
+//    private static String CURR_IMAGE_REPO_PATH = "C:\\Users\\huis9\\D.gaja\\src\\main\\webapp\\resources\\img";
+    private static String CURR_IMAGE_REPO_PATH = "C:\\Users\\ftisa\\D.gaja\\src\\main\\webapp\\resources\\img";
 
+//    static {
+//        if (someCondition()) {
+//            CURR_IMAGE_REPO_PATH = "value1";
+//        } else if (){
+//            CURR_IMAGE_REPO_PATH = "value2";
+//        }
+//    }
+//    @GetMapping("/addPath")
+//    public String prodPATH(Model m) throws Exception{
+//
+//        return "forward:/prod/register"; // 상품등록으로 값 전달
+//    }
     @GetMapping("/register")
     public String prodregisterGET(Model m) throws Exception{
         return "prodRegister";
@@ -51,8 +65,12 @@ public class ProdController {
     @PostMapping("/register")
     public String prodregisterPost(@ModelAttribute ProdDto prodDto, String cateName,
                                    MultipartHttpServletRequest multipartRequest,
-                                   HttpServletResponse response,Model m) throws Exception{
-
+                                   HttpServletResponse response,Model m ,String loginWin, String loginMac ) throws Exception{
+        if(loginMac=="Macintosh"){
+            // CURR_IMAGE_REPO_PATH = "C:\\Users\\huis9\\D.gaja\\src\\main\\webapp\\resources\\img";
+            // 맥 경로 넣기 예시 (위에는 윈도우 예시) 주석 활성화해서 코딩
+             CURR_IMAGE_REPO_PATH = "/Users/khw4465/myGit/D.gaja/src/main/webapp/resources/img";
+        }
         //파일업로드
         multipartRequest.setCharacterEncoding("utf-8");
         Map map = new HashMap();
@@ -74,8 +92,11 @@ public class ProdController {
         ///prodDTO관련
 
         //prod테이블에 insert 로직 작성 0806
-        System.out.println("prodDto = " + prodDto);
         prodService.productRegister(prodDto);
+
+        //prodOpt테이블에 insert 로직 작성 0806
+        //ProdOptDto prodOptDto = new ProdOptDto();
+        //System.out.println(prodOptDto);
 
         // 확장자 자를 스트링
         // 나머지를 img서비스 호출해서 다 하나씩 넣어줄거임.
@@ -125,7 +146,8 @@ public class ProdController {
         //prodService.productRegister(prodDto); //prod 테이블에는 들어감
         // 이미지테이블에 들어온 개수만큼 하나씩 쌓아야함.
 
-        return "admin";
+        String toURL = "/admin";
+        return "redirect:" + toURL;
     }
     @RequestMapping("/download")
     public void download(@RequestParam("imageFileName") String imageFileName,

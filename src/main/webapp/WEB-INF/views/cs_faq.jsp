@@ -42,7 +42,6 @@
                             <li><a href="/notc/list" class="menu">공지사항</a></li>
                             <li><a href="/user/list" class="menu">이용안내</a></li>
                             <li><a href="/faq/list" class="menu">자주묻는 FAQ</a></li>
-
                         </ul>
                     </nav><!--// aside-menu -->
 
@@ -63,7 +62,7 @@
                 </div><!--// aside-menu-wrap -->
             </div><!--// frame-left -->
             <div class="frame-right">
-                <div class="frame-cnt-inner">
+                <div class="frame-use-inner">
 
                     <div class="list-title-area">
                         <h3 class="title-list-type2">자주묻는 FAQ</h3>
@@ -82,7 +81,7 @@
                             </c:if>
                             <c:if test="${totalCnt!=null && totalCnt!=0}">
                                 <c:if test="${pagehandler.showPrev}">
-                                    <a class="page" href="<c:url value="/faq/list${pagehandler.beginPage-1}"/> ">&lt;</a>
+                                    <a class="page" href="<c:url value="/faq/list?page=${pagehandler.beginPage-1}"/> ">&lt;</a>
                                 </c:if>
                                 <c:forEach var="i" begin="${pagehandler.beginPage}" end="${pagehandler.endPage}">
                                     <a class="page ${i==pagehandler.page? "paging-active" : ""}" href="<c:url value="/faq/list?page=${i}"/>">${i}</a>
@@ -101,8 +100,9 @@
                 </div>
             </div>
         </div><!--frame-wrap-->
+        <div class="includeItem"><jsp:include page="footer.jsp" /></div>
     </div><!--// content-wrap -->
-    <div class="includeItem"><jsp:include page="footer.jsp" /></div>
+
 </section>
 <script>
     let acc = document.getElementsByClassName("accordion");

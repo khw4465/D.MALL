@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
@@ -85,13 +86,17 @@ public class LoginController {
     }
 
     @GetMapping("/findPwd")
-    public String findPwd() {
+    public String findPwd(String findid,Model m) {
+        m.addAttribute("findid",findid);
         return "findPwd";
         // 회원의 비밀번호찾기 화면을 보여준다.
     }
 
     @PostMapping("/findPwd")
-    public String findPwdReturn(String custId, String name, String email, String mpNo) throws Exception {
+    public String findPwdReturn(String custId, String name, String email, String mpNo
+                                ) throws Exception {
+        //String toURL 추가
+
         CustDto custDto = new CustDto();
         custDto.setCustId(custId);
         custDto.setName(name);
@@ -115,10 +120,9 @@ public class LoginController {
         custService.temporaryPwdReturn(custDto);// 보내기전에 비밀번호를 업데이트해준다.
         String subject = "비밀번호를 보내드립니다";
 
-        String content = "<img src=\"https://postfiles.pstatic.net/MjAyMzA3MDVfMjc4/MDAxNjg4NTE2ODUwNzI1.tSsVmQZHdFxSpSINcOPi1p4aV8UB-JxoYZCMjghLehQg.mFUzLkRqn9SLC6I73Wv3mmUybQE4nHWQ6SruEou5tTAg.PNG.hsm1020ss/github.png?type=w966\">";
-        content += "비밀번호는 " + password + "입니다. "; //위에 패스워드 흰색떠도 괜찮음 여기서 사용함.
+        String content = "비밀번호는 " + password + "입니다. "; //위에 패스워드 흰색떠도 괜찮음 여기서 사용함.
         String from = "hsm1020ss@naver.com";
-        String to = "hsm1020s@naver.com";
+        String to = " "+email; //실제이메일로 가자
 
         try {
             MimeMessage mail = mailSender.createMimeMessage();
@@ -131,7 +135,11 @@ public class LoginController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "newmaintest"; // 0802 수정완료
+
+//        String toURL = "/"; // localhost:8080으로 가기위해 toURL을 "/"로 설정
+//        return "redirect:" + toURL;
+
+        return "findPwdresult"; // 0802 수정완료
     }
 
 
@@ -149,32 +157,17 @@ public class LoginController {
 
     @PostMapping("/login")
     public String login(Model m, String id, String pwd, String toURL, boolean rememberId,
-                        HttpServletRequest request, HttpServletResponse response) throws Exception {
+                        HttpServletRequest request, HttpServletResponse response,
+                        RedirectAttributes attr) throws Exception {
         LoginHistoryDTO loginHistoryDTO = new LoginHistoryDTO();
-        // 로그인이력에 국가 넣을떄
-        //        ko,en-US;q=0.9,en;q=0.8,ko-KR;q=0.7
+
+        // 로그인이력에 국가 넣을떄 ko,en-US;q=0.9,en;q=0.8,ko-KR;q=0.7
         // 이렇게 긴 코드가 들어가는데, 맨 앞자리 2개만 추출해서 저장하는 코드
-        String acceptLanguage = request.getHeader("Accept-Language");
-        if (acceptLanguage != null && !acceptLanguage.isEmpty()) {
-            String[] languages = acceptLanguage.split(",");
-            if (languages.length > 0) {
-                String firstLanguage = languages[0];
-                if (firstLanguage.length() >= 2) {
-                    String firstTwoChars = firstLanguage.substring(0, 2);
-                    loginHistoryDTO.setNatn(firstTwoChars);
-                }
-            }
-        }
-        //------------------------------------------- 사용자기기 추출
-        String device = request.getHeader("User-Agent");
-        if (device != null && !device.isEmpty()) {
-            int startIndex = device.indexOf('(');
-            int endIndex = device.indexOf(')');
-            if (startIndex != -1 && endIndex != -1 && startIndex < endIndex) {
-                String userDevice = device.substring(startIndex + 1, endIndex);
-                loginHistoryDTO.setMhrLS(userDevice); // 기기(기계) 추론
-            }
-        }
+        loginHistNationCodeSetting(request, loginHistoryDTO);
+
+        //사용자기기 추출 메서드
+        deviceExtract(m, request, loginHistoryDTO);
+
         loginHistoryDTO.setCustId(id); // 아이디
         loginHistoryDTO.setDttm(LocalDateTime.now()); // 발생시간
         loginHistoryDTO.setIp(request.getRemoteAddr()); //IP 로컬일때는 0 0 0 0 임
@@ -217,11 +210,15 @@ public class LoginController {
 
             // 아이디 비번이 어드민이 맞는지 확인
             if (adminCHeck(id)) { // 어드민일경우
-                m.addAttribute("loginAdminTrue", true);
+                //m.addAttribute("loginAdminTrue", true);
+                attr.addFlashAttribute("loginAdminTrue", true);
+                //리다이렉트여도 값이 유지된다.
+
                 loginHistoryDTO.setScssYn("Y"); // 로그인 성공시 db에 성공여부 Y로 나옴
-                 return "newmaintest";
+                toURL = "/"; // localhost:8080으로 가기위해 toURL을 "/"로 설정
+                return "redirect:" + toURL;
                 //어드민일경우 바로 리턴하면 이력에 Y가 쌓이지 않아서 그냥 return 주석처리 했으나
-                // 그럴경우 관리자페이지가 등장하지 않는 에러 있음
+                // 그럴경우 관리자페이지가 등장하지 않는 에러 있음 - 0807해결
                 //홈페이지 새로고침할때마다 관리자 체크해주는 기능 필요
             }
             loginHistoryDTO.setScssYn("Y"); // 로그인 성공시 db에 성공여부 Y로 나옴
@@ -238,7 +235,46 @@ public class LoginController {
             custLoginHistService.LoginHistInsert(loginHistoryDTO); // 제일마지막에 이력 저장
         }
     }
-        @GetMapping("/logoClick")
+
+    private static void deviceExtract(Model m, HttpServletRequest request, LoginHistoryDTO loginHistoryDTO) {
+        String device = request.getHeader("User-Agent");
+        String userDevice ="";
+        if (device != null && !device.isEmpty()) {
+            int startIndex = device.indexOf('(');
+            int endIndex = device.indexOf(')');
+            if (startIndex != -1 && endIndex != -1 && startIndex < endIndex) {
+                userDevice = device.substring(startIndex + 1, endIndex);
+                loginHistoryDTO.setMhrLS(userDevice); // 기기(기계) 추론
+            }
+            // 사용자 로그인기기가 윈도우 또는 맥일때 대비해서 모델에 저장 메서드
+            deviceCheck(m, userDevice);
+
+        }
+    }
+
+    private static void loginHistNationCodeSetting(HttpServletRequest request, LoginHistoryDTO loginHistoryDTO) {
+        String acceptLanguage = request.getHeader("Accept-Language");
+        if (acceptLanguage != null && !acceptLanguage.isEmpty()) {
+            String[] languages = acceptLanguage.split(",");
+            if (languages.length > 0) {
+                String firstLanguage = languages[0];
+                if (firstLanguage.length() >= 2) {
+                    String firstTwoChars = firstLanguage.substring(0, 2);
+                    loginHistoryDTO.setNatn(firstTwoChars);
+                }
+            }
+        }
+    }
+
+    private static void deviceCheck(Model m, String userDevice) {
+        if(userDevice.contains("Windows")){
+            m.addAttribute("Windows","Windows");
+        } else if (userDevice.contains("Macintosh")) {
+            m.addAttribute("Macintosh","Macintosh");
+        }
+    }
+
+    @GetMapping("/logoClick")
         public String handleLogoClick(Model m,HttpServletRequest request) throws Exception {
         //현재 아이디를 가져와서 서비스로 타입조회 맞을시 모델에 저장 해야함
             HttpSession session = request.getSession();

@@ -63,6 +63,8 @@
     <div class="order-list-area" style="margin: 200 30px">
         <h2 style="text-align: center">취소/반품 내역이 없습니다.</h2>
     </div>
+  </div>
+</div>
 
 <jsp:include page="footer.jsp"/>
 

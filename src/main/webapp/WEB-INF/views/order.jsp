@@ -141,9 +141,9 @@
                                                         </colgroup>
                                                         <tbody>
                                                         <tr>
-                                                            <th scope="row">받는분 <em class="es"><span class="blind">필수입력</span></em></th>
+                                                            <th scope="row">수령인 <em class="es"><span class="blind">필수입력</span></em></th>
                                                             <td>
-                                                                <input type="text" id="vRcpr" name="vDeliveryNm" title="" class="input-text w-full removeEmoji" placeholder="받는분 입력" value="">
+                                                                <input type="text" id="vRcpr" name="vDeliveryNm" title="" class="input-text w-full removeEmoji" placeholder="수령인 입력" value="">
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -225,7 +225,7 @@
                                     </colgroup>
                                     <tbody>
                                     <tr>
-                                        <th scope="row">받는분</th>
+                                        <th scope="row">수령인</th>
                                         <td id="rcpr">${dlvOne.rcpr}</td>
                                     </tr>
                                     <tr>
@@ -314,7 +314,7 @@
 
     <div class="lineless-table type1">
         <h3 class="title-list">포인트 / 쿠폰 사용</h3>
-        <table>
+        <table class="pnt-table">
             <caption>쿠폰/할인 사용</caption>
             <colgroup>
                 <col style="width:190px">
@@ -358,6 +358,12 @@
             </tbody>
         </table>
     </div>
+            <div id="payMethod" class="user-order-list">
+                <div class="list-head">
+                    <h3 style="display: inline" class="title-list">결제방법</h3>
+                    <img class="kakao-img" src="<c:url value="/img/kakao.png"/>" alt="">
+                </div>
+            </div>
 
         </div>
     </div>
@@ -440,7 +446,6 @@
         </div> <!--// payment-info-box -->
     </div>
 </div>
-</div>
 
 <jsp:include page="footer.jsp"/>
 
@@ -449,7 +454,22 @@
 
     function scrollFunction() {
         let childElement = document.getElementsByClassName("side-fix-area")[0];
-        childElement.style.top = window.scrollY + "px";
+        let containerElement = document.getElementsByClassName("content-wrap")[0];
+
+        let containerTop = containerElement.offsetTop;
+        let containerBottom = containerTop + containerElement.offsetHeight - childElement.offsetHeight;
+
+        // 스크롤 위치 계산
+        let newTop = window.scrollY;
+
+        // 스크롤 위치가 부모 요소의 범위 내에 있는지 확인
+        if (newTop < containerTop) {
+            newTop = containerTop;
+        } else if (newTop > containerBottom) {
+            newTop = containerBottom;
+        }
+
+        childElement.style.top = newTop + "px";
     }
 
     document.getElementById('deliveryRequest').addEventListener('change', function() {
@@ -556,6 +576,7 @@
             document.querySelector('#txt_tot_pg_price').innerHTML = parseInt(totPrc).toLocaleString();
             document.querySelector('#txt_btn_payment').innerHTML = parseInt(totPrc).toLocaleString();
             document.querySelector('#totalSavePointTot').innerHTML = parseInt(totPnt).toLocaleString();
+            alert('적용되었습니다.')
         }
     });
 

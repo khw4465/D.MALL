@@ -45,6 +45,10 @@ public class OrderListDaoImplTest {
 
         System.out.println(orderListDao.selectByDate(map));
     }
+    @Test
+    public void getAllOrder() throws Exception {
+        System.out.println(orderListDao.getAllOrder());
+    }
 
     @Test
     public void countTest() throws Exception {
@@ -75,5 +79,10 @@ public class OrderListDaoImplTest {
     @Test
     public void getStat() throws Exception {
         System.out.println(orderListDao.getStat());
+    }
+    @Test
+    public void getSumAvg() throws Exception {
+        System.out.println(orderListDao.getSumAvg(6));
+        System.out.println(orderListDao.getSumAvg(30));
     }
 }

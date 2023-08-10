@@ -8,4 +8,6 @@ public interface ProdOptService {
     ProdOptDto getOpt(String prodCd, String optCd) throws Exception;
 
     List<ProdOptDto> getOptList(String prodCd) throws Exception;
+
+    int prodOptRegister(ProdOptDto prodOptDto)throws Exception;
 }

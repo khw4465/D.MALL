@@ -13,4 +13,5 @@ public interface ProdOptDao {
     List<ProdOptDto> selectAll() throws Exception;
 
     List<ProdOptDto> selectOpt(String prodCd) throws Exception;
+    int insert(ProdOptDto prodOptDto) throws Exception;
 }

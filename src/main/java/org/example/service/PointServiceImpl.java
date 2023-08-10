@@ -29,8 +29,8 @@ public class PointServiceImpl implements PointService{
     }
 
     @Override
-    public int updatePoint(pointDto pointDto) throws Exception {
-        return pointDao.update(pointDto);
+    public int updatePoint(String id) throws Exception {
+        return pointDao.update(id);
     }
 
     @Override

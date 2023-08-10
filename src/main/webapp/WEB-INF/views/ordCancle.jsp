@@ -9,10 +9,14 @@
 <c:set var="logo" value="${loginId=='' ? '/' : '/login/logoClick'}"/>
 <head>
     <title>Cancle</title>
+  <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
+  <link rel="stylesheet" href="<c:url value='/css/footer.css'/>">
   <link rel="stylesheet" href="<c:url value='/css/ordResult.css'/>">
 </head>
 <body>
-<div>
+<jsp:include page="header.jsp"/>
+<br><br><br><br><br><br><br><br>
+<div class="result">
   <h1>주문이 취소되었습니다.</h1>
   <div>
     <a href="/"  class="btn2 sizeM ">쇼핑 계속하기</a>
@@ -20,5 +24,6 @@
     <span class="gRight"></span>
   </div>
 </div>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

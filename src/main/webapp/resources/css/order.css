@@ -221,7 +221,7 @@ body {
 .payment-info-box {
     width: 300px;
     border: 1px solid #ccc;
-    padding: 30px 25px;
+    padding: 20px;
     background: #FFF;
 }
 
@@ -374,11 +374,11 @@ body {
 }
 
 .order-price .div-price > li {
-    padding: 20px 0
+    padding: 10px 0
 }
 
 .order-price .div-price > li:last-child {
-    padding: 0 0 20px
+    padding: 0 0 10px
 }
 
 .order-price:not(.type2) .div-price > li + li:not(:last-child) {
@@ -391,7 +391,7 @@ body {
     box-sizing: border-box;
     background-color: #F8F8F8;
     border-radius: 8px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 
 .point-container-box ul li {
@@ -429,7 +429,7 @@ body {
 }
 
 .payment-info-box .terms-view {
-    padding: 25px 0;
+    padding: 15px 0;
     border-top: 1px solid #ccc;
 }
 
@@ -466,9 +466,9 @@ body {
 
 .payment-info-box .check-area {
     position: relative;
-    padding: 25px 0 0;
+    padding: 15px 0 0;
     border-top: 1px solid #ccc;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 .payment-info-box .btn-basic-xlg {
     width: 100%
@@ -1394,4 +1394,14 @@ button, [type="button"], [type="reset"], [type="submit"] {
     /* border: 0; */
     /*padding: 0;*/
     background-image: none;
+}
+.pnt-table {
+    margin-bottom: 50px;
+}
+#payMethod {
+    padding-top: 30px;
+}
+.kakao-img {
+    margin: 0 285px;
+    height: 24px;
 }

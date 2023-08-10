@@ -115,7 +115,7 @@
     </div>
     <div class="handle_usg">
         <c:if test="${totalCnt==null || totalCnt==0}">
-            <div> 게시물이 없습니다.</div>
+            <div>주문내역이 없습니다.</div>
         </c:if>
         <c:if test="${totalCnt!=null && totalCnt!=0}">
             <c:if test="${pagehandler.showPrev}">

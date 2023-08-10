@@ -29,10 +29,10 @@
             <!-- 중간에 다른 박스에 담길 내용들 -->
             <div id="points-container">
                 <ul id="points-info" class="item-list">
-                    <li class="points-item">포인트 : <a href="<c:url value='/point/custSelectAll'/>"><span id="points"
-                                                                                                        class="points-info">${pointResult}</span></a>
+                    <li class="points-item">포인트 : <a href="<c:url value='/point/custSelectAll'/>">
+                        <span id="points" class="points-info">${pointResult}원</span></a>
                     </li>
-                    <li class="points-item">쿠폰 : <a href=""><span id="coupon" class="points-info">1개</span></a></li>
+                    <li class="points-item">쿠폰 : <a href=""><span id="coupon" class="points-info">0개</span></a></li>
                 </ul>
             </div>
         </div>
@@ -44,14 +44,14 @@
                         <span class="point-value"><span id="total-point">${pointResult}</span> </span>
                         <strong class="point-type">보유 포인트</strong>
                     </li>
-                    <li class="point">
-                        <span class="point-value"><span id="normal-point">1,000원(주문포인트)</span>&nbsp;</span>
-                        <strong class="point-type">일반 포인트</strong>
-                    </li>
-                    <li class="point">
-                        <span class="point-value"><span id="special-point">${pointResult}</span></span>
-                        <strong class="point-type">특별 포인트</strong>
-                    </li>
+<%--                    <li class="point">--%>
+<%--                        <span class="point-value"><span id="normal-point">1,000원(주문포인트)</span>&nbsp;</span>--%>
+<%--                        <strong class="point-type">일반 포인트</strong>--%>
+<%--                    </li>--%>
+<%--                    <li class="point">--%>
+<%--                        <span class="point-value"><span id="special-point">${pointResult}</span></span>--%>
+<%--                        <strong class="point-type">특별 포인트</strong>--%>
+<%--                    </li>--%>
                 </ul>
             </div>
         </div>
@@ -66,20 +66,20 @@
             <div class="status-content">
                 <ul class="status-list">
                     <li class="status-item">
-                        <a href="" class="status-link"><span id="prepayment-count">0</span></a>
                         <strong class="status-name">입금전</strong>
+                        <a href="" class="status-link"><span id="prepayment-count">0</span></a>
                     </li>
                     <li class="status-item">
-                        <a href="" class="status-link"><span id="preparing-count">0</span></a>
                         <strong class="status-name">배송준비중</strong>
+                        <a href="" class="status-link"><span id="preparing-count"><c:out value="${ordList.size()}"/> </span></a>
                     </li>
                     <li class="status-item">
-                        <a href="" class="status-link"><span id="shipping-count">0</span></a>
                         <strong class="status-name">배송중</strong>
+                        <a href="" class="status-link"><span id="shipping-count">0</span></a>
                     </li>
                     <li class="status-item">
-                        <a href="" class="status-link"><span id="delivered-count">0</span></a>
                         <strong class="status-name">배송완료</strong>
+                        <a href="" class="status-link"><span id="delivered-count">0</span></a>
                     </li>
                 </ul>
                 <!-- 박스 안의 오른쪽에 붙일 내용 -->

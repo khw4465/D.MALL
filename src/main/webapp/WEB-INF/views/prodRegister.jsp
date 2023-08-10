@@ -2,6 +2,7 @@
          isELIgnored="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="loginDevice" value="${Macintosh=='Macintosh' ? 'Macintosh' : 'Windows'}"/>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <%
     request.setCharacterEncoding("UTF-8");
@@ -138,7 +139,7 @@
                                 </td>
                             </tr>
 
-                            <tr>
+                            <tr style="display: none">
                                 <th scope="row">할인상태</th>
                                 <td id="discountTd">
                                     <label><input type="radio" name="dcCd" value="T"> 할인있음</label>
@@ -183,7 +184,7 @@
                             <tr>
                                 <th scope="row">상품명</th>
                                 <td>
-                                    <input type="text" name="prodName" placeholder="예시) 체리맛" value="">
+                                    <input type="text" name="prodName" placeholder="예시) 갈비맛" value="">
                                 </td>
                             </tr>
 
@@ -199,12 +200,12 @@
                                     <input id="prodPrice" type="text" name="prodPrice" value="">
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row">할인된 총 가격</th>
-                                <td>
-                                    <p id="discountedPrice"></p>
-                                </td>
-                            </tr>
+<%--                            <tr>--%>
+<%--                                <th scope="row">할인된 총 가격</th>--%>
+<%--                                <td>--%>
+<%--                                    <p id="discountedPrice"></p>--%>
+<%--                                </td>--%>
+<%--                            </tr>--%>
 
 
                             <tr>
@@ -270,7 +271,8 @@
                 <input type="button" value="이미지 추가" onclick="fn_addFile()"><br>
                 <div id="d_file"></div>
             </table>
-
+            <input type="hidden" name="loginWin" value="${loginDevice}">
+            <input type="hidden" name="loginMac" value="${Macintosh}">
             <br>
             <button type="submit" class="btnSubmit">상품등록</button>
         </form>

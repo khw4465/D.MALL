@@ -15,11 +15,12 @@ import java.net.URL;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+
 import org.example.domain.OrderListPageHandler;
 
 
@@ -107,15 +108,15 @@ public class OrderController {
             conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8"); // 요청 데이터 타입
             conn.setDoOutput(true);                                                  // 연결을 통해 서버에 전달해 줄 데이터가 있는지?  default = false
             String param = "cid=TC0ONETIME" +                                        // 요청 매개변수를 적어줌
-                           "&partner_order_id=partner_order_id" +
-                           "&partner_user_id=partner_user_id" +
-                           "&item_name="+ URLEncoder.encode(dto.getProdName(), "UTF-8") +   // 한글이라 인코딩 필요
-                           "&quantity=" + dto.getTotQty() +
-                           "&total_amount=" + dto.getFinPrc() +
-                           "&tax_free_amount=0" +
-                           "&approval_url=http://localhost:8080/order/complete" +       // 주문승인 시 이동 주소
-                           "&cancel_url=http://localhost:8080/order/cancle" +       // 주문취소 시 이동 주소
-                           "&fail_url=http://localhost:8080/order/fail";           // 주문실패 시 이동 주소
+                    "&partner_order_id=partner_order_id" +
+                    "&partner_user_id=partner_user_id" +
+                    "&item_name="+ URLEncoder.encode(dto.getProdName(), "UTF-8") +   // 한글이라 인코딩 필요
+                    "&quantity=" + dto.getTotQty() +
+                    "&total_amount=" + dto.getFinPrc() +
+                    "&tax_free_amount=0" +
+                    "&approval_url=http://localhost:8080/order/complete" +       // 주문승인 시 이동 주소
+                    "&cancel_url=http://localhost:8080/order/cancle" +       // 주문취소 시 이동 주소
+                    "&fail_url=http://localhost:8080/order/fail";           // 주문실패 시 이동 주소
             OutputStream output = conn.getOutputStream();  // 서버에 주는 애
             DataOutputStream data = new DataOutputStream(output); // 무엇을 줄지 결정
             data.writeBytes(param);     // 매개변수를 byte타입으로 변환
@@ -142,7 +143,7 @@ public class OrderController {
         }
         return "(\"result\" : \"NO\")";
     }
-    
+
     @GetMapping("/list")
     public String orderList(Model m, HttpServletRequest request,
                             @RequestParam(defaultValue = "1") Integer page,
@@ -242,11 +243,11 @@ public class OrderController {
 
             cartService.removeAll(custId);                                // 주문을 했으니 장바구니 목록 삭제
 
-//            // 구매시 포인트 적립을 위한 메서드 07.29 mhs
-            OrderDto dto = cartService.getOrdHist(custId);
-            pointDto pointDto = settingPointDto(custId, dto);
-            pointService.insertPoint(pointDto);                           // 포인트 insert
+            // 08/02 mhs 포인트차감로직 추가
+            minusPoint(session, ordDto1); // 주문시 할인금액을 가져와서 포인트에서 차감시켜주는 메서드
 
+            // 구매시 포인트 적립을 위한 메서드 07.29 mhs
+            addPoint(custId, ordDto1); // 구매로인한 포인트적립
 
 
             return new ResponseEntity<>(HttpStatus.OK);
@@ -254,44 +255,41 @@ public class OrderController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-    // 구매시 포인트 적립을 위한 메서드 07.29 mhs
-    private pointDto settingPointDto(String custId, OrderDto dto) throws Exception { // 07.29 mhs
-        //id로 가져오는게 아니라 전체이력 1줄을 가져와야 pk에러가 뜨지않을듯.
 
+    private void addPoint(String custId, OrderDto ordDto1) throws Exception {
         pointDto pointDto = pointService.selectPointOne(custId); // id 주면 최신포인트이력 한줄 가져온다.
         pointDto newPointDto = new pointDto();
         // 회원의 최신 이력 1줄을 받아와 수정해서 새로 저장 시작
-        newPointDto.setPntId(pointService.selectLatestPointHist().getPntId()+1); // 포인트
+        //newPointDto.setPntId(pointService.selectLatestPointHist().getPntId()+1); // 포인트
+        // mhs 0807 추가
         // 위의 서비스는 회원의 최신이력이 아니라 전체의 최신이력을 하나 가져와서 +1 해준다.
         newPointDto.setCustId(pointDto.getCustId()); // 회원아이디
         newPointDto.setStus("적립"); //상태
-        newPointDto.setChngPnt((dto.getTotPrc()/100)); //변화포인트
-        newPointDto.setPoint(pointDto.getPoint()+(dto.getTotPrc()/100)); // 최신이력 + 총금액/100 저장 나머지 절삭
+        newPointDto.setChngPnt((ordDto1.getFinPrc()/100)); //변화포인트
+        newPointDto.setPoint(pointDto.getPoint()+(ordDto1.getFinPrc()/100)); // 최신이력 + 총금액/100 저장 나머지 절삭
         newPointDto.setDttm(LocalDateTime.now()); // 현재날짜시간 //만료기간은 저장하지않음
         newPointDto.setChgCn("구매"); //사유
         newPointDto.setRemark("구매 적립"); //비고
         newPointDto.setPntCd("0"); // 코드
-        System.out.println("newPointDto = " + newPointDto);
-        return newPointDto;
+        pointService.insertPoint(newPointDto);                           // 포인트 insert
     }
+    // 구매시 포인트 적립을 위한 메서드 07.29 mhs
 
-   @GetMapping("/complete")
-   @Transactional(rollbackFor = Exception.class)
-   public String ordComplete(Model m, HttpSession session) {
-       try {
-           OrderDto ordDto2 = (OrderDto) session.getAttribute("lastOrder");    // 세션으로 주문한 건의 내역 가져오기
-           m.addAttribute("ordInfo", ordDto2);
 
-           // 08/02 mhs 포인트차감로직 추가
-           minusPoint(session, ordDto2); // 주문시 할인금액을 가져와서 포인트에서 차감시켜주는 메서드
+    @GetMapping("/complete")
+    @Transactional(rollbackFor = Exception.class)
+    public String ordComplete(Model m, HttpSession session) {
+        try {
+            OrderDto ordDto2 = (OrderDto) session.getAttribute("lastOrder");    // 세션으로 주문한 건의 내역 가져오기
+            m.addAttribute("ordInfo", ordDto2);
 
-           return "ordComplete";
-       } catch (Exception e) {
-           System.out.println("Error in ordComplete: " + e.getMessage()); // 로그 추가: 에러 메시지 출력
-           return "error";
-       }
+            return "ordComplete";
+        } catch (Exception e) {
+            System.out.println("Error in ordComplete: " + e.getMessage()); // 로그 추가: 에러 메시지 출력
+            return "error";
+        }
 
-   }
+    }
 
     private void minusPoint(HttpSession session, OrderDto ordDto2) throws Exception {
         pointDto point = pointService.selectPointOne((String) session.getAttribute("id"));
@@ -333,22 +331,22 @@ public class OrderController {
     @PostMapping("/addDlvAddr")
     @ResponseBody
     public ResponseEntity<DlvAddrDto> addDlv(@RequestBody DlvAddrDto dlvAddrDto, HttpSession session) {
-    try{
-        String custId = (String)session.getAttribute("id");     // 세션으로 회원아이디 가져오기
-        dlvAddrDto.setCustId(custId);                                 // dto에 회원아이디 값 넣어주기
+        try{
+            String custId = (String)session.getAttribute("id");     // 세션으로 회원아이디 가져오기
+            dlvAddrDto.setCustId(custId);                                 // dto에 회원아이디 값 넣어주기
 
-        int addrNo = dlvAddrService.getDlvCnt(custId);                // dto에 배송지 고유번호 넣어주기
-        dlvAddrDto.setAddrNo(addrNo + 1);                             // 고유번호 == 기존 배송지 개수 + 1
+            int addrNo = dlvAddrService.getDlvCnt(custId);                // dto에 배송지 고유번호 넣어주기
+            dlvAddrDto.setAddrNo(addrNo + 1);                             // 고유번호 == 기존 배송지 개수 + 1
 
-        System.out.println("dlvAddrDto = " + dlvAddrDto);
-        dlvAddrService.addDlvAddr(dlvAddrDto);
+            System.out.println("dlvAddrDto = " + dlvAddrDto);
+            dlvAddrService.addDlvAddr(dlvAddrDto);
 
 
-        return new ResponseEntity<>(dlvAddrDto, HttpStatus.OK);
-    } catch (Exception e) {
-        e.printStackTrace();
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    }
+            return new ResponseEntity<>(dlvAddrDto, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PatchMapping("/modifyDlvAddr")
@@ -395,8 +393,24 @@ public class OrderController {
     // 관리자 일별매출 통계
     @GetMapping("/stats")
     public String selectAllStats(Model m) throws Exception {
+        int totalCnt = orderListService.count();
+        m.addAttribute("totalCnt",totalCnt);
+
+        List<OrderDto> dto = orderListService.getFullOrder();
+        m.addAttribute("allOrder", dto);
+
         List<Map<String, Object>> stats = orderListService.getStat();
         m.addAttribute("stat", stats);
+
+        Map<String, Double> weekStats = orderListService.getSumAvg(6);
+        Map<String, Double> monthStats = orderListService.getSumAvg(29);
+        m.addAttribute("weekStat", weekStats);
+        m.addAttribute("monthStat", monthStats);
+
+        LocalDate day = LocalDate.now();
+        Date date = Date.from(day.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        m.addAttribute("today", date);
+
         // 모델에 담는다.
 
         return "orderStat";

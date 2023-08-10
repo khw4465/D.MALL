@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
+<%@ page isELIgnored="false" %>
 <c:set var="loginId"
        value="${pageContext.request.getSession(false)==null || pageContext.request.session.getAttribute('id')=='' ? '' : pageContext.request.session.getAttribute('id')}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
@@ -104,7 +105,7 @@
                 <div id="category" class="xans-element- xans-layout xans-layout-category categoryOne">
                     <div class="position">
                         <ul class="clearfix">
-                            <li class="xans-record-" onmouseover="showDropdown()"><a href="/prod/search">카테고리</a>
+                            <li class="xans-record-" onmouseover="showDropdown()"><a href="#cate">카테고리</a>
                             </li>
                             <li class="xans-record-"><a href="/category/베스트/48/">베스트</a></li>
                             <li class="xans-record-"><a href="/category/깜짝특가/56/">깜짝특가</a></li>

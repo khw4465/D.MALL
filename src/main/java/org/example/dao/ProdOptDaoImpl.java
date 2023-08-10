@@ -28,4 +28,9 @@ public class ProdOptDaoImpl implements ProdOptDao{
     public List<ProdOptDto> selectOpt(String prodCd) throws Exception {
         return session.selectList(namespace + "selectOpt", prodCd);
     }
+
+    @Override
+    public int insert(ProdOptDto prodOptDto) throws Exception {
+        return session.insert(namespace+"insert",prodOptDto);
+    }
 }

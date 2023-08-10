@@ -10,4 +10,6 @@ public interface ProdImgService {
     List<ProdImgDto> getAllImg(String prodCd) throws Exception;
     int productImgRegister(ProdImgDto prodImgDto) throws Exception;
 
+
+
 }

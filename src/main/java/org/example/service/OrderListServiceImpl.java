@@ -51,6 +51,10 @@ public class OrderListServiceImpl implements OrderListService {
         return orderListDao.getAllOrd(map);
     }
     @Override
+    public List<OrderDto> getFullOrder() throws Exception {
+        return orderListDao.getAllOrder();
+    }
+    @Override
     public int count() throws Exception {
         return orderListDao.count();
     }
@@ -75,5 +79,9 @@ public class OrderListServiceImpl implements OrderListService {
     @Override
     public List<Map<String, Object>> getStat() throws Exception {
         return orderListDao.getStat();
+    }
+    @Override
+    public Map<String, Double> getSumAvg(int i) throws Exception {
+        return orderListDao.getSumAvg(i);
     }
 }

@@ -19,7 +19,7 @@
             <li>
                 <div class="input-section">
                     <label>아이디</label>
-                    <input type="text" name="custId" placeholder="아이디">
+                    <input type="text" name="custId" placeholder="아이디" value="${findid}">
                 </div>
                 <div class="input-section">
                     <label>이름</label>

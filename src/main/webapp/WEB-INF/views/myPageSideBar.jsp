@@ -35,7 +35,8 @@
             <a href="/mypage/delivery" class="menu">회원정보관리</a>
             <ul class="depth2">
               <li class=""><a href="<c:url value='/dlvAddr/list'/>">배송지 관리</a></li>
-              <li><a href="<c:url value='/custModify'/>">정보수정</a></li><!-- 활성화될 경우 li에 addClass current  -->
+              <li><a href="<c:url value='/custModify'/>">정보수정</a></li>
+              <li><a href="<c:url value='/deleteCust'/>" onclick="return confirmDeletion()">회원탈퇴</a></li>
             </ul>
           </li>
         </ul>
@@ -59,4 +60,9 @@
       }
     });
   });
+
+  function confirmDeletion() {
+    return confirm("탈퇴하시겠습니까?");
+  }
+
 </script>

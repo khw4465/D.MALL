@@ -49,7 +49,7 @@ form {
     padding: 10px;
     border: none;
     /* 모든 변의 테두리를 제거 */
-    background-color: #007BFF;
+    background-color: #FF6001;
     /* 백그라운드는 파랑 */
     color: #fff;
     /* 글자는 흰색 */
@@ -62,7 +62,7 @@ form {
 }
 
 .login-button:hover {
-    background-color: #0056b3;
+    background-color: #FF6001;
     /* 로그인 버튼에 마우스가 올라갔을때 */
 }
 
