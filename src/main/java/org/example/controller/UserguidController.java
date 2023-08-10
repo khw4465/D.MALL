@@ -36,7 +36,6 @@ public class UserguidController {
 
             List<GuidDto> list = guidService.getPage(map);
 
-            System.out.println("list = " + list);
 
             m.addAttribute("list", list);
             m.addAttribute("pagehandler", guidpageHandler);
