@@ -21,7 +21,6 @@
 </head>
 <body>
 <jsp:include page="header.jsp"/>
-
 <div id="container">
     <div id="sidebar2" class="dashboard2">
         <div class="cust-container">
