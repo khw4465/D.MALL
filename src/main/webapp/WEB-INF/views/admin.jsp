@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Blank</title>
+    <title>D.GAJA ADMIN</title>
 
     <!-- Custom fonts for this template-->
     <link href="<c:url value='/vendor/fontawesome-free/css/all.min.css'/>" rel="stylesheet" type="text/css">
@@ -46,8 +46,14 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
 
-                <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+                <div id="linechart_material" style="width: 968px; height: 600px">
+                    <jsp:include page="orderStat.jsp"/>
+                </div>
+
+                <div id="linechart_stats" class="linechart_stats" style="width: 900px; height: 500px">
+                    <jsp:include page="stats.jsp"/>
+                </div>
+
 
             </div>
             <!-- /.container-fluid -->
