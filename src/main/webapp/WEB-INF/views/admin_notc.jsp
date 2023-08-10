@@ -99,6 +99,10 @@
                                 </c:forEach>
                                 </tbody>
                             </table>
+                            <div class="writeBtn">
+                                <button type="button" id="writeBtn" onclick="location.href='<c:url value="/notc/adminwrite"/>'">글쓰기
+                                </button>
+                            </div> <!-- writeBtn -->
                             <br>
                         </div>
                         <div class="row">
