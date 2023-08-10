@@ -99,7 +99,7 @@ public class RegisterController {
             custService.registerCust(custDto); // 회원가입
 
             // toURL = toURL == null || toURL.equals("") ? "/" : toURL;
-           // return "redirect:" + toURL;
+            // return "redirect:" + toURL;
             return "registerCustInfo";
         } catch (Exception e) {
             throw new RuntimeException(e); //e. 찍으면 return 써줘야하네
@@ -110,7 +110,7 @@ public class RegisterController {
 
             // 회원가입정보 띄워줄 모델들 저장.
             m.addAttribute("custDtoInfo",custDto); // 회원정보
-           // m.addAttribute("loginHistoryDTOInfo",loginHistoryDTO); //로그인이력
+            // m.addAttribute("loginHistoryDTOInfo",loginHistoryDTO); //로그인이력
             session.invalidate(); // 회원가입후 바로 로그아웃시키기
         }
     }

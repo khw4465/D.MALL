@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="java.util.Date"%>
+<%@ page session="false" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +22,6 @@
 </head>
 <body>
 <jsp:include page="header.jsp"/>
-
 <div id="container">
     <div id="sidebar2" class="dashboard2">
         <div class="cust-container">
