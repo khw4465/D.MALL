@@ -100,7 +100,7 @@ div#container{
     margin: 100 50px;
 }
 /* 로그인시간 통계 */
-.linechart_stats{
+.linechart_stats {
     display: inline-block;
     margin: 300 50px;
 }

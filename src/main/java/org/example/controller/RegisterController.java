@@ -55,23 +55,24 @@ public class RegisterController {
     public String addPost(HttpServletRequest request,String toURL, HttpSession session, Model m,
                           @Valid CustDto custDto, BindingResult result, String pwd, String pwd2)
             throws Exception {
+        String nationInfo = request.getHeader("Accept-Language");
+        String deviceInfo = request.getHeader("User-Agent");
         // 회원가입시 로그인상태가 되는데 로그인이력 남기기 위한 코드
         LoginHistoryDTO loginHistoryDTO = new LoginHistoryDTO();
-        loginHistoryDTO.setCustId(custDto.getCustId()); //아이디
+        loginHistoryDTO.setCustId(custDto.getCustId()); // 아이디
         loginHistoryDTO.setDttm(LocalDateTime.now()); // 발생시간
         loginHistoryDTO.setIp(request.getRemoteAddr()); //IP 로컬일때는 0 0 0 0 임
-        loginHistoryDTO.setNatn(request.getHeader("Accept-Language")); // 국가 추론
-        m.addAttribute("nationInfo");
-        loginHistoryDTO.setMhrLS(request.getHeader("User-Agent")); // 기기(기계) 추론
+        loginHistoryDTO.setNatn(nationInfo); // 국가 추론
+        loginHistoryDTO.setMhrLS(deviceInfo); // 기기(기계) 추론
         loginHistoryDTO.setScssYn("Y"); //로그인성공여부
         loginHistoryDTO.setFailCnt(0); //로그인실패카운트
 
         // 로그인이력에 국가 넣을떄 ko,en-US;q=0.9,en;q=0.8,ko-KR;q=0.7
         // 이렇게 긴 코드가 들어가는데, 맨 앞자리 2개만 추출해서 저장하는 코드
-        loginHistNationCodeSetting(request, loginHistoryDTO);
+        loginHistNationCodeSetting(request, loginHistoryDTO,nationInfo,m);
 
         //사용자기기 추출 메서드
-        deviceExtract(request, m, loginHistoryDTO);
+        deviceExtract(request, m, loginHistoryDTO,deviceInfo);
 
         try {
             if(!(pwd.equals(pwd2))){
@@ -98,7 +99,7 @@ public class RegisterController {
             custService.registerCust(custDto); // 회원가입
 
             // toURL = toURL == null || toURL.equals("") ? "/" : toURL;
-           // return "redirect:" + toURL;
+            // return "redirect:" + toURL;
             return "registerCustInfo";
         } catch (Exception e) {
             throw new RuntimeException(e); //e. 찍으면 return 써줘야하네
@@ -109,13 +110,13 @@ public class RegisterController {
 
             // 회원가입정보 띄워줄 모델들 저장.
             m.addAttribute("custDtoInfo",custDto); // 회원정보
-           // m.addAttribute("loginHistoryDTOInfo",loginHistoryDTO); //로그인이력
+            // m.addAttribute("loginHistoryDTOInfo",loginHistoryDTO); //로그인이력
             session.invalidate(); // 회원가입후 바로 로그아웃시키기
         }
     }
 
-    private static void loginHistNationCodeSetting(HttpServletRequest request, LoginHistoryDTO loginHistoryDTO) {
-        String acceptLanguage = request.getHeader("Accept-Language");
+    private static void loginHistNationCodeSetting(HttpServletRequest request, LoginHistoryDTO loginHistoryDTO,String nationInfo,Model m) {
+        String acceptLanguage = nationInfo;
         if (acceptLanguage != null && !acceptLanguage.isEmpty()) {
             String[] languages = acceptLanguage.split(",");
             if (languages.length > 0) {
@@ -123,13 +124,14 @@ public class RegisterController {
                 if (firstLanguage.length() >= 2) {
                     String firstTwoChars = firstLanguage.substring(0, 2);
                     loginHistoryDTO.setNatn(firstTwoChars);
+                    m.addAttribute("nationInfo",firstTwoChars);
                 }
             }
         }
     }
 
-    private static void deviceExtract(HttpServletRequest request, Model m, LoginHistoryDTO loginHistoryDTO) {
-        String device = request.getHeader("User-Agent");
+    private static void deviceExtract(HttpServletRequest request, Model m, LoginHistoryDTO loginHistoryDTO,String deviceInfo) {
+        String device = deviceInfo;
         String userDevice ="";
         if (device != null && !device.isEmpty()) {
             int startIndex = device.indexOf('(');
@@ -137,6 +139,7 @@ public class RegisterController {
             if (startIndex != -1 && endIndex != -1 && startIndex < endIndex) {
                 userDevice = device.substring(startIndex + 1, endIndex);
                 loginHistoryDTO.setMhrLS(userDevice); // 기기(기계) 추론
+                m.addAttribute("deviceInfo",userDevice);
             }
             // 사용자 로그인기기가 윈도우 또는 맥일때 대비해서 모델에 저장 메서드
             deviceCheck(m, userDevice);
@@ -161,7 +164,7 @@ public class RegisterController {
         point.setPoint(3000);
         point.setDttm(LocalDateTime.now());
         point.setChgCn("가입축하 포인트");
-//        m.addAttribute("pointInfo",point);
+        m.addAttribute("pointInfo",3000);
 //        point.setPntYn("Y"); 0807주석
 
         pointService.insertPoint(point);
