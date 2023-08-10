@@ -63,10 +63,10 @@
     <h1 id="cate">카테고리별 상품</h1><br>
 
     <div class="category">
-        <h3 id="animal">닭가슴살</h3>
-        <h3 id="nature">샐러드</h3>
-        <h3 id="food">도시락,볶음밥</h3>
-        <h3 id="pro">음료.프로틴</h3>
+        <button class="tag-button" id="animal-button">닭가슴살</button>
+        <button class="tag-button" id="nature-button">샐러드</button>
+        <button class="tag-button" id="food-button">도시락,볶음밥</button>
+        <button class="tag-button" id="pro-button">음료.프로틴</button>
     </div>
     <div class="totaldiv">
         <div id="animal-images" class="image-container" style="display: none;">

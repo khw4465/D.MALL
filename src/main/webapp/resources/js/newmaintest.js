@@ -68,11 +68,11 @@ function currentSlide(n) {
     dots[slideIndex - 1].className += " active";
 }
 
-var headers = {
-    animal: document.getElementById('animal'),
-    nature: document.getElementById('nature'),
-    food: document.getElementById('food'),
-    pro: document.getElementById('pro'),
+var buttons = {
+    animal: document.getElementById('animal-button'),
+    nature: document.getElementById('nature-button'),
+    food: document.getElementById('food-button'),
+    pro: document.getElementById('pro-button'),
 };
 
 var images = {
@@ -89,9 +89,9 @@ for (var imgKey in images) {
 // 처음 로드 될 때 'animal'에 해당하는 이미지만 보여줍니다.
 images['animal'].style.display = 'grid';
 
-for (var key in headers) {
+for (var key in buttons) {
     (function (key) {
-        headers[key].addEventListener('click', function () {
+        buttons[key].addEventListener('click', function () {
             // 모든 이미지 컨테이너를 먼저 숨깁니다.
             for (var imgKey in images) {
                 images[imgKey].style.display = 'none';
