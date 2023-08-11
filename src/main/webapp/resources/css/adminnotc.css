@@ -164,10 +164,10 @@ input[readonly]{
   background-color: #FF6001; /* Change the background color on hover */
 }
 
-.use-guide {
-  margin-top: 100px;
-  margin-left : 10%
-}
+/*.use-guide {*/
+/*  margin-top: 100px;*/
+/*  margin-left : 10%*/
+/*}*/
 
 .use-guide ul {
   overflow: hidden
@@ -227,12 +227,12 @@ tr :hover{
 }
 
 #form{
-  width: 70%;
+  width: 100%;
   font-family: Arial,sans-serif;
   margin-bottom: 20px;
 }
 #form input[type="text"], #form textarea{
-  width: 70%;
+  width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -250,11 +250,9 @@ tr :hover{
 
 
 .CSBtn{
-  background-color: #343a40;
-  color: white;
   position: relative;
   top: 10px;
-  left: 150px;
+  left: 230px;
   width :10%;
   height: 30px;
 }

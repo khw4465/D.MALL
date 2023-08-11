@@ -99,15 +99,16 @@
                                 </c:forEach>
                                 </tbody>
                             </table>
+                            <div class="writeBtn">
+                                <button type="button" id="writeBtn" onclick="location.href='<c:url value="/notc/adminwrite"/>'">글쓰기
+                                </button>
+                            </div> <!-- writeBtn -->
                             <br>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12 col-md-5">
-                                <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
-                                    최근 10건의 내역입니다.
-                                </div>
-                            </div>
                             <!-- 핸들러 -->
+                            <div class="col-sm-12 col-md-5">
+                            </div>
                             <div id="handle">
                                 <c:if test="${totalCnt==null || totalCnt==0}">
                                     <div> 게시물이 없습니다.</div>

@@ -431,3 +431,10 @@ a:-webkit-any-link {
     height: 1px;
     background-color: transparent;
 }
+.use-guide {
+    margin-top: 100px;
+    margin-left : 10%
+}
+#form input[type="text"], #form textarea {
+    width: 70% !important;
+}
