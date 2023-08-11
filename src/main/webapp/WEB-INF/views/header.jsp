@@ -19,11 +19,6 @@
         </div>
 
         <div id="header" class="fix" style="transform: translateY(0px);">
-            <div class="hd_blet">
-                <a href="http://pf.kakao.com/_CsnXj" target="_blank"><img
-                        src="/design/kr/bc3650847f8ae1e9a4d8f16c8011255e_52236.jpg" alt="드가자몰입니다."></a>
-                <span class="btn_closed">닫기</span>
-            </div>
             <div class="hd_box">
                 <div class="w_custom">
                     <div class="btn_all">
