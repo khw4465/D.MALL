@@ -11,52 +11,130 @@
 <html>
 <head>
     <title>공지사항 작성</title>
+    <link rel="stylesheet" type="text/css" href="<c:url value='/vendor/fontawesome-free/css/all.min.css'/>">
+    <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="<c:url value='/css/sb-admin-2.min.css'/>" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="<c:url value='/vendor/datatables/dataTables.bootstrap4.min.css'/>" rel="stylesheet">
+
+    <link rel="stylesheet" href="<c:url value='/css/adminnotc.css'/>">
+<%--    <link rel="stylesheet" href="<c:url value='/css/loginlist.css'/>">--%>
+<%--    <link rel="stylesheet" href="<c:url value='/css/admin.css'/>">--%>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-    <link rel="stylesheet" href="<c:url value='/css/adminnotc.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/adminnotc.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/loginlist.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/adminHeader.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/admin.css'/>">
 
 </head>
-<body>
-<jsp:include page="adminHeader.jsp"/>
+<body id="page-top">
 
-<div id="container">
+<!-- Page Wrapper -->
+<div id="wrapper">
 
+    <!-- Sidebar -->
     <jsp:include page="adminSideBar.jsp"/>
-<div class="write-list">
-    <div id="use-guide">
-        <h3>공지사항 작성</h3>
+    <!-- End of Sidebar -->
 
-        <form action="" id="form">
-            <div>
-                <select name="category">
-                    <option value="업데이트">업데이트</option>
-                    <option value="안내">안내</option>
-                    <option value="점검">점검</option>
-                    <option value="이벤트">이벤트</option>
-                </select>
-            </div>
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
 
-            <div>
-                <input type="text" id="ttl" name="ttl" value="${NotcDto.ttl}" placeholder="제목을 입력하세요.">
-            </div>
-            <div>
-                <textarea id="cn" name="cn" cols="30" rows="10" placeholder="내용을 입력하세요.">${NotcDto.cn}</textarea>
-            </div>
+        <!-- Main Content -->
+        <div id="content">
 
-            <div>
-                <button type="button" id="WBtn" class="CSbtn">등록</button>
-                <button type="button" id="listBtn" class="CSbtn">취소</button>
-            </div>
-        </form>
+            <!-- Topbar -->
+            <jsp:include page="adminHeader.jsp"/>
+            <!-- End of Topbar -->
 
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <h1 class="h3 mb-2 text-gray-800">게시판 관리</h1>
+
+                <div class="col-lg-6">
+
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">공지사항 작성</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="use-guide">
+                                <form action="" id="form">
+                                    <div>
+                                        <select name="category">
+                                            <option value="업데이트">업데이트</option>
+                                            <option value="안내">안내</option>
+                                            <option value="점검">점검</option>
+                                            <option value="이벤트">이벤트</option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <input type="text" id="ttl" name="ttl" value="${NotcDto.ttl}" placeholder="제목을 입력하세요.">
+                                    </div>
+                                    <div>
+                                        <textarea id="cn" name="cn" cols="30" rows="10" placeholder="내용을 입력하세요.">${NotcDto.cn}</textarea>
+                                    </div>
+
+                                    <div>
+
+                                        <button type="button" id="WBtn" class="btn btn-primary btn-icon-split CSbtn"><span class="text">등록</span></button>
+                                        <button type="button" id="listBtn" class="btn btn-primary btn-icon-split CSbtn"><span class="text">취소</span></button>
+                                    </div>
+                                </form>
+                            </div> <!-- use-guide -->
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Your Website 2020</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Main Content -->
 
 </div>
-        </div> <!-- end of right-list -->
+<!-- End of Content Wrapper -->
 
-</div> <!-- end of container -->
+<!-- End of Page Wrapper -->
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">로그아웃 하시겠습니까?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">현재 세션을 종료하고 싶으시면 "로그아웃"을 눌러주세요.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+                <a class="btn btn-primary" href="<c:url value='${loginOutLink}'/>">로그아웃</a>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     $(document).ready(function (){
         $('#listBtn').on("click",function (){

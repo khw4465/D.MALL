@@ -106,12 +106,9 @@
                             <br>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12 col-md-5">
-                                <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
-                                    최근 10건의 내역입니다.
-                                </div>
-                            </div>
                             <!-- 핸들러 -->
+                            <div class="col-sm-12 col-md-5">
+                            </div>
                             <div id="handle">
                                 <c:if test="${totalCnt==null || totalCnt==0}">
                                     <div> 게시물이 없습니다.</div>
@@ -168,15 +165,15 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <h5 class="modal-title" id="exampleModalLabel">로그아웃 하시겠습니까?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-body">현재 세션을 종료하고 싶으시면 "로그아웃"을 눌러주세요.</div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="<c:url value='${loginOutLink}'/>">Logout</a>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+                <a class="btn btn-primary" href="<c:url value='${loginOutLink}'/>">로그아웃</a>
             </div>
         </div>
     </div>

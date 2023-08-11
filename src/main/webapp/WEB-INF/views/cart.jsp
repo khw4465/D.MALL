@@ -418,7 +418,7 @@
                     data: jsonData,  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
                     success: function (result) {  // 서버로부터 응답이 도착하면 호출될 함수
                         for (let i = 0; i < selectedProdCds.length; i++) {
-                            $("#list" + selectedProdCds[i]).remove();
+                            $("#" + selectedProdCds[i]).remove();
                         }
 
                         $('#totPrc').html(totPrc.toLocaleString());              // 총 상품금액 업데이트
@@ -558,20 +558,6 @@
                         } // 에러가 발생했을 때, 호출될 함수
                     });
                 });
-
-
-                // 개별 delete
-
-                // $('.deleteOne').on('click', function() {
-                //     var optRow = $(this).closest('tr'); // 옵션을 포함하는 <tr> 요소 찾기
-                //     var tbody = $(this).closest('tbody'); // 상품을 포함하는 <tbody> 요소 찾기
-                //     optRow.remove(); // 선택한 옵션을 삭제
-                //
-                //     // 해당 상품의 옵션을 모두 삭제했는지 확인
-                //     if (tbody.find('tr.xans-record-').length === 0) {
-                //         tbody.remove(); // 해당 상품을 삭제
-                //     }
-                // });
 
                 $("#delete" + prodCd + '_' + optCd).click(function () {
                     let optVal = document.querySelector('.' + prodCd + '_' + optCd + '_qty');                               // 옵션 수량

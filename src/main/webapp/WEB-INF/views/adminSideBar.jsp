@@ -75,7 +75,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">상품관리</h6>
                 <a class="collapse-item" href="<c:url value='/prod/register'/>">상품 등록</a>
-                <a class="collapse-item" href="register.html">상품 조회/수정</a>
+                <a class="collapse-item" href="#">상품 조회/수정</a>
             </div>
         </div>
     </li>
