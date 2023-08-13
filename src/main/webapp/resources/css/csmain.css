@@ -5,21 +5,9 @@
     font-style: normal;
 }
 
-html.layer-on,body.layer-on {
-    overflow: hidden;
-    height: auto;
-}
-
-/* 목록공통 */
-/* @import url("content_prd_list.css"); */
-/*========================================================
- 목록 공통
-========================================================*/
-/**** Banner item ****/
 .list-type-group .btn-icon-list + .btn-icon-list {
     margin-left: -3px
 }
-
 
 .page-title-area ~ .prd-banner-list {
     margin-top: 0;
