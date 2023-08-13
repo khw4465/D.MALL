@@ -125,7 +125,7 @@ html:lang(ko) .mDashboard .mBoard thead th, html:lang(ko) .mDashboard .mBoard tb
 .dashboardArea .gFlow {
     float: left;
     width: 310px;
-    padding: 62px 0;
+    padding: 69px 0;
     background-color: #FFFFFF;
 }
 .gSingleSide {
@@ -387,7 +387,7 @@ html:lang(ko) .mTab.typeNav > ul > li {
     float: left;
     margin: 0 0 0 24px;
     padding: 5px 0 20px;
-    font-size: 11px;
+    font-size: 10px;
     line-height: 20px;
 }
 li {

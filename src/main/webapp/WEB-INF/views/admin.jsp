@@ -50,7 +50,7 @@
                     <jsp:include page="orderStat.jsp"/>
                 </div>
 
-                <div id="linechart_stats" class="linechart_stats" style="width: 400px; height: 270px">
+                <div id="linechart_stats" class="linechart_stats" style="width: 440px; height: 270px">
                     <jsp:include page="stats.jsp"/>
                 </div>
 

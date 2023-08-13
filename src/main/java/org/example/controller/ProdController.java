@@ -42,8 +42,8 @@ public class ProdController {
     }
 
     //private static final String CURR_IMAGE_REPO_PATH = "C:\\Users\\huis9\\D.gaja\\src\\main\\webapp\\resources\\img";
-//    private static String CURR_IMAGE_REPO_PATH = "C:\\Users\\huis9\\D.gaja\\src\\main\\webapp\\resources\\img";
-    private static String CURR_IMAGE_REPO_PATH = "C:\\Users\\ftisa\\D.gaja\\src\\main\\webapp\\resources\\img";
+    private static String CURR_IMAGE_REPO_PATH = "C:\\Users\\huis9\\D.gaja\\src\\main\\webapp\\resources\\img";
+//    private static String CURR_IMAGE_REPO_PATH = "C:\\Users\\ftisa\\D.gaja\\src\\main\\webapp\\resources\\img";
 
 //    static {
 //        if (someCondition()) {
@@ -92,6 +92,7 @@ public class ProdController {
         ///prodDTO관련
 
         //prod테이블에 insert 로직 작성 0806
+        prodDto.setFstRegr("admin"); // 세션으로 아이디체크 나중에 바꿔야함
         prodService.productRegister(prodDto);
 
         //prodOpt테이블에 insert 로직 작성 0806
