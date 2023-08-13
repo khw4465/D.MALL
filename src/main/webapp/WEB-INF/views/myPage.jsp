@@ -29,10 +29,10 @@
             <!-- 중간에 다른 박스에 담길 내용들 -->
             <div id="points-container">
                 <ul id="points-info" class="item-list">
-                    <li class="points-item">포인트 : <a href="<c:url value='/point/custSelectAll'/>">
+                    <li class="points-item">보유 포인트 : <a href="<c:url value='/point/custSelectAll'/>">
                         <span id="points" class="points-info">${pointResult}원</span></a>
                     </li>
-                    <li class="points-item">쿠폰 : <a href=""><span id="coupon" class="points-info">0개</span></a></li>
+                    <li class="points-item">보유 쿠폰 : <a href=""><span id="coupon" class="points-info">0개</span></a></li>
                 </ul>
             </div>
         </div>
@@ -40,10 +40,10 @@
         <div class="point-list">
             <div class="point-item">
                 <ul>
-                    <li class="point">
-                        <span class="point-value"><span id="total-point">${pointResult}</span> </span>
-                        <strong class="point-type">보유 포인트</strong>
-                    </li>
+<%--                    <li class="point">--%>
+<%--                        <span class="point-value"><span id="total-point">${pointResult}</span> </span>--%>
+<%--                        <strong class="point-type">보유 포인트</strong>--%>
+<%--                    </li>--%>
 <%--                    <li class="point">--%>
 <%--                        <span class="point-value"><span id="normal-point">1,000원(주문포인트)</span>&nbsp;</span>--%>
 <%--                        <strong class="point-type">일반 포인트</strong>--%>

@@ -41,6 +41,7 @@ body {
 .right-content {
     flex: 2;
     padding: 20px;
+    font-size: 20px;
 }
 
 /* 마이페이지 타이틀 스타일 설정 */
@@ -114,3 +115,7 @@ h3 {
 li {
     list-style-type: none;
 }
+/* 포인트 크기 및 전체크기 키우기 */
+/*.right-content * {*/
+/*    font-size: 20px;*/
+/*}*/

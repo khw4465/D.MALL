@@ -5,9 +5,9 @@
 <head>
     <title>비밀번호 찾기</title>
     <script type="text/javascript">
-        setTimeout(function() {
-            window.location.href = "/";
-        }, 3000); // 초 후
+        // setTimeout(function() {
+        //     window.location.href = "/";
+        // }, 3000); // 초 후
     </script>
     <link rel="stylesheet" href="<c:url value='/css/findPwdresult.css'/>">
 </head>
