@@ -115,24 +115,24 @@
                                 </thead>
                                 <tbody class="right">
                                 <tr class="">
-                                    <th scope="row" id="dailyCountTitle1">08월 08일</th>
-                                    <td id="dailyCountOrderPrice1">0<br>(0건)</td>
-                                    <td id="dailyCountPayedPrice1">0 원<br>(0건)</td>
+                                    <th scope="row" id="dailyCountTitle1"><fmt:formatDate value="${threeDaysAgo}" pattern="MM월 dd일"/></th>
+                                    <td id="dailyCountOrderPrice1">437,000 원<br>(4건)</td>
+                                    <td id="dailyCountPayedPrice1">437,000 원<br>(4건)</td>
                                 </tr>
                                 <tr class="">
-                                    <th scope="row" id="dailyCountTitle2">08월 09일</th>
+                                    <th scope="row" id="dailyCountTitle2"><fmt:formatDate value="${dayBeforeYesterday}" pattern="MM월 dd일"/></th>
                                     <td id="dailyCountOrderPrice2">0 원<br>(0건)</td>
                                     <td id="dailyCountPayedPrice2">0 원<br>(0건)</td>
                                 </tr>
                                 <tr class="">
-                                    <th scope="row" id="dailyCountTitle3">08월 10일</th>
+                                    <th scope="row" id="dailyCountTitle3"><fmt:formatDate value="${yesterday}" pattern="MM월 dd일"/></th>
                                     <td id="dailyCountOrderPrice3">0 원<br>(0건)</td>
                                     <td id="dailyCountPayedPrice3">0 원<br>(0건)</td>
                                 </tr>
                                 <tr class="em">
-                                    <th scope="row" id="dailyCountTitleToday">08월 11일 (오늘)</th>
-                                    <td id="dailyCountOrderPriceToday">0 원<br>(0건)</td>
-                                    <td id="dailyCountPayedPriceToday">0 원<br>(0건)</td>
+                                    <th scope="row" id="dailyCountTitleToday"><fmt:formatDate value="${today}" pattern="MM월 dd일"/><br>(오늘)</th>
+                                    <td id="dailyCountOrderPriceToday"><fmt:formatNumber value="${todayCost}" type="number" pattern="#,###" /> 원<br>(${todayCnt}건)</td>
+                                    <td id="dailyCountPayedPriceToday"><fmt:formatNumber value="${todayCost}" type="number" pattern="#,###" /> 원<br>(${todayCnt}건)</td>
                                 </tr>
                                 <tr class="total">
                                     <th scope="row" id="weeklyCountOrderAvgTitle">최근 7일 평균</th>

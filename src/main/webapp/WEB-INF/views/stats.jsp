@@ -55,8 +55,8 @@
                 <div id="tabMallStatus1" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
                     <div class="mallArea">
                         <div class="eFlow graph"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                            <div style="width: 350px; height: 175px;">
-                                <canvas id="myChart" style="margin: 20px 80px"></canvas>
+                            <div style="width: 310px; height: 155px;">
+                                <canvas id="myChart" style="margin: 30px 70px"></canvas>
                             </div>
                             <div class="gSingleSide">
                                 <ul class="mList">

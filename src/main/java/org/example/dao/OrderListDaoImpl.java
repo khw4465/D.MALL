@@ -42,6 +42,14 @@ public class OrderListDaoImpl implements OrderListDao {
         return session.selectOne(namespace + "count");
     }
     @Override
+    public int todayCost() throws Exception {
+        return session.selectOne(namespace + "todayCost");
+    }
+    @Override
+    public int todayCnt() throws Exception {
+        return session.selectOne(namespace + "todayCnt");
+    }
+    @Override
     public int insert(OrderDto dto) throws Exception {
         return session.insert(namespace + "insert", dto);
     }

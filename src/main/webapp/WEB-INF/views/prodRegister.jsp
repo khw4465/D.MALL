@@ -250,7 +250,7 @@
                                     </tr>
 
                                     <tr>
-                                        <th scope="row">원산지</th>
+                                        <th scope="row">원재료명</th>
                                         <td>
                                             <input type="text" name="prodSmrvDesc" value="">
 

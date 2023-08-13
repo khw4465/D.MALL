@@ -20,6 +20,10 @@ public interface OrderListDao {
 
     int count() throws Exception;
 
+    int todayCost() throws Exception;
+
+    int todayCnt() throws Exception;
+
     int insert(OrderDto dto) throws Exception;
 
     int updOrdStatus(OrderDto dto) throws Exception;

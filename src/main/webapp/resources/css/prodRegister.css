@@ -65,7 +65,8 @@ input[type="file"] {
     padding: 10px 20px;
     margin-top: 20px;
     color: #FFF;
-    background-color: #333;
+    background-color: #4e73df;
+    border: #4e73df;
     text-decoration: none;
     text-align: center;
     width: 700px;
@@ -73,7 +74,7 @@ input[type="file"] {
 }
 
 .btnSubmit:hover {
-    background-color: #444;
+    background-color: rgba(78, 115, 223, 0.92);
 }
 
 /* Enhance dropdown */

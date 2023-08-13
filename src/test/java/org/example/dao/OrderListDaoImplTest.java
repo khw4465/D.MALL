@@ -54,7 +54,15 @@ public class OrderListDaoImplTest {
     public void countTest() throws Exception {
         System.out.println(orderListDao.count());
     }
+    @Test
+    public void todayCost() throws Exception {
+        System.out.println(orderListDao.todayCost());
+    }
 
+    @Test
+    public void todayCnt() throws Exception {
+        System.out.println(orderListDao.todayCnt());
+    }
     @Test
     public void insertTest() throws Exception {
 //        OrderDto dto = new OrderDto("order_30","asdfasdf","P010101","상품1",1,1000,1,0,1,1000, "드가자~",2000);

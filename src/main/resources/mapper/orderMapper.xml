@@ -34,6 +34,16 @@
         SELECT count(*)
         FROM ord
     </select>
+    <select id="todayCost" resultType="int">
+        SELECT IFNULL(sum(fin_prc), 0)
+        FROM ord
+        WHERE DATE(ord_dttm) = CURDATE()
+    </select>
+    <select id="todayCnt" resultType="int">
+        SELECT count(*)
+        FROM ord
+        WHERE DATE(ord_dttm) = CURDATE()
+    </select>
     <select id="getAllOrd" parameterType="map" resultType="OrderDto">
         SELECT *
         FROM ord

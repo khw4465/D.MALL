@@ -91,7 +91,7 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-5">
                                 <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
-                                    최근 10건의 주문내역입니다.
+                                    최근 10건의 로그인 이력입니다.
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-7">

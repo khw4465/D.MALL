@@ -84,4 +84,12 @@ public class OrderListServiceImpl implements OrderListService {
     public Map<String, Double> getSumAvg(int i) throws Exception {
         return orderListDao.getSumAvg(i);
     }
+    @Override
+    public int todayCost() throws Exception {
+        return orderListDao.todayCost();
+    }
+    @Override
+    public int todayCnt() throws Exception {
+        return orderListDao.todayCnt();
+    }
 }

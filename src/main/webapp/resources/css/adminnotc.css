@@ -123,9 +123,9 @@ input[readonly]{
 
 .cs-search-input{
   position: relative;
-  left: 910px;
-  bottom: 30px;
-  width :20%;
+  left: 750px;
+  bottom: 40px;
+  width: 20%;
   height: 30px;
   padding: 4px;
   border: 1px solid #ccc;
@@ -133,7 +133,7 @@ input[readonly]{
   margin-right: 4px;
 }
 .cs-search-button{
-  background-color: #343a40;
+  background-color: #4e73df;
   color: white;
   border: none;
   border-radius: 4px;
@@ -141,27 +141,27 @@ input[readonly]{
   cursor: pointer;
 }
 .cs-search-button:hover{
-  background-color: #FF6001;
+  background-color: rgba(78, 115, 223, 0.78);
 }
 
 .cs-search-button.move-right{
   position: relative;
-  left: 910px;
-  bottom : 30px;
+  left: 750px;
+  bottom : 40px;
 }
 
 #writeBtn{
-  background-color: #343a40;
+  background-color: #4e73df;
   color: white;
-    position: relative;
-    top: 10px;
-    left: 1080px;
-    width :10%;
+  position: relative;
+  top: 10px;
+  left: 880px;
+  width: 10%;
   height: 30px;
 }
 
 #writeBtn:hover {
-  background-color: #FF6001; /* Change the background color on hover */
+  background-color: rgba(78, 115, 223, 0.75); /* Change the background color on hover */
 }
 
 /*.use-guide {*/
@@ -232,7 +232,7 @@ tr :hover{
   margin-bottom: 20px;
 }
 #form input[type="text"], #form textarea{
-  width: 100%;
+  width: 100% !important;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -252,13 +252,16 @@ tr :hover{
 .CSBtn{
   position: relative;
   top: 10px;
-  left: 230px;
-  width :10%;
+  left: 150px;
+  width :15%;
   height: 30px;
+  color: #FFFFFF;
+  background-color: #4e73df;
+  border: #4e73df;
 }
 
 .CSBtn:hover {
-  background-color: #FF6001; /* Change the background color on hover */
+  background-color: rgba(78, 115, 223, 0.75); /* Change the background color on hover */
 }
 
 .write-list {

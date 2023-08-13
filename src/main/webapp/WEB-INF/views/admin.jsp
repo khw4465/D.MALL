@@ -46,11 +46,11 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
 
-                <div id="linechart_material" style="width: 680px; height: 374px">
+                <div id="linechart_material" style="width: 615px; height: 374px">
                     <jsp:include page="orderStat.jsp"/>
                 </div>
 
-                <div id="linechart_stats" class="linechart_stats" style="width: 450px; height: 270px">
+                <div id="linechart_stats" class="linechart_stats" style="width: 400px; height: 270px">
                     <jsp:include page="stats.jsp"/>
                 </div>
 

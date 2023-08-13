@@ -57,7 +57,7 @@
                                 <td>1% 적립</td>
                             </tr>
                             <tr>
-                                <th>원산지</th>
+                                <th>원재료명</th>
                                 <td><c:out value="${prodDto.prodSmrvDesc}"/></td>
                             </tr>
                             <tr>
