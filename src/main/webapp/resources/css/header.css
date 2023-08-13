@@ -382,7 +382,8 @@ body, code {
     box-sizing: border-box;
     line-height: 22px;
     background: #f5f5f5;
-    zoom:1;}
+    zoom:1;
+}
 
 .hd_box_table .hd_search .xans-layout-searchheader fieldset svg {
     margin: 5px;

@@ -37,9 +37,7 @@ h1 {
     font-weight: bold;
     color: #555;
 }
-
-/* Button Styling */
-button {
+.lastbtn {
     background-color: #ff6600; /* orange color */
     color: #fff;
     padding: 10px 20px;
@@ -51,8 +49,7 @@ button {
     margin: 20px auto; /* center align button */
     transition: background-color 0.3s;
 }
-
-button:hover {
+.lastbtn:hover {
     background-color: #ff471a; /* slightly darker on hover */
 }
 .cust-container .form-group label,

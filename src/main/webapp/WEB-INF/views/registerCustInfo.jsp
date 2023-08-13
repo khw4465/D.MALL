@@ -15,9 +15,9 @@
     <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/registerCustInfo.css'/>">
     <script type="text/javascript">
-        setTimeout(function() {
-            window.location.href = "/";
-        }, 5000); // 초 후
+        // setTimeout(function() {
+        //     window.location.href = "/";
+        // }, 5000); // 초 후
     </script>
 </head>
 <body>
@@ -52,7 +52,7 @@
                     <label>가입축하 <span>${pointInfo} 포인트</span> </label>
                 </div>
             </div>
-            <button onclick="location.href='/'">홈으로 돌아가기</button>
+            <button class="lastbtn" onclick="location.href='/'">홈으로 돌아가기</button>
         </div>
     </div>
 </div>
