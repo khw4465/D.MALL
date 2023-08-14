@@ -27,8 +27,8 @@ body {
 }
 
 .btn1 {
-    border: 1px solid #ff7117;
-    color: #ff7117;
+    border: 1px solid rgb(248, 173, 87);
+    color: rgb(248, 173, 87);
     background: #fff;
 }
 
@@ -40,7 +40,7 @@ body {
 
 .btn1:hover {
     color: #fff;
-    background: #ff7117;
+    background: rgb(248, 173, 87);
 }
 
 .btn2:hover {
@@ -57,6 +57,11 @@ a {
     font-size: 1.5em;
 }
 
-.result {
-    margin: 200px 0;
+
+.result p {
+    color: #555;
+}
+
+.sizeM {
+    font-size: 1rem;
 }

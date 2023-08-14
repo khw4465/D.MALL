@@ -359,10 +359,12 @@
         </table>
     </div>
             <div id="payMethod" class="user-order-list">
-                <div class="list-head">
+
                     <h3 style="display: inline" class="title-list">결제방법</h3>
-                    <img class="kakao-img" src="<c:url value="/img/kakao.png"/>" alt="">
-                </div>
+                    <img class="kakao-img" src="<c:url value="/img/kakao.png"/>" alt="" >
+                    <img class="kakao-img" src="<c:url value="/img/tosspay.png"/>" alt="">
+                    <img class="kakao-img" src="<c:url value="/img/naverpay.png"/>" alt="">
+
             </div>
 
         </div>

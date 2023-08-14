@@ -19,6 +19,7 @@
 <jsp:include page="header.jsp"/>
 <br><br><br><br><br><br><br><br>
 <div class="result">
+    <img src="/img/check.png" alt="" style="width: 100px; height: 80px">
     <h1>주문이 완료되었습니다.</h1>
     <p>드가자몰을 이용해주셔서 감사합니다.</p>
     <div>
@@ -31,7 +32,7 @@
     <div>
         <a href="/"  class="btn2 sizeM ">쇼핑 계속하기</a>
         <a href="<c:url value='/order/list'/>" class="btn1 sizeM  ">주문 조회</a>
-        <span class=품"gRight"></span>
+        <span class="gRight"></span>
     </div>
 </div>
 <jsp:include page="footer.jsp"/>
