@@ -27,7 +27,7 @@
                 <div class="backBtn"><a href="/"></a></div>
                 <div class="homeBtn"><a href="/"></a></div>
             </div>
-            <h1 class="mallName"><a href="/">드가닭</a></h1>
+            <h1 class="mallName"><a href="/">드가자몰</a></h1>
         </div>
 
         <div id="dgaja-section">

@@ -1,121 +1,95 @@
 @charset "UTF-8";
+
 /* Google Fonts 추가 */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
 
-/* Body 설정 */
 body {
     font-family: 'Noto Sans KR', sans-serif;
     color: #333;
     margin: 0;
     padding: 0;
+    background-color: #f6f6f6; /* light grey background for overall contrast */
     box-sizing: border-box;
 }
 
-/* 전체 컨텐트 레이아웃 설정 */
+a {
+    text-decoration: none; /* global link styling */
+    color: #007BFF;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
 .content {
     display: flex;
     max-width: 1100px;
-    margin: 0 auto;
+    margin: 40px auto; /* added top and bottom margin for better spacing */
     padding: 20px;
-}
-.dashboard1{
-    flex: 1.5;
-
-    color: #fff;
-}
-.dashboard2 {
-    flex: 8.5;
-
-
+    background-color: #fff; /* white background for main content */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* subtle shadow for depth */
+    border-radius: 8px;
 }
 
-/* 왼쪽 사이드바 설정 */
 .left-content {
     flex: 1;
     padding: 20px;
-    border-right: 1px solid #ddd;
+    border-right: 1px solid #e7e7e7;
     margin-right: 20px;
 }
 
-/* 오른쪽 사이드바 설정 */
 .right-content {
     flex: 2;
     padding: 20px;
     font-size: 20px;
 }
 
-/* 마이페이지 타이틀 스타일 설정 */
 h3 {
     margin-bottom: 20px;
-    font-size: 20px;
+    font-size: 24px; /* slightly increased size for better visibility */
     font-weight: 700;
+    border-bottom: 1px solid #e7e7e7; /* subtle separator */
+    padding-bottom: 10px;
 }
 
-/* 메뉴 항목 스타일 설정 */
-.item-list {
+.item-list, .status-list {
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
 
-/* 메뉴 항목 내부 링크 스타일 설정 */
-.item-list .item a {
-    color: #333;
-    text-decoration: none;
-    padding: 5px 0;
+.item-list .item a, .status-list .status-item a {
     display: block;
+    padding: 10px 0;
+    transition: color 0.3s ease; /* smooth color transition */
 }
 
-.item-list .item a:hover {
-    color: #007BFF;
-}
-
-/* 포인트 리스트 스타일 설정 */
-.point-list {
-    margin-top: 30px;
-}
-
-/* 최근 본 상품 섹션 스타일 설정 */
-.recently-viewed {
-    margin-top: 30px;
-}
-
-/* 최근 본 상품 없음 메시지 스타일 설정 */
-.no-item {
-    font-size: 14px;
-    color: #999;
-}
-
-/* 주문처리 현황 리스트 스타일 설정 */
 .status-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-}
-
-.status-list {
-    flex: 1;
-    min-width: 200px;
-    margin-bottom: 20px;
+    border-top: 1px solid #e7e7e7;
+    padding-top: 20px;
 }
 
 .status-item {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
-.status-link {
-    color: #007BFF;
-    text-decoration: none;
+.no-item {
+    font-size: 14px;
+    color: #999;
+    text-align: center;
+    padding: 20px;
+    background-color: #f6f6f6;
+    border-radius: 6px;
 }
 
-.status-link:hover {
-    color: #0056b3;
+/* Box properties to create a better visual distinction */
+.recently-viewed, .order-status, #points-container {
+    background-color: #fff;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    margin-bottom: 20px;
 }
-
-li {
-    list-style-type: none;
-}
-/* 포인트 크기 및 전체크기 키우기 */
-/*.right-content * {*/
-/*    font-size: 20px;*/
-/*}*/

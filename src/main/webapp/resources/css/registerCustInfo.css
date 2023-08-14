@@ -1,58 +1,91 @@
-/* General Styling */
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f5f5f5;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.8;
+    background-color: #f4f7fa;
+    color: #333;
+    transition: all 0.3s ease;
 }
 
 #container {
-    max-width: 800px; /* You can adjust this based on your need */
-    margin: 0 auto;
+    max-width: 920px;
+    margin: 40px auto;
     background-color: #fff;
-    padding: 20px;
-    box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
+    padding: 40px;
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.08);
+    border-radius: 12px;
+    overflow: hidden;
 }
 
 /* Heading */
 h1 {
     text-align: center;
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 30px;
+    color: #555;
+    font-size: 28px;
+    margin-bottom: 40px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 /* Form Styling */
 .form-group {
-    text-align: center; /* center align text */
-    margin-bottom: 3px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .form-group label {
     display: block;
     margin-bottom: 5px;
-    color: #333;
+    color: #888;
+    letter-spacing: 0.5px;
+    font-size: 22px;
 }
 
 .form-group span {
-    font-weight: bold;
-    color: #555;
+    font-weight: 500;
+    color: #444;
+    font-size: 24px;
+    transition: color 0.3s ease;
 }
+
 .lastbtn {
-    background-color: #ff6600; /* orange color */
+    background-color: #FF6347; /* Tomato color for the button */
     color: #fff;
-    padding: 10px 20px;
+    padding: 14px 30px;
     border: none;
-    border-radius: 5px;
+    border-radius: 50px;
     font-size: 16px;
     cursor: pointer;
-    display: block; /* to make it block level */
-    margin: 20px auto; /* center align button */
-    transition: background-color 0.3s;
+    display: block;
+    margin: 40px auto;
+    transition: all 0.3s ease;
 }
+
 .lastbtn:hover {
-    background-color: #ff471a; /* slightly darker on hover */
+    background-color: #FF4500; /* A bit darker shade of orange for hover */
+    transform: translateY(-3px);
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
 }
-.cust-container .form-group label,
-.cust-container .form-group span {
-    font-size: 23px;  /* 예: 기본 크기의 1.5배 */
+
+.cust-container .form-group:hover span {
+    color: #FF6347; /* Tomato color for emphasis */
+}
+
+@media screen and (max-width: 768px) {
+    #container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .form-group label,
+    .form-group span {
+        font-size: 20px;
+    }
+
+    .lastbtn {
+        padding: 12px 25px;
+        font-size: 14px;
+    }
 }
