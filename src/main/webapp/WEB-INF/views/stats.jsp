@@ -60,7 +60,7 @@
                             </div>
                             <div class="gSingleSide">
                                 <ul class="mList">
-                                    <li>최종 업데이트일시 : <span id="eMainSalesDailyChartRefleshTime">08월 11일 10:00:00</span>
+                                    <li>최종 업데이트일시 : <span id="eMainSalesDailyChartRefleshTime">08월 14일 11:00:00</span>
                                     </li>
                                 </ul>
                             </div>
