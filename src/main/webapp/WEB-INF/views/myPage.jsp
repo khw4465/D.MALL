@@ -17,25 +17,32 @@
 <!-- 전체 div -->
 
 <jsp:include page="header.jsp"/>
+<div class="frame-full head-mypage">
+    <h2 class="blind">마이페이지</h2>
+    <div class="user-info-box">
+        <div class="inner">
+            <dl class="column order">
+                <dt>주문/배송</dt>
+                <dd><a href="/mypage/orderlist"><strong class="num" id="orderCountText">0</strong>건</a></dd>
+            </dl><!--// order -->
+            <dl class="column coupon">
+                <dt>쿠폰</dt>
+                <dd><a href="/mypage/myCoupon"><strong class="num" id="couponCountText">0</strong>개</a></dd>
+            </dl><!--// coupon -->
+            <dl class="column point">
+                <dt>포인트</dt>
+                <dd class="text-primary"><a href="/mypage/myPoint"><strong class="num" id="totalUnusedPointText">${pointResult}</strong>P</a></dd>
+            </dl><!--// point -->
+        </div><!--// inner -->
+    </div><!--// user-info-box -->
+</div>
 
 <%--스타일248 제거대상 mhs--%>
 <div id="" class="content">
     <!-- 그다음 div -->
     <jsp:include page="myPageSideBar.jsp"/>
-    <form id="form" action="/" method="get">
-    </form>
+
     <div class="right-content">
-        <div class="">
-            <!-- 중간에 다른 박스에 담길 내용들 -->
-            <div id="points-container">
-                <ul id="points-info" class="item-list">
-                    <li class="points-item">보유 포인트 : <a href="<c:url value='/point/custSelectAll'/>">
-                        <span id="points" class="points-info">${pointResult}원</span></a>
-                    </li>
-                    <li class="points-item">보유 쿠폰 : <a href=""><span id="coupon" class="points-info">0개</span></a></li>
-                </ul>
-            </div>
-        </div>
         <!-- 박스 아래에 붙일 포인트 -->
         <div class="point-list">
             <div class="point-item">
@@ -67,34 +74,34 @@
                 <ul class="status-list">
                     <li class="status-item">
                         <strong class="status-name">입금전</strong>
-                        <a href="" class="status-link"><span id="prepayment-count">0</span></a>
+                        <a href="" class="status-link"><span id="prepayment-count">0</span>건</a>
                     </li>
                     <li class="status-item">
                         <strong class="status-name">배송준비중</strong>
-                        <a href="" class="status-link"><span id="preparing-count"><c:out value="${ordList.size()}"/> </span></a>
+                        <a href="" class="status-link"><span id="preparing-count">0</span>건</a>
                     </li>
                     <li class="status-item">
                         <strong class="status-name">배송중</strong>
-                        <a href="" class="status-link"><span id="shipping-count">0</span></a>
+                        <a href="" class="status-link"><span id="shipping-count">0</span>건</a>
                     </li>
                     <li class="status-item">
                         <strong class="status-name">배송완료</strong>
-                        <a href="" class="status-link"><span id="delivered-count">0</span></a>
+                        <a href="" class="status-link"><span id="delivered-count">0</span>건</a>
                     </li>
                 </ul>
                 <!-- 박스 안의 오른쪽에 붙일 내용 -->
                 <ul class="status-list">
                     <li class="status-item">
                         <strong class="status-name">취소</strong>
-                        <a href="" class="status-link"><span id="canceled-count">0</span></a>
+                        <a href="" class="status-link"><span id="canceled-count">0</span>건</a>
                     </li>
                     <li class="status-item">
                         <strong class="status-name">교환</strong>
-                        <a href="" class="status-link"><span id="exchanged-count">0</span></a>
+                        <a href="" class="status-link"><span id="exchanged-count">0</span>건</a>
                     </li>
                     <li class="status-item">
                         <strong class="status-name">반품</strong>
-                        <a href="" class="status-link"><span id="returned-count">0</span></a>
+                        <a href="" class="status-link"><span id="returned-count">0</span>건</a>
                     </li>
                 </ul>
             </div>

@@ -36,22 +36,24 @@
         <div class="cust-id">
             <div class="input-field">
                 <label for="cust-id" class="label">아이디</label>
-                <div class="cust-id">${modydto.custId}</div>
+                <input type="text" class="cust-id" value="${modydto.custId}" readonly>
             </div>
-
+            <br>
             <div class="cust-pwd">
-                <label for="cust-password" class="label">비밀번호</label>
+
                 <div class="cust-password-input">
-                    <label for="cust-pwd-input" class="cust-pwd">비밀번호 입력</label>
+                    <label for="cust-pwd-input" class="cust-pwd label">새 비밀번호</label><br>
                     <input type="password" id=" cust-password-input" name="cust-pwd-input" class="input-field_p"
                            placeholder="6 ~ 16자 영문, 숫자, 특문">
                 </div>
+                <br>
 
                 <div class="password-confirmation">
-                    <label for=" cust-password-confirmation" class="sub-label">비밀번호 확인</label>
+                    <label for=" cust-password-confirmation" class="sub-label label">비밀번호 확인</label><br>
                     <input type="password" id=" cust-password-confirmation" name=" cust-password-confirmation"
                            class="input-field_p" placeholder="비밀번호 확인">
                 </div>
+                <br>
             </div>
         </div>
         <!-- 아이디,비번입력,비번확인 종료 -->

@@ -17,15 +17,13 @@
                 <div class="confirmation-id" id="displayedId">${findidresult}</div>
             </li>
         </ul>
-    </div>
-
-    <div class="password">
-        <p>비밀번호가 기억나지 않으세요?
+        <br>
+        <br>
+        <p style="border-top: 1px solid gray; padding-top: 30px">비밀번호가 기억나지 않으세요?</p>
             <a href="<c:url value='/login/findPwd'>
             <c:param name='findid' value='${findidresult}'/>
             </c:url>" class="findpwd-link">비밀번호 찾기
             </a>
-        </p>
         <a href="<c:url value="/login/login"/>" class="login-button">로그인</a>
     </div>
 </div>

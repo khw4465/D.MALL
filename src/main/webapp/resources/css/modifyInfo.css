@@ -28,6 +28,7 @@ body {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
+    font-size: 1.3em;
 }
 
 .input-field input {
@@ -97,4 +98,11 @@ li {
 
     /* 위치 조정을 위한 margin 설정, 필요에 따라 조절 */
     margin-left: 50px;
+}
+.input-field_p {
+    width: 350px;
+    height: 35px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
