@@ -51,6 +51,21 @@
                 <div class="gallery">
                     <a target="_blank" href="<c:url value='/prod/detail/${ProdAll.prodCd}'/>">
                         <img src='${ProdAll.prodImg}.png' alt="Cinque Terre" width="600" height="400">
+                        <div>
+                            <div class="top">
+                                <fmt:formatDate var="newProd" value="${prodOne.mftDate}" pattern="yyyy-MM-dd"/>
+                                <c:if test="${newProd == today}">
+                                    <em class="imgbadge-new">
+                                        <span class="blind">NEW</span>
+                                    </em>
+                                </c:if>
+                                <div class="rating-simply">
+                                    <span class="score"><c:out value="${ProdAll.ascr}"/></span>
+                                </div>
+                            </div>
+                            <div class="images-name">${ProdAll.prodName}</div>
+                            <div class="images-price"><fmt:formatNumber value="${ProdAll.prodPrice}" type="number" pattern="#,###"/>원</div>
+                        </div>
                     </a>
                 </div>
             </div>

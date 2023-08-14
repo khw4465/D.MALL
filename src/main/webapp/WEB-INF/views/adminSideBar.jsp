@@ -59,7 +59,6 @@
                 <h6 class="collapse-header">회원관리</h6>
                 <a class="collapse-item" href="<c:url value='/custSelectAll'/>">회원리스트</a>
                 <a class="collapse-item" href="<c:url value='/loginHist'/>">회원로그인이력</a>
-                <a class="collapse-item" href="<c:url value='/stats'/>">회원로그인통계</a>
             </div>
         </div>
     </li>
