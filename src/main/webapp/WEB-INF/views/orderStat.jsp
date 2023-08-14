@@ -116,8 +116,8 @@
                                 <tbody class="right">
                                 <tr class="">
                                     <th scope="row" id="dailyCountTitle1"><fmt:formatDate value="${threeDaysAgo}" pattern="MM월 dd일"/></th>
-                                    <td id="dailyCountOrderPrice1">437,000 원<br>(4건)</td>
-                                    <td id="dailyCountPayedPrice1">437,000 원<br>(4건)</td>
+                                    <td id="dailyCountOrderPrice1">131,000 원<br>(1건)</td>
+                                    <td id="dailyCountPayedPrice1">131,000 원<br>(1건)</td>
                                 </tr>
                                 <tr class="">
                                     <th scope="row" id="dailyCountTitle2"><fmt:formatDate value="${dayBeforeYesterday}" pattern="MM월 dd일"/></th>
@@ -126,8 +126,8 @@
                                 </tr>
                                 <tr class="">
                                     <th scope="row" id="dailyCountTitle3"><fmt:formatDate value="${yesterday}" pattern="MM월 dd일"/></th>
-                                    <td id="dailyCountOrderPrice3">0 원<br>(0건)</td>
-                                    <td id="dailyCountPayedPrice3">0 원<br>(0건)</td>
+                                    <td id="dailyCountOrderPrice3">42,000 원<br>(1건)</td>
+                                    <td id="dailyCountPayedPrice3">42,000 원<br>(1건)</td>
                                 </tr>
                                 <tr class="em">
                                     <th scope="row" id="dailyCountTitleToday"><fmt:formatDate value="${today}" pattern="MM월 dd일"/><br>(오늘)</th>
