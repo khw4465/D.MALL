@@ -98,9 +98,10 @@ public class RegisterController {
             custDto.setBirth(Date2); // 기본날짜 설정 땜빵 (널포인터예방)
             custService.registerCust(custDto); // 회원가입
 
-            // toURL = toURL == null || toURL.equals("") ? "/" : toURL;
-            // return "redirect:" + toURL;
-            return "registerCustInfo";
+             //toURL = toURL == null || toURL.equals("") ? "/" : toURL;
+            toURL = "/";
+             return "redirect:" + toURL;
+//            return "registerCustInfo";
         } catch (Exception e) {
             throw new RuntimeException(e); //e. 찍으면 return 써줘야하네
         } finally {

@@ -126,8 +126,8 @@
                                 </tr>
                                 <tr class="">
                                     <th scope="row" id="dailyCountTitle3"><fmt:formatDate value="${yesterday}" pattern="MM월 dd일"/></th>
-                                    <td id="dailyCountOrderPrice3">0 원<br>(0건)</td>
-                                    <td id="dailyCountPayedPrice3">0 원<br>(0건)</td>
+                                    <td id="dailyCountOrderPrice3">211,000 원<br>(2건)</td>
+                                    <td id="dailyCountPayedPrice3">211,000 원<br>(2건)</td>
                                 </tr>
                                 <tr class="em">
                                     <th scope="row" id="dailyCountTitleToday"><fmt:formatDate value="${today}" pattern="MM월 dd일"/><br>(오늘)</th>
