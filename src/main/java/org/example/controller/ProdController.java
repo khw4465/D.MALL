@@ -42,8 +42,7 @@ public class ProdController {
     }
 
     //private static final String CURR_IMAGE_REPO_PATH = "C:\\Users\\huis9\\D.gaja\\src\\main\\webapp\\resources\\img";
-    private static String CURR_IMAGE_REPO_PATH = "C:\\Users\\huis9\\D.gaja\\src\\main\\webapp\\resources\\img";
-//    private static String CURR_IMAGE_REPO_PATH = "C:\\Users\\ftisa\\D.gaja\\src\\main\\webapp\\resources\\img";
+    private static String CURR_IMAGE_REPO_PATH = "/Users/khw4465/myGit/D.gaja/src/main/webapp/resources/img";
 
 //    static {
 //        if (someCondition()) {
