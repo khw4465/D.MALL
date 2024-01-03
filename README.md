@@ -55,48 +55,48 @@
 ## ERD (초록색)
 #### 주문/결제(ERD 개발)
 
-![ERD](https://github.com/khw4465/D.MALL/assets/100522239/f786f5ea-3383-4862-94b7-6d8ed2bd39c8)
+![ERD](https://github.com/khw4465/D.MALL/blob/main/ERD.png)
 
 ## 구현 기능
 #### 1. 장바구니
 
-![장바구니](https://github.com/khw4465/D.MALL/assets/100522239/ee5fd4e7-5ca4-4746-a125-93a5b7497f03)
+![장바구니](https://github.com/khw4465/D.MALL/blob/main/%E1%84%8C%E1%85%A1%E1%86%BC%E1%84%87%E1%85%A1%E1%84%80%E1%85%AE%E1%84%82%E1%85%B5.png)
 
 #### 2. 주문서
 
-![주문:결제창](https://github.com/khw4465/D.MALL/assets/100522239/4941b3f8-7c4c-4404-9424-533693453b24)
+![주문:결제창](https://github.com/khw4465/D.MALL/blob/main/%E1%84%8C%E1%85%AE%E1%84%86%E1%85%AE%E1%86%AB%3A%E1%84%80%E1%85%A7%E1%86%AF%E1%84%8C%E1%85%A6%E1%84%8E%E1%85%A1%E1%86%BC.png)
 
 #### 3. 배송지추가
 
-![배송지추가](https://github.com/khw4465/D.MALL/assets/100522239/7fe5bbca-6268-4f8d-b31f-b17fae2985d9)
+![배송지추가](https://github.com/khw4465/D.MALL/blob/main/%E1%84%87%E1%85%A2%E1%84%89%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%8E%E1%85%AE%E1%84%80%E1%85%A1.png)
 
 #### 4. 우편번호 API
 
-![우편번호 API](https://github.com/khw4465/D.MALL/assets/100522239/4bd090b6-fb2e-4c3f-b115-b99c8e2fc1b8)
+![우편번호 API](https://github.com/khw4465/D.MALL/blob/main/%E1%84%8B%E1%85%AE%E1%84%91%E1%85%A7%E1%86%AB%E1%84%87%E1%85%A5%E1%86%AB%E1%84%92%E1%85%A9%20API.png)
 
 #### 5. 주문내역
 
-![주문내역](https://github.com/khw4465/D.MALL/assets/100522239/bba29eae-f96a-4b14-a008-e75beb2740b3)
+![주문내역](https://github.com/khw4465/D.MALL/blob/main/%E1%84%8C%E1%85%AE%E1%84%86%E1%85%AE%E1%86%AB%E1%84%82%E1%85%A2%E1%84%8B%E1%85%A7%E1%86%A8.png)
 
 #### 6. 주문상세
 
-![주문상세](https://github.com/khw4465/D.MALL/assets/100522239/4146aeea-8564-4981-9ce3-a65ddd955218)
+![주문상세](https://github.com/khw4465/D.MALL/blob/main/%E1%84%8C%E1%85%AE%E1%84%86%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A1%E1%86%BC%E1%84%89%E1%85%A6.png)
 
 #### 7. 배송지관리
 
-![배송지관리](https://github.com/khw4465/D.MALL/assets/100522239/17b22699-9896-48e8-8e47-d1418fece9bf)
+![배송지관리](https://github.com/khw4465/D.MALL/blob/main/%E1%84%87%E1%85%A2%E1%84%89%E1%85%A9%E1%86%BC%E1%84%8C%E1%85%B5%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5.png)
 
 #### 8. 발주
 
-![발주](https://github.com/khw4465/D.MALL/assets/100522239/513b5bab-9107-4e5a-b441-526c9ba17fa1)
+![발주](https://github.com/khw4465/D.MALL/blob/main/%E1%84%87%E1%85%A1%E1%86%AF%E1%84%8C%E1%85%AE.png)
 
 #### 9. 배송
 
-![배송](https://github.com/khw4465/D.MALL/assets/100522239/58665a2a-8569-4322-9d9f-25c24482d41c)
+![배송](https://github.com/khw4465/D.MALL/blob/main/%E1%84%87%E1%85%A2%E1%84%89%E1%85%A9%E1%86%BC.png)
 
 #### 10. 주문통계
 
-![주문통계](https://github.com/khw4465/D.MALL/assets/100522239/8de186e2-c1a0-4c4c-876d-4e4462855356)
+![주문통계](https://github.com/khw4465/D.MALL/blob/main/%E1%84%8C%E1%85%AE%E1%84%86%E1%85%AE%E1%86%AB%E1%84%90%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A8.png)
 
 ## 프로젝트를 통해 느낀점
 
