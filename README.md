@@ -1,6 +1,6 @@
 # D.MALL
 
-# 목차
+## 목차
 * [개요](#개요)
 * [멤버구성](#멤버구성)
 * [개발 환경](#개발-환경)
@@ -11,6 +11,7 @@
 * [프로젝트를 통해 느낀점](#프로젝트를-통해-느낀점)
 * [Reference](#Reference)
 
+
 ## 개요
 * 프로젝트 이름 : D.MALL 쇼핑몰 프로젝트
 * 프로젝트 기간 : 2023.05.30~2023.08.06
@@ -19,10 +20,12 @@
 * 개발 환경 : intelliJ, MySQL Workbench, Visual Studio Code, GitHub Draw.io
 * 외부 API : 카카오 결제 API, 다음 우편번호 API
 
+
 ## 멤버구성
 * 김현우 : 장바구니, 주문서, 주문내역, 주문상세, 배송지관리, 발주, 배송, 주문통계, 상품상세<br>
 * 김유성 : 공지사항, 1:1문의, FAQ, 상품조회<br>
 * 문희석 : 회원가입, 로그인, 메인페이지, 로그인이력통계, 포인트, 상품등록<br>
+
 
 ## 개발 환경
 * intelliJ
@@ -32,6 +35,7 @@
 * GitHub
 * DataGrip
 * Draw.io
+
 
 ## 사용 기술
 * Java11
@@ -46,46 +50,61 @@
 * JSON
 * Bootstrap
 
+
 ## 프로젝트 목적
 처음 최소한의 구현 능력을 학습한 이후 다양한 프로젝트 기획들이 떠올랐습니다.<br>
 그러나 아직 주니어도 아닌 개발자 지망생으로서 가장 실력을 늘릴 수 있는 프로젝트는 무엇일까 생각했습니다.<br>
 그 결과 많은 사람들이 하는 주제이면서도 가장 기본적이며 확실하게 실력을 키울 수 있는 쇼핑몰이었습니다.<br>
 그리고 그것을 문서화하여 증명하고 공유하는 것이 개발자를 위한 가장 빠르고 정확한 길이라고 생각했습니다.<br>
 
+
 ## ERD (초록색)
-### 주문/결제(ERD 개발)
+#### 주문/결제(ERD 개발)
+
 ![ERD](https://github.com/khw4465/D.MALL/assets/100522239/f786f5ea-3383-4862-94b7-6d8ed2bd39c8)
 
+
 ## 구현 기능
-1. 장바구니
+#### 1. 장바구니
+
 ![장바구니](https://github.com/khw4465/D.MALL/assets/100522239/ee5fd4e7-5ca4-4746-a125-93a5b7497f03)
 
-2. 주문서
-![주문:결제창](https://github.com/khw4465/D.MALL/assets/100522239/901f033d-0e5a-485b-8f21-c330112321a5)
+#### 2. 주문서
 
-3. 배송지추가
+![주문:결제창](https://github.com/khw4465/D.MALL/assets/100522239/0368af8e-20c5-4414-b118-dbe6982667ce)
+
+#### 3. 배송지추가
+
 ![배송지추가](https://github.com/khw4465/D.MALL/assets/100522239/7fe5bbca-6268-4f8d-b31f-b17fae2985d9)
 
-4. 우편번호 API
+#### 4. 우편번호 API
+
 ![우편번호 API](https://github.com/khw4465/D.MALL/assets/100522239/4bd090b6-fb2e-4c3f-b115-b99c8e2fc1b8)
 
-5. 주문내역
+#### 5. 주문내역
+
 ![주문내역](https://github.com/khw4465/D.MALL/assets/100522239/0ab3831e-3e65-4f2a-8140-9a543f083bdf)
 
-6. 주문상세
+#### 6. 주문상세
+
 ![주문상세](https://github.com/khw4465/D.MALL/assets/100522239/4146aeea-8564-4981-9ce3-a65ddd955218)
-
-7. 배송지관리
+
+#### 7. 배송지관리
+
 ![배송지관리](https://github.com/khw4465/D.MALL/assets/100522239/3237af4c-d6f3-4a5c-aff4-7d5120a04a53)
 
-8. 발주
+#### 8. 발주
+
 ![발주](https://github.com/khw4465/D.MALL/assets/100522239/513b5bab-9107-4e5a-b441-526c9ba17fa1)
 
-9. 배송
+#### 9. 배송
+
 ![배송](https://github.com/khw4465/D.MALL/assets/100522239/58665a2a-8569-4322-9d9f-25c24482d41c)
 
-10. 주문통계
+#### 10. 주문통계
+
 ![주문통계](https://github.com/khw4465/D.MALL/assets/100522239/8de186e2-c1a0-4c4c-876d-4e4462855356)
+
 
 ## 프로젝트를 통해 느낀점
 
@@ -105,3 +124,8 @@
 
 
 ## Reference
+* Rankingdak.com, Imdak, Moguchonmall, Cafe24
+* https://khw4465.tistory.com/
+* 자바의 정석
+* 스프링의 정석
+* 김영한의 스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술
