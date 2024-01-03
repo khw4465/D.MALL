@@ -71,7 +71,7 @@
 
 #### 2. 주문서
 
-![주문:결제창](https://github.com/khw4465/D.MALL/assets/100522239/0368af8e-20c5-4414-b118-dbe6982667ce)
+![주문:결제창](https://github.com/khw4465/D.MALL/assets/100522239/4941b3f8-7c4c-4404-9424-533693453b24)
 
 #### 3. 배송지추가
 
@@ -83,7 +83,7 @@
 
 #### 5. 주문내역
 
-![주문내역](https://github.com/khw4465/D.MALL/assets/100522239/0ab3831e-3e65-4f2a-8140-9a543f083bdf)
+![주문내역](https://github.com/khw4465/D.MALL/assets/100522239/bba29eae-f96a-4b14-a008-e75beb2740b3)
 
 #### 6. 주문상세
 
@@ -91,7 +91,7 @@
 
 #### 7. 배송지관리
 
-![배송지관리](https://github.com/khw4465/D.MALL/assets/100522239/3237af4c-d6f3-4a5c-aff4-7d5120a04a53)
+![배송지관리](https://github.com/khw4465/D.MALL/assets/100522239/17b22699-9896-48e8-8e47-d1418fece9bf)
 
 #### 8. 발주
 
